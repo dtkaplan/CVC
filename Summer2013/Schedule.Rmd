@@ -1,0 +1,85 @@
+Working Schedule, June 12-14, 2013 Workshop
+========================================================
+
+### Resources
+
+* Data and Computing Fundamentals [spring 2013 course syllabus](http://htmlpreview.github.io/?https://github.com/dtkaplan/DataAndComputingFundamentals/blob/master/Spring2013/syllabus2013.html)
+* RStudio server
+* Slides and files for sessions
+* Proposed modules
+
+
+--------------------------
+
+### Wednesday, June 12, 2013
+
+**Noon-1:00** Opening lunch, Introductions
+
+**1:00-3:15** Session 1, Location: XXXX?  Presentation of types of data sets and display methodologies.  Participants not on computers, but observe display of examples used in  DCF course. 
+
+**3:15-3:30** Coffee break
+
+**3:30-5:00**- Session 2:  Participants onto computers to get started with RStudio. Goal to having each person generate a simple .RMD document.
+
+**5:00-6:00** Work time to identify a discipline-specific dataset or example question.
+
+**6:00-7:00** Dinner
+
+**After** Pub nearby?
+
+### Thursday, June 13, 2013
+
+**8:30-10:00am**: Session 3: work with relational data: (e.g. grouping, subsetting, joining) to create graphical outputs (e.g. scatterplots, maps, etc.)
+
+**10:00-10:30**: Coffee break
+
+**10:30-Noon**: Session 4: ibid
+
+**Noon-1:00** Lunch
+
+**1:00-3:15**: Session 5: presentation/discussion of slides
+
+**3:15-3:30** Coffee break
+
+**3:30-5:00**: Session 6: follow-up based on discussions.  Breakout based on disciplinary interests?
+
+**5:00-6:00**: Work time: time to review and use RStudio to generate graphic or to work on getting data set of interest imported/examined?
+
+**6:00-7:00** Dinner
+
+**After** Pub nearby?
+
+### Friday, June 14, 2013
+
+**8:30-10:00am**: Session 7: Modeling techniques (best fit with confidence intervals) and trees/clustering
+
+**10:00-10:30**: Coffee break
+
+**10:30-Noon** Session 8: work with data set and or small-group consulations
+
+**Noon-1:00** lunch
+
+**1:00-3:15**: Session 9: develop concrete with those from your institution for next steps- timeline for implementation; discussion of possible barriers/challenges for sustaining effort when return to own campus?
+
+**3:15-3:30** Coffee break
+
+**3:30-4:30** wrap-up/depart
+
+--------------------------
+
+### Overview
+
+#### Time Utilization
+* About 50% of the time orienting participants to the DCF course
+    * The topics and skills covered by it (data manipulation, visualization, and workflow)
+    * Modifications
+    * How to deploy it
+* About 25% of the time discussing modules that participants would like to develop for their own courses
+* About 25% starting to do development
+
+#### Deliverables
+
+Participants will generate
+* 1-3 slides using markdown that show an example of a data set or question of interest.  To be presented during session 5 or 6 on Thursday.
+* Graphical portrayals of data (their own or one in the DCF package)
+* Clustering graphic 
