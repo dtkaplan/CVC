@@ -4,67 +4,85 @@ Working Schedule, June 12-14, 2013 Workshop
 ### Resources
 
 * Data and Computing Fundamentals [spring 2013 course syllabus](http://htmlpreview.github.io/?https://github.com/dtkaplan/DataAndComputingFundamentals/blob/master/Spring2013/syllabus2013.html)
-* RStudio server
-* Slides and files for sessions
+* [RStudio server](http://dahl.calvin.edu)
+* Slides and files for sessions 
 * Proposed modules
-
 
 --------------------------
 
 ### Wednesday, June 12, 2013
 
-**Noon-1:00** Opening lunch at Prince Conference Center, Introductions
+**Noon-1:00**: Opening lunch at Prince Conference Center, Introductions
 
 *Sessions will take place in Science Building 128, refreshments will be in the adjoining 
-Reading Room.*
+Reading Room.  Times of sessions are an approximation and will be adjusted as necessary.*
 
-**1:15-3:15** Session 1, Data and Display Travelogue.
+**1:15-3:00**: Session 1, Data and Display Travelogue.
 
 Our colleagues from Macalester will take us on a highlight tour of the types of data sets
 and graphical display methodologies used in their one-hour intro course for science students.
 
-**3:15-3:30** Coffee break
 
-**3:30-4:45** Session 2: RStudio Test Drive
+**3:00-3:15**: Coffee break
 
-Now it's your turn.  By the end of this session, each participant will have created a simple R Markdown (.Rmd) document in RStudio.
+**3:15-5:00**: Session 2: RStudio Test Drive
 
+Now it's your turn.  By the end of this session, each participant will have created a simple R Markdown (.Rmd and .Rpres) document in RStudio.  To get you ready, we'll take you on a guided tour
+of the main components of RStudio and show how to do some basic things with data (load it in, take a quick look at its structure, make a numerical or graphical summary, etc.)
 
-**4:45-5:45** Work time to identify a discipline-specific dataset or example question.
+**5:00-5:45**: Open Work Time 
 
-**6:00-7:00** Dinner at Prince Conference Center
+*We will end each day with open work time.  This will be mostly unstructured time for you to
+ask questions or work on individual projects.*
 
-**After** Pub nearby?
+Don't head to dinner tonight until you have identified a discipline-specific dataset or 
+example question as the focus of your slide presentation tomorrow (session 5).  Once you
+have determined your topic, you can begin working on that or you can get some additional
+practice with RStudio.
+
+**6:00-7:00**: Dinner at Prince Conference Center
+
+**After**: Relax, walk in the Nature Preserve, join others at a pub nearby, etc.
 
 ### Thursday, June 13, 2013
 
 **8:30-10:00am**: Session 3: Relational Data
 
-Participants will learn how to create new data sets from existing data sets by grouping, subsetting, and merging and to create graphical outputs  (e.g. scatterplots, maps, etc.) from the resulting data sets.
+Participants will learn how to create new data sets from existing data sets by grouping, subsetting, and merging and to create graphical outputs  (e.g., scatterplots, maps, etc.) from the resulting 
+data sets.
 
 **10:00-10:30**: Coffee break
 
-**10:30-Noon**: Session 4: *ibid*
+**10:30-Noon**: Session 4: Work on Slides
 
-**Noon-1:00** Lunch
+**Noon-1:00**: Lunch
 
-**1:00-3:15**: Session 5: Slide Show
+**1:00-2:00 **: Session 5a: Slide Show Part I
+Each participant will present 2-4 slides using R Markdown that show an example of a data set or question of interest.
 
-Each participant will present 1-3 slides using markdown that show an example of a data set or question of interest.
+**2:00-2:30 **: Break/Work/Debriefing
 
-**3:15-3:30** Coffee break
+For those who have not yet presented, this can be a chance to finish up slides -- 
+perhaps stealing some ideas from the slide shows  already presented.   It's also a chance to find
+out more about the ideas that have been presented.
 
-**3:30-4:45**: Session 6: Birds of a Feather
+**2:30-3:30 **: Session 5b: Slide Show Part II
+
+The rest of the slide shows.
+
+**3:30-3:45**: Coffee break
+
+**3:45-5:00**: Session 6: Birds of a Feather
 
 This is chance to have follow-up discussions with people interested in similar aspects and/or applications of computation and visualization.  
 
-**4:45-5:45**: Work time
+**5:00-5:45**: Open Work Time
 
 Review and use RStudio to generate graphics or to work on getting data set of interest imported and/or analyzed.
 
-**6:00-7:00** Dinner
+**6:00-7:00**: Dinner
 
-**After** Pub nearby?
+**After**: Relax, walk in the Nature Preserve, join others at a pub nearby, etc.
 
 ### Friday, June 14, 2013
 
@@ -74,40 +92,25 @@ Topics will include notions of best fit, computational tools for computing best 
 
 **10:00-10:30**: Coffee break
 
-**10:30-Noon** Session 8: Work Time
+**10:30-Noon**: Session 8: Work Time
 
 Continue working with your data (small-group consulations available)
 
-**Noon-1:00** lunch
+**Noon-1:00**: lunch
 
 **1:00-3:15**: Session 9: Planning for Next Steps
 
-With others from your institution determine
+Discussion to determine
 
  * tools/recources needed
  * other key players that will help ensure success
  * timeline for implementation
  * possible barriers/challenges for sustaining effort when return to own campus
+ * what CVC can do for you
+ * how do we teach this to students (which instructors, which methods, which courses)
+ 
 
-**3:15-3:30** Coffee break
+**3:15-3:30**: Coffee break
 
-**3:30-4:30** wrap-up/depart
+**3:30-4:30**: wrap-up/depart
 
---------------------------
-
-### Overview
-
-#### Time Utilization
-* About 50% of the time orienting participants to the DCF course
-    * The topics and skills covered by it (data manipulation, visualization, and workflow)
-    * Modifications
-    * How to deploy it
-* About 25% of the time discussing modules that participants would like to develop for their own courses
-* About 25% starting to do development
-
-#### Deliverables
-
-Participants will generate
-* 1-3 slides using markdown that show an example of a data set or question of interest.  To be presented during session 5 or 6 on Thursday.
-* Graphical portrayals of data (their own or one in the DCF package)
-* Clustering graphic 
