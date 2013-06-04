@@ -1,0 +1,39 @@
+Food and Agriculture Organization Data
+======================
+
+```{r include=FALSE}
+require(DCF)
+```
+
+The `FAOsimple` dataset provides a quick introduction to "big" data.  The structure of the data set is very simple:
+* Cases are countries
+* Variables relate to different measures of land use and population size. 
+
+### Starting with Graphics
+
+We use it as a starting point for making graphics, particularly scatter plots.
+
+### Reading in the Data
+
+As part of the `DCF` package, it's easy to read in the data.
+```{r}
+data(FAOsimple)
+```
+There are 224 cases, which turn out to be countries.
+```{r}
+nrow(FAOsimple)
+```
+There are 52 variables, of which a few are listed here --- the complete list is below:
+```{r}
+head(names(FAOsimple))
+```
+
+The countries are:
+```{r}
+with(FAOsimple, Country)
+```
+## FAO Variable Names
+
+```{r}
+names(FAOsimple)
+```
