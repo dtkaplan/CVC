@@ -1,0 +1,134 @@
+
+Welcome to the First Summer CVC Workshop
+========================================================
+author: Danny Kaplan & Libby Shoop
+date: June 12, 2013
+autosize: true
+
+Our Objectives for the Workshop
+========================================================
+type: section
+
+
+* Provide a quick foundation in the techniques covered in DCF
+* Identify topics for data-oriented modules in your own courses
+* Solicit your input for revisions to DCF
+* Start the process of collaboration to develop modules and revise DCF
+
+Overview (fold this in)
+===================================
+
+### Time Utilization
+
+* About 50% of the time orienting participants to the DCF course
+* About 25% of the time discussing modules that participants would like to develop for their own courses
+* About 25% starting to do development
+
+Deliverables
+==================================
+
+* 1-3 slides using markdown that show an example of a data set or question of interest. To be presented during session 5 or 6 on Thursday.
+* Graphical portrayals of data (their own or one in the DCF package)
+* Clustering graphic
+
+Data and Computing Fundamentals
+===================================
+* A prototype course taught to 20 students in Spring 2013
+* Review data settings and visualization modalities
+* 10 class hours
+* Expectation of 20 hours of student out-of-class work
+
+Data Contexts
+===================================
+type: section
+
+By a **data context**, we mean:
+* One or more related data files
+* At least one data organization, processing, modeling or visualization example.
+* A set of questions for the students to investigate using the data.
+
+Your task: Think about a data context that you would like to have in your course(s).  Meanwhile, we'll show some examples ...
+
+Data Contexts in DCF
+===================================
+
+
+We chose some data sets for the prototype course to illustrate various aspects of data organization and display.
+
+Criteria:
+* Potentially of interest to students
+* Topics generally accessible: biologists, chemists, economists, physicists, etc.
+* Illustrates an important aspect of data organization, data processing, modeling, and/or data visualization 
+
+Data Contexts in DCF: list
+====================================
+type: section
+
+* Data from the UN Food and Agriculture Organization
+* Gapminder country-by-country
+* Bird observations at Ordway
+* NHANES 1999-2004 health-outcomes
+* Centers for Medicare Hospital cost comparison
+* Voters in Wake County, North Carolina
+
+Gapminder.Org
+====================================
+type: exclaim
+left: 80%
+
+Hans Rosling's well-known project
+* Distributes both data and visualization software
+* We're interested in the data: <http://www.gapminder.org/data/>
+
+514 country-by-country, year-by-year "indicators".  Examples:
+
+Fertility, Alcohol consumption, Liver cancer incidence, paved roads, ...
+
+****************
+![gapminder](Images/gapminder_home_bg_3.jpg)
+
+Gapminder as a Data Setting
+====================================
+
+**Data Organization/Processing**
+* Wide versus narrow formats
+* Grouping of data (by country)
+* Combining data from different sources
+
+***********
+
+**Visualization**
+* Scatter plots
+* Maps
+
+**Modeling**
+* Clustering: Are there different country types?
+
+Visualization Modalities in DCF
+====================================
+type: section
+
+We chose what we think are the major categories of accessible visualization modalities:
+* scatter plots
+* bar charts
+* maps
+* parallel coordinates
+* trees
+
+Not yet:
+* densities
+* heat maps
+
+Your task: Think about what modalities are important to you.  
+
+Scatter Plots
+
+Work-Flow Skills
+====================================
+
+We all have preferred ways of working:
+* How we store and arrange files.
+* How we write up reports.
+* How we keep track of what we do.
+
+Sophisticated use of the computer is difficult.  
