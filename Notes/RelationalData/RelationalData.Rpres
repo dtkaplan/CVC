@@ -1,0 +1,140 @@
+Relational Data and Operations
+========================================================
+author: Daniel Kaplan
+date: June 13, 2013
+autosize: true
+
+Data Tables
+=============================
+
+The tabular format for data
+* **Columns**, which we will call "Variables"
+* **Rows**, which we will call "Cases"
+* A **Cell** is the intersection of a Row and a Column
+
+A single value is stored in each cell.  For us ...
+* Quantitative (a number)
+* Categorical (typically short text, describing categories)
+
+Auxiliary information stored in a **Codebook**
+* units and definitions of quantitative variables
+* levels for categorical variables
+* meta-data such as the sampling frame, date, ...
+
+Relational Databases
+============================
+
+A relational database is an important form of organization of data.  
+
+*Relations* are more or less the same as tables.
+
+*Relational databases* are more or less the same as collections of tables.
+* Additional structures to increase efficiency and reliability
+
+*SQL* (Structured Query Language) is a widely used tool for constructing, operating, and interacting with relational databases.
+
+DCF Goals for Relational Databases
+=============================
+
+* Understand why splitting data up among tables is helpful.
+* Be able to perform basic manipulations of tables in order to produce a result table with the data in a useful form.
+
+NOT
+* SQL
+* Detailed design of databases
+
+Basic Relational Operations 
+=============================
+* Create a new variable from existing variables
+* Extract a subset of cases based on a criterion defined in terms of variables
+* Divide cases into groups and perform a calculation on each group
+* Combine two (or more tables)
+
+In SQL terminology:
+
+    PROJECT, SELECT, GROUP, JOIN
+
+Spreadsheets and Tables
+====================================
+Spreadsheet software (e.g. Excel, Google Docs/Forms) is sometimes a good choice for entering data.
+
+However, spreadsheets do not enforce the basic constraints of a data table:
+* Rectangular shape
+* Types of values
+* Permanence/Unmutability
+* Separation of analysis from data storage.
+
+Spreadsheets support a casual and undisciplined approach to organization that can make it hard to carry out analyses.
+
+Don't use a spreadsheet like a tablecloth!
+
+R Functions and Tables
+=====================================
+The standard R representation of a table is a **data frame**.
+
+The R functions highlighted in DCF have a typical form:
+<pre>
+value <- operation( [what to do], data=[name of data frame], [additional info])
+</pre>
+
+You can refer to variables by their name
+* Capitalization and spelling is important
+* CAREFUL: Pay attention to quotes and the use of ~ (tilde).
+
+Reading in Data
+=====================================
+Tables are typically stored in **files** and read in to an R session as a data frame.
+
+Examples in DCF:
+* Data in a package: `data(WakeVotersSmall)`
+* Data in a repository, e.g. `g <- fetchData("grades.csv")`
+
+Other possibilities:
+* Data from other software packages
+* Data from databases
+
+Changing the data in the R session does **not** change the original store.
+
+Creating a New Variable from Existing Variables
+=====================================
+
+* Refer to existing variables by name
+* Use arithmetic and other operations
+* Assign the result, typically overwriting.
+
+Example: `nhanes` body measurement data.  Creating a new "surface area" measure on a cylindrical model, waist circumference $\times$ height
+```{r}
+nhanes <- transform(nhanes, area=wst*hgt)
+```
+
+Some Common Transformations
+=====================================
+
+* Arithmetic, e.g. ratios
+* Scale, e.g. logarithms
+* Division into groups, e.g.
+   * child, teen, adult
+   * ntiles
+* Contains a pattern, e.g. "swallow", "hawk"
+
+Selecting a Subset
+=====================================
+Required inputs:
+* The condition that identifies the subset
+
+Grouping
+=====================================
+Required inputs:
+* The variable(s) that define the groups
+* The calculation to do on each group
+
+Joining
+=====================================
+Combine information from two tables with (possibly) different cases.
+
+
+
+Other syntax for old-timers:
+```{r}
+# Use the $ notation
+```
