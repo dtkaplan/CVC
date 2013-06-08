@@ -2,7 +2,9 @@ Introduction to CVC Workshop 2013
 ========================================================
 author: R Pruim 
 date: 2013-June
-autosize: true
+width: 1440
+height: 900
+<!-- autosize: true -->
 
 Some Important Things
 ========================================================
