@@ -1,0 +1,57 @@
+An Overview of Data and Computing Fundamentals
+========================================================
+author: Danny Kaplan and Libby Shoop
+date: CVC Kickoff, June 13, 2013
+autosize: true
+
+Design Goals and Constraints
+============================
+
+### Provide meaningful data processing display and analysis skills 
+* do productive work
+* applicable to diverse disciplines
+* forward looking: seriously multivariable
+
+
+### Fits in early, with minimal alterations to a student's schedule
+* Time budget: 10 class hours, 20 out-of-class hours
+
+### No pre-requisites
+
+### Fun, not a slog
+
+Five Components
+=============================
+
+### Graphical Displays
+
+### Workflow
+
+### Relational Operations
+
+### Transformations
+
+### Modeling
+
+Presenting at CVC Kickoff
+==============================
+
+Class organized around case studies **data settings**.
+
+### Wednesday
+
+* Examples of Data settings & Graphical displays
+* Skills: RStudio, R patterns, Workflow
+
+### Thursday
+
+* Relational operations, a few transformations
+* Skills: Making graphics
+
+### Friday
+
+* Modeling
+
+Possibilities for deploying DCF
+====================================
+

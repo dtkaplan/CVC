@@ -111,7 +111,7 @@ Some Common Transformations
 =====================================
 
 * Arithmetic, e.g. ratios
-* Scale, e.g. logarithms
+* Scale, e.g. logarithms [XKCD cartoon](http://xkcd.com/1162/)
 * Division into groups, e.g.
    * child, teen, adult
    * ntiles
