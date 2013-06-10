@@ -4,6 +4,11 @@ author: Daniel Kaplan
 date: June 13, 2013
 autosize: true
 
+```{r include=FALSE}
+require(DCF)
+require(mosaic)
+```
+
 Data Tables
 =============================
 
@@ -104,6 +109,7 @@ Creating a New Variable from Existing Variables
 
 Example: `nhanes` body measurement data.  Creating a new "surface area" measure on a cylindrical model, waist circumference $\times$ height
 ```{r}
+data(nhanes) # read the data
 nhanes <- transform(nhanes, area=wst*hgt)
 ```
 
@@ -133,7 +139,54 @@ Joining
 Combine information from two tables with (possibly) different cases.
 
 
+Exercise: What Transformations?
+=====================================
 
+Ordway Bird data to this graphic:
+
+Month  | Species Name
+:------|:------------
+3 | Tree Sparrow
+10 | Fox Sparrow
+10 | American Goldfinch
+3  | Tree Sparrow
+1 | Black-capped Chickadee
+12 | Black-capped Chickadee
+
+***********
+
+![bird by season](birds-by-month.png)
+
+Data Format for Graphic
+=======================
+
+Month  | Species Name | Count
+:------|:-------------|:----
+3 | Tree Sparrow | 7
+10 | Fox Sparrow | 21
+10 | American Goldfinch |9
+1 | Black-capped Chickadee | 1
+12 | Black-capped Chickadee | 3
+
+***********
+
+![bird by season](birds-by-month.png)
+
+Steps
+=======================
+
+1. Count by species and month (easy!)
+2. Count by species
+3. Join (1) and (2)
+4. Subset only the most common species
+
+Join Example: Data Cleaning
+=====================================
+[Species in the Ordway Bird Data](../Worksheets/BirdCleaning.html)
+
+
+MISC
+====================================
 Other syntax for old-timers:
 ```{r}
 # Use the $ notation
