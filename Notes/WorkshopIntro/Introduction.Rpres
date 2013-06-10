@@ -210,10 +210,6 @@ We chose what we think are the major categories of accessible visualization moda
 * parallel coordinates
 * trees
 
-Not yet:
-* densities
-* heat maps
-
 Your task: Think about what modalities are important to you.  
 
 Scatter Plots
@@ -272,6 +268,18 @@ Vehicle-related deaths (per 100,000 per year) indicated by size.
 Is alcohol an evident factor in the differing rate of vehicle-related deaths across countries?
 
 Does this mean that alcohol isn't a factor in vehicle-related deaths?
+
+Geometry, not just Geography
+=====================
+left: 70%
+
+![seedlings](seedling-map.png)
+
+*********
+
+A chloropleth map assigns a color to a region.  What the region refers to is up to you.
+
+In addition to "world map", we could produce "seed map" or "campus map" or "brain map".
 
 Parallel Coordinates
 =====================
