@@ -1,3 +1,18 @@
+```{r include=FALSE}
+options(rstudio.markdownToHTML = 
+  function(inputFile, outputFile) {      
+    require(markdown)
+    markdownToHTML(inputFile, outputFile, stylesheet='../stylesheets/cvc2013.css')   
+  }
+) 
+```
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../javascripts/main.js"></script>
+
+
+
+<body width="80%">
+
 Working Schedule, June 12-14, 2013 Workshop
 ========================================================
 
@@ -17,11 +32,13 @@ Working Schedule, June 12-14, 2013 Workshop
 *Sessions will take place in Science Building 128, refreshments will be in the adjoining 
 Reading Room.  Times of sessions are an approximation and will be adjusted as necessary.*
 
-**1:15-3:00**: Session 1, Data and Display Travelogue.
+**1:15-3:00**: Session 1, Data and Display Travelogue 
 
 Our colleagues from Macalester will take us on a highlight tour of the types of data sets
 and graphical display methodologies used in their one-hour intro course for science students.
 
+* [Welcome](Session1/Welcome.html)
+* [Data and Display Travelogue](Session1/DCF-Travelogue/Slides.html).
 
 **3:00-3:15**: Coffee break
 
@@ -114,3 +131,4 @@ Discussion to determine
 
 **3:30-4:30**: wrap-up/depart
 
+</body>
