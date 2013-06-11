@@ -2,4 +2,7 @@
 *.Rhistory
 *.RData
 *.html
+*.rdb
+*.rdx
+*-cache
 
