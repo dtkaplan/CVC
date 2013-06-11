@@ -1,3 +1,21 @@
+<style type="text/css">
+span.boxed {
+  border:5px solid gray;
+  border-radius:10px;
+  padding: 5px;
+}
+span.invboxed {
+  border:5px solid gray;
+  padding: 5px;
+  border-radius:10px;
+  color: white;
+}
+table, td, th
+{
+border:0px;
+}
+</style>
+
 Relational Data and Operations
 ========================================================
 author: Daniel Kaplan
@@ -99,6 +117,44 @@ Other possibilities:
 * Data from databases
 
 Changing the data in the R session does **not** change the original store.
+
+The Most Important R Template
+========================================================
+&nbsp;
+
+<center>
+<h2><strong><span class="boxed">goal</span> ( <span class="invboxed">&nbsp;y&nbsp;</span> ~ <span class="boxed">&nbsp;x&nbsp;</span> , data = <span class="boxed">mydata</span> )</strong> 
+</h2></center>
+ 
+The Most Important R Template
+========================================================
+&nbsp;
+
+<center>
+<h2><strong><span class="boxed">goal</span> ( <span class="boxed">&nbsp;y&nbsp;</span> ~ <span class="boxed">&nbsp;x&nbsp;</span> , data = <span class="boxed">mydata</span> , ...)</strong> 
+</h2></center>
+&nbsp;
+
+### Simpler version:  
+ * `goal( ~ x, data = mydata )`
+
+&nbsp;
+### Fancier version: 
+ * `goal( y ~ x | z , data = mydata )`
+ 
+&nbsp;
+### Unified version: 
+ * `goal( formula , data = mydata )`
+
+The Two Questions
+========================================================
+&nbsp;
+<center>
+<h2><strong><span class="boxed">goal</span> ( <span class="boxed">&nbsp;y&nbsp;</span> ~ <span class="boxed">&nbsp;x&nbsp;</span> , data = <span class="boxed">mydata</span> )</strong> 
+</h2></center>
+ 
+&nbsp;
+
 
 Creating a New Variable from Existing Variables
 =====================================
