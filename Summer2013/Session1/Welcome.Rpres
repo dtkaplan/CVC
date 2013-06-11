@@ -31,9 +31,11 @@ CVC Workshop Goals
 
 2. Work
 
+3. Play
+
 Shop
 ========================================================
-incremental: true
+incremental: false
 * Hear from others what they are doing/thinking about doing
 * See some glimpses of the DCF course at Macalester 
   * concrete example
@@ -43,7 +45,7 @@ incremental: true
   
 Work
 ========================================================
-incremental: true
+incremental: false
 * Determine what sorts of things will work on your campus
 * Work together to create some materials and plans for local implementation
 * Identify common obstacles and strategies to overcome them
@@ -51,12 +53,14 @@ incremental: true
 
 Deliverables
 ===================
-incremental: true
+incremental: false
 * Presentation consisting of 1-3 slides
   * using R Markdown
   * identify example data setting or question of interest
   * presented Thursday afternoon [more about schedule shortly]
+  
 * Graphical displays of intersting data settings 
+
 * Feedback on DCF course at Macalester
 
 
