@@ -1,0 +1,65 @@
+Exercise Templates
+================================
+
+Show a graphic. 
+
+What sort of graph is this?
+
+* Scatterplot
+* Bar plot
+* Tree
+* Map
+
+What are the variables involved?
+
+What's the link between variable XXXX and its role in the graphic?
+
+* x-position
+* y-position
+* color
+* size
+* polygon (e.g. country)
+* none
+
+Which variable plays which role in the graphic?
+
+* x-position [list of vars, then NA]
+* y-position [list of vars, then NA]
+
+What's the response variable?
+
+What are the type of variable XXXX?
+Categorical, Quantitative
+
+Based on the graph, which if any of these are levels of the variable XXX:
+* For each variable: List the levels, then "none of these"
+
+Show a set of tables ... Using the tables above, explain how you would form the following table:
+
+Examples using SUBSET, TRANSFORM, JOIN, GROUP
+
+Show a set of related tables ... Using the tables above, explain how you would form the following table.  Make sure that you specify which variables are being used for the join.
+
+Ask what kind of join it is.
+
+SHOW GRAPHICS
+
+Write down the format of table you think this graph is directly derived from.
+
+E.g. a map, give 
+
+Country | Age
+--------|------
+Argentina | 29
+Benin | 25
+China | 28
+Denmark | 32
+
+Show a model:
+What is the response variable?
+
+What variable has been used for clustering?
+
+What variables have been used for partioning?
+
+
