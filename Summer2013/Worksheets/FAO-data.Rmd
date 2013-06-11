@@ -1,0 +1,125 @@
+Food and Agriculture Organization Data
+======================
+
+```{r include=FALSE}
+require(DCF)
+```
+
+The `FAOsimple` dataset provides a quick introduction to "big" data.  The structure of the data set is very simple:
+* Cases are countries
+* Variables relate to different measures of land use and population size. 
+
+### Starting with Graphics
+
+We use it as a starting point for making graphics, particularly scatter plots.
+
+### Reading in the Data
+
+As part of the `DCF` package, it's easy to read in the data.
+```{r}
+data(FAOsimple)
+```
+There are 224 cases, which turn out to be countries.
+```{r}
+nrow(FAOsimple)
+```
+There are 52 variables, of which a few are listed here --- the complete list is below:
+```{r}
+head(names(FAOsimple))
+```
+
+Here are a few of the countries: `r I(sample(FAOsimple$Country,10))`.  There are `r I(nrow(FAOsimple))` altogether.
+
+### Making Scatterplots
+
+Students can explore the relationship among variables with a simple scatterplot, for instance this one about total population as a function of agricultural area.
+```{r}
+ggplot(data=FAOsimple,aes(x=Agricultural.area,y=Total.Population...Both.sexes))+geom_point()+scale_x_log10()+scale_y_log10()
+```
+
+Evidently, there's a pretty simple typical relationship between agricultural area and population.  To acquaint students with such graphics, some questions to ask:
+* For an area of 1000 km^2, what's the typical population?
+* There are some outliers.  Which points would you identify as such?
+* Neglecting the outliers, for a given agricultural area, there is a range of populations.  How big is that range?
+
+To explore the graphics yourself, use the `mScatter()` function, which let's you interactively choose the variables to be plotted as well as other aspects of the plot.  Here's how:
+```{r eval=FALSE}
+require(DCF)
+data(FAOsimple)
+mScatter(FAOsimple)
+```
+
+In addition to choosing variables for the $x$ and $y$ axes, you can choose variables for color and size of the dot.  Doing so in a meaningful way involves an additional data technique: Generating a new variable from existing variables.
+
+### Transformations of variables
+
+Often, you create new variables by transforming old ones.  
+
+Some transformations are arithmetic, for example,  creating population density by dividing population by land area:
+```{r}
+FAOsimple = transform(FAOsimple, 
+                      density=Total.Population...Both.sexes/Country.area)
+```
+
+When using colors to indicate the level of a variable, it can be helpful to divide into discrete groups.  A particularly simple-to-use transformation divides up the cases into groups of (approximately) equal size.  This is  useful when dealing with variables that have an uneven distribution over a very wide range.
+```{r}
+FAOsimple = transform(FAOsimple,ArableG=ntiles(Arable.land,n=5))
+```
+
+Here's a plot that uses these transformed variables for color and size of the dots:
+```{r}
+ggplot(data=FAOsimple,aes(x=Agricultural.area,y=Total.Population...Both.sexes))+geom_point()+aes(colour=ArableG)+aes(size=log10(density))+scale_x_log10()+scale_y_log10() 
+```
+
+#### Interpretation Task:
+
+Examine the plot above and describe the features of the plot that support these claims:
+1. The amount of arable land is roughly aligned with agricultural area.
+2. Countries with low population densities tend to have relatively large agricultural areas compared to the amount of arable land.
+
+
+#### Exercises
+
+Construct new variables
+
+* Calculate population density as population per agricultural area
+* Add up the male and female population and verify that it matches total population. (You can make a new variable and plot it against the original total population.)
+
+```{r}
+# Your plot here
+```
+
+#### Exploration
+ 
+Is there a clear relationship between the fraction of a country's total land that is arable and the fraction of a country's total population that is engaged in agricultural work?
+
+```{r}
+# Your plot goes here
+```
+
+Pick out some variables that you think ought to be related. Describe the relationship you hypothesize and then demonstrate whether or not your hypothesis is consistent with the data.
+
+```{r}
+# Your plot here
+```
+
+Show a situation where the use of logarithmic axes helps to illustrate a relationship. Do this by contrasting the same plots with and without logarithmic axes and then providing a narrative explanation of what the logarithmic axes make clearer.
+```{r}
+# Your plot without logarithmic axes
+```
+
+```{r}
+# The same plot with logarithmic axes
+```
+
+Your narrative goes here ...
+
+
+
+
+
+## FAO Variable Names
+
+```{r}
+names(FAOsimple)
+```
