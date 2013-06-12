@@ -45,6 +45,8 @@ and graphical display methodologies used in their one-hour intro course for scie
 Now it's your turn.  By the end of this session, each participant will have created a simple R Markdown (.Rmd and .Rpres) document in RStudio.  To get you ready, we'll take you on a guided tour
 of the main components of RStudio and show how to do some basic things with data (load it in, take a quick look at its structure, make a numerical or graphical summary, etc.)
 
+* [Less Volume, More Creativity](Session2/LearningTeachingR.html)
+
 **5:00-5:45: Open Work Time**
 
 *We will end each day with open work time.  This will be mostly unstructured time for you to
