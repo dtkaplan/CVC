@@ -1,0 +1,62 @@
+DCF Starter
+======================
+
+A quick introduction to data, cases, and variables.
+
+You're meant to play around with this.
+
+```{r include=FALSE}
+require(DCF)
+```
+
+## Data Tables
+
+Here are a few data tables.  Your task is to figure out what are the variables, what are the cases, and what kind of thing each variable is.
+
+### Voter Registration
+
+```{r}
+data(WakeVotersSmall)
+```
+
+Let's focus on just a few variables:
+```{r tidy=FALSE}
+voters <- subset(WakeVotersSmall,
+                 select=c("race","gender","party","Age",
+                          "res_zip_code","name_sufx"))
+```
+
+Try `names()`, `nrow()`, `class()`, and `summary()` on the `voters` dataframe itself and on individual variables accessed, e.g., as `voters$race`.  Try `levels()` on individual variables.
+
+* What type is each variable?
+* What do you think the case is?  How might you confirm this?
+
+### Bird Observations
+
+```{r}
+data(OrdwayBirdsOrig)
+```
+
+Again, focus on a few variables:
+```{r tidy=FALSE}
+birds <- subset(OrdwayBirdsOrig,
+                select=c("Year","Month","Day","SpeciesName","Weight"))
+```
+
+Again, try `names()`, `nrow()`, `class()`, and `summary()` on the `birds` dataframe itself and on individual variables accessed, e.g., as `birds$Day`
+
+* What do you think the case is?
+* What type is each variable?
+* Which variables are need cleaning?
+
+### Derived from Bird Observations
+
+Here's are two new dataframes derived from `birds`:
+```{r}
+one <- groupBy( birds, by=SpeciesName )
+two <- groupBy( birds, by=list(SpeciesName,Month))
+three <- groupBy( two, by=Month, total = sum(count))
+```
+
+For each of them, say what are the variables and what are the cases.
+

@@ -308,7 +308,9 @@ Some Missing Graphical Modalities
 
 Regression Curves and Confidence Intervals
 ===============================
-left: 60%
+left: 50%
+
+Height v Age.
 
 ![height-v-age](height-v-age.png)
 
