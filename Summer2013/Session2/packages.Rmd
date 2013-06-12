@@ -1,0 +1,26 @@
+
+```{r include=FALSE}
+options(markdown.HTML.stylesheet = '../../stylesheets/cvc2013.css')
+```
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../javascripts/main.js"></script>
+
+
+Getting mosaic and DCF installed locally
+==========
+
+If you are working on a local copy of RStudio, you may want to install `mosaic` and `DCF` there so you can follow along.  Here's how.
+
+### Getting mosaic
+```{r eval=FALSE}
+install.packages("mosaic")
+require(mosaic)
+```
+
+### Getting DCF
+```{r eval=FALSE}
+install.packages("devtools")
+require(devtools)
+install_url("http://mosaic-web.org/go/Repository/DannyKaplan/DCF_0.13.tar.gz")
+require(DCF)
+```
