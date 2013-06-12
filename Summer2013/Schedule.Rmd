@@ -4,9 +4,6 @@ options(markdown.HTML.stylesheet = '../stylesheets/cvc2013.css')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="../javascripts/main.js"></script>
 
-[Give a suggestion/correction](https://docs.google.com/document/d/1eEwaMvxahJJ2YuFFWgUEmgBj58umwvMwf_GXnsp9Yc0/edit?usp=sharing) : Share/send some code  [Alpha](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-alpharIwB7uaxo82e5QET),[Bravo](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-bravoIwB7uaxo82e5QET),[Charlie](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-charlieIwB7uaxo82e5QET),[Delta](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-deltaIwB7uaxo82e5QET),[Echo](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-echoIwB7uaxo82e5QET),[Foxtrot](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-foxtrotIwB7uaxo82e5QET),[Golf](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-golfIwB7uaxo82e5QET),[Hotel](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-hotelIwB7uaxo82e5QET).  
-
-
 
 Working Schedule, June 12-14, 2013 
 ========================================================
@@ -17,16 +14,23 @@ Working Schedule, June 12-14, 2013
 * [RStudio server](http://dahl.calvin.edu)
 * Slides and files for sessions will be posted in the schedule as we go along
 
+### Provide Feedback
+* Give a suggestion/correction: [Google Doc](https://docs.google.com/document/d/1eEwaMvxahJJ2YuFFWgUEmgBj58umwvMwf_GXnsp9Yc0/edit?usp=sharing)  
+* Share/send some code via Firepad:  [Alpha](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-alpharIwB7uaxo82e5QET), [Bravo](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-bravoIwB7uaxo82e5QET), [Charlie](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-charlieIwB7uaxo82e5QET), [Delta](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-deltaIwB7uaxo82e5QET), [Echo](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-echoIwB7uaxo82e5QET), [Foxtrot](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-foxtrotIwB7uaxo82e5QET), [Golf](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-golfIwB7uaxo82e5QET), [Hotel](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-hotelIwB7uaxo82e5QET).  
+
+
+
+
 --------------------------
 
 ## Wednesday, June 12, 2013
 
-**Noon-1:00**: Opening lunch at Prince Conference Center, Introductions
+**Noon-1:00: Opening lunch** at Prince Conference Center, Introductions
 
-*Sessions will take place in Science Building 128, refreshments will be in the adjoining 
+*Sessions will take place in <strong>Building 128</strong>, refreshments will be in the adjoining 
 Reading Room.  Times of sessions are an approximation and will be adjusted as necessary.*
 
-**1:15-3:00**: Session 1, Data and Display Travelogue 
+**1:15-3:00: Session 1**, Data and Display Travelogue 
 
 Our colleagues from Macalester will take us on a highlight tour of the types of data sets
 and graphical display methodologies used in their one-hour intro course for science students.
@@ -34,14 +38,14 @@ and graphical display methodologies used in their one-hour intro course for scie
 * [Welcome](Session1/Welcome.html)
 * [Data and Display Travelogue](Session1/DCF-Travelogue/Slides.html).
 
-**3:00-3:15**: Coffee break
+**3:00-3:15: Coffee break**
 
-**3:15-5:00**: Session 2: RStudio Test Drive
+**3:15-5:00: Session 2**, RStudio Test Drive
 
 Now it's your turn.  By the end of this session, each participant will have created a simple R Markdown (.Rmd and .Rpres) document in RStudio.  To get you ready, we'll take you on a guided tour
 of the main components of RStudio and show how to do some basic things with data (load it in, take a quick look at its structure, make a numerical or graphical summary, etc.)
 
-**5:00-5:45**: Open Work Time 
+**5:00-5:45: Open Work Time**
 
 *We will end each day with open work time.  This will be mostly unstructured time for you to
 ask questions or work on individual projects.*
@@ -51,65 +55,65 @@ example question as the focus of your slide presentation tomorrow (session 5).  
 have determined your topic, you can begin working on that or you can get some additional
 practice with RStudio.
 
-**6:00-7:00**: Dinner at Prince Conference Center
+**6:00-7:00: Dinner** at Prince Conference Center
 
 **After**: Relax, walk in the Nature Preserve, join others at a pub nearby, etc.
 
 ## Thursday, June 13, 2013
 
-**8:30-10:00am**: Session 3: Relational Data
+**8:30-10:00am: Session 3**, Relational Data
 
 Participants will learn how to create new data sets from existing data sets by grouping, subsetting, and merging and to create graphical outputs  (e.g., scatterplots, maps, etc.) from the resulting 
 data sets.
 
-**10:00-10:30**: Coffee break
+**10:00-10:30: Coffee break**
 
-**10:30-Noon**: Session 4: Work on Slides
+**10:30-Noon: Session 4**, Work on Slides
 
-**Noon-1:00**: Lunch
+**Noon-1:00: Lunch**
 
-**1:00-2:00 **: Session 5a: Slide Show Part I
+**1:00-2:00: Session 5a**, Slide Show Part I
 Each participant will present 2-4 slides using R Markdown that show an example of a data set or question of interest.
 
-**2:00-2:30 **: Break/Work/Debriefing
+**2:00-2:30: Break/Work/Debriefing**
 
 For those who have not yet presented, this can be a chance to finish up slides -- 
 perhaps stealing some ideas from the slide shows  already presented.   It's also a chance to find
 out more about the ideas that have been presented.
 
-**2:30-3:30 **: Session 5b: Slide Show Part II
+**2:30-3:30: Session 5b**, Slide Show Part II
 
 The rest of the slide shows.
 
-**3:30-3:45**: Coffee break
+**3:30-3:45: Coffee break**
 
-**3:45-5:00**: Session 6: Birds of a Feather
+**3:45-5:00: Session 6**, Birds of a Feather
 
 This is chance to have follow-up discussions with people interested in similar aspects and/or applications of computation and visualization.  
 
-**5:00-5:45**: Open Work Time
+**5:00-5:45: Open Work Time**
 
 Review and use RStudio to generate graphics or to work on getting data set of interest imported and/or analyzed.
 
-**6:00-7:00**: Dinner
+**6:00-7:00: Dinner**
 
 **After**: Relax, walk in the Nature Preserve, join others at a pub nearby, etc.
 
 ## Friday, June 14, 2013
 
-**8:30-10:00am**: Session 7: Modeling techniques 
+**8:30-10:00am: Session 7**, Modeling techniques 
 
 Topics will include notions of best fit, computational tools for computing best fit, confidence intervals for fitted parameters and trees/clustering
 
-**10:00-10:30**: Coffee break
+**10:00-10:30: Coffee break**
 
-**10:30-Noon**: Session 8: Work Time
+**10:30-Noon: Session 8**, Work Time
 
 Continue working with your data (small-group consulations available)
 
-**Noon-1:00**: lunch
+**Noon-1:00: lunch**
 
-**1:00-3:15**: Session 9: Planning for Next Steps
+**1:00-3:15: Session 9**, Planning for Next Steps
 
 Discussion to determine
 
@@ -121,7 +125,7 @@ Discussion to determine
  * how do we teach this to students (which instructors, which methods, which courses)
  
 
-**3:15-3:30**: Coffee break
+**3:15-3:30: Coffee break**
 
-**3:30-4:30**: wrap-up/depart
+**3:30-4:30: Wrap-up/depart**
 
