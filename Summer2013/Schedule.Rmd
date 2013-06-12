@@ -1,27 +1,35 @@
-Working Schedule, June 12-14, 2013 Workshop
+```{r include=FALSE}
+options(markdown.HTML.stylesheet = '../stylesheets/cvc2013.css')
+```
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../javascripts/main.js"></script>
+
+
+Working Schedule, June 12-14, 2013 
 ========================================================
 
 ### Resources
 
 * Data and Computing Fundamentals [spring 2013 course syllabus](http://htmlpreview.github.io/?https://github.com/dtkaplan/DataAndComputingFundamentals/blob/master/Spring2013/syllabus2013.html)
 * [RStudio server](http://dahl.calvin.edu)
-* Slides and files for sessions 
-* Proposed modules
+* Slides and files for sessions will be posted in the schedule as we go along
 
 --------------------------
 
-### Wednesday, June 12, 2013
+## Wednesday, June 12, 2013
 
 **Noon-1:00**: Opening lunch at Prince Conference Center, Introductions
 
 *Sessions will take place in Science Building 128, refreshments will be in the adjoining 
 Reading Room.  Times of sessions are an approximation and will be adjusted as necessary.*
 
-**1:15-3:00**: Session 1, Data and Display Travelogue.
+**1:15-3:00**: Session 1, Data and Display Travelogue 
 
 Our colleagues from Macalester will take us on a highlight tour of the types of data sets
 and graphical display methodologies used in their one-hour intro course for science students.
 
+* [Welcome](Session1/Welcome.html)
+* [Data and Display Travelogue](Session1/DCF-Travelogue/Slides.html).
 
 **3:00-3:15**: Coffee break
 
@@ -44,7 +52,7 @@ practice with RStudio.
 
 **After**: Relax, walk in the Nature Preserve, join others at a pub nearby, etc.
 
-### Thursday, June 13, 2013
+## Thursday, June 13, 2013
 
 **8:30-10:00am**: Session 3: Relational Data
 
@@ -84,7 +92,7 @@ Review and use RStudio to generate graphics or to work on getting data set of in
 
 **After**: Relax, walk in the Nature Preserve, join others at a pub nearby, etc.
 
-### Friday, June 14, 2013
+## Friday, June 14, 2013
 
 **8:30-10:00am**: Session 7: Modeling techniques 
 
