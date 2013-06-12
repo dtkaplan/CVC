@@ -1,31 +1,22 @@
 ```{r include=FALSE}
-options(rstudio.markdownToHTML = 
-  function(inputFile, outputFile) {      
-    require(markdown)
-    markdownToHTML(inputFile, outputFile, stylesheet='../stylesheets/cvc2013.css')   
-  }
-) 
+options(markdown.HTML.stylesheet = '../stylesheets/cvc2013.css')
 ```
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="../javascripts/main.js"></script>
 
 
-
-<body width="80%">
-
-Working Schedule, June 12-14, 2013 Workshop
+Working Schedule, June 12-14, 2013 
 ========================================================
 
 ### Resources
 
 * Data and Computing Fundamentals [spring 2013 course syllabus](http://htmlpreview.github.io/?https://github.com/dtkaplan/DataAndComputingFundamentals/blob/master/Spring2013/syllabus2013.html)
 * [RStudio server](http://dahl.calvin.edu)
-* Slides and files for sessions 
-* Proposed modules
+* Slides and files for sessions will be posted in the schedule as we go along
 
 --------------------------
 
-### Wednesday, June 12, 2013
+## Wednesday, June 12, 2013
 
 **Noon-1:00**: Opening lunch at Prince Conference Center, Introductions
 
@@ -61,7 +52,7 @@ practice with RStudio.
 
 **After**: Relax, walk in the Nature Preserve, join others at a pub nearby, etc.
 
-### Thursday, June 13, 2013
+## Thursday, June 13, 2013
 
 **8:30-10:00am**: Session 3: Relational Data
 
@@ -101,7 +92,7 @@ Review and use RStudio to generate graphics or to work on getting data set of in
 
 **After**: Relax, walk in the Nature Preserve, join others at a pub nearby, etc.
 
-### Friday, June 14, 2013
+## Friday, June 14, 2013
 
 **8:30-10:00am**: Session 7: Modeling techniques 
 
@@ -131,4 +122,3 @@ Discussion to determine
 
 **3:30-4:30**: wrap-up/depart
 
-</body>
