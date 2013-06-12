@@ -215,11 +215,15 @@ Be prepared to answer these questions about any data table:
 \item What type is each variable?
 \end{itemize}
 
-\vspace*{-.2in}\subsection*{How many cases?}
+%\vspace*{-.2in}\subsection*{How many cases?}
 
 <<eval=FALSE>>=
 nrow(birds)
 [1] 15829
+@
+<<eval=FALSE>>=
+ncol(birds)
+[1] 26
 @
 
 \vspace*{-.2in}\subsection*{Variable names \& Renaming}
@@ -250,13 +254,21 @@ class(voters$party)
 \vspace*{-.2in}\subsection*{Dirty Data}
 Sometimes data will surprise you:
 <<eval=FALSE>>=
-class(birds$Month)
+> class(nhanes$sex)
+[1] "numeric"
+> class(birds$Month)
 [1] "factor"
 @
-You probably thought \code{Month} would be numeric.
+You probably thought \code{sex} would be categorical
+and \code{Month} would be numeric.
 
-\vspace*{-.2in}\subsection*{See the Levels}
-Categorical variables have levels.
+<<eval=FALSE>>=
+> head(nhanes$sex)
+[1] 2 1 2 1 1 2
+@
+
+%\vspace*{-.2in}\subsection*{See the Levels}
+%Categorical variables have levels.
 <<eval=FALSE>>=
 levels(birds$Month)
  [1] ""      "1"     "10"    "11"   
@@ -264,7 +276,7 @@ levels(birds$Month)
  [9] "4"     "5"     "6"     "7"    
 [13] "8"     "9"     "Month"
 @
-Someone entered month ``25" and the word ``Month".
+%Someone entered month ``25" and the word ``Month".
 
 \vfill
 \columnbreak
@@ -365,7 +377,8 @@ nhanes <- transform(nhanes,
 \newpage
 \begin{multicols}{4}
 \raggedright
-\vspace*{-.2in}\subsection*{Joining Two Tables}
+%\vspace*{-.2in}
+\subsection*{Joining Two Tables}
 
 Example: Drop the low-count species of birds.
 

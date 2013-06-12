@@ -36,7 +36,7 @@ Our colleagues from Macalester will take us on a highlight tour of the types of 
 and graphical display methodologies used in their one-hour intro course for science students.
 
 * [Welcome](Session1/Welcome.html)
-* [Data and Display Travelogue](Session1/DCF-Travelogue/Slides.html).
+* [Data and Display Travelogue](Session1/DCF-Travelogue/DCF-Travelogue.html)
 
 **3:00-3:15: Coffee break**
 
