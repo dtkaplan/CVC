@@ -148,7 +148,7 @@ Daniel Kaplan
 \parindent=0pt
 
 \chead{\sf \bfseries \Large Enough R for Data and Computing Fundamentals}
-\rhead{Summer 2013}
+\rhead{version 0.2, CVC June 2013}
 \lhead{D. Kaplan}
 
 
@@ -171,7 +171,7 @@ gsub('^\\\\begin\\{alltt\\}\\s*|\\\\end\\{alltt\\}\\s*$', '', h)
 
 \def\opt#1{#1}
 \def\squeeze{\vspace*{-4ex}}
-This sheet covers the operations to read in data tables, process them into new forms, and translate them into graphical and modeling presentations.
+{\bf Process:} Start with the original, immutable data tables.  Transform variables, subset cases, group cases, and join tables as needed to create a single table with the variables you want to display or model. 
 
 \begin{multicols}{4}
 \raggedright
@@ -309,6 +309,9 @@ groupBy(voters,by=party)
 2   REP  3098
 3   UNA  2783
 @
+\vfill
+\columnbreak
+
 Median age of voters, by party:
 <<eval=FALSE>>=
 groupBy(voters,by=party,
@@ -355,12 +358,14 @@ nhanes <- transform(nhanes,
 \end{multicols}
 \newpage
 \begin{multicols}{4}
+\raggedright
 \vspace*{-.2in}\subsection*{Joining Two Tables}
 
 Example: Drop the low-count species of birds.
 
 <<>>=
-counts <- groupBy(birds,by=SpeciesName)
+counts <- groupBy(birds,
+            by=SpeciesName)
 @
 
 <<echo=FALSE,results="asis">>=
@@ -369,26 +374,126 @@ row.names(foo) <- NULL
 print(xtable(foo,include.rownames=FALSE),floating=FALSE)
 @
 
-<<>>=
+<<messages=FALSE>>=
 birds <- join(birds,counts)
 @
 
+\begin{small}
 <<echo=FALSE,results="asis">>=
-foo <- birds[c(14,53,55,58),]
+foo <- birds[c(1375,11270,2755,14674),]
 row.names(foo) <- NULL
 print(xtable(foo, include.rownames=FALSE),floating=FALSE)
 @
+\end{small}
 
 <<eval=FALSE>>=
 birds <- subset(birds,
           count>200)
 @
 
+Choice in \function{join}: $\bullet$ Variables to use for matching; $\bullet$ which tables' cases to keep.
 
+\subsection*{Parallel Coordinates}
+
+<<eval=FALSE>>=
+parallelPlot(mtcars,
+    ~wt + cyl + disp + hp - mpg,
+    lwd=5,axes=TRUE)
+@
+
+\centerline{\includegraphics[width=.2\textwidth]{parallel-cars.png}}
+
+\vfill
+\columnbreak
+
+\subsection*{Scatter Plots}
+
+To generate interactively:
+<<eval=FALSE>>=
+mScatter(nhanes)
+@
+
+\centerline{\includegraphics[width=.25\textwidth]{nhanes-scatter.png}}
+
+
+Required Variables in table:
+\begin{itemize}
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item x-position: Quant. e.g. \VN{Age} 
+\item y-position: Quant. e.g. \VN{BMI} 
+\end{itemize}
+Optional variables:
+\begin{itemize}
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item Size: Quant. or Categorical (not used here)
+\item Color: Quant. or Categorical, e.g, \VN{diabetes}
+\item Transluscency \VN{diabetes}
+\end{itemize}
+Choices:
+\begin{itemize}
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item Log axes (not used here)
+\end{itemize}
 
 
 \vfill
 \columnbreak
+
+\subsection*{Bar Plots}
+Make interactively with 
+<<eval=FALSE>>=
+mBar(voters)
+@
+
+\centerline{\includegraphics[width=.2\textwidth]{voter-bar1.png}}
+
+Typically generated from {\bf grouped} data.
+
+Required Variables in table:
+\begin{itemize}
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item x-axis: Categorical e.g. \VN{AgeGroup} 
+\item y-axis: Quant. typically a count. 
+\end{itemize}
+Optional Variable:
+\begin{itemize}
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item Sub-divisions of bar groups: Categorical, e.g. \VN{party}
+\end{itemize}
+Choices:
+\begin{itemize}
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item Sub-bar arrangment: stacked, dodged, proportional.
+\end{itemize}
+
+\vfill
+\columnbreak
+
+\subsection*{Maps}
+
+Choose a program for the geometry of interest.  Here, \function{mWorldMap}, so the polygons are countries.
+
+\centerline{\includegraphics[width=.2\textwidth]{alcohol-map.png}}
+
+Required Variables in table:
+\begin{itemize}
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item Polygon: Categorical, here \VN{Country} 
+\item Color: Categ. or Quant.   
+\end{itemize}
+One case per polygon!
+
+
+\subsection*{Trees}
+
+Find distances between each pair of individual cases.
+
+\centerline{\includegraphics[width=.2\textwidth]{dendrogram-cars.png}}
+
+<<eval=FALSE>>=
+hc <- hclust(dist(mtcars))
+plot(hc, hang=-1)
+@
 \end{multicols}
 \end{document}
 
