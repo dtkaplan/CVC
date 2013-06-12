@@ -1,0 +1,434 @@
+\documentclass{report}
+\usepackage{mparhack}
+\usepackage{xstring}
+\usepackage{multicol}
+\usepackage{xcolor}
+
+
+\usepackage[landscape,margin=.25in,bottom=.35in,includehead,includefoot]{geometry}
+<<include=FALSE>>=
+opts_chunk$set(tidy=FALSE,comment=NA,  
+               fig.width=4,fig.height=2,
+	             fig.align="center",out.width=".25\\textwidth")
+options(width=40)
+require(xtable)
+@
+
+
+
+\usepackage[utf8]{inputenc}
+
+\usepackage[Bjornstrup]{fncychap}
+\usepackage{fancyvrb}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+%% Now begin customising things. See the fancyhdr docs for more info.
+
+\renewcommand{\chaptermark}[1]{\thispagestyle{fancy}\markboth{{#1}}{}}
+\renewcommand{\sectionmark}[1]{\markright{{#1}}{}}
+%\renewcommand{\headrulewidth}{0pt}
+
+\chead{}
+\lhead[\sf \thepage]{\sf \leftmark}
+\rhead[\sf \leftmark]{\sf \thepage}
+
+\newcounter{myenumi}
+\newcommand{\saveenumi}{\setcounter{myenumi}{\value{enumi}}}
+\newcommand{\reuseenumi}{\setcounter{enumi}{\value{myenumi}}}
+
+\pagestyle{fancy}
+
+
+\def\R{{\sf R}}
+\def\Rstudio{{\sf RStudio}}
+\def\RStudio{{\sf RStudio}}
+\def\term#1{\textbf{#1}}
+\def\tab#1{{\sf #1}}
+
+\usepackage{sfsect}
+\usepackage{relsize}
+%\usepackage{listings}
+
+\def\myRuleColor{\color{black!50!white}}
+
+
+\definecolor{GrayBoxGray}{rgb}{0.94,0.95,0.95}
+\definecolor{GrayBoxGray}{rgb}{0.97,0.98,0.95}
+\colorlet{GrayBoxGray}{blue!10!black!10}
+\colorlet{GrayBoxGray}{blue!7}
+
+\newlength{\tempfmlength}
+\newsavebox{\fmbox}
+\newenvironment{fmpage}[1]
+     {
+	 \medskip
+	 \setlength{\tempfmlength}{#1}
+	 \begin{lrbox}{\fmbox}
+	   \begin{minipage}{#1}
+		 \vspace*{.02\tempfmlength}
+		 \hfill
+	   \begin{minipage}{.95 \tempfmlength}}
+		 {\end{minipage}\hfill
+		 \vspace*{.015\tempfmlength}
+		 \end{minipage}\end{lrbox}\fbox{\usebox{\fmbox}}
+	 \medskip
+	 }
+
+
+\newenvironment{boxedText}[1][.98\textwidth]%
+{%
+\begin{center}
+\begin{fmpage}{#1}
+}%
+{%
+\end{fmpage}
+\end{center}
+}
+
+\newenvironment{boxedTable}[2][tbp]%
+{%
+\begin{table}[#1]
+  \refstepcounter{table}
+  \begin{center}
+\begin{fmpage}{.98\textwidth}
+  \begin{center}
+	\sf \large Box~\expandafter\thetable. #2
+\end{center}
+\medskip
+}%
+{%
+\end{fmpage}
+\end{center}
+\end{table}		% need to do something about exercises that follow boxedTable
+}
+
+
+
+
+
+\newcommand{\rterm}[1]{\textbf{#1}}
+
+
+% Looking for a consistent typography for variable names.
+% for consistency, we need to match all the verbatim uses elsewhere 
+% unless someone wants to recode all that.
+\newcommand{\VN}[1]{{\color{green!50!black}\texttt{#1}}}
+\newcommand{\vn}[1]{{\color{green!50!black}\texttt{#1}}}
+\newcommand{\variable}[1]{{\color{green!50!black}\texttt{#1}}}
+\newcommand{\DFN}[1]{{\color{blue!80!black}\texttt{#1}}}
+\newcommand{\dfn}[1]{{\color{blue!80!black}\texttt{#1}}}
+\newcommand{\dataframe}[1]{{\color{blue!80!black}\texttt{#1}}}
+\newcommand{\function}[1]{{\color{purple!75!blue}\texttt{\StrSubstitute{#1}{()}{}()}}}
+\newcommand{\option}[1]{{\color{brown!80!black}\texttt{#1}}}
+\newcommand{\pkg}[1]{{\color{red!80!black}\texttt{#1}}}
+\newcommand{\code}[1]{{\color{blue!80!black}\texttt{#1}}}
+% and for models
+\newcommand{\model}[2]{{$\,$\hbox{#1}\ \ensuremath{\sim}\ \hbox{#2}}}
+
+\newenvironment{comment}{%
+\begin{quote}
+\em
+}{%
+\end{quote}
+}
+
+
+\title{Data and Computing Fundamentals}
+
+\author{
+Daniel Kaplan
+}
+
+\date{June, 2013}
+
+
+\begin{document}
+\parindent=0pt
+
+\chead{\sf \bfseries \Large Enough R for Data and Computing Fundamentals}
+\rhead{Summer 2013}
+\lhead{D. Kaplan}
+
+
+<<setup,include=FALSE>>=
+require(mosaic)
+require(DCF)
+#trellis.par.set(theme=col.mosaic())
+set.seed(123)
+knit_hooks$set(inline = function(x) {
+if (is.numeric(x)) return(knitr:::format_sci(x, 'latex'))
+x = as.character(x)
+h = knitr:::hilight_source(x, 'latex', list(prompt=FALSE, size='normalsize'))
+h = gsub("([_#$%&])", "\\\\\\1", h)
+h = gsub('(["\'])', '\\1{}', h)
+gsub('^\\\\begin\\{alltt\\}\\s*|\\\\end\\{alltt\\}\\s*$', '', h)
+})
+@ 
+
+
+
+\def\opt#1{#1}
+\def\squeeze{\vspace*{-4ex}}
+This sheet covers the operations to read in data tables, process them into new forms, and translate them into graphical and modeling presentations.
+
+\begin{multicols}{4}
+\raggedright
+
+
+\vspace*{-.2in}\subsection*{Sources of Data}
+
+Data are available through many sources, but a few data tables are regularly used for examples in DCF.  You will usually read the data table into \R~ with the \function{data}, or from the Internet with \function{fetchData}, or \function{fetchGapminder} functions:
+
+<<>>=
+data(nhanes) 
+data(OrdwayBirdsOrig) 
+data(WakeVotersSmall) 
+@
+These create data tables with the indicated name.
+
+\vspace*{-.2in}\subsection*{Assignment \& Naming}
+
+Use \verb+<-+ or \verb+=+ to store an object by name.  Use short, mnemonic names.  You can use assignment to create copies of existing tables or to read in new ones.
+<<echo=FALSE>>=
+WakeVotersSmall <- subset(WakeVotersSmall,
+                select=c("Age","party","gender"))
+OrdwayBirdsOrig <- subset(OrdwayBirdsOrig,
+                select=c("SpeciesName","Month"))
+WakeVotersSmall <- droplevels(subset(WakeVotersSmall,party!="LIB"))
+@
+<<>>=
+birds <- OrdwayBirdsOrig
+voters <- WakeVotersSmall
+@
+
+
+
+\vspace*{-.2in}\subsection*{Know your Data}
+Be prepared to answer these questions about any data table:
+\begin{itemize}
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item What constitutes a {\bf case}?
+\item How many cases are there?
+\item What are the {\bf variables}? 
+\item What type is each variable?
+\end{itemize}
+
+\vspace*{-.2in}\subsection*{How many cases?}
+
+<<eval=FALSE>>=
+nrow(birds)
+[1] 15829
+@
+
+\vspace*{-.2in}\subsection*{Variable names \& Renaming}
+
+<<eval=FALSE>>=
+names(voters)
+[1] "Age"    "party"  "gender"
+@
+
+<<eval=FALSE>>=
+voters <- rename(voters,
+              c(gender="Sex"))
+@
+
+\vspace*{-.2in}\subsection*{Variable types}
+Check the variables explicitly to avoid mistakes:\\
+\code{factor} mean categorical\\
+
+<<eval=FALSE>>=
+class(voters)
+[1] "data.frame"
+class(voters$Age)
+[1] "integer"
+class(voters$party)
+[1] "factor"
+@
+
+\vspace*{-.2in}\subsection*{Dirty Data}
+Sometimes data will surprise you:
+<<eval=FALSE>>=
+class(birds$Month)
+[1] "factor"
+@
+You probably thought \code{Month} would be numeric.
+
+\vspace*{-.2in}\subsection*{See the Levels}
+Categorical variables have levels.
+<<eval=FALSE>>=
+levels(birds$Month)
+ [1] ""      "1"     "10"    "11"   
+ [5] "12"    "2"     "25"    "3"    
+ [9] "4"     "5"     "6"     "7"    
+[13] "8"     "9"     "Month"
+@
+Someone entered month ``25" and the word ``Month".
+
+\vfill
+\columnbreak
+
+\vspace*{-.2in}\subsection*{Simple Data Cleaning}
+
+Categorical $\rightarrow$ quantitative
+<<>>=
+birds <- transform(birds,
+  Month=as.numeric(
+    as.character(Month)))
+@
+
+\vspace*{-.2in}\subsection*{Change Type of Variables}
+Quantitative $\rightarrow$ categorical
+<<>>=
+nhanes <- transform(nhanes,
+  cut(age,breaks=c(0,18,65,100),
+  labels=c("kid","adult","senior")))
+@
+Evenly spaced groups
+<<>>=
+nhanes <- transform(nhanes,
+           agegps=cut(age,3))
+@
+Evenly populated groups
+<<>>=
+nhanes <- transform(nhanes,
+           wtgps=ntiles(wgt,3))
+@
+
+
+\vspace*{-.2in}\subsection*{Group Summaries}
+
+Specify the variable or variables to use for grouping, and the operations.
+By default, a count of the number in each group.
+
+<<eval=FALSE>>=
+groupBy(voters,by=party)
+  party count
+1   DEM  4101
+2   REP  3098
+3   UNA  2783
+@
+Median age of voters, by party:
+<<eval=FALSE>>=
+groupBy(voters,by=party,
+         medage=mean(Age))
+  party   medage
+1   DEM 46.84638
+2   REP 46.43351
+3   UNA 40.71398
+@
+Use $>1$ grouping variables.
+<<eval=FALSE>>=
+groupBy(voters,
+        by=list(party,gender))
+@
+
+\vspace*{-.2in}\subsection*{Subset of Cases}
+
+According to a criterion:
+<<>>=
+kids <- subset(nhanes,age<10)
+teen <- subset(nhanes,
+             age>12 & age<20)
+@
+
+Random sample
+<<>>=
+small <- sample(nhanes,size=10)
+@
+
+\vspace*{-.2in}\subsection*{Subset of Variables}
+<<>>=
+birds <- subset(OrdwayBirdsOrig,
+    select=c("SpeciesName","Month"))
+@
+
+\vspace*{-.2in}\subsection*{Mathematical Ops}
+
+<<>>=
+nhanes <- transform(nhanes,
+            area=wst*hgt)
+@
+
+\vfill
+\end{multicols}
+\newpage
+\begin{multicols}{4}
+\vspace*{-.2in}\subsection*{Joining Two Tables}
+
+Example: Drop the low-count species of birds.
+
+<<>>=
+counts <- groupBy(birds,by=SpeciesName)
+@
+
+<<echo=FALSE,results="asis">>=
+foo <- counts[c(13,15,18),]
+row.names(foo) <- NULL
+print(xtable(foo,include.rownames=FALSE),floating=FALSE)
+@
+
+<<>>=
+birds <- join(birds,counts)
+@
+
+<<echo=FALSE,results="asis">>=
+foo <- birds[c(14,53,55,58),]
+row.names(foo) <- NULL
+print(xtable(foo, include.rownames=FALSE),floating=FALSE)
+@
+
+<<eval=FALSE>>=
+birds <- subset(birds,
+          count>200)
+@
+
+
+
+
+\vfill
+\columnbreak
+\end{multicols}
+\end{document}
+
+\vspace*{-.2in}\subsection*{Setting up \R}
+
+Install the \pkg{DCF} package, which will in turn install the \pkg{mosaic}, \pkg{ggplot2}, and other packages.  
+
+Each time you start up a new \R~ session, 
+<<messages=FALSE,error=FALSE,warning=FALSE>>=
+require(DCF)
+@
+
+\vspace*{-.2in}\subsection*{\R/Markdown}
+
+You will often document your work in \code{.Rmd} files, which provide a way to blend computation and narration. 
+
+\begin{itemize}
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}
+\item Press {\sf Knit HTML} to compile your \code{.Rmd} into a publishable HTML file.
+\item The commands in your \code{.Rmd} must be completely {\em self-contained}.
+\item \R~ code is enclosed in {\em chunks} starting with : \verb+```{r}+ and ending with \verb+```+
+\item Make small changes and compile often.
+\end{itemize}
+
+Your \code{.Rmd} file should always start with a chunk like this:
+\begin{verbatim}
+```{r include=FALSE}
+require(DCF)
+```
+\end{verbatim}
+
+
+\vspace*{-.2in}\subsection*{Data Tables}
+
+Data are arranged into {\bf tables}: rectangular arrays of values.\\
+Rows, often called {\bf cases}\\
+Columns, often called {\bf variables}\\
+
+The two main types of variables are {\bf quantitative} and {\bf categorical}.
+
+
+\end{document}
+

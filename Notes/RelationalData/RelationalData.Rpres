@@ -44,6 +44,89 @@ Auxiliary information stored in a **Codebook**
 * levels for categorical variables
 * meta-data such as the sampling frame, date, ...
 
+Know Your Tables!
+============================
+
+* What constitutes a Case?
+    * `OrdwayBirdsOrig`
+    * `nhanes`
+    * `WakeVotersSmall`
+
+* What is each Variable?
+    * Categorical
+    * Quantitative
+    
+Quick Look at a Table
+==========================
+```{r}
+data(OrdwayBirdsOrig)
+names(OrdwayBirdsOrig)
+nrow(OrdwayBirdsOrig)
+```
+
+Quick Look at a Variable
+==========================
+```{r}
+summary(OrdwayBirdsOrig$Month)
+class(OrdwayBirdsOrig$Month)
+```
+Important classes:
+* `data.frame`: a collection of cases
+* `numeric`, `integer`: quantitative
+* `factor`, `character`: categorical
+
+We're expecting `Month` to be quantitative, but it isn't.
+
+Room for Improvement
+==========================
+* UTILITY FUNCTION: `as.quantitative()` might do sensible things to convert a factor to a quantitative variable.
+* a levels method for type character
+
+
+Categorical Variables
+==========================
+```{r}
+summary(OrdwayBirdsOrig$SpeciesName)
+```
+
+```{r eval=FALSE}
+levels(OrdwayBirdsOrig$SpeciesName)
+tally(~SpeciesName, data=OrdwayBirds)
+```
+
+Grab a subset of variables
+==========================
+```{r tidy=FALSE}
+data(OrdwayBirdsOrig)
+few <- subset(OrdwayBirdsOrig, 
+              select=c("Day","Month","SpeciesName"))
+names(few)
+```
+
+Grab a subset of cases
+==========================
+
+### 1. According to a criterion
+```{r}
+Oct <- data(few, Month=="10")
+Fall <- data(few, Month %in% c("10","11"))
+```
+
+### 2. Just a few
+```{r}
+head(few,3)
+```
+
+===========================
+title: none
+
+### 3. Random sample
+```{r}
+sample(few,3)
+```
+
+
+
 Relational Databases
 ============================
 
@@ -118,9 +201,17 @@ Other possibilities:
 
 Changing the data in the R session does **not** change the original store.
 
-The Most Important R Template
-========================================================
+
+Subset, transform, group
+join, group
+
+Creating New Tables from Existing Tables
+============================
 &nbsp;
+
+<center>
+<h2><strong><span class="boxed">res</span> <- <span class="boxed">goal</span> ( <span class="invboxed">&nbsp;y&nbsp;</span> ~ <span class="boxed">&nbsp;x&nbsp;</span> , data = <span class="boxed">mydata</span> )</strong> 
+</h2></center>
 
 <center>
 <h2><strong><span class="boxed">goal</span> ( <span class="invboxed">&nbsp;y&nbsp;</span> ~ <span class="boxed">&nbsp;x&nbsp;</span> , data = <span class="boxed">mydata</span> )</strong> 
