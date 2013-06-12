@@ -171,13 +171,13 @@ gsub('^\\\\begin\\{alltt\\}\\s*|\\\\end\\{alltt\\}\\s*$', '', h)
 
 \def\opt#1{#1}
 \def\squeeze{\vspace*{-4ex}}
-{\bf Process:} Start with the original, immutable data tables.  Transform variables, subset cases, group cases, and join tables as needed to create a single table with the variables you want to display or model. 
+{\bf Process:} Start with original data. Transform variables, subset or group cases, and join data 
+as needed to create new data sets with the variables needed to display or model. 
 
 \begin{multicols}{4}
 \raggedright
-
-
-\vspace*{-.2in}\subsection*{Sources of Data}
+%\vspace*{-.2in}
+\subsection*{Sources of Data}
 
 Data are available through many sources, but a few data tables are regularly used for examples in DCF.  You will usually read the data table into \R~ with the \function{data}, or from the Internet with \function{fetchData}, or \function{fetchGapminder} functions:
 
@@ -268,8 +268,8 @@ Someone entered month ``25" and the word ``Month".
 
 \vfill
 \columnbreak
-
-\vspace*{-.2in}\subsection*{Simple Data Cleaning}
+%\vspace*{-.2in}
+\subsection*{Change Type of Variables}
 
 Categorical $\rightarrow$ quantitative
 <<>>=
@@ -278,22 +278,28 @@ birds <- transform(birds,
     as.character(Month)))
 @
 
-\vspace*{-.2in}\subsection*{Change Type of Variables}
 Quantitative $\rightarrow$ categorical
 <<>>=
 nhanes <- transform(nhanes,
-  cut(age,breaks=c(0,18,65,100),
-  labels=c("kid","adult","senior")))
+  Sex = factor(sex, 
+               labels=c("M","F")))
+@
+
+<<>>=
+nhanes <- transform(nhanes,
+  agegroup = cut(age,
+    breaks=c(0,18,65,100),
+    labels=c("Kid","Adult","Sr")))
 @
 Evenly spaced groups
 <<>>=
 nhanes <- transform(nhanes,
-           agegps=cut(age,3))
+           agegroup=cut(age,3))
 @
 Evenly populated groups
 <<>>=
 nhanes <- transform(nhanes,
-           wtgps=ntiles(wgt,3))
+           wtgroup=ntiles(wgt,3))
 @
 
 
@@ -347,7 +353,7 @@ birds <- subset(OrdwayBirdsOrig,
     select=c("SpeciesName","Month"))
 @
 
-\vspace*{-.2in}\subsection*{Mathematical Ops}
+\vspace*{-.2in}\subsection*{Mathematical Transformations}
 
 <<>>=
 nhanes <- transform(nhanes,
