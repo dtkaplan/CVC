@@ -4,6 +4,9 @@ options(markdown.HTML.stylesheet = '../stylesheets/cvc2013.css')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="../javascripts/main.js"></script>
 
+[Give a suggestion/correction](https://docs.google.com/document/d/1eEwaMvxahJJ2YuFFWgUEmgBj58umwvMwf_GXnsp9Yc0/edit?usp=sharing) : Share/send some code  [Alpha](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-alpharIwB7uaxo82e5QET),[Bravo](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-bravoIwB7uaxo82e5QET),[Charlie](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-charlieIwB7uaxo82e5QET),[Delta](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-deltaIwB7uaxo82e5QET),[Echo](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-echoIwB7uaxo82e5QET),[Foxtrot](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-foxtrotIwB7uaxo82e5QET),[Golf](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-golfIwB7uaxo82e5QET),[Hotel](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-hotelIwB7uaxo82e5QET).  
+
+
 
 Working Schedule, June 12-14, 2013 
 ========================================================
