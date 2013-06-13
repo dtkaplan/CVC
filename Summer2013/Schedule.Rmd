@@ -84,7 +84,7 @@ Participants will learn how to create new data sets from existing data sets by g
 **Noon-1:00: Lunch**
 
 **1:00-2:00: Session 5a**, Slide Show Part I
-Each participant will present 2-4 slides using R Markdown that show an example of a data set or question of interest.
+Each participant will present 2-4 [slides](ParticipantPresentations/) using R Markdown that show an example of a data set or question of interest.
 
 **2:00-2:30: Break/Work/Debriefing**
 
@@ -94,7 +94,7 @@ out more about the ideas that have been presented.
 
 **2:30-3:30: Session 5b**, Slide Show Part II
 
-The rest of the slide shows.
+The rest of the [slide shows](ParticipantPresentations/).
 
 **3:30-3:45: Coffee break**
 

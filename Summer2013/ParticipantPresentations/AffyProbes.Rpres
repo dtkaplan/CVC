@@ -1,0 +1,54 @@
+Splicing in a Cancer Gene
+========================================================
+author: The CVC group
+date: 
+June 13, 2013
+First Slide
+========================================================
+Array data: Probes to Probesets to Genes to samples to groups
+geo_accession, ALL cancer type, Probe, Perfect Match Signal
+```{r include=FALSE}
+require(DCF)
+```
+![stuff](http://www.albany.edu/genomics/graphics/genechip_analysis.jpg)
+
+Probe Level Expression
+=======================================================
+```{r}
+MyAffyData<-read.csv("217422_s_at_probes_PMsignal_stacked.csv", header = TRUE)
+head(MyAffyData)
+```
+Exon 12 probes PM signal
+=========================
+```{r}
+Exon12<-subset(MyAffyData,Probe=="HG-U133_PLUS_2:217422_S_AT_5")
+bwplot(characteristics_ch1~PM, data=Exon12)
+Exon12_B<-subset(MyAffyData,Probe=="HG-U133_PLUS_2:217422_S_AT_6")
+bwplot(characteristics_ch1~PM, data=Exon12_B)
+```
+=======================================================
+Exon 12 Log PM signal
+
+```{r echo=FALSE}
+MyAffyData2<-transform(MyAffyData, logPM=log(PM))
+Exon12L<-subset(MyAffyData2,Probe=="HG-U133_PLUS_2:217422_S_AT_5")
+bwplot(characteristics_ch1~PM, data=Exon12L)
+Exon12_BL<-subset(MyAffyData2,Probe=="HG-U133_PLUS_2:217422_S_AT_6")
+bwplot(characteristics_ch1~PM, data=Exon12_BL)
+```
+=======================================================
+```{r echo=FALSE}
+MyAffyDataMean<-groupBy(MyAffyData, by=list(geo_accession),MeanPM=mean(PM))
+MyAffyDataNorm<-join(MyAffyDataMean,MyAffyData)
+MyAffyData3<-transform(MyAffyDataNorm, logPMNorm=log(PM/MeanPM))
+Exon12LN<-subset(MyAffyData3,Probe=="HG-U133_PLUS_2:217422_S_AT_5")
+bwplot(characteristics_ch1~logPMNorm, data=Exon12LN)
+Exon12_BLN<-subset(MyAffyData3,Probe=="HG-U133_PLUS_2:217422_S_AT_6")
+bwplot(characteristics_ch1~logPMNorm, data=Exon12_BLN)
+```
+Exon14
+=======================================================
+```{r echo=FALSE}
+Exon14LN<-subset(MyAffyData3,Probe=="HG-U133_PLUS_2:217422_S_AT_10")
+bwplot(characteristics_ch1~logPMNorm, data=Exon14LN)
+```
