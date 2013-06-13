@@ -12,7 +12,7 @@ Working Schedule, June 12-14, 2013
 
 * Data and Computing Fundamentals [spring 2013 course syllabus](http://htmlpreview.github.io/?https://github.com/dtkaplan/DataAndComputingFundamentals/blob/master/Spring2013/syllabus2013.html)
 * [RStudio server](http://dahl.calvin.edu)
-* Materials for our [USCOTS 2013 Workshop](uscots2013.mosaic-web.org/Workshop) on
+* Materials for our [USCOTS 2013 Workshop](http://uscots2013.mosaic-web.org/Workshop) on
 Teaching Statistics Using R.
 * Slides and files for sessions will be posted in the schedule as we go along
 
