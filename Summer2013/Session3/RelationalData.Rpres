@@ -21,6 +21,7 @@ Relational Data and Operations
 author: Daniel Kaplan
 date: June 13, 2013
 autosize: true
+depends: DCF, mosaic, ggplot2
 
 ```{r include=FALSE}
 require(DCF)
@@ -58,7 +59,7 @@ Know Your Tables!
     
 Quick Look at a Table
 ==========================
-```{r eval=FALSE}
+```{r tidy=FALSE}
 data(OrdwayBirdsOrig)
 names(OrdwayBirdsOrig)
 nrow(OrdwayBirdsOrig)
@@ -66,7 +67,7 @@ nrow(OrdwayBirdsOrig)
 
 Quick Look at a Variable
 ==========================
-```{r eval=FALSE}
+```{r tidy=FALSE}
 summary(OrdwayBirdsOrig$Month)
 class(OrdwayBirdsOrig$Month)
 ```
@@ -86,24 +87,24 @@ Room for Improvement
 
 Categorical Variables
 ==========================
-```{r eval=FALSE}
+```{r tidy=FALSE}
 summary(OrdwayBirdsOrig$SpeciesName)
 ```
 
-```{r eval=FALSE}
+```{r tidy=FALSE}
 levels(OrdwayBirdsOrig$SpeciesName)
 tally(~SpeciesName, data=OrdwayBirds)
 ```
 
 Grab a subset of variables
 ==========================
-```{r tidy=FALSE,eval=FALSE}
+```{r tidy=FALSE}
 data(OrdwayBirdsOrig)
-birds <- subset(OrdwayBirdsOrig, 
+Birds <- subset(OrdwayBirdsOrig, 
               select=c("Day","Month","SpeciesName"))
 ```
 ```{r}
-names(birds)
+names(Birds)
 ```
 
 Grab a subset of cases
@@ -111,13 +112,13 @@ Grab a subset of cases
 
 ### 1. According to a criterion
 ```{r}
-Oct <- data(birds, Month=="10")
-Fall <- data(birds, Month %in% c("10","11"))
+Oct <- subset(Birds, Month=="10")
+Fall <- subset(Birds, Month %in% c("10","11"))
 ```
 
 ### 2. Just a few
 ```{r}
-head(birds,3)
+head(Birds,3)
 ```
 
 ===========================
@@ -125,7 +126,7 @@ title: none
 
 ### 3. Random sample
 ```{r}
-sample(birds,3)
+sample(Birds,3)
 ```
 
 
@@ -170,7 +171,7 @@ Spreadsheet software (e.g. Excel, Google Docs/Forms) is sometimes a good choice 
 However, spreadsheets do not enforce the basic constraints of a data table:
 * Rectangular shape
 * Types of values
-* Permanence/Unmutability
+* Permanence/Immutability
 * Separation of analysis from data storage.
 
 Spreadsheets support a casual and undisciplined approach to organization that can make it hard to carry out analyses.

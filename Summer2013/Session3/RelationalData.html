@@ -857,7 +857,23 @@ hljs.initHighlightingOnLoad();
 <div class="slideContent" >
 <pre><code class="r">data(OrdwayBirdsOrig)
 names(OrdwayBirdsOrig)
-nrow(OrdwayBirdsOrig)
+</code></pre>
+
+<pre><code> [1] &quot;bogus&quot;             &quot;Timestamp&quot;         &quot;Year&quot;             
+ [4] &quot;Day&quot;               &quot;Month&quot;             &quot;CaptureTime&quot;      
+ [7] &quot;SpeciesName&quot;       &quot;Sex&quot;               &quot;Age&quot;              
+[10] &quot;BandNumber&quot;        &quot;TrapID&quot;            &quot;Weather&quot;          
+[13] &quot;BandingReport&quot;     &quot;RecaptureYN&quot;       &quot;RecaptureMonth&quot;   
+[16] &quot;RecaptureDay&quot;      &quot;Condition&quot;         &quot;Release&quot;          
+[19] &quot;Comments&quot;          &quot;DataEntryPerson&quot;   &quot;Weight&quot;           
+[22] &quot;WingChord&quot;         &quot;Temperature&quot;       &quot;RecaptureOriginal&quot;
+[25] &quot;RecapturePrevious&quot; &quot;TailLength&quot;       
+</code></pre>
+
+<pre><code class="r">nrow(OrdwayBirdsOrig)
+</code></pre>
+
+<pre><code>[1] 15829
 </code></pre>
 
 </div>
@@ -867,7 +883,18 @@ nrow(OrdwayBirdsOrig)
 <h3>Quick Look at a Variable</h3>
 <div class="slideContent" >
 <pre><code class="r">summary(OrdwayBirdsOrig$Month)
-class(OrdwayBirdsOrig$Month)
+</code></pre>
+
+<pre><code>          1    10    11    12     2    25     3     4     5     6     7 
+    4   622  3315  1164   552   601     1   905  1584  2433  1097  1037 
+    8     9 Month 
+  749  1765     0 
+</code></pre>
+
+<pre><code class="r">class(OrdwayBirdsOrig$Month)
+</code></pre>
+
+<pre><code>[1] &quot;factor&quot;
 </code></pre>
 
 <p>Important classes:</p>
@@ -901,8 +928,361 @@ class(OrdwayBirdsOrig$Month)
 <pre><code class="r">summary(OrdwayBirdsOrig$SpeciesName)
 </code></pre>
 
+<pre><code>    Slate-colored Junco            Tree Sparrow      American Goldfinch 
+                   2717                    1331                    1153 
+ Black-capped Chickadee                   Robin           Field Sparrow 
+                   1110                     606                     582 
+                Catbird            Song Sparrow                Blue Jay 
+                    551                     509                     476 
+             House Wren          Myrtle Warbler       Lincoln&#39;s Sparrow 
+                    457                     446                     395 
+       Chipping Sparrow White-breasted Nuthatch             Fox Sparrow 
+                    315                     236                     234 
+ White-throated Sparrow           House Sparrow        Baltimore Oriole 
+                    229                     207                     206 
+           Tree Swallow  Black-capped chickadee                Bluebird 
+                    201                     187                     170 
+      Nashville Warbler        Downy Woodpecker  Rose-breasted Grosbeak 
+                    160                     143                     137 
+       Least Flycatcher            Purple Finch          Brown Thrasher 
+                    124                     121                     109 
+           Yellowthroat       Swainson&#39;s Thrush          Indigo Bunting 
+                    107                     103                     101 
+           Palm Warbler                 Cowbird    White-throat Sparrow 
+                     97                      90                      86 
+      Tennessee Warbler           Swamp Sparrow   White-crowned Sparrow 
+                     85                      83                      78 
+               Cardinal    Ruby-crowned Kinglet          Common Redpoll 
+                     76                      75                      72 
+                Grackle           Cedar Waxwing     American Gold Finch 
+                     69                      57                      50 
+       Eastern Bluebird     Traill&#39;s Flycatcher    Red-winged Blackbird 
+                     49                      47                      39 
+         Red-eyed Vireo                Starling              Wood Pewee 
+                     37                      37                      37 
+ Yellow-shafted Flicker    Rose-breast Grosbeak    Black-throat Sparrow 
+                     34                      33                      31 
+   Orange-crown Warbler             Pine Siskin           Mourning Dove 
+                     31                      31                      29 
+       Hairy Woodpecker            Barn Swallow                Ovenbird 
+                     25                      23                      23 
+  White-breast Nuthatch        Wilson&#39;s Warbler            Bank Swallow 
+                     23                      22                      21 
+          Hermit Thrush    Ruby-Crowned Kinglet      Philadelphia Vireo 
+                     21                      21                      20 
+                 Phoebe          Yellow Warbler          Common Grackle 
+                     19                      19                      18 
+   Ruby-crested Kinglet White-Breasted Nuthatch  Orange-crowned Warbler 
+                     18                      18                      17 
+    White-crown Sparrow      Ruby-crown Kinglet     Black-billed Cuckoo 
+                     17                      16                      15 
+    Red-breast Grosbeak          Solitary Vireo  Black-Capped Chickadee 
+                     15                      14                      13 
+  Blackcapped Chickadee    Northern Waterthrush        Palm Warbler (W) 
+                     13                      13                      13 
+ Rose-Breasted Grosbeak    Clay-colored Sparrow  Golden-crowned Kinglet 
+                     13                      12                      12 
+           Brown Towhee          Eastern Phoebe                 Flicker 
+                     11                      11                      11 
+    Gray-cheeked Thrush         Northern Shrike  Olive-sided Flycatcher 
+                     11                      11                      11 
+     Red-wing Blackbird           Steller&#39;s Jay  White-Throated Sparrow 
+                     11                      11                      11 
+       Palm Warbler (Y)    Rough-winged Swallow     Slate-Colored Junco 
+                     10                      10                      10 
+Black and White Warbler                     N/A  Orange-Crowned Warbler 
+                      9                       9                       9 
+                  Pewee             Cactus Wren         Harris&#39; Sparrow 
+                      9                       8                       8 
+                (Other) 
+                    398 
+</code></pre>
+
 <pre><code class="r">levels(OrdwayBirdsOrig$SpeciesName)
-tally(~SpeciesName, data=OrdwayBirds)
+</code></pre>
+
+<pre><code>  [1] &quot;&quot;                                                 
+  [2] &quot;-lost-&quot;                                           
+  [3] &quot;-missing-&quot;                                        
+  [4] &quot;[Nothing, just dashes]&quot;                           
+  [5] &quot;13:00:00&quot;                                         
+  [6] &quot;Acadian Flycatcher&quot;                               
+  [7] &quot;American Gold Finch&quot;                              
+  [8] &quot;American Goldfinch&quot;                               
+  [9] &quot;American Golf Finch&quot;                              
+ [10] &quot;American Redfinch&quot;                                
+ [11] &quot;American Redstart&quot;                                
+ [12] &quot;American Robin&quot;                                   
+ [13] &quot;Arkansas Kingbird&quot;                                
+ [14] &quot;Baltimore Oriole&quot;                                 
+ [15] &quot;Bank Swallow&quot;                                     
+ [16] &quot;Barn Swallow&quot;                                     
+ [17] &quot;Batimore Oriole&quot;                                  
+ [18] &quot;Bay-breasted Warbler&quot;                             
+ [19] &quot;Blac-capped Chickadee&quot;                            
+ [20] &quot;Black and White Warbler&quot;                          
+ [21] &quot;Black-and-white Warbler&quot;                          
+ [22] &quot;Black-billed Cookoo&quot;                              
+ [23] &quot;Black-billed Cuckoo&quot;                              
+ [24] &quot;Black-capeed Chickadee&quot;                           
+ [25] &quot;Black-capped Chicakdee&quot;                           
+ [26] &quot;Black-capped chickadee&quot;                           
+ [27] &quot;Black-capped Chickadee&quot;                           
+ [28] &quot;Black-Capped Chickadee&quot;                           
+ [29] &quot;Black-capped Chikadee&quot;                            
+ [30] &quot;Black-throat Sparrow&quot;                             
+ [31] &quot;Black-throat-Sparrow&quot;                             
+ [32] &quot;Blackcapped Chickadee&quot;                            
+ [33] &quot;Blackpoll Warbler&quot;                                
+ [34] &quot;Blatimore Oriole&quot;                                 
+ [35] &quot;Blue Jay&quot;                                         
+ [36] &quot;Blue-headed Vireo&quot;                                
+ [37] &quot;Blue-winged Warbler&quot;                              
+ [38] &quot;Bluebird&quot;                                         
+ [39] &quot;Boreal Chickadee&quot;                                 
+ [40] &quot;Brewer&#39;s Sparrow&quot;                                 
+ [41] &quot;Brown Creeper&quot;                                    
+ [42] &quot;Brown Thrasher&quot;                                   
+ [43] &quot;Brown Towhee&quot;                                     
+ [44] &quot;Brown-head Cowbird&quot;                               
+ [45] &quot;Brown-headed Cowbird&quot;                             
+ [46] &quot;Cactus Wren&quot;                                      
+ [47] &quot;Car&quot;                                              
+ [48] &quot;Cardinal&quot;                                         
+ [49] &quot;Carolina Chickadee&quot;                               
+ [50] &quot;Cartbird&quot;                                         
+ [51] &quot;Catbird&quot;                                          
+ [52] &quot;Catbird I&quot;                                        
+ [53] &quot;Catibird&quot;                                         
+ [54] &quot;Cedar waxwing&quot;                                    
+ [55] &quot;Cedar Waxwing&quot;                                    
+ [56] &quot;Chestnut-backed Chickadee&quot;                        
+ [57] &quot;Chestnut-sided Warbler&quot;                           
+ [58] &quot;Chic E&quot;                                           
+ [59] &quot;Chickadee&quot;                                        
+ [60] &quot;Chip Sparrow&quot;                                     
+ [61] &quot;Chipping Sparrow&quot;                                 
+ [62] &quot;Chirpping Sparrow&quot;                                
+ [63] &quot;Chripping Sparrow&quot;                                
+ [64] &quot;Clay-col Sparrow&quot;                                 
+ [65] &quot;Clay-colored Sparrow&quot;                             
+ [66] &quot;Clay-Colored Sparrow&quot;                             
+ [67] &quot;Clear; moderate winds; traps closed about 2 hours&quot;
+ [68] &quot;Cloudy; calm&quot;                                     
+ [69] &quot;Common Crow&quot;                                      
+ [70] &quot;Common Grackle&quot;                                   
+ [71] &quot;Common Nighthawk&quot;                                 
+ [72] &quot;Common Redpoll&quot;                                   
+ [73] &quot;Common Yellowthroat&quot;                              
+ [74] &quot;Connecticut Warbler&quot;                              
+ [75] &quot;Corve-billed Thrasher&quot;                            
+ [76] &quot;Cowbird&quot;                                          
+ [77] &quot;Curve-billed Thrasher&quot;                            
+ [78] &quot;Downy Woodpecker&quot;                                 
+ [79] &quot;E Bluebird&quot;                                       
+ [80] &quot;E. Wood Pewee&quot;                                    
+ [81] &quot;E/Net&quot;                                            
+ [82] &quot;Easter Phoebe&quot;                                    
+ [83] &quot;Eastern Bluebird&quot;                                 
+ [84] &quot;Eastern Kingbird&quot;                                 
+ [85] &quot;Eastern Meadowlark&quot;                               
+ [86] &quot;Eastern Phoebe&quot;                                   
+ [87] &quot;Eastern Robin&quot;                                    
+ [88] &quot;Eastern Wood Pewee&quot;                               
+ [89] &quot;Field Sparrow&quot;                                    
+ [90] &quot;Filed Sparrow&quot;                                    
+ [91] &quot;Flicker&quot;                                          
+ [92] &quot;Fox Sparrow&quot;                                      
+ [93] &quot;Golden-Crested Kinglet&quot;                           
+ [94] &quot;Golden-crowned Kinglet&quot;                           
+ [95] &quot;Golden-Crowned Kinglet&quot;                           
+ [96] &quot;Goldfinch&quot;                                        
+ [97] &quot;Grackle&quot;                                          
+ [98] &quot;Gray-checked Thrush&quot;                              
+ [99] &quot;Gray-cheek Thrush&quot;                                
+[100] &quot;Gray-cheeked Thrush&quot;                              
+[101] &quot;Great Crested Flycatcher&quot;                         
+[102] &quot;Great-crested Flycatcher&quot;                         
+[103] &quot;Green Heron&quot;                                      
+[104] &quot;Grey-cheeked Thrush&quot;                              
+[105] &quot;Ground Dove&quot;                                      
+[106] &quot;Grt-crested Flycatcher&quot;                           
+[107] &quot;Hairy Woodpecker&quot;                                 
+[108] &quot;Harris Sparrow&quot;                                   
+[109] &quot;Harris&#39; Sparrow&quot;                                  
+[110] &quot;Harris&#39;s Sparrow&quot;                                 
+[111] &quot;Hermit Thrush&quot;                                    
+[112] &quot;Horned Lark&quot;                                      
+[113] &quot;House Finch&quot;                                      
+[114] &quot;House Sparrow&quot;                                    
+[115] &quot;House wren&quot;                                       
+[116] &quot;House Wren&quot;                                       
+[117] &quot;House Wrren&quot;                                      
+[118] &quot;Inca Dove&quot;                                        
+[119] &quot;Indigo Bunting&quot;                                   
+[120] &quot;Kestral&quot;                                          
+[121] &quot;Kestrel&quot;                                          
+[122] &quot;Killdeer&quot;                                         
+[123] &quot;Kingbird&quot;                                         
+[124] &quot;Kiskadee F.C.&quot;                                    
+[125] &quot;Least Fly Catcher&quot;                                
+[126] &quot;Least flycatcher&quot;                                 
+[127] &quot;Least Flycatcher&quot;                                 
+[128] &quot;Lincoln Sparrow&quot;                                  
+[129] &quot;Lincoln&#39;s Sparrow&quot;                                
+[130] &quot;lost&quot;                                             
+[131] &quot;Lost&quot;                                             
+[132] &quot;LOST&quot;                                             
+[133] &quot;M/1&quot;                                              
+[134] &quot;Magnolia Warbler&quot;                                 
+[135] &quot;Mockingbird&quot;                                      
+[136] &quot;Mourning Dove&quot;                                    
+[137] &quot;Mourning Warbler&quot;                                 
+[138] &quot;Mrytle Warbler&quot;                                   
+[139] &quot;Myrtl Warbler&quot;                                    
+[140] &quot;Myrtle Warbler&quot;                                   
+[141] &quot;N/A&quot;                                              
+[142] &quot;Nashville Warbler&quot;                                
+[143] &quot;none&quot;                                             
+[144] &quot;Northern Shrike&quot;                                  
+[145] &quot;Northern Waterthrush&quot;                             
+[146] &quot;Northern Yellowthroat&quot;                            
+[147] &quot;Olive-sided&quot;                                      
+[148] &quot;Olive-sided Flycatcher&quot;                           
+[149] &quot;Orange-crown Warbler&quot;                             
+[150] &quot;Orange-crowned Warbler&quot;                           
+[151] &quot;Orange-Crowned Warbler&quot;                           
+[152] &quot;Orchard Oriole&quot;                                   
+[153] &quot;Oregon Junco&quot;                                     
+[154] &quot;Ovenbird&quot;                                         
+[155] &quot;Overbird&quot;                                         
+[156] &quot;Palm Warbler&quot;                                     
+[157] &quot;Palm Warbler (w)&quot;                                 
+[158] &quot;Palm Warbler (W)&quot;                                 
+[159] &quot;Palm Warbler (Y)&quot;                                 
+[160] &quot;Partly-cloudy; light winds&quot;                       
+[161] &quot;Pectoral Sandpiper&quot;                               
+[162] &quot;Pewee&quot;                                            
+[163] &quot;Phainopepla&quot;                                      
+[164] &quot;Philadelphia Vireo&quot;                               
+[165] &quot;Philadeplhia Vireo&quot;                               
+[166] &quot;Phoebe&quot;                                           
+[167] &quot;Pine Siskin&quot;                                      
+[168] &quot;Pine SIskin&quot;                                      
+[169] &quot;Purple Finch&quot;                                     
+[170] &quot;Purple FInch&quot;                                     
+[171] &quot;Pyrrhuloxia&quot;                                      
+[172] &quot;Red-bellied Sapsucker&quot;                            
+[173] &quot;Red-bellied Woodpecker&quot;                           
+[174] &quot;Red-Bellied Woodpecker&quot;                           
+[175] &quot;Red-breast Grosbeak&quot;                              
+[176] &quot;Red-Breast Grosbeak&quot;                              
+[177] &quot;Red-breasted Grosbeak&quot;                            
+[178] &quot;Red-eye Vireo&quot;                                    
+[179] &quot;Red-eyed Cowbird&quot;                                 
+[180] &quot;Red-eyed Viero&quot;                                   
+[181] &quot;Red-Eyed Viero&quot;                                   
+[182] &quot;Red-eyed Vireo&quot;                                   
+[183] &quot;Red-headed Woodpecker&quot;                            
+[184] &quot;Red-tailed Hawk&quot;                                  
+[185] &quot;Red-wing Blackbird&quot;                               
+[186] &quot;Red-winged Blackbird&quot;                             
+[187] &quot;Red-Winged Blackbird&quot;                             
+[188] &quot;Red-winged Blackhead&quot;                             
+[189] &quot;Redstart&quot;                                         
+[190] &quot;Robin&quot;                                            
+[191] &quot;Robn&quot;                                             
+[192] &quot;Rose Breasted Grosbeak&quot;                           
+[193] &quot;Rose Brested Grosbeak&quot;                            
+[194] &quot;Rose-beak Grosbeak&quot;                               
+[195] &quot;Rose-breast Grosbeak&quot;                             
+[196] &quot;Rose-breasted Grosbeak&quot;                           
+[197] &quot;Rose-Breasted Grosbeak&quot;                           
+[198] &quot;Rose-Breasted Grosbeck&quot;                           
+[199] &quot;Rose-breasted Groshk&quot;                             
+[200] &quot;Rough-winged Swallow&quot;                             
+[201] &quot;Ruby-breasted Grosbeak&quot;                           
+[202] &quot;Ruby-crested Kinglet&quot;                             
+[203] &quot;Ruby-Crested Kinglet&quot;                             
+[204] &quot;Ruby-crown Kinglet&quot;                               
+[205] &quot;Ruby-crowned Kinglet&quot;                             
+[206] &quot;Ruby-Crowned Kinglet&quot;                             
+[207] &quot;Ruby-throated Hummingbird&quot;                        
+[208] &quot;Rudycrested Kinglet&quot;                              
+[209] &quot;Ruf-sided Towhee&quot;                                 
+[210] &quot;Rufoos-sided Towhee&quot;                              
+[211] &quot;Rufous-sided Towhee&quot;                              
+[212] &quot;Rufous-sTowhee&quot;                                   
+[213] &quot;Savannah Sparrow&quot;                                 
+[214] &quot;Slate-colored junco&quot;                              
+[215] &quot;Slate-colored Junco&quot;                              
+[216] &quot;Slate-Colored Junco&quot;                              
+[217] &quot;Slate-colorerd Junco&quot;                             
+[218] &quot;Slate-colorred Junco&quot;                             
+[219] &quot;Solitary Vireo&quot;                                   
+[220] &quot;Song (Field?) Sparrow&quot;                            
+[221] &quot;Song Sparrow&quot;                                     
+[222] &quot;Song Sparrow Lincoln&#39;s??&quot;                         
+[223] &quot;Song Sparrow(?)&quot;                                  
+[224] &quot;Sparrow Hawk&quot;                                     
+[225] &quot;species name&quot;                                     
+[226] &quot;Starling&quot;                                         
+[227] &quot;Steller&#39;s Jay&quot;                                    
+[228] &quot;Swainson&#39;s Thrush&quot;                                
+[229] &quot;Swamp Sparrow&quot;                                    
+[230] &quot;Tennesse Warbler&quot;                                 
+[231] &quot;Tennessee Warbler&quot;                                
+[232] &quot;Traill&#39;s Flycatcher&quot;                              
+[233] &quot;Tree L&quot;                                           
+[234] &quot;Tree Sparow&quot;                                      
+[235] &quot;Tree Sparrow&quot;                                     
+[236] &quot;Tree Swallow&quot;                                     
+[237] &quot;TS&quot;                                               
+[238] &quot;Tufted Titmouse&quot;                                  
+[239] &quot;Unknown&quot;                                          
+[240] &quot;Varied Thrush&quot;                                    
+[241] &quot;Veery&quot;                                            
+[242] &quot;Vesper Sparrow&quot;                                   
+[243] &quot;Warbling Vireo&quot;                                   
+[244] &quot;White Breasted Nuthatch&quot;                          
+[245] &quot;White-breast Nuthatch&quot;                            
+[246] &quot;White-breasted Nuthatch&quot;                          
+[247] &quot;White-Breasted Nuthatch&quot;                          
+[248] &quot;White-Crested Sparrow&quot;                            
+[249] &quot;White-crown Sparrow&quot;                              
+[250] &quot;White-crowned Sparrow&quot;                            
+[251] &quot;White-eyed Vireo&quot;                                 
+[252] &quot;White-Fronted Dove&quot;                               
+[253] &quot;White-thorat Sparrow&quot;                             
+[254] &quot;White-throat Sparrow&quot;                             
+[255] &quot;White-throated Sparrow&quot;                           
+[256] &quot;White-Throated Sparrow&quot;                           
+[257] &quot;White-Throated Sparrows&quot;                          
+[258] &quot;White-winged Junco&quot;                               
+[259] &quot;Wht-brstd Nuthatch&quot;                               
+[260] &quot;Wilson Warbler&quot;                                   
+[261] &quot;Wilson&#39;s Warbler&quot;                                 
+[262] &quot;Winter Wren&quot;                                      
+[263] &quot;Wood Pewee&quot;                                       
+[264] &quot;Wood Thrush&quot;                                      
+[265] &quot;Woodcock&quot;                                         
+[266] &quot;Wren&quot;                                             
+[267] &quot;Yellow Flicker&quot;                                   
+[268] &quot;Yellow Shafted Flicker&quot;                           
+[269] &quot;Yellow Warbler&quot;                                   
+[270] &quot;Yellow-bellied Flycatcher&quot;                        
+[271] &quot;Yellow-bellied Sapsucker&quot;                         
+[272] &quot;Yellow-shaft Flicker&quot;                             
+[273] &quot;Yellow-shafted flicker&quot;                           
+[274] &quot;Yellow-shafted Flicker&quot;                           
+[275] &quot;Yellow-tailed Oriole&quot;                             
+[276] &quot;Yellowthroat&quot;                                     
+</code></pre>
+
+<pre><code class="r">tally(~SpeciesName, data=OrdwayBirds)
+</code></pre>
+
+<pre><code>Error: object &#39;OrdwayBirds&#39; not found
 </code></pre>
 
 </div>
@@ -912,14 +1292,14 @@ tally(~SpeciesName, data=OrdwayBirds)
 <h3>Grab a subset of variables</h3>
 <div class="slideContent" >
 <pre><code class="r">data(OrdwayBirdsOrig)
-birds &lt;- subset(OrdwayBirdsOrig, 
+Birds &lt;- subset(OrdwayBirdsOrig, 
               select=c(&quot;Day&quot;,&quot;Month&quot;,&quot;SpeciesName&quot;))
 </code></pre>
 
-<pre><code class="r">names(birds)
+<pre><code class="r">names(Birds)
 </code></pre>
 
-<pre><code>Error: object &#39;birds&#39; not found
+<pre><code>[1] &quot;Day&quot;         &quot;Month&quot;       &quot;SpeciesName&quot;
 </code></pre>
 
 </div>
@@ -930,16 +1310,19 @@ birds &lt;- subset(OrdwayBirdsOrig,
 <div class="slideContent" >
 <h3>1. According to a criterion</h3>
 
-<pre><code class="r">Oct &lt;- data(birds, Month==&quot;10&quot;)
-Fall &lt;- data(birds, Month %in% c(&quot;10&quot;,&quot;11&quot;))
+<pre><code class="r">Oct &lt;- subset(Birds, Month==&quot;10&quot;)
+Fall &lt;- subset(Birds, Month %in% c(&quot;10&quot;,&quot;11&quot;))
 </code></pre>
 
 <h3>2. Just a few</h3>
 
-<pre><code class="r">head(birds,3)
+<pre><code class="r">head(Birds,3)
 </code></pre>
 
-<pre><code>Error: object &#39;birds&#39; not found
+<pre><code>  Day Month  SpeciesName
+3  16     7 Song Sparrow
+4                       
+5  16     7 Song Sparrow
 </code></pre>
 
 </div>
@@ -950,10 +1333,13 @@ Fall &lt;- data(birds, Month %in% c(&quot;10&quot;,&quot;11&quot;))
 <div class="slideContent noTitle" >
 <h3>3. Random sample</h3>
 
-<pre><code class="r">sample(birds,3)
+<pre><code class="r">sample(Birds,3)
 </code></pre>
 
-<pre><code>Error: object &#39;birds&#39; not found
+<pre><code>      Day Month            SpeciesName orig.ids
+12558  10    10           Song Sparrow    12556
+10989  26     5 Grt-crested Flycatcher    10987
+14488  13     7     Red-wing Blackbird    14486
 </code></pre>
 
 </div>
@@ -1023,7 +1409,7 @@ Fall &lt;- data(birds, Month %in% c(&quot;10&quot;,&quot;11&quot;))
 <ul>
 <li>Rectangular shape</li>
 <li>Types of values</li>
-<li>Permanence/Unmutability</li>
+<li>Permanence/Immutability</li>
 <li>Separation of analysis from data storage.</li>
 </ul>
 
