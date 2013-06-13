@@ -8,3 +8,8 @@ Participant Presentations
 =========================
 
 * [Affy Probes](AffyProbes_HTML.html)
+* [Social Networks](SocialNetworksAnalysis.html)
+* [Scores and Grades](Miller.html)
+* [Renewable Energy](Renewables.html)
+* [Differential Gene Expression](Overvoorde.html)
+* [Asters](AstersPres.html)

@@ -1,0 +1,56 @@
+Introduction/Advance Topics in Social Network Analysis
+========================================================
+author: Louis Lei Yu
+date: June 12, 2013
+
+
+Intro Course
+========================================================
+
+![Homophily](http://web.uvic.ca/~yul/cvc3.png)
+
+- <small>Interpreting  data of online social neworks </small>
+- <small>Basic concept of social network analysis in a online network setting</small>
+- <small>Example: Homophily</small> 
+- <small>A town’s middle school and high school, two such divisions in the network are apparent: one based on race (with students of different races drawn as differently colored circles), and the other based on friendships in the middle and high schools respectively</small>
+
+
+Intepreting Online Social Network Data: Homophily
+========================================================
+![Triadic Closure](http://web.uvic.ca/~yul/cvc8.png)
+- <small>Quantifying the effects of triadic closure in an e-mail dataset. The curve determined from the data is shown in the solid black line.</small>
+- <small>Quantifying the effects of focal closure in an e-mail dataset. The 
+curve determined from the data is shown in the solid black line, while the dotted curve provides a comparison to a simple baseline.</small> 
+
+
+Intepreting Online Social Network Data (Advance Course)
+========================================================
+![Focal Closure](http://web.uvic.ca/~yul/cvc4.png)
+- <small>A list of trending topics during observation period.</small>
+- <small>Ranked by percentage of spam.</small>
+- <small>Number of periods topics stayed in trend and the placing of topics.</small>
+- <small>Question: is the possibility of a topic being manipulated by Spam related to its ranking/longevity.</small>
+
+Intepreting Online Social Network Data
+========================================================
+![Focal Closure](http://web.uvic.ca/~yul/cvc7.png)
+- <small>Spam Incidence for Topics by <b>Average Rank</b>.</small>
+- <small>Spam Incidence for Topics by the <b>Average Longevity of Topics</b>.</small>
+
+Intepreting Online Social Network Data
+========================================================
+![Focal Closure](http://web.uvic.ca/~yul/cvc13.png)
+- <small>The data</small>
+
+Intepreting Online Social Network Data
+========================================================
+![Focal Closure](http://web.uvic.ca/~yul/cvc12.png)
+- <small>xyplot(Periods ~Incidence, data=Spam_Incidence)</small>
+
+Intepreting Online Social Network Data
+========================================================
+![Focal Closure](http://web.uvic.ca/~yul/cvc11.png)
+- <small>xyplot(Incidence ~Periods, data=Spam_Incidence)</small>
+
+
+

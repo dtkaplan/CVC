@@ -1,0 +1,33 @@
+Differential Gene Expression
+========================================================
+ 
+
+!![Diff gene expression](http://bioinf.mpi-inf.mpg.de/protal/TARGID/Fig/CGAP.gif)
+
+http://bioinf.mpi-inf.mpg.de/protal/TARGID/Fig/CGAP.gif
+
+=======================================================
+
+![RNA seq](http://www.mun.ca/biology/scarr/cDNA_microarray_Principle.jpg)
+
+http://www.mun.ca/biology/scarr/cDNA_microarray_Principle.jpg
+
+Learning Objectives
+========================================================
+DRAFT learning objectives
+-  Identify a data set of interest using the NCBI GEO repository.
+-  Organize data to read into R for analysis (e.g. mean, SD, ANOVA)
+-  Create a graphical summary of genes that are up and down regulated.
+
+--> next steps might include: file join to identify Gene Ontology categories; identify co-regulated genes--> display with heatmaps, parallel plots
+
+
+Example Display
+========================================================
+```{r, echo=FALSE, fig.width=30, fig.height=20}
+Tbl <-read.csv("auxbrz.csv")
+Subtbl <- sample(Tbl, 50)
+parallelPlot(Subtbl, ~aux1 + aux2 + aux3 + brz1 + brz2 + brz3, lwd=5, fontsize=list(40))
+```
+
+

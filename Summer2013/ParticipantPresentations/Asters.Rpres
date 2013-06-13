@@ -1,0 +1,53 @@
+Promiscuous Asters 
+========================================================
+A Biology 225 Lab Investigation of Speciation
+--------------------------------------------------------
+Dave Koetje  
+CVC Workshop  
+13 June 2013
+
+The Biology of the Problem
+========================================================
+
+Certain asters in the open fields of Calvin's Ecosystem Preserve have features that resemble two different species:   
+<img src="http://web.uvic.ca/~yul/cvc10.png" height=350>  
+Left: arrow-leafed aster (_A. sagittifolius_)  
+Right: heart-leafed aster (_A. cordifolius_) 
+
+The Biology of the Problem
+========================================================
+Could it be that Calvin's asters are actually hybrids of these two species?
+-------------------------------------------------------- 
+Some curious observations:  
+1. Neither "parent" species exists in Calvin's Ecosystem Preserve.  
+2. Populations of the putative hybrid are localized to West Michigan.  
+3. The Univ of Michigan Herbarium contains samples of these asters collected nearby in 1901. The Herbarium specimens are labeled, "Undetermined Asters".  
+  
+A prediction:  
+-----
+If these asters are hybrids, then they should have some traits that are intermediate between the two parent populations.
+
+Making Use of R
+========================================================
+To encourage instructors and students in Biology 225 to make use of R, we will generate R Markdown files that contain annotations and command lines for generating scatter plots (and perhaps some other plots that facilitate comparisons of traits between the three populations) and conducting appropriate statistical analyses.  
+Some questions that I still need to explore: 
+-----
+1. Will students be using only data they have collected or a blend of collected data and a stored dataset?  
+2. Will it be helpful to have students explore graphing permutations with mScatter?     
+3. How can this exercise dovetail with Math 145 (Biostatistics), which 2/3 of the class will be taking concurrently?
+
+Making Use of R
+=======================================================
+Example of some data:
+```{r echo=FALSE}
+AsterData2007<- read.csv("AsterData2007.csv")
+head(AsterData2007)
+```
+##### Petiole = leaf petiole width (cm)  
+##### Cordate = fraction of leaves that are heart-shaped
+
+Making Use of R
+=======================================================
+```{r, echo=FALSE}
+xyplot(petiole ~ cordate,data=AsterData2007, groups=Species, auto.key=TRUE,pch=20, cex=3)
+```

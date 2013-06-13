@@ -1,0 +1,49 @@
+Good scores lead to good course grades...Who knew?
+========================================================
+author: Steve Miller
+date: 6/13/13
+
+
+```{r,include=FALSE}
+require(stats)
+Rawdata <- read.csv("~/rawdata.csv")
+L1 <- read.csv("~/L1.csv")
+Exams <- read.csv("~/exams.csv")
+Scores<-subset(Rawdata,select=c("normfin","Grade"))
+Plotdata<-cbind(Scores,L1,Exams)
+```
+
+Tracking student performance in GAC General Chemistry
+========================================================
+
+Data collected
+- Exam scores for each student (5 midterms and final exam)
+- Response success for selected common questions
+
+```{r,echo=FALSE}
+head(Plotdata)
+```
+
+Final vs. Average midterm exams
+========================================================
+
+```{r, echo=FALSE}
+xyplot(normfin ~ Eavg,data=Plotdata,ylab="Norm final exam score",xlab="Avg Midterm score")
+```
+
+
+Grades vs. Final exam scores
+========================================================
+
+```{r, echo=FALSE}
+xyplot(Grade ~ normfin,data=Plotdata,ylab="Grade points",xlab="Norm final exam score")
+```
+
+Grades vs. Level 1 success
+========================================================
+
+```{r, echo=FALSE}
+xyplot(Grade ~ L1avg,data=Plotdata,ylab="Grade points",xlab="Avg L1 score")
+```
+
+
