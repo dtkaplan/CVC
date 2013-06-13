@@ -71,8 +71,11 @@ practice with RStudio.
 
 **8:30-10:00am: Session 3**, Relational Data
 
-Participants will learn how to create new data sets from existing data sets by grouping, subsetting, and merging and to create graphical outputs  (e.g., scatterplots, maps, etc.) from the resulting 
-data sets.
+Participants will learn how to create new data sets from existing data sets by grouping, subsetting, and merging and to create graphical outputs  (e.g., scatterplots, maps, etc.) from the resulting data sets.
+
+* [Slides on Relational Operations](Session3/RelationalData.html)
+* Crowd-Sourcing [cleaning the bird data](Worksheets/BirdCleaning.html)
+* Examples with [maps](Worksheets/FAO-data.html) and with [scatter plots](Worksheets/Gapminder-data.html) 
 
 **10:00-10:30: Coffee break**
 

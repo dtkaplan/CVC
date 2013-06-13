@@ -48,7 +48,7 @@ We'll do a bit of editing in the workshop.  With 15 people, it should take only 
 #### 4. Join the Corrected Data to the Birds
 
 You can access the data table with this command:
-```{r message=FALSE}
+```{r message=FALSE,warning=FALSE}
 newNames <- fetchGoogle("https://docs.google.com/spreadsheet/pub?key=0Am13enSalO74dDZjYlg3LXhVam9ZVDdtZGdvMzNPSGc&single=true&gid=0&output=csv")
 ```
 
