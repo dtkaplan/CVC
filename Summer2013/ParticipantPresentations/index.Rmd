@@ -2,7 +2,13 @@ Participant Presentations
 =========================
 
 ```{r include=FALSE}
-options(markdown.HTML.stylesheet = '../../stylesheets/cvc2013.css')
+options(markdown.HTML.stylesheet = '../../stylesheets/testing.css')
+options(rstudio.markdownToHTML =
+  function(inputFile, outputFile) {     
+    require(markdown)
+    markdownToHTML(inputFile, outputFile, stylesheet='../../stylesheets/cvc2013.css')  
+  }
+)
 ```
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="../../javascripts/main.js"></script>
