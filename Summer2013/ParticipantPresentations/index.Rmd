@@ -13,3 +13,5 @@ Participant Presentations
 * [Renewable Energy](Renewables.html)
 * [Differential Gene Expression](Overvoorde.html)
 * [Asters](AstersPres.html)
+* [Temperature](temperature.html)
+* [English Dialects](EnglishDialectsPresentation.html)

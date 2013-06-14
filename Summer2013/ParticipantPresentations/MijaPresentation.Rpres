@@ -1,0 +1,125 @@
+English Dialect Maps
+
+Interpreting American English Dialect Maps
+========================================================
+author: Mija Van Der Wege
+date: June 13, 2013
+
+
+Data Sampling
+========================================================
+- data from [Bert Vaux's online dialect survey] (http://www.tekstlab.uio.no/cambridge_survey)
+- [122 questions] (http://www4.uwm.edu/FLL/linguistics/dialect/maps.html)
+- collected online
+- approximately 31,000 responses (North America)
+- maps created by [Joshua Katz in R Studio] (http://spark-1590165977.us-west-2.elb.amazonaws.com/jkatz/SurveyMaps/)
+
+***
+
+![SurveyMapsbyState](observations.png)
+
+Individual vs. Aggregate Visualizations
+========================================================
+
+Key Questions: 
+- What conclusions are revealed by the individual and the aggregate plots?  
+- How do we interpret heat maps vs. bubbles plotted on maps?  
+- How does this inform our data visualization choices?
+
+***
+
+![DrinkNames](drinknames-ind.png)
+![DrinkNames](drinknames.png)
+
+Multivariate Spatial Patterns
+========================================================
+
+Key Questions: 
+- How to use this data to determine dialect clusters?
+- What kinds of visualizations might reveal clusters?
+
+***
+
+![Crayon](crayon.png)
+![Vowels](cot-caught.png)
+
+
+========================================================
+
+
+
+
+Working with Student-Generated Data
+========================================================
+Figuring out the data: variables, cases, messiness
+- names()
+- levels()
+- summary()
+
+```{r}
+require(DCF)
+load("~/psyc200.RData")
+names(psyc200_data)
+```
+
+Summarizing Data
+========================================================
+
+```{r}
+summary(psyc200_data)
+```
+
+
+Transforming Data
+========================================================
+```{r}
+psyc200_data <- transform(psyc200_data,weaponIATcat = factor(weaponIAT, labels=c("reverse","none","slight","moderate","strong")))
+psyc200_data <- transform(psyc200_data,careerIATcat = factor(careerIAT, labels=c("reverse","none","slight","moderate","strong")))
+summary(psyc200_data)
+```
+
+
+Visualizing Patterns 
+========================================================
+
+```{r}
+table(psyc200_data$weaponIATcat,psyc200_data$careerIATcat)
+```
+
+
+Correlating Variables
+========================================================
+
+```{r}
+NEOpi <- subset(psyc200_data, select = c(neopiE,neopiN,neopiA,neopiC,neopiO))
+cor(NEOpi,use="complete.obs")
+```
+
+Grouping Data
+========================================================
+```{r}
+SexPersonality <- groupBy(psyc200_data,by=sex,c(meanE=mean(neopiE,na.rm=TRUE),meanN=mean(neopiN,na.rm=TRUE),meanC=mean(neopiC,na.rm=TRUE),meanA=mean(neopiA,na.rm=TRUE),meanO=mean(neopiO,na.rm=TRUE)))
+RacePersonality <- groupBy(psyc200_data,by=race,c(meanE=mean(neopiE,na.rm=TRUE),meanN=mean(neopiN,na.rm=TRUE),meanC=mean(neopiC,na.rm=TRUE),meanA=mean(neopiA,na.rm=TRUE),meanO=mean(neopiO,na.rm=TRUE)))
+print(SexPersonality)
+print(RacePersonality)
+```
+
+
+
+Visualizing Patterns 
+========================================================
+Bar chart?
+```{r}
+bwplot(neopiN ~ race, data=psyc200_data)
+```
+
+
+Visualizing Patterns 
+========================================================
+```{r}
+GoNoGo <- subset(psyc200_data, select = c(visualRT, visualGoNoGo))
+ggplot(data=GoNoGo,aes(x=visualRT,y=visualGoNoGo))+geom_point() + stat_smooth(method=lm) 
+summary(psyc200_data$visualRT)
+summary(psyc200_data$visualGoNoGo)
+
+```
