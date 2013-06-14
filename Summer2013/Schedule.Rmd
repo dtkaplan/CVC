@@ -123,6 +123,8 @@ Review and use RStudio to generate graphics or to work on getting data set of in
 
 Topics will include notions of best fit, computational tools for computing best fit, confidence intervals for fitted parameters and trees/clustering
 
+Notes from DCF on [model functions](http://htmlpreview.github.io/?https://github.com/dtkaplan/DataAndComputingFundamentals/blob/master/Notes/Day4/ModelFunctions.html), and [clustering](http://htmlpreview.github.io/?https://github.com/dtkaplan/DataAndComputingFundamentals/blob/master/Notes/Day5/Clustering.html), and supervised [partitioning models](http://htmlpreview.github.io/?https://github.com/dtkaplan/DataAndComputingFundamentals/blob/master/Notes/Day6/Partitioning.html).
+
 **10:00-10:30: Coffee break**
 
 **10:30-Noon: Session 8**, Work Time
