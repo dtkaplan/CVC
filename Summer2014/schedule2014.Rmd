@@ -50,10 +50,13 @@ Teaching Statistics Using R.
     #. NA, NaN, and NULL
 #. Data Organization
     a. Table/case/variable/row/column
+    #. Normalization (use Medicare spending case study)
     #. Why Common excel formats violate this
+    #. Wide vs Narrow: Use NCI60 and Aaron's wind matrices
     #. Brief examination of table operations:
         i. mosaic table-making operators and the formula notation
         #. `mutate()`, `summarize()`, and `group_by()`
+        
 #. Parts of graphics
     a. Frame, Scale, Mark, Guide, Facet
         i. Use "named" graphics at first: scatterplot, barplot 
