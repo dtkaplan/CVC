@@ -13,8 +13,8 @@ options(rstudio.markdownToHTML =
   }
 )
 ```
-script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-script src="../javascripts/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../javascripts/main.js"></script>
 
 
 Working Schedule, July 7-11, 2014 
