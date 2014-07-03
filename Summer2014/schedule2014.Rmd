@@ -44,41 +44,71 @@ Arrival and opening dinner
 
 ## Monday
 
-1. RStudio and RMarkdown
-    i. ACTIVITY: Write and publish a description of some straightforward, data-oriented topic you'd like to present in class.  Keep it simple.  We'll do more complex things in the 2nd half of the workshop.
-#. Basic R
+1. Welcome and Introductions
+
+#. A First Case Study [Danny]
+
+#. RStudio orientation 1 [Randy]
     a. arithmetic and syntax
-    #. basic data types: numeric, character, factor
-    #. variable names versus strings
-    #. vectors, lists, dataframes
-    #. formulas
-    #. NA, NaN, and NULL
+    #. getting help
+    
+
+#. Less Volume, More Creativity -- An R Quick Start [Randy]
+    #. Principles for successfully using R with students
+    
+    #. The formula-interface template
+        * graphical summaries with `lattice`
+        * numerical summaries with `mosaic`
+        * foreshadowing modeling with `lm()` and its cousins
+
+#. RMarkdown [Nick]
+    a. Creating PDF/HTML/Word documents in RStudio
+    #. **Activity**: Write and publish a description of some straightforward, data-oriented topic you'd like to present in class.  Keep it simple.  We'll do more complex things in the 2nd half of the workshop.
+    
+#. Basic R building blocks
+    a. basic data types: numeric, character, factor, logical
+    #. some special objects: `NA`,  `NaN`, and `NULL`
+    #. containers
+        * vectors, lists, and data frames
+    #. objects and classes
+    #. names
+        * variable names versus strings
+    
 #. Data Organization
-    a. Table/case/variable/row/column
-    #. Normalization (use Medicare spending case study)
-    #. Why Common excel formats violate this
-    #. Wide vs Narrow: Use NCI60 and Aaron's wind matrices
-    #. Brief examination of table operations:
-        i. mosaic table-making operators and the formula notation
-        #. `mutate()`, `summarize()`, and `group_by()`
-        
-#. Parts of graphics
-    a. Frame, Scale, Mark, Guide, Facet
-        i. Use "named" graphics at first: scatterplot, barplot 
-    #. Information encoding in glyphs  
+    a. table/case/variable/row/column
+        * Why Common excel formats violate this
+    b. importing data from Excel and other files
+    #. wide vs narrow formats
+        * NCI60 and Aaron's wind matrices
+
+#. The graphics-data interface -- graphing concepts
+    a. goal: more flexible creation of customized plots
+    
+    #. parts of graphics
+        * frame, scale, glyph, guide, facet
+        * information encoding in glyphs (properties/aesthetics)
+    
+    #. **Activity:** Graph to data: What data do a I need to make my graph? [Danny]
+        * will develop data manipulation tools shortly
+    
+    #. **Activity:** Data to graph: mapping data to glyphs and their properities/aesthetics [Danny]
+    
     #. Make a 6-second Vine video about graphics, like [this one](https://vine.co/v/MI5DM173wWz) and [this one](https://vine.co/v/MI5EWixM65A) about glyphs.
+    
+#. Important data operations:
+    a. `mosaic` utilities using the formula-interface
+    #. `dplyr` toolkit (`mutate()`, `filter()`, `select()`, `summarize()`, `arrange()`, 
+        and `group_by()`
+    #. merging data from multiple sources
+    #. normalization (use Medicare spending case study)
+        
+    
 #. Introducing `ggplot`
-    a. Dynamite plots
-        i. give a simple dataset that can be translated into a dynamite plot
-        #. show some alternatives
     #. Other geoms with other data sets
-    #. `mPlot()` 
-    #. ggplot examples with barchart
-#. Graph to data: 
-    a. Figure out what the glyph-ready data looks like
-#. Data to graph
-    i. Draw this graph
-    ii. Data that's not yet ready.  Identify what you need to do to get it in shape.
+    #. `mplot()` 
+    #. `ggplot` examples with barchart
+    
+    
 #. The idea of a backstory
     a. Show sort of data that underlies the dynamite plot
     #. Something that involves a join.
