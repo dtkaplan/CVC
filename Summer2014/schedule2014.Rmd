@@ -13,8 +13,8 @@ options(rstudio.markdownToHTML =
   }
 )
 ```
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="../javascripts/main.js"></script>
+script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+script src="../javascripts/main.js"></script>
 
 
 Working Schedule, July 7-11, 2014 
@@ -28,6 +28,8 @@ all workshop participants.
 * Materials for our [USCOTS 2013 Workshop](http://uscots2013.mosaic-web.org/Workshop) on
 Teaching Statistics Using R.
 * Slides and files for sessions will be posted in the schedule as we go along
+* Videos
+    * Vine video about graphics, like [this one](https://vine.co/v/MI5DM173wWz) and [this one](https://vine.co/v/MI5EWixM65A) about glyphs.
 
 ### Provide Feedback
 * Give a suggestion/correction: [Google Doc](https://docs.google.com/document/d/1eEwaMvxahJJ2YuFFWgUEmgBj58umwvMwf_GXnsp9Yc0/edit?usp=sharing)  
@@ -55,6 +57,8 @@ Arrival and opening dinner
 
 #. Less Volume, More Creativity -- An R Quick Start [Randy]
     #. Principles for successfully using R with students
+        * Less Volume, More Creativity 
+        * Two Questions
     
     #. The formula-interface template
         * graphical summaries with `lattice`
@@ -89,59 +93,99 @@ Arrival and opening dinner
         * information encoding in glyphs (properties/aesthetics)
     
     #. **Activity:** Graph to data: What data do a I need to make my graph? [Danny]
-        * will develop data manipulation tools shortly
+        * the "back story" of a plot
+        * NYT data visualizations
+        * graphics galleries
     
     #. **Activity:** Data to graph: mapping data to glyphs and their properities/aesthetics [Danny]
     
-    #. Make a 6-second Vine video about graphics, like [this one](https://vine.co/v/MI5DM173wWz) and [this one](https://vine.co/v/MI5EWixM65A) about glyphs.
-    
-#. Important data operations:
+#. Important data operations: [Randy]
     a. `mosaic` utilities using the formula-interface
     #. `dplyr` toolkit (`mutate()`, `filter()`, `select()`, `summarize()`, `arrange()`, 
         and `group_by()`
-    #. merging data from multiple sources
-    #. normalization (use Medicare spending case study)
+    #. merging data from multiple sources (joining) [more on this later]
+    
+    #. normalization (use Medicare spending case study) [Danny]
         
+#. Introducing `ggplot` [Randy]
+    #. Data 
+        * one row per glyph
+        * `ggplot(data=)`
+    #. Mapping aesthetics 
+        * available aesthetics: x, y, colour/color, fill, shape, size, linetype,
+        * `aes()`
+    #. Selecting geoms and stats
+        * `+ geom_()`; 
+            * geom palette: line, point, bar, etc.
+            * setting aesthetics
+        `+ stat_()` or `+ geom_(stat=)`
+            * stat palette: identity, bin, boxplot, density, function, etc
+    #. Labeling
+        * `+ labs()`
+    #. Some short cuts
+        * `qplot()`
+        * `mplot()` 
+    #. Bells and whistles
+        * `+ theme()`
+        * `+ coord_flip()`
+        * changing guides
     
-#. Introducing `ggplot`
-    #. Other geoms with other data sets
-    #. `mplot()` 
-    #. `ggplot` examples with barchart
-    
-    
-#. The idea of a backstory
-    a. Show sort of data that underlies the dynamite plot
-    #. Something that involves a join.
-#. `summarize()`
-#. `mutate()` and common sorts of operations
-    #. ratios, rates
-    #. ???
-#. `filter()`
-#. `group_by()` these operations (using groupwise properties)
-
-
-#. Report on your mini-case (first 6 people or groups @ 5 minutes)
+#. Mini-cases mini-reports
 
 ## Tuesday
 
 1. Sources of data, and how to get it in to R
-    #. Files, URLs, CSV, Workspaces, 
-    #. From Excel
-    #. Databases.  Example from Randy about FAA Flights: <http://www.calvin.edu/~rpruim/talks/LessVolume/2014-05-29-GreatPlainsRUsers/dplyrLessVolume.html>
+    #. Data in packages
+        * `data(); `data(package=)`
+        * example: `hflights::hflights`
+        
+    #. Data in Files
+        * csv, txt -- `read.file()`
+        * Excel
+        * from other software (e.g., `foreign::read.spss()`) 
+      
+    #. Online data [Danny]
+        * Google -- `fetchGoogle()`
+        * Dropbox -- `read.file()`
+        * Files on web sites -- `read.file()`
+            * [ons.gov.uk](http://www.ons.gov.uk/ons/datasets-and-tables)
+            * [NCHS data](http://www.cdc.gov/nchs/data_access)
+        
+    #. Databases [Randy]
+        * [UCSC browser data](https://genome.ucsc.edu/goldenPath/help/mysql.html)
+        * FAA Flights: <http://www.calvin.edu/~rpruim/talks/LessVolume/2014-05-29-GreatPlainsRUsers/dplyrLessVolume.html>
+        
 #. Identifying sources of data from your mini-case study
-    #. Work in groups?  
-#. Join operation
+
+#. Merging data from multiple sources (joining)
     
-#. Report on your mini-case (second 6 people or groups @ 5 minutes)
+#. Reports on mini-cases 
 
 ## Wednesday 
 
 ### Morning
 
+#. More reports on mini-cases 
+
 ### Afternoon
 
+1. Welcome new-comers
+
+#. Quick review of first 2.5 days
+
+#. How to find what you need [ ]
+    a. Google
+    #. CRAN task views
+    #. installing packages (CRAN, github, files)
+    #. documentation and vignettes
+    
+#. Project selection
+    #. identify purpose: lectures, labs, assignments, projects, research, etc.
+    #. make a list of things you want to know how to do in R
+    #. beginning searching for resources (data, packages, concepts, etc.)
 
 ## Thursday
+
 
 ## Friday 
 
@@ -155,12 +199,13 @@ The first 2.5 days includes:
 * constructing graphics from data
 * data wrangling: operations to get data in the right form for graphics
 
-The second 2.5 days includes:
+The second 2.5 days could include:
 
 * quick review of the first half of workshop
 * one-on-one or small group (by discipline) development of case studies.
 * summarizing data with models
 * data cleaning
 * data web-scraping basics 
-* programming in R (as needed)
+* programming in R (writing functions)
+* interactivity (Rcharts, plotly, ggvis, manipulate, shiny, etc.)
 
