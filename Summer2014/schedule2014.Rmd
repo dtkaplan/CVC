@@ -56,7 +56,7 @@ Arrival and opening dinner
     
 
 #. Less Volume, More Creativity -- An R Quick Start [Randy]
-    #. Principles for successfully using R with students
+    a. Principles for successfully using R with students
         * Less Volume, More Creativity 
         * Two Questions
     
@@ -135,7 +135,7 @@ Arrival and opening dinner
 ## Tuesday
 
 1. Sources of data, and how to get it in to R
-    #. Data in packages
+    a. Data in packages
         * `data(); `data(package=)`
         * example: `hflights::hflights`
         

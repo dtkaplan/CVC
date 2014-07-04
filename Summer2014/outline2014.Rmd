@@ -1,0 +1,114 @@
+---
+title: "2014 CVC Workshop"
+date: "July, 2014"
+output: html_document
+---
+
+
+```{r include=FALSE}
+options(markdown.HTML.stylesheet = '../stylesheets/cvc2013.css')
+options(rstudio.markdownToHTML =
+  function(inputFile, outputFile) {     
+    require(markdown)
+    markdownToHTML(inputFile, outputFile, stylesheet='../stylesheets/cvc2013.css')  
+  }
+)
+```
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="../javascripts/main.js"></script>
+
+
+Working Schedule, July 7-11, 2014 
+========================================================
+
+### Resources
+* `mosaic` package (version 0.9-0 or greater) and its vignettes are [available via CRAN](http://cran.r-project.org/web/packages/mosaic/index.html) and also via [github](https://github.com/rpruim/mosaic)
+* [The Calvin College RStudio server](http://acc.calvin.edu) has provided accounts for 
+all workshop participants.
+* Data and Computing Fundamentals [spring 2013 course syllabus](http://htmlpreview.github.io/?https://github.com/dtkaplan/DataAndComputingFundamentals/blob/master/Spring2013/syllabus2013.html)
+* Materials for our [USCOTS 2013 Workshop](http://uscots2013.mosaic-web.org/Workshop) on
+Teaching Statistics Using R.
+* Slides and files for sessions will be posted in the schedule as we go along
+
+
+### Provide Feedback
+* Give a suggestion/correction: [Google Doc](https://docs.google.com/document/d/1eEwaMvxahJJ2YuFFWgUEmgBj58umwvMwf_GXnsp9Yc0/edit?usp=sharing)  
+* Share/send some code via Firepad:  [Alpha](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-alpharIwB7uaxo82e5QET), [Bravo](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-bravoIwB7uaxo82e5QET), [Charlie](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-charlieIwB7uaxo82e5QET), [Delta](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-deltaIwB7uaxo82e5QET), [Echo](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-echoIwB7uaxo82e5QET), [Foxtrot](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-foxtrotIwB7uaxo82e5QET), [Golf](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-golfIwB7uaxo82e5QET), [Hotel](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-hotelIwB7uaxo82e5QET).  
+
+
+--------------------------
+
+## Sunday
+
+Arrival and opening dinner
+
+## Monday
+
+1. Welcome and Introductions
+
+#. A First Case Study
+
+#. RStudio orientation 
+
+#. Less Volume, More Creativity -- An R Quick Start
+
+#. RMarkdown 
+    a. Creating PDF/HTML/Word documents in RStudio
+    #. **Activity**: Write and publish a description of some straightforward, data-oriented topic you'd like to present in class.  Keep it simple.  We'll do more complex things in the 2nd half of the workshop.
+    
+#. Basic R building blocks
+    
+#. Data Organization
+
+#. The graphics-data interface  
+    a. graphing concepts
+    #. important data operations
+    #. introduction to `ggplot2` 
+    
+#. Mini-cases mini-reports
+
+## Tuesday
+
+1. Sources of data, and how to get it in to R
+    a. Data in packages
+
+    #. Data in Files
+      
+    #. Online data 
+        
+    #. Databases
+        
+#. Identifying sources of data from your mini-case study
+
+#. Merging data from multiple sources (joining)
+    
+#. Reports on mini-cases 
+
+## Wednesday 
+
+### Morning
+
+#. More reports on mini-cases 
+
+### Afternoon
+
+1. Welcome new-comers
+
+#. Quick review of first 2.5 days
+
+#. How to find what you need
+    a. Google
+    #. CRAN task views
+    #. installing packages (CRAN, github, files)
+    #. documentation and vignettes
+    
+#. Project selection
+    #. identify purpose: lectures, labs, assignments, projects, research, etc.
+    #. make a list of things you want to know how to do in R
+    #. beginning searching for resources (data, packages, concepts, etc.)
+
+## Thursday
+
+
+## Friday 
+
