@@ -1,0 +1,233 @@
+---
+title: "Migration between Countries"
+author: "Daniel Kaplan"
+date: "CVC Workshop, July 2014"
+output: pdf_document
+---
+
+```{r include=FALSE}
+require(DCFdevel)
+require(dplyr)
+require(xtable)
+require(igraph)
+require(knitr)
+options(xtable.type='latex')
+ShowAnswers=FALSE 
+opts_chunk$set(tidy=FALSE,comment=NA,message=FALSE,warning=FALSE,include=ShowAnswers)
+options(na.rm=TRUE)
+
+```
+
+The World Bank maintains [data on migration between countries](http://data.worldbank.org/data-catalog/global-bilateral-migration-databas), based on censuses and other information.  These have been translated to an R format as `MigrationFlows` in the `DCFdevel` package.
+
+```{r}
+data(MigrationFlows,package='DCFdevel')
+```
+
+Here's a small sample of the data:  
+```{r echo=FALSE,results='markup',comment=NA}
+set.seed(100)
+filter(MigrationFlows,Y1990>20,Y2000>20) %>% 
+  sample_n(.,size=5) %>%
+  print(.,row.names=FALSE)
+```
+
+Referring to the sample, you can see that in year 2000 there were 24,118 males who moved from Poland to Kazakhstan. In that year, there were 2289 females who moved from Indonesia to Australia.
+
+## Basic Questions
+
+### Structure of data
+
+* How many variables are there?
+    ```{r include=ShowAnswers}
+    length(names(MigrationFlows))
+    ```
+
+* Is `MigrationFlows` in "long" or "narrow" format with respect to the years?
+* How many cases are there?
+   ```{r include=ShowAnswers}
+   nrow(MigrationFlows)
+   ```
+
+* How many countries are there?
+   ```{r include=ShowAnswers}
+   summarize(MigrationFlows,ncountries=length(origincode))
+   ```
+
+* Construct a table that combines the females and males for each country pair.
+
+* How many migrants originated (that is, emigrants) in each country in 2000?
+    * Imagine what the table containing the result will look like.  How many rows? Is the meaning of a row the same or different in the result than in `MigrationFlows`. Which variables will you use in from `MigrationFlows` to construct the table with the results?  What will be the variables in the result table?
+    * Hint: `sum()` to add numbers together, `group_by()`, `summarize()`  
+    Use `head()` or `sample_n()` to display just a few rows of your result. 
+
+* Which 5 countries had the largest number of emigrants?  (Hint: `arrange()`, `desc()`)
+
+    ```{r include=ShowAnswers}
+    group_by(MigrationFlows,origincode) %>% 
+    summarize(count=sum(Y2000,na.rm=TRUE)) %>% 
+    arrange(desc(count)) %>% 
+    head(.)
+    ```
+
+* Compute the fraction of each origin country's year-2000 emigration that goes to each destination country.
+    * In the result table, what will be the cases?  Are they the same as the original table?  What will be the variables?  Which ones are the same as in the original table.
+
+    ```{r}
+    select(MigrationFlows, origincode,destcode,Y2000) %>% 
+    group_by(origincode) %>%
+    mutate( outPercent=Y2000/sum(Y2000,na.rm=TRUE)) -> OutFrac
+    ```
+
+    * Explain why `mutate()` and not `summarize()` was used here.
+    * Is the `select()` necessary to finding the `outPercent` variable?
+
+    
+* For each origin country, what is the largest destination?
+
+    ```{r}
+    select(MigrationFlows, origincode,destcode,Y2000) %>% 
+    group_by(origincode) %>%
+    filter(row_number(Y2000)==1) -> LargestDest
+    ```
+    
+* For each destination country, what is the largest origin?
+
+    ```{r}
+    select(MigrationFlows, origincode,destcode,Y2000) %>% 
+    group_by(destcode) %>%
+    filter(row_number(Y2000)==1) -> LargestOrigin
+    ```
+    
+
+
+* For each destination country, what are the **two** largest origin countries?
+
+    ```{r}
+    select(MigrationFlows, origincode,destcode,Y2000) %>% 
+    group_by(destcode) %>%
+    filter(row_number(Y2000)<=2) -> LargestTwo
+    ```
+
+## Bringing in other data
+
+* Compute the per-capita emigration rate for each pair of countries.  Use the population of the originating country to set the rate.
+    Use the `CIAdata()` function to access population data and create a column `origincode` to make it easy to join the population data with the `MigrationFlows` data:
+    ```{r include=TRUE}
+    pop <- CIAdata(2119)
+    pop <- mutate(pop, origincode=toISO3(country))
+    ```
+    Then use a join to add the population data to the `MigrationFlows` data.
+
+    ```{r}
+    migrate <- inner_join(MigrationFlows,pop)
+    migrate <- mutate(migrate, percapita=Y2000/pop)
+    ```
+
+
+
+## Maps
+
+* Make a map of the countries whose people flow into a country of your choice.  Here's the result for Canada.  (Note: the logarithm of `Y2000` is shown.)
+
+    ```{r echo=ShowAnswers,include=TRUE}
+    toCanada <- filter(MigrationFlows, destcode=='CAN') 
+    p <- makeWorldMap( toCanada, 'origincode' )
+    p + geom_polygon(aes(fill=log10(Y2000)))
+```
+
+* Construct a data table indicating for each country pair whether emigration increased or not between 1990 and 2000.
+
+    ```{r include=ShowAnswers}
+    group_by(MigrationFlows,origincode) %>% 
+    summarize(proportionIncrease=
+                sum(Y2000,na.rm=TRUE)/sum(Y1990,na.rm=TRUE)
+              ) -> EmigrationChange
+    head(EmigrationChange)
+```
+
+* Make a map showing the global pattern of the increase or decrease in emigration from each country.
+
+    ```{r include=TRUE,echo=ShowAnswers}
+    mutate( EmigrationChange, 
+            Change=cut(proportionIncrease,
+                       breaks=c(0,.1,.5,.75,1.25,2,5,10,100),
+                       labels=c('1/10','1/2','2/3','flat','2','5','10','>10')
+                               )) %>%
+    makeWorldMap( ., 'origincode' ) -> p
+    p + geom_polygon(aes(fill=Change))
+                          
+    ```
+
+## Networks
+
+* Pull out the major country pairs with more than 1,000,000 migrants, male and female, over the 1960 to 2000 period.
+   * Imagine what the output data table will look like.  Will the variables be different?  Will the meaning of the cases be different?
+
+```{r include=ShowAnswers}
+group_by(MigrationFlows, destcode, origincode ) %>% 
+  summarize(Total=sum(Y1960+Y1970+Y1980+Y1990+Y2000, na.rm=TRUE)) %>%
+  filter(Total>1e6) -> biggies
+str(biggies)
+```
+
+* Make a directed network graph showing the flows among the major pairs.
+
+```{r fig.width=10,fig.height=10}
+myGraph <- graph.data.frame( 
+  select(biggies,to=destcode,from=origincode), 
+  directed=TRUE)
+edgeColors <- heat.colors(110)
+receiving <- group_by(MigrationFlows,destcode) %>% 
+  summarize(inflow=sum(Y2000,na.rm=TRUE))
+select(biggies,destcode) %>% left_join(.,receiving) -> receiving
+plot.igraph(myGraph,vertex.size=1,vertex.color='red',
+            edge.arrow.size=.3,edge.width=biggies$Total/1e6,
+            vertex.label.cex=(log10(receiving$inflow)/5),
+            edge.color=edgeColors[rank(biggies$Total,ties.method='max')])
+```
+
+
+
+## On your own ...
+
+* For each pair of countries, find the ratio of immigration/emigration between them in year 2000.
+
+    ```{r}
+    A <- select(MigrationFlows,origincode,destcode,Y2000,sex)
+    B <- mutate(A, tmp=destcode, 
+                destcode=origincode, origincode=tmp,
+                otherway=Y2000)
+    B <- select(B,sex,origincode,destcode,otherway) 
+    inner_join(A,B) %>%
+    mutate(Ratio=Y2000/otherway) -> Exchanges
+    ```
+    
+* Select a couple of dozen pairs with the ratio most similar to 1.  Make a network diagram showing the relationship. 
+
+    ```{r}
+    select( Exchanges, origincode, destcode, Ratio,Y2000,sex ) %>%
+    filter( Ratio > 1, abs(log(Ratio)) < 1.2, Y2000>5000 ) -> forGraph
+    ```
+   
+    ```{r include=TRUE,echo=ShowAnswers,fig.width=10,fig.height=10}
+    thisGraph <- graph.data.frame(forGraph,directed=FALSE)
+    plot.igraph(thisGraph,vertex.size=1,
+                edge.color=c('red','blue')[forGraph$sex],
+                vertex.label.cex=1)
+    ```
+   
+Countries where the size of the exchange is balanced to within a factor of 3.3. Red is for females; blue for males.
+   
+* Which country pairs have a strongly male- or female-oriented emigration?
+
+    ```{r}
+   # Separate the tables by sex.  
+   # Rename `Y2000` in them to `female` and `male`, respectively.
+   # Join the two tables by `origincode` and `destcode`.
+   # Calulate `Ratio` as `female/male`.
+   # Filter using the criterion `abs(log(Ratio)) > threshold` where
+   #  you pick an appropriate threshold.
+   # Show your result, perhaps as a network.
+   # Calculate the ratio between `Y2000
+    ```
