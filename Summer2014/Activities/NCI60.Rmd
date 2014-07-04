@@ -1,0 +1,163 @@
+---
+title: "Gene Expression in Cancer Cells"
+author: "Daniel Kaplan"
+date: "CVC Workshop, July 2014"
+output: pdf_document
+---
+
+```{r include=FALSE}
+require(DCFdevel)
+require(knitr)
+ShowAnswers=TRUE
+opts_chunk$set( tidy=FALSE, include=ShowAnswers,prompt=FALSE, comment=NA)
+options(width=120)
+```
+
+In the 1980s, the [National Cancer Institute](http://www.cancer.gov/) developed a set of 60 cancer cell lines, called [NCI60](http://www.broadinstitute.org/mpr/NCI60/NCI60.html). The original purpose was for screening potential anti-cancer drugs. A recent overview in [*Nature*](http://www.nature.com/nrc/journal/v6/n10/full/nrc1951.html) describes some of the ongoing work with these cell lines.  
+
+Here you will examine gene expression in these cell lines using data described in [Staunton *et al.*](http://www.pnas.org/content/98/19/10787.full). More than 41,000 probes were used for each of the 60 cell lines.
+
+For convenience, the data are provided by the `DCIdraft` package.
+```{r}
+require(DCFdevel)
+data(nci60)
+```
+
+The `nci60` data tables are lightly re-organized from the [form provided by Staunton *et al.*](http://www.broadinstitute.org/mpr/NCI60/NCI60.html).
+
+Two separate data frames are provided: `nci60expression` and `nci60cellLine`.  The expression data is quite big --- 41,078 probes by 60 cell lines --- so there's little point in looking at it directly:
+```{r}
+dim(nci60expression)
+```
+
+Each of the 2,454,680 numbers in the expression data is on a log scale.
+
+
+For your convenience, here is a small subset of 15 cases and 6 cell lines from the data.  These are presented in the same format as the original.  The name of the cell line starts with two or three letters indicating the tissue type: `BR` is breast, `CNS` is brain (central nervous system), `CO` is colon.
+```{r include=TRUE}
+set.seed(300)
+small <- select(nci60expression, c(1,2,4,7,8,14,15) ) %>% 
+  sample_n( size=15)
+```
+```{r}
+print(small,row.names=FALSE)
+```
+
+Construct this small dataset for developing your computer statements.
+
+Once you have the `small` dataframe, it's relatively easy to display how the data indicate the cell lines are related.
+```{r}
+small %>% select(-Probe) -> tmp
+rownames(tmp) <- small$Probe
+dend <- hclust(dist(tmp))
+mosaic::mplot(dend,data=tmp,k=3,heatmap=0.5,labels=TRUE)
+```
+
+But this method wouldn't scale nicely to all 41,000 probes.  You'll have to do some work to get the data in form where you can construct the dendrograms.
+
+
+## Basics
+
+* The expression data is provided in *wide* format.  What would it look like in *narrow* format.
+
+* Create the *narrow* format data, using `Expression` as the name of that variable in the result and `CellLine` as the variable name for that information.
+    `melt()` let's you specify the `value.name` and the `variable.name` as character strings.  You'll have to figure out which is which.  
+    ```{r}
+    narrow <- melt(small,value.name='Expression',
+                   variable.name='CellLine')
+    ```
+
+* If the expression does not vary much for each cell line across probes, that cell line might be faulty.  One way to measure the variation is with the [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation) (`sd()`) Make a chart to compare the variation in expression across probes in each of the cell lines.
+    Explain why or why not your chart form would be effective for the full data.
+
+    ```{r}
+    group_by( narrow, CellLine ) %>%
+    summarize( spread=sd(Expression)) -> byCellLine
+    ggplot(data=byCellLine,aes(x=CellLine,y=spread)) + geom_bar(fill='grey',stat='identity')
+    ```
+
+
+
+    
+## Weeding Out
+
+The variation of expression of a probe across cell lines can be used as an indicator of the relationship between the expression of that gene and cancer types.  But there are many probes that hardly vary across the cell lines.  For statistical reasons, to increase the "power" of a study, it's sensible to delete these probes from the data.  The expression shown by most of the probes do not vary across cell lines.
+
+
+* Find the standard deviation of the expression for each probe across cell lines. 
+    * Decide whether you want to do this from the data in long or wide format.  Either is possible.
+    ```{r}
+    group_by( narrow, Probe ) %>%
+    summarize( spread=sd(Expression)) -> byProbe
+    ```
+    
+* Make a bar chart of `small` that shows how the expression varies across cell lines for each probe. 
+    * Explain why or why not your chart form would be effective for the full data.
+    * What do you think would be the best ordering of probes for the purpose of spotting how many probes have high variation?
+    
+    ```{r}
+    ggplot(data=byProbe,aes(x=reorder(Probe,spread),y=spread)) + 
+    geom_bar(fill='gray',stat='identity')
+    ```
+
+* Make a histogram and/or density plot showing how probes differ in terms of their variation across cell lines.
+    *Explain why or why not this cart would be effective for the full data.
+    
+    ```{r}
+    ggplot(data=byProbe,aes(x=spread)) + 
+    geom_histogram(fill='gray',binwidth=0.5,aes(y= ..density..)) + 
+    geom_density(aes(y=..density..))
+    ```
+* Make a dataset containing the expression data for the five probes with the highest standard deviation.
+    ```{r}
+    highest <- filter(byProbe, rank(desc(spread)) <= 5)
+    ```
+
+* Join the highest varying probes with the `small` dataset.
+    * Experiment with the different sorts of join to find one that keeps just the highest varying probes in `small`.
+    * When you have a working result, use `select()` to get rid of the `spread` variable.  It's done its work and is no longer needed.
+    ```{r}
+    keepers <- inner_join(small, highest) %>% select(-spread)
+    ```
+
+The dendrogram/heat-map will look like this:
+```{r}
+keepers %>% select(-Probe) -> tmp
+dend <- hclust(dist(tmp))
+mosaic::mplot(dend,data=tmp,k=3,heatmap=0.5,labels=TRUE)
+```
+
+You might prefer to create a dendrogram of the cell types rather than the probes.  This is a matter of taking the transpose of the data.  Here's how:
+```{r echo=ShowAnswers,include=TRUE}
+transpose <- select(keepers,-1) %>% t(.)
+colnames(transpose) <- keepers$Probe
+transpose <- as.data.frame(transpose)
+```
+
+And the corresponding dendrogram:
+
+```{r}
+dend <- hclust(dist(transpose))
+mosaic::mplot(dend,data=transpose,k=3,heatmap=0.5,labels=TRUE)
+```
+
+This dendrogram doesn't show a good classification of the tissue types, but there isn't much data going into it.  More data might produce a better classification.
+
+
+## On Your Own
+
+When you have the above working ...
+
+For the whole data set --- picking out just 100 or so probes with the greatest variation ---
+make dendrograms of 
+
+* the cell lines using probe expression
+* the probes using cell lines
+
+Pick out one of the top varying probes.
+
+* Merge the `tissue` variable based on `cellLine`.  Construct a "dynamite plot" showing how the probe expression varies for the different tissues.
+
+
+
+
