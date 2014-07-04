@@ -1,9 +1,8 @@
 ---
-title: "2014 CVC Workshop"
+title: "CVC 2014 Schedule"
 date: "July, 2014"
 output: html_document
 ---
-
 
 ```{r include=FALSE}
 options(markdown.HTML.stylesheet = '../stylesheets/cvc2013.css')
@@ -29,11 +28,14 @@ all workshop participants.
 * Materials for our [USCOTS 2013 Workshop](http://uscots2013.mosaic-web.org/Workshop) on
 Teaching Statistics Using R.
 * Slides and files for sessions will be posted in the schedule as we go along
-
+* Videos
+    * Vine video about graphics, like [this one](https://vine.co/v/MI5DM173wWz) and [this one](https://vine.co/v/MI5EWixM65A) about glyphs.
 
 ### Provide Feedback
 * Give a suggestion/correction: [Google Doc](https://docs.google.com/document/d/1eEwaMvxahJJ2YuFFWgUEmgBj58umwvMwf_GXnsp9Yc0/edit?usp=sharing)  
 * Share/send some code via Firepad:  [Alpha](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-alpharIwB7uaxo82e5QET), [Bravo](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-bravoIwB7uaxo82e5QET), [Charlie](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-charlieIwB7uaxo82e5QET), [Delta](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-deltaIwB7uaxo82e5QET), [Echo](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-echoIwB7uaxo82e5QET), [Foxtrot](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-foxtrotIwB7uaxo82e5QET), [Golf](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-golfIwB7uaxo82e5QET), [Hotel](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-hotelIwB7uaxo82e5QET).  
+
+
 
 
 --------------------------
@@ -46,24 +48,87 @@ Arrival and opening dinner
 
 1. Welcome and Introductions
 
-#. A First Case Study
+#. A First Case Study [Danny]
 
-#. RStudio orientation 
+#. RStudio orientation 1 [Randy]
+    a. arithmetic and syntax
+    #. getting help
+    
 
-#. Less Volume, More Creativity -- An R Quick Start
+#. Less Volume, More Creativity -- An R Quick Start [Randy]
+    a. Principles for successfully using R with students
+        * Less Volume, More Creativity 
+        * Two Questions
+    
+    #. The formula-interface template
+        * graphical summaries with `lattice`
+        * numerical summaries with `mosaic`
+        * foreshadowing modeling with `lm()` and its cousins
 
-#. RMarkdown 
+#. RMarkdown [Nick]
     a. Creating PDF/HTML/Word documents in RStudio
     #. **Activity**: Write and publish a description of some straightforward, data-oriented topic you'd like to present in class.  Keep it simple.  We'll do more complex things in the 2nd half of the workshop.
     
 #. Basic R building blocks
+    a. basic data types: numeric, character, factor, logical
+    #. some special objects: `NA`,  `NaN`, and `NULL`
+    #. containers
+        * vectors, lists, and data frames
+    #. objects and classes
+    #. names
+        * variable names versus strings
     
 #. Data Organization
+    a. table/case/variable/row/column
+        * Why Common excel formats violate this
+    b. importing data from Excel and other files
+    #. wide vs narrow formats
+        * NCI60 and Aaron's wind matrices
 
-#. The graphics-data interface  
-    a. graphing concepts
-    #. important data operations
-    #. introduction to `ggplot2` 
+#. The graphics-data interface -- graphing concepts
+    a. goal: more flexible creation of customized plots
+    
+    #. parts of graphics
+        * frame, scale, glyph, guide, facet
+        * information encoding in glyphs (properties/aesthetics)
+    
+    #. **Activity:** Graph to data: What data do a I need to make my graph? [Danny]
+        * the "back story" of a plot
+        * NYT data visualizations
+        * graphics galleries
+    
+    #. **Activity:** Data to graph: mapping data to glyphs and their properities/aesthetics [Danny]
+    
+#. Important data operations: [Randy]
+    a. `mosaic` utilities using the formula-interface
+    #. `dplyr` toolkit (`mutate()`, `filter()`, `select()`, `summarize()`, `arrange()`, 
+        and `group_by()`
+    #. merging data from multiple sources (joining) [more on this later]
+    
+    #. normalization (use Medicare spending case study) [Danny]
+        
+#. Introducing `ggplot` [Randy]
+    #. Data 
+        * one row per glyph
+        * `ggplot(data=)`
+    #. Mapping aesthetics 
+        * available aesthetics: x, y, colour/color, fill, shape, size, linetype,
+        * `aes()`
+    #. Selecting geoms and stats
+        * `+ geom_()`; 
+            * geom palette: line, point, bar, etc.
+            * setting aesthetics
+        `+ stat_()` or `+ geom_(stat=)`
+            * stat palette: identity, bin, boxplot, density, function, etc
+    #. Labeling
+        * `+ labs()`
+    #. Some short cuts
+        * `qplot()`
+        * `mplot()` 
+    #. Bells and whistles
+        * `+ theme()`
+        * `+ coord_flip()`
+        * changing guides
     
 #. Mini-cases mini-reports
 
@@ -71,12 +136,24 @@ Arrival and opening dinner
 
 1. Sources of data, and how to get it in to R
     a. Data in packages
-
-    #. Data in Files
-      
-    #. Online data 
+        * `data(); `data(package=)`
+        * example: `hflights::hflights`
         
-    #. Databases
+    #. Data in Files
+        * csv, txt -- `read.file()`
+        * Excel
+        * from other software (e.g., `foreign::read.spss()`) 
+      
+    #. Online data [Danny]
+        * Google -- `fetchGoogle()`
+        * Dropbox -- `read.file()`
+        * Files on web sites -- `read.file()`
+            * [ons.gov.uk](http://www.ons.gov.uk/ons/datasets-and-tables)
+            * [NCHS data](http://www.cdc.gov/nchs/data_access)
+        
+    #. Databases [Randy]
+        * [UCSC browser data](https://genome.ucsc.edu/goldenPath/help/mysql.html)
+        * FAA Flights: <http://www.calvin.edu/~rpruim/talks/LessVolume/2014-05-29-GreatPlainsRUsers/dplyrLessVolume.html>
         
 #. Identifying sources of data from your mini-case study
 
@@ -96,7 +173,7 @@ Arrival and opening dinner
 
 #. Quick review of first 2.5 days
 
-#. How to find what you need
+#. How to find what you need [ ]
     a. Google
     #. CRAN task views
     #. installing packages (CRAN, github, files)
@@ -111,4 +188,24 @@ Arrival and opening dinner
 
 
 ## Friday 
+
+
+## Notes
+
+The first 2.5 days includes:
+
+* an introduction to using R for handling data and graphics
+* deconstructing graphs to the underlying data
+* constructing graphics from data
+* data wrangling: operations to get data in the right form for graphics
+
+The second 2.5 days could include:
+
+* quick review of the first half of workshop
+* one-on-one or small group (by discipline) development of case studies.
+* summarizing data with models
+* data cleaning
+* data web-scraping basics 
+* programming in R (writing functions)
+* interactivity (Rcharts, plotly, ggvis, manipulate, shiny, etc.)
 
