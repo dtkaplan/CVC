@@ -1,6 +1,6 @@
 ---
 title: "2014 CVC Workshop"
-date: "July, 2014"
+date: "July 2014"
 output: html_document
 ---
 
@@ -89,6 +89,8 @@ Arrival and opening dinner
 ### Morning
 
 #. More reports on mini-cases 
+
+--------------
 
 ### Afternoon
 

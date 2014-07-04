@@ -4,6 +4,7 @@ date: "July, 2014"
 output: html_document
 ---
 
+
 ```{r include=FALSE}
 options(markdown.HTML.stylesheet = '../stylesheets/cvc2013.css')
 options(rstudio.markdownToHTML =
@@ -34,8 +35,6 @@ Teaching Statistics Using R.
 ### Provide Feedback
 * Give a suggestion/correction: [Google Doc](https://docs.google.com/document/d/1eEwaMvxahJJ2YuFFWgUEmgBj58umwvMwf_GXnsp9Yc0/edit?usp=sharing)  
 * Share/send some code via Firepad:  [Alpha](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-alpharIwB7uaxo82e5QET), [Bravo](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-bravoIwB7uaxo82e5QET), [Charlie](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-charlieIwB7uaxo82e5QET), [Delta](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-deltaIwB7uaxo82e5QET), [Echo](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-echoIwB7uaxo82e5QET), [Foxtrot](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-foxtrotIwB7uaxo82e5QET), [Golf](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-golfIwB7uaxo82e5QET), [Hotel](http://www.mosaic-web.org/go/firepad/examples/codeCOMP121.html#-hotelIwB7uaxo82e5QET).  
-
-
 
 
 --------------------------
@@ -166,6 +165,8 @@ Arrival and opening dinner
 ### Morning
 
 #. More reports on mini-cases 
+
+--------------------------
 
 ### Afternoon
 
