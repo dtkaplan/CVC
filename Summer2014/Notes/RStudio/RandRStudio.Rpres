@@ -1,0 +1,69 @@
+
+R and RStudio
+=============
+This slide show introduces you to some basic commands in R, the `mosaic` package (which we'll be using in the USCOTS sessions), and RStudio.
+
+* R is the language/environment for doing statistical and data-oriented computing.
+* `mosaic` provides a few additional commands that we find helpful in smoothing the path for students.
+* RStudio is an "integrated development environment" (IDE) that makes it easier for instructors to produce notes and for students to access the computational power of R without having to install or manage anything on their own computer.
+
+Your RStudio Server account
+===============
+
+Each participant in the USCOTS workshop will be given an account on an RStudio web server.  You can also run R on your desktop, or even set up an RStudio web server of your own.  But for now, just use our server.
+
+Log in to that server now.
+
+* Once you are logged in, select FILE/OPEN FILE and ... how do we navigate to this `Welcome.Rpres` file?
+
+Doing so will bring up these slides in the "Presentation" tab of your RStudio window.  Resize it as bests suits you.
+
+Why Look at Slides in RStudio?
+================
+
+You can see these slides perfectly well in a web browser.  But still we want you to open them in RStudio.
+
+* The slides, when open in RStudio, can interact with the R system itself.
+
+This is a brand new feature of RStudio.  
+ 
+* It allows us to demo certain features of R without your having to give commands that are (as yet) unfamiliar.
+* We suspect that there will be pedagogical advantages to students in having materials presented in this format.  We are just starting to explore this possibility; this is our first attempt.
+
+The Console and Basic Commands
+=================
+console: maximize, clear
+
+The RStudio display is divided into several **panes**.  You can resize these at will.  
+
+Panes contain **tabs** which give views into various aspects of R and RStudio.  
+
+This slide show has just maximized the size of the pane containing the **Console**.
+
+The console is where you enter commands interactively.  This is the most common way of using R, but there are others that you will see in these sessions.
+
+You'll also be using the **Plots** tab.
+
+Arithmetic
+===============
+console-input: 3+2
+console-input: 3-2
+console-input: 3*2
+console-input: 3^2
+console-input: 3/2
+
+We've just put into the console commands illustrating basic arithmetic and exponentiation.
+
+
+
+
+
+
+
+
+
+
+Running R
+================
+
+If you've followed the previous

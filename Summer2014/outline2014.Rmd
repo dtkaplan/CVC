@@ -31,6 +31,8 @@ Teaching Statistics Using R.
 * Slides and files for sessions will be posted in the schedule as we go along
 * Videos
     * Vine video about graphics, like [this one](https://vine.co/v/MI5DM173wWz) and [this one](https://vine.co/v/MI5EWixM65A) about glyphs.
+* [ggplot2 documentation](http://docs.ggplot2.org/current/) shows 
+examples of each geom, stat, scale, etc.
 
 ### Provide Feedback
 * Give a suggestion/correction: [Google Doc](https://docs.google.com/document/d/1eEwaMvxahJJ2YuFFWgUEmgBj58umwvMwf_GXnsp9Yc0/edit?usp=sharing)  
@@ -93,7 +95,7 @@ Arrival and opening dinner
     
     #. **Activity:** Graph to data: What data do a I need to make my graph? [Danny]
         * the "back story" of a plot
-        * NYT data visualizations
+        * [NYT data visualizations](http://www.nytimes.com/newsgraphics/2013/12/30/year-in-interactive-storytelling/#dataviz)
         * graphics galleries
     
     #. **Activity:** Data to graph: mapping data to glyphs and their properities/aesthetics [Danny]

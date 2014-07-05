@@ -1,0 +1,94 @@
+Class Notes Example
+========================================================
+author: Danny Kaplan
+date: May 14, 2013
+
+1. Including math notation in your notes
+2. Including R in your notes
+3. Including the `mosaic` package
+4. The SE of the difference between two means
+
+```{r include=FALSE}
+require(mosaic)
+```
+
+Including math notation via $\LaTeX$ markup
+=========================================================
+type: prompt
+
+The next slides are about putting some math notation and R calculations in your slides, not about the best way to teach about the standard error of the mean.
+    
+Background
+=========================================================
+
+You're already familiar with the formula for the standard error of the mean.
+* Calculation: $s/\sqrt{n}$ where $s$ is the sample standard deviation
+* Uses: Construct a 95\% confidence interval.
+    * The margin of error is $\pm 2 \times s/\sqrt{n}$
+* Distribution: t distribution with $n-1$ df
+
+Including R
+==========================================================
+Your R computations can be added to the presentation by including them in **fences**
+```
+    ` ``{r}
+    3+2
+    ```
+```
+This will appear in your finished document like this:
+```{r}
+3+2
+```
+
+
+Using `mosaic`
+==========================================================
+Each document must be **self-contained**.
+
+This means that you should include the `mosaic` package (typically at the top of the document):
+
+```{r}
+require(mosaic)
+```
+
+Use the `include=FALSE` flag, e.g. `{r include=FALSE}` to supporess printing.
+
+
+
+Calculation in R
+==========================================================
+
+The wage data: `CPS85`
+```{r}
+nrow(CPS85)
+mean(wage, data=CPS85)
+sd(wage, data=CPS85)
+```
+
+===============
+title: false
+
+The standard error of the mean is:
+```{r}
+sd(wage, data=CPS85)/sqrt(nrow(CPS85)-1)
+```
+
+SE of the Difference of Two Means
+==========================================================
+
+Starting data:
+```{r}
+mean(wage ~ sex, data=CPS85)
+sd(wage ~ sex, data=CPS85)
+tally(~sex, data=CPS85)
+```
+
+Now Write Your Notes!
+==========================================================
+You take it from here on.
+
+Do the calculation.  Then compare it to the result you get in the t-test:
+
+```{r eval=FALSE}
+t.test(wage~sex, data=CPS85)
+```

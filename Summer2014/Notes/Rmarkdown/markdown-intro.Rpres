@@ -1,0 +1,76 @@
+Working in Markdown
+========================================================
+author: Danny Kaplan, Nick Horton, and Randy Pruim
+date: USCOTS 2013
+
+* What?
+* Why?
+* How?
+    * Organize, Record, Publish
+
+What is Markdown?
+========================================================
+
+Like $\LaTeX$, a markup language for specifying structure in documents.
+
+Works with both documents and slides.  Translation among a wide range of formats using `pandoc`.
+
+Integrated with a variety of authoring systems, so you can ramp up to the level that's needed.
+* Latex
+* HTML (for just about anything)
+* Tikz for graphics
+
+Can access other systems through [knitr engines](http://yihui.name/knitr/demo/engines/), e.g. python
+
+
+You can write and publish notes, articles, etc.  
+
+Why Use Markdown?
+========================================================
+
+* Simple, but powerful enough
+    * Fast and easy to edit
+    * Many fewer compilation conundrums than Latex
+* Integrated with R and publishing technologies such as HTML/JavaScript
+* Easily published and updated
+* Interactivity with R console (coming soon)
+
+Who cares about HTML/JavaScript?
+========================================================
+
+You can use HTML/JavaScript to connect to other services.
+* Google Forms
+* Videos
+* Demonstration Apps
+
+
+A Shared Spreadsheet 
+=========================================================
+
+`<iframe src="https://docs.google.com/spreadsheet/ccc?key=0Am13enSalO74dDVoNVV1WlV3bjE4bXI3UUliZ25SLXc&usp=sharing" width="900" height="500"> Loading ... </iframe>`
+
+An App
+========================================================
+
+In late October 2012, I assigned students to make a probability model of the electoral college outcome.  Then, right after the election, they calculated the likelihood of the observed outcome.  Putting it all on Nate Silver won!
+
+[The Likelihood Calculation](http://glimmer.rstudio.com/mosaic/Election2012/)
+
+How to Use Markdown?
+========================================================
+
+* Introduction via presentations
+* Class notes
+* Notes for a whole course
+
+Making a Class Presentation
+========================================================
+
+1. Open a new presentation and save the document under the name `2013-05-14-notes`.
+2. Change the title of your first slide to say "Statistics 101 Notes"
+3. Set the author and date
+4. Add these bullet points to the first slide:
+    * Including math notation in your notes
+    * Including R in your notes
+    * Including the `mosaic` package
+    * The sampling distribution of the standard deviation.
