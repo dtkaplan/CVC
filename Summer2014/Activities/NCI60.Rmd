@@ -33,7 +33,7 @@ dim(nci60expression)
 Each of the 2,454,680 numbers in the expression data is on a log scale.
 
 
-For your convenience, here is a small subset of 15 cases and 6 cell lines from the data.  These are presented in the same format as the original.  The name of the cell line starts with two or three letters indicating the tissue type: `BR` is breast, `CNS` is brain (central nervous system), `CO` is colon.
+To help visualize how the process of data processing, here is a small subset of 15 cases and 6 cell lines from the data.  These are presented in the same format as the original.  The name of the cell line starts with two or three letters indicating the tissue type: `BR` is breast, `CNS` is brain (central nervous system), `CO` is colon.
 ```{r include=TRUE}
 set.seed(300)
 small <- select(nci60expression, c(1,2,4,7,8,14,15) ) %>% 
