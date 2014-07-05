@@ -125,7 +125,7 @@ Arrival and opening dinner
         * `+ labs()`
     #. Some short cuts
         * `qplot()`
-        * `mplot()` 
+        * `mplot()` manipulate.
     #. Bells and whistles
         * `+ theme()`
         * `+ coord_flip()`

@@ -1,0 +1,47 @@
+---
+title: "Notes on Join"
+author: "Daniel Kaplan"
+date: "CVC Workshop: July 2014"
+output: html_document
+---
+
+## What's Join For?
+
+Example: The medicare data
+
+## Mechanics
+
+Joining is based on one or more variables that the two tables both have.  
+
+1. In `dplyr`, the variable names must be the same.
+
+## Visualizing Join
+
+Barbara's shiny app to illustrate the different kinds of joins.
+
+## Some examples of uses
+
+Connecting data from different sources: 
+
+    1. Grades from `mosaic`?
+    #. Zip codes and medicare procedures?
+    #. Cell lines and tissue?
+
+## Strategizing
+
+Imagine the output you want. Your inputs will be two tables, a **right** an a **left**.
+
+Decisions to be made:
+
+a. Which table is left and which is right.
+#. What kind of join to perform
+#. What variables are to connect the two tables.
+
+Things to think about:
+
+1. Do you want all the cases from the right the tables?
+    Use left to add new vars to the cases from right.
+#. Do you want only the cases from the right that have a match in the left?
+    Use left to winnow the cases from right.
+#. Do you want to supplement the cases in the right with extra cases?
+    When more than one case in the left matches a case in the right, generate cases that give each of the possibilities.
