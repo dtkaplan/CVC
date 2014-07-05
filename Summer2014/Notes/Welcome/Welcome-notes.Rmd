@@ -1,0 +1,33 @@
+---
+title: "Welcome to CVC 2014!"
+output: html_document
+---
+
+**WORKING NOTES**
+
+## What the workshop will be about.
+
+1. Data operations.
+    a. These are central.  If you can get your data in the proper form, it's much easier to visualize and analyze.
+    #. We'll introduce you to a small set of operations that let you do a lot.  
+#. Graphics and visualization of data.
+#. Development of case studies.
+#. Collaboration among people with field-specific expertise and those with computational expertise.
+
+
+
+## The Workflow with Data
+
+Before the data:  
+    1. Collect data from the field or laboratory.  This is the large majority of work, time, and expense, but not the topic of this workshop.
+
+Once you have some data:
+    1. **Data cleaning**.  This is most of the work once you have your data in electronic form.  We'll spend just a little time on this in the second half of the workshop.
+    #. **Re-organization for analysis**. Not that hard, once you know how to do it.  We'll use some powerful tools for this, esp. `dplyr`
+    #. **Graphical presentation**.  Again, the tools are very powerful, *once you have the data organized properly*.  We'll look at several major modes of graphics: the run-of-the-mill kind, but also networks, maps, dendrograms.
+    #. **Modeling & Inference**. This also is not hard, *once you have the data organized properly*.  We'll focus on visual analysis (e.g. dendrograms), but also do a little with statistical models.
+    #. **Polishing**.  Making aesthetic choices for graphs to emphasize the message you want to make with the graph.
+    #. **Documenting & Presenting**. This is important.  Analysis needs to be reproducible so that it can be verified, modified, and extended.  It's helpful to avoid a gap between the analysis and presentation; copying leads to problems.  We will use some modern tools to make this easier.  We think these tools should be used by students in data-oriented courses, although the style is still developing.
+    
+    
+    

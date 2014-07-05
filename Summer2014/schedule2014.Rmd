@@ -46,10 +46,10 @@ Arrival and opening dinner
 
 1. Welcome
     a. Paul Overvoorde
-    #. Initial goals and outline for the week.
+    #. Initial goals and outline for the week. (PO? DTK? RP?)
 
 #. Introductions
-    a. **Activity**: Split up into groups of three or four and introduce yourselves. For each person, another person should write a short bio (or other introductory information).  Use this [Google Doc](https://docs.google.com/document/d/17kGxROGm43oMt5nyKIPY4Pp2oRdB_gVLkRJ2lv-aRFE/edit?usp=sharing) 
+    a. **Activity**: Split up into groups of three or four and introduce yourselves. For each person, another person should write a short bio (or other introductory information).  Use this [Google Doc](https://docs.google.com/document/d/17kGxROGm43oMt5nyKIPY4Pp2oRdB_gVLkRJ2lv-aRFE/edit?usp=sharing). 
 
 #. A First Case Study
     a. The CIA factbook
@@ -82,6 +82,7 @@ Arrival and opening dinner
         #. `file.choose()` for files on your own machine.
     #. Multiple tables
         a. Medicare procedures. (See case study.)
+    #. More about *data scraping* in the second half of the workshop.
 
 #. The graphics-data interface  
     a. graphing concepts
