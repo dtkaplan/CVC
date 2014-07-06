@@ -14,8 +14,10 @@ options(rstudio.markdownToHTML =
   }
 )
 ```
+```{r eval=FALSE, echo=FALSE}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="../javascripts/main.js"></script>
+```
 
 
 Working Schedule, July 7-11, 2014 
@@ -48,15 +50,48 @@ Arrival and opening dinner
 ## Monday
 
 1. Welcome and Introductions
+    a. Paul Overvourde
+    b. goals 
+        * By Wednesday noon you will have created a document containing
+            * text
+            * at least one plot
+            * a description of something interesting to you
+            * R will let you create this as a PDF, HTML, or Word file. Also
+            options to produce slides insted of a document.
 
-#. A First Case Study [Danny]
+        * By Friday you will have created at least one document 
+        using R to explore data
+            that can be used in your course, lab, research, etc.
+            * may be expansion of Wednesday's or completely different
+            * may be multiple little things or one larger thing
+            
+    #. outline of the week [who?]
+        * first 2.5 days -- mostly shop, a bit of work
+            * we have prepared some things that we think 
+            will be generally useful
+            * basic R/RStudio
+            * data manipulation
+            * data visualiztion
+            
+        * second 2.5 days -- mostly work, a bit of shop
+            * we will work with you to find and learn what you need
+     
 
-#. RStudio orientation 1 [Randy]
-    a. arithmetic and syntax
+#. A First Case Study -- CIA case book [Danny]
+    a. Randy suggests that this be R free -- focus on tasks and products but don't show any code (this is to motivate learning some R skills to come)
+    b. Important ingredients
+        * data scraping
+        * graphical displays
+        * modeling
+        * other?
+  
+#. RStudio orientation 1 [Randy (unless Nick is there already)]
+    a. logging in; changing password
+    #. arithmetic and syntax
     #. getting help
-    
+    #. panes and tabs
 
-#. Less Volume, More Creativity -- An R Quick Start [Randy]
+#. [Less Volume, More Creativity](Slides/LessVolume.html) -- An R Quick Start [Randy]
     a. Principles for successfully using R with students
         * Less Volume, More Creativity 
         * Two Questions
@@ -65,12 +100,18 @@ Arrival and opening dinner
         * graphical summaries with `lattice`
         * numerical summaries with `mosaic`
         * foreshadowing modeling with `lm()` and its cousins
+        
+    #. slides include stuff that will probably not be covered there
+        * linear models
+        * eXtras like `xpnorm()`, `xchisq.test()`
+        * resampling with `do()`
 
 #. RMarkdown [Nick]
     a. Creating PDF/HTML/Word documents in RStudio
     #. **Activity**: Write and publish a description of some straightforward, data-oriented topic you'd like to present in class.  Keep it simple.  We'll do more complex things in the 2nd half of the workshop.
+        * include at least one plot  -- but it may be unrelated
     
-#. Basic R building blocks
+#. Basic R building blocks 
     a. basic data types: numeric, character, factor, logical
     #. some special objects: `NA`,  `NaN`, and `NULL`
     #. containers
@@ -80,12 +121,17 @@ Arrival and opening dinner
         * variable names versus strings
     
 #. Data Organization
-    a. table/case/variable/row/column
-        * Why Common excel formats violate this
-    b. importing data from Excel and other files
-    #. wide vs narrow formats
-        * NCI60 and Aaron's wind matrices
-
+    a. rectangular data: case=row, variable=column
+        * imagine a spreadsheet-like table, but
+        * Note: many excel spreadsheets are **not** rectangular data
+    #.  **Activity**: The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct.  Identify the elements of this spreadsheet that are not in standard form for a data tabl
+    #. will say more about getting data into R tomorrow
+    #. wide vs narrow formats -- what is a case?
+        * do we want to talk about using R to convert here or just 
+            about the alternative formats?  (This could be discussed
+            in the context of how data are organized in Excel.)
+        * NCI60 [to complicated for here?] and Aaron's wind matrices
+        
 #. The graphics-data interface -- graphing concepts
     a. goal: more flexible creation of customized plots
     
@@ -93,20 +139,45 @@ Arrival and opening dinner
         * frame, scale, glyph, guide, facet
         * information encoding in glyphs (properties/aesthetics)
     
-    #. **Activity:** Graph to data: What data do a I need to make my graph? [Danny]
-        * the "back story" of a plot
-        * [NYT data visualizations](http://www.nytimes.com/newsgraphics/2013/12/30/year-in-interactive-storytelling/#dataviz)
-        * graphics galleries
+    #. Graph to data: What data do a I need to make my graph? [Danny]
+        * **Activity:** given a plot, figure out what data would
+        be necessary to create the plot
+            * provide a template for the answers (x, y, shape, color, fill, etc.)
+            * i.e., provide the "back story" of a plot
+        * sources of plots for this activity
+            * [NYT data visualizations](http://www.nytimes.com/newsgraphics/2013/12/30/year-in-interactive-storytelling/#dataviz)
+            * graphics galleries
+            * Danny's compilation of "science plots" from articles
+            * other plots participants might know about
+        * "basic plots" vs "complex plots"
+            * basic: can be created by straightforward mapping from 
+            a single data source
+            * complex: 
+                * combine elements from multiple data sources
+                * plotting data is computed from the "raw data"
+                    * bwplots -- `ggplot2` stats
+                    * dendograms
     
-    #. **Activity:** Data to graph: mapping data to glyphs and their properities/aesthetics [Danny]
+    #. Data to graph
+        * **Activity:** mapping data to glyphs and their properities/aesthetics [Danny]
+            * provide some small  data sets (and the mapping?)
+            * have participants sketch what the plot might look like.
+        * data sources:
+            * `NHANES`, Birds
     
 #. Important data operations: [Randy]
     a. `mosaic` utilities using the formula-interface
-    #. `dplyr` toolkit (`mutate()`, `filter()`, `select()`, `summarize()`, `arrange()`, 
-        and `group_by()`
-    #. merging data from multiple sources (joining) [more on this later]
+    #. [`dplyr` toolkit](Slides/dplyrLessVolume.html)
+        * `filter()`,  `mutate()`, `select()`, `summarize()`, `arrange()` 
+        * `group_by()`
+    #. still need to create a few "It's your turn" activities to put
+    into the slides
+        
+    #. mention that merging data from multiple sources (joining) will be 
+    discussed on Tuesday
     
     #. normalization (use Medicare spending case study) [Danny]
+        * not sure what this is --rjp
         
 #. Introducing `ggplot` [Randy]
     #. Data 
@@ -142,23 +213,42 @@ Arrival and opening dinner
         
     #. Data in Files
         * csv, txt -- `read.file()`
-        * Excel
+              * `read.file(file.choose())` to browse or a file
+        * Excel -- `gdata::read.xls()`
         * from other software (e.g., `foreign::read.spss()`) 
       
     #. Online data [Danny]
         * Google -- `fetchGoogle()`
-        * Dropbox -- `read.file()`
+            * need to check that this is working 
         * Files on web sites -- `read.file()`
+            * Dropbox 
             * [ons.gov.uk](http://www.ons.gov.uk/ons/datasets-and-tables)
             * [NCHS data](http://www.cdc.gov/nchs/data_access)
-        
+        #. importing data from Excel 
+              * export to csv, or
+              * read directly with `gdata::read.xls()`
     #. Databases [Randy]
         * [UCSC browser data](https://genome.ucsc.edu/goldenPath/help/mysql.html)
         * FAA Flights: <http://www.calvin.edu/~rpruim/talks/LessVolume/2014-05-29-GreatPlainsRUsers/dplyrLessVolume.html>
         
 #. Identifying sources of data from your mini-case study
 
+#. Specialized graphs
+    a. maps
+    b. networks (move to 2nd half as needed
+    c. dendograms (move to 2nd half as needed
+    d. interactivity (plotly, rCharts, ggvis)
+    e. ask participants abot other graphs they see or would like to be
+    able to create
+    
+
 #. Merging data from multiple sources (joining)
+    a. **Activity:** Barbara's shiny app illustrating joins
+    b. using `inner_join()`, `left_join()`, etc. (`merge()`??)
+    c. strategizing data operations [Libby Shoop]
+  
+#. Good and bad visual displays of data
+    a. Isle Royale examples [Eric Anderson]
     
 #. Reports on mini-cases 
 
