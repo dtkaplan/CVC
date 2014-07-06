@@ -21,11 +21,14 @@ Barbara's shiny app to illustrate the different kinds of joins.
 
 ## Some examples of uses
 
-Connecting data from different sources: 
-
-    1. Grades from `mosaic`?
+1. Connecting data from different sources: 
+    a. Grades from `mosaic`?
     #. Zip codes and medicare procedures?
     #. Cell lines and tissue?
+    #. MOOCs and country population.
+2. Cleaning or standardizing.  
+    a. standardizing country
+    #. Medicare charges and the credential
 
 ## Strategizing
 

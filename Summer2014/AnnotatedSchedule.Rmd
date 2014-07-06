@@ -53,10 +53,11 @@ Arrival and opening dinner
     a. **Activity**: Split up into groups of three or four and introduce yourselves. For each person, another person should write a short bio (or other introductory information).  Use this [Google Doc](https://docs.google.com/document/d/17kGxROGm43oMt5nyKIPY4Pp2oRdB_gVLkRJ2lv-aRFE/edit?usp=sharing). 
 
 #. A First Case Study
-    a. The CIA factbook
+    a. The CIA factbook?
       1. The web site and data scraping.
       #. The `CIAdata()` function.
       #. What might you want to do with this. Display, model, ...
+    #. Medicare charges/procedures.  Zip codes.
 
 #. RStudio orientation 
     * Some materials from USCOTS in Notes/RStudio
@@ -163,10 +164,21 @@ Arrival and opening dinner
     #. identify purpose: lectures, labs, assignments, projects, research, etc.
     #. make a list of things you want to know how to do in R
     #. beginning searching for resources (data, packages, concepts, etc.)
+    
+#. Data Scraping (Barbara)
+    a. Basics: URLs, HTML versus CSV
+    #. Constructing URLs for a pattern.  Examples: CIA, zipcodes
+    #. XML for reading HTML tables
 
 ## Thursday
 
+
 1.  Vine activity.
+
+#. Data Cleaning (Barbara)
+    a. Basics: kinds of variables, conversion
+    #. Times: `lubridate()`
+    #. Standardization: birds, medicare charges.
 
 ## Friday 
 
