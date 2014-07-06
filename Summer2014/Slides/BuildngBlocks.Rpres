@@ -1,0 +1,33 @@
+R Building Blocks
+========
+author: R Pruim
+date: 2014 CVC Workshop
+
+Everything is an object
+=============
+```{r include=FALSE}
+require(mosaic)
+```
+
+In R, 
+
+* everything is an object
+* every object has a  type/class 
+    ```{r}
+    class("hello")
+    class(HELPrct)
+    class(class)
+    ```
+  
+Some types of objects you should know about
+===============
+
+Character: text
+```{r}
+name <- "John Doe"
+```
+Numeric: numbers
+```{r}
+x <- 27.5
+```
+

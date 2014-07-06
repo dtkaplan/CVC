@@ -1,0 +1,210 @@
+Less Volume, More Creativity with dplyr
+=================================================
+author: R Pruim
+date: 2014 CVC Workshop
+
+---
+title: "Less Volume, More Creativity with dplyr"
+author: "R Pruim"
+date: "May 29, 2014"
+output: ioslides_presentation
+---
+
+Less Volume, More Creativity with dplyr
+=======================================
+
+```{r include=FALSE}
+require(dplyr)
+require(mosaic)
+require(lubridate)
+```
+
+
+## 5 commands
+```{r eval=FALSE}
+ mutate()     # add columns to data
+ summarise()  # reduce data to 1 summary row
+ select()     # subset of columns
+ filter()     # subset of rows
+ arrange()    # put rows in desired order
+```
+
+## Plus 1
+```{r eval=FALSE}
+  group_by()  # split/apply/combine
+```
+
+mutate()
+==================
+```{r}
+Births <- mutate( Births78, 
+  ldate=mdy(date) )
+head(Births, 2)
+```
+
+```{r, tidy=FALSE}
+Births <- mutate( Births, 
+  ldate=mdy(date) - years(100),
+  wday=wday(ldate, label=TRUE, abbr=TRUE))
+head(Births, 2)
+```
+
+mutate()
+==================
+
+```{r fig.width=8, fig.height=3, out.height=400, fig.align="center", tidy=FALSE}
+xyplot( births ~ ldate, data=Births,  
+  groups=wday, type='l',
+  auto.key=list(columns=4, 
+      lines=T, points=F),
+  par.settings=list(
+      superpose.line=list( lty=1 ) ))
+```
+
+summarise()
+===========
+`summarise()` creates a 1-row summary of the data
+```{r}
+summarise(Births, 
+  mean=mean(births), 
+  sum=sum(births), 
+  sd=sd(births)
+)
+```
+select()
+========
+We can use `select()` to reduce to desired columns:
+```{r, eval=FALSE}
+Births <- select(Births, 
+  ldate, births, wday)        # keep only these
+head(Births, 2)
+```
+
+Or we can think about what gets dropped:
+```{r}
+Births <- select(Births, 
+  -date, -dayofyear)         # drop these
+head(Births, 2)
+```
+
+filter()
+========
+`filter()` selects a subset of rows:
+```{r}
+Monday <- filter(Births, wday=="Mon")
+summarise( Monday, mean=mean(births) )
+summarise( Births, mean=mean(births) )
+```
+
+arrange()
+=========
+`arrange()` arranges the rows in a desired order:
+
+```{r}
+head( arrange(Births, births) )   # sort by number of births
+```
+
+But wait, there's more: group_by()
+==========
+```{r}
+summarise( group_by(Births, wday),  
+    mean = mean(births), 
+    min=min(births), 
+    max=max(births) )
+```  
+
+group_by() -- chaining syntax
+==========
+```{r}
+Births %>%
+  group_by(wday) %>%
+  summarise(mean = mean(births), 
+    min=min(births), max=max(births) ) %>%
+  mutate(range = max - min) %>%
+  arrange(mean)
+```  
+
+Working with bigger data
+=====================
+`dplyr` is designed to work with data of different formats and sizes.
+ * separates syntax from storage 
+   * modular design will allow for additional back ends over time
+   * already supports `MySQL`, `SQLite`, `PostgreSQL`
+ * provides cleverer data-frame-like objects for local (`tbl_`)
+ * designed for speed
+ 
+*Skills learned on small data immediately transfer to large data settings*
+ * Another example of less volume, more creativity
+
+Big Data Example -- Airlines
+============================
+```{r,include=FALSE}
+user <- "mth292"
+passwd <- "RememberPi"
+```
+```{r,eval=TRUE}
+require(RMySQL)
+airlines <- src_mysql(
+  dbname="airlines", 
+  host="rucker.smith.edu", 
+  user=user, password=passwd) 
+airlines
+```
+
+Ontime arrival and departure
+============================
+How big is it?
+```{r}
+OnTime <- tbl(airlines, "ontime")
+OnTime %>% 
+  summarise( millionsOfRecords = n()/1e6 )
+```
+
+Ontime arrival and departure
+============================
+How big is it?
+```{r}
+OnTime %>% 
+  group_by(Year) %>% 
+  summarise( moR = n() / 1e6 )
+```
+
+```{r include=FALSE}
+airport <- tbl(airlines, "airports")
+carriers <- tbl(airlines, "carriers")
+planes <- tbl(airlines, "planes")
+airlinesSummary <- tbl(airlines, "summary")
+```
+
+
+Grabbing a subset -- 2013 GRR flights
+=====================================
+```{r}
+OnTime %>% 
+  filter( Year==2013, Origin=="GRR" | Dest=="GRR" ) %>%
+  select( DayofMonth, Month, Origin, Dest, ArrDelay, DepDelay ) %>%
+  mutate( Outbound = Origin=="GRR" )  -> GRR2013
+GRR2013 %>% summarise( n = n() )
+```
+
+GRR Flights
+===========
+```{r}
+GRR2013 %>%
+  group_by( Month, Outbound) %>%
+  arrange( Month ) %>%
+  summarise( 
+    n = n(),
+    meanDD=mean(DepDelay), 
+    meanAD = mean(ArrDelay), 
+    meanInFlightGain = mean(DepDelay - ArrDelay) ) -> GRRdelay
+GRRdelay
+```
+
+How many flights in one day?
+===========================
+```{r}
+OneDay <- OnTime %>%
+  filter( Year==2014, DayofMonth==3, Month==3)
+OneDay %>% summarise( flights = n() )
+```
