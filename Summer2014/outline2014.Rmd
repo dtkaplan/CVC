@@ -167,7 +167,7 @@ Arrival and opening dinner
     
 #. Important data operations: [Randy]
     a. `mosaic` utilities using the formula-interface
-    #. [`dplyr` toolkit](Slides/dplyrLessVolume.html)
+    #. [dplyr toolkit](Slides/dplyrLessVolume.html)
         * `filter()`,  `mutate()`, `select()`, `summarize()`, `arrange()` 
         * `group_by()`
     #. still need to create a few "It's your turn" activities to put
