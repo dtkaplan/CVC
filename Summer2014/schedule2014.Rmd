@@ -57,7 +57,7 @@ Arrival and opening dinner
 
 #. RStudio orientation 
     
-#. Less Volume, More Creativity -- An R Quick Start
+#. [Less Volume, More Creativity -- An R Quick Start](Slides/LessVolume.html)
 
 #. [RMarkdown](http://prezi.com/e7wtfnacj9ub/)
     a. Creating PDF/HTML/Word documents in RStudio
