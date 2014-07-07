@@ -5,7 +5,7 @@ output: pdf_document
 ---
 
 
-![graph here](AndyZCladistics.png)}
+![graph here](AndyZ-3.png)}
 
 
 ```{r child='deconstruct-questions.Rmd'}
