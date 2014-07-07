@@ -59,8 +59,9 @@ Arrival and opening dinner
     
 #. Less Volume, More Creativity -- An R Quick Start
 
-#. RMarkdown 
+#. [RMarkdown](http://prezi.com/e7wtfnacj9ub/)
     a. Creating PDF/HTML/Word documents in RStudio
+    #. [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
     #. **Activity**: Write and publish a description of some 
     straightforward, data-oriented topic you'd like to present in class. 
         * Keep it simple.  We'll do more complex things in the 2nd half of the workshop.
