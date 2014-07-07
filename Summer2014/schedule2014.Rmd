@@ -53,6 +53,8 @@ Arrival and opening dinner
 
 #. A First Case Study
 
+* [Slides](http://dtkaplan.github.io/CVC/Summer2014/Notes/MedicareSpending/PriceOfHealth.html)
+
 #. RStudio orientation 
     
 #. Less Volume, More Creativity -- An R Quick Start
