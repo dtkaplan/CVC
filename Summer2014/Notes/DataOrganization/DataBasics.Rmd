@@ -1,0 +1,168 @@
+---
+title: "Data Organization Basics"
+author: "DTK"
+date: "CVC Workshop: July 2013"
+output: ioslides_presentation
+---
+
+```{r include=FALSE}
+require(mosaic)
+require(DCFdevel)
+require(knitr)
+opts_chunk$set( tidy=FALSE, prompt=FALSE, comment=NA)
+```
+
+## Data Comes in Many Forms
+
+* Images: Still and Video
+* Free text: e.g. books, college presidents' speeches, twitter feeds, ...
+* Rectangular arrays
+
+### We will work only with rectangular arrays
+
+Call these: **data tables**.  
+
+You'll also hear about one R representation of data tables: **dataframes**.
+
+## Enforce a Strict Convention
+
+Horizontal | Vertical 
+-----------|-----------
+**Cases**  | **Variables**
+Rows       | Columns
+Instances  | Fields
+Tuples     | Records
+
+## Example: ZIP Codes
+
+```{r include=FALSE}
+set.seed(100)
+```
+
+```{r}
+data(ZipGeography)
+ZipGeography %>% 
+  select(ZIP, State, Population, LandArea, WaterArea) %>% 
+  sample_n(size = 8) %>%
+  print( row.names=FALSE)
+```
+
+## Big and Small
+
+Some data tables have many cases, some have many variables, some both, some neither.
+
+Examples: 
+```{r}
+data(ZipDemography)
+nrow(ZipDemography)
+ncol(ZipDemography)
+```
+
+***
+
+```{r}
+data(registeredVoters)
+nrow(registeredVoters)
+ncol(registeredVoters)
+```
+
+
+## Variable Types
+
+* Quantitative: Numeric
+    * Just the number, no units
+    * No formatting, e.g. ~~~ $1,432,654 ~~~
+    * Something you can think of as continuous.
+    * Something where the idea of a mean makes sense.
+* Categorical: Names or categories
+    * Typically a few categories
+    * No natural order, e.g. Danish is not between Chinese and English
+    * Easy to mis-spell, so cleaning is often necessary.
+* Ordinal: Like categorical but with a natural order.
+    * Example: Likert Scale   
+Hate:::Dislike:::Neutral:::Like:::Love
+
+## Codebook
+
+All the information about units, explanations, etc. go in another file: the codebook.
+
+## Do's & Don'ts
+
+* Do use mnemonic levels for categorical variables:
+   * e.g. `F` and `M`
+   * e.g. `Never Smoked`, `Past Smoker`, `Curr Smoker`
+   
+* Don't copy over data from other tables 
+   * e.g. I've got the species and want to add the typical weight.
+   
+* Do use proper data manipulation commands to add data from other tables --- do this when you need it, not before.
+
+* Do consider using multiple tables with different sorts of information.
+
+* Do provide potentially useful auxilliary variables:
+    * Who handled this sample
+    * The date it was handled
+    * Page from the lab notebook
+    * any covariates of potential interest, even if you don't plan right now to use them
+    
+## Cases
+
+For any data table, you should know what the case is:
+
+### Examples
+
+* A voter
+* A zip code
+* A student in a specific course
+* A hospital providing a specific DRG
+
+## Wide and Narrow form
+
+```{r}
+data(MigrationFlows)
+MigrationFlows %>% select(sex,origincode,destcode,Y2000) %>%
+  sample_n(size=10) %>% 
+  print(., row.names=FALSE)
+```
+
+
+## Design your Data to be Extensible
+
+Example: Repeated measurements from rats
+
+Animal | Run 1 | Run 2 | Run 3
+-------|-------|-------|------
+D67    | 17    | 19    |
+N01    | 23    | 14    | 11
+M03    | 6     |       |
+D67    | 15    | 12    |
+
+Questions: 
+
+* What if you wanted to add in a date of the run?
+* How would you handle covariates? (e.g. the person conducting the run)
+
+## The Same Measurements: But Extensible 
+
+Animal | Run | Speed  | Technician | Date       | Temperature
+-------|-----|--------|------------|------------|-------------
+D67    | 1   | 17     | Paul O.    | 2014-07-04 | 31
+D67    | 2   | 19     | Steve S.   | 2014-07-06 | 34
+N01    | 1   | 23     | Steve S.   | 2014-05-03 | 28
+N01    | 2   | 14     | Steve S.   | 2014-05-06 | 30
+N01    | 3   | 11     | Paul O.    | 2014-05-19 | 31
+...    | ... | ...    | ...        | ...        | ...
+
+and so on.
+
+## Activities
+
+Links on the CVC [Workshop Schedule](http://dtkaplan.github.io/CVC/Summer2014/schedule2014.html).
+
+1. Critique a [file's organization](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx)
+#. Enter some data
+
+```{r}
+sheet1 <- fetchGoogle("https://docs.google.com/spreadsheet/pub?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&single=true&gid=0&output=csv")
+sheet2 <- fetchGoogle("https://docs.google.com/spreadsheet/pub?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&single=true&gid=1&output=csv")
+```

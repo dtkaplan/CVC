@@ -70,6 +70,7 @@ Arrival and opening dinner
 #. How to organize your data
     a. Canonical format: tables, cases and variables, variable types, codebook
     #. Separate analysis from data storage.
+    #. **Group Activity**: Entering data [link to spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&usp=sharing)
     #. **Activity**: The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct.  Identify the elements of this spreadsheet that are not in standard form for a data table.
 
 
