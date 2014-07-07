@@ -4,77 +4,10 @@ date: "CVC Workshop, July 2014"
 output: pdf_document
 ---
 
-![graph here](AndyZCladistics.png)
 
-## Breaking down the Chart
+![graph here](AndyZCladistics.png)}
 
-1. What variables form the frame?
 
-#. What (if any) variables are used for faceting?
-
-#. What are the glyphs?  
-    (If there's more than one type of glyph, pick one type that seems important.)
-    a. What are the graphical attributes ("aesthetics") of the glyph?
-        i. ?
-        #. ?
-        #. ?
-        #. ?
-        #. ?
-        #. ?
-    b. For each of the glyph aesthetics, which variable sets the value?
-        Add on to the answer in (a).
-#. What guides/scales are displayed?
-    Check off the relevant entries in your list of aesthetics.
-
-#. What annotations are there?
-
-#. What is the coordinate system?  If more than one, describe each of them.
-    a. ?
-    b. ?
-    c. ?
-    
-#. How many layers are there?  If more than one, describe each of them.
-    a. ?
-    b. ?
-    c. ?
-    
-#. For each of the variables that appears in the graph, write down a couple of typical values.  Indicate whether the variable is quantitative or categorical.
-    a. ?
-    #. ?
-    #. ?
-    #. ?
-    #. ?
-    #. ?
-    
-#. For categorical variables, say whether the ordering (topology) is helpful.  If not, suggest a better criterion for ordering.
-    a. ?
-    #. ?
-    #. ?
-    
--------------------
-    
-## Constructing the Chart
-
-Consider three different grammar components of the graph:
-
-1. Frame
-2. Glyphs, known as *geoms* in `ggplot2`.
-3. Facets
-
-There must always be a frame and at least one glyph layer in a (non-empty) chart.
-
-Write down an appropriate `ggplot2` statement for generating each component. Say what aesthetics apply to each layer.  (Any layer can inherit aesthetics from the frame, or can override them.)  Take `TheData` to be a data frame containing relevant variables.  If other dataframes are needed, call them `Data1`, `Data2`, etc.
-
-1. Frame: `ggplot( data = TheData,  ? )`
-#. Layer 1: 
-#. Layer 2:
-#. Layer 3:
-#. Faceting:
-
-Write down an appropriate command to construct the graph (or something like it).  As a reminder, here are a few of the `ggplot2` functions:
-
-`ggplot()`, `geom_point()`, `geom_barchart()`, `geom_blank()`, `geom_boxplot()`, `geom_density()`, `geom_errorbar()`, `geom_polygon()`, `geom_line()`, `geom_path()`, `geom_ribbon()`, `geom_rug()`, `geom_text()`, `scale_y_log10()`, `scale_x_log10()`, `xlabel()`, `ylabel()`
-
-For other graphical types, e.g. dendrograms, networks, etc. and for non-rectangular coordinates, just say what you see without having to construct it.
-
+```{r child='deconstruct-questions.Rmd'}
+```
 
