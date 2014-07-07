@@ -35,18 +35,17 @@ Goals
 
 What I will try to do
 
- * give quick tour of `ggplot2`
+ * give a tour of `ggplot2`
  
  * explain how to think about plots the `ggplot2` way
  
  * prepare/encourage you to learn more later
  
-What I can't do in 30 minutes
+What I can't do in one session
 
  * show every bell and whistle
  
  * make you an expert at using `ggplot2`
- 
 
 
 The Births78 data set -- revised edition
@@ -55,12 +54,13 @@ The Births78 data set -- revised edition
 require(dplyr)
 require(mosaic)
 require(lubridate)
-Births <- Births78 %>% 
-  mutate( date = mdy(date) - years(100),  # y2k fix
-          wd = wday(date),                # as a number
-          wday = wday(date, label=TRUE, abbr=TRUE)   # as text (abbrev)
+Births2 <- Births78 %>% 
+  mutate( 
+    date = mdy(date) - years(100),  # y2k fix
+    wd = wday(date),                # as a number
+    wday = wday(date, label=TRUE, abbr=TRUE)   # as text (abbrev)
   )
-head(Births, 2)
+head(Births2, 2)
 ```
 
 
@@ -89,7 +89,7 @@ How do we make this plot?
 =========================
 
 ```{r, echo=FALSE}
-ggplot(data=Births, aes(x=date, y=births)) + geom_point()
+ggplot(data=Births2, aes(x=date, y=births)) + geom_point()
 ```
 
 \pause
@@ -109,7 +109,7 @@ How do we make this plot?
 =========================
 
 ```{r, echo=FALSE, fig.height=1.5}
-ggplot(data=Births, aes(x=date, y=births)) + geom_point()
+ggplot(data=Births2, aes(x=date, y=births)) + geom_point()
 ```
 
 What does R need to know?
@@ -117,20 +117,20 @@ What does R need to know?
 
 * data frame containing the data: `ggplot(data=)`
 ```{r, eval=FALSE}
-ggplot(data=Births)
+ggplot(data=Births2)
 ```
 
 \pause
 * how we want to map our aesthetics: `aes()`
 ```{r, eval=FALSE}
-ggplot(data=Births, aes(x=date, y=births)) 
+ggplot(data=Births2, aes(x=date, y=births)) 
 ```
 \pause
 
 * what geom we want to use: `+ geom_point()`
 
 ```{r, eval=FALSE}
-ggplot(data=Births, aes(x=date, y=births)) + geom_point()
+ggplot(data=Births2, aes(x=date, y=births)) + geom_point()
 ```
 
 
@@ -138,7 +138,7 @@ How do we make this plot?
 ====================
 
 ```{r, echo=FALSE}
-ggplot(data=Births, aes(x=date, y=births, color=wday)) + geom_point()
+ggplot(data=Births2, aes(x=date, y=births, color=wday)) + geom_point()
 ```
 
 What information has changed?  \pause
@@ -146,7 +146,7 @@ What information has changed?  \pause
 * new aesthetic: mapping color to day of week
 
 ```{r, eval=FALSE}
-ggplot(data=Births, aes(x=date, y=births, color=wday)) + 
+ggplot(data=Births2, aes(x=date, y=births, color=wday)) + 
   geom_point()
 ```
 
@@ -154,7 +154,7 @@ How do we make this plot?
 ====================
 
 ```{r, echo=FALSE}
-ggplot(data=Births, aes(x=date, y=births, color=wday)) + 
+ggplot(data=Births2, aes(x=date, y=births, color=wday)) + 
   geom_line()
 ```
 
@@ -163,7 +163,7 @@ ggplot(data=Births, aes(x=date, y=births, color=wday)) +
 This time we use lines instead of dots
 
 ```{r, eval=FALSE}
-ggplot(data=Births, aes(x=date, y=births, color=wday)) + 
+ggplot(data=Births2, aes(x=date, y=births, color=wday)) + 
   geom_line()
 ```
 
@@ -171,7 +171,7 @@ How do we make this plot?
 ====================
 
 ```{r, echo=FALSE}
-ggplot(data=Births, aes(x=date, y=births, color=wday)) + 
+ggplot(data=Births2, aes(x=date, y=births, color=wday)) + 
   geom_point() + 
   geom_line()
 ```
@@ -182,7 +182,7 @@ This time we have two **layers**, one with points and one with
 lines
 
 ```{r, eval=FALSE}
-ggplot(data=Births, 
+ggplot(data=Births2, 
        aes(x=date, y=births, color=wday)) + 
   geom_point() + 
   geom_line()
@@ -197,7 +197,7 @@ Alternative Syntax
 ===================
 
 ```{r}
-Births %>% 
+Births2 %>% 
   ggplot(aes(x=date, y=births, color=wday)) + 
   geom_point() + 
   geom_line()
@@ -207,7 +207,7 @@ What does this do?
 =============
 
 ```{r, eval=FALSE}
-Births %>%
+Births2 %>%
   ggplot(aes(x=date, y=births, color="navy")) + 
   geom_point()  
 ```
@@ -215,7 +215,7 @@ Births %>%
 \pause
 
 ```{r, echo=FALSE}
-Births %>% 
+Births2 %>% 
   ggplot(aes(x=date, y=births, color="navy")) + 
   geom_point()  
 ```
@@ -231,7 +231,7 @@ If we want to *set* the color to be navy for all of the dots, we do
 it this way:
 
 ```{r}
-Births %>%
+Births2 %>%
   ggplot(aes(x=date, y=births), color="navy") + 
   geom_point()  
 ```
@@ -242,7 +242,7 @@ How do we make this plot?
 ===========================
 
 ```{r, echo=FALSE}
-Births %>%
+Births2 %>%
   ggplot(aes(x=date, y=births)) + 
   geom_line(aes(color=wday)) +
   geom_point(color="navy") 
@@ -250,7 +250,7 @@ Births %>%
 \pause
 
 ```{r, eval=FALSE}
-Births %>%
+Births2 %>%
   ggplot(aes(x=date, y=births)) + 
   geom_line(aes(color=wday)) +
   geom_point(color="navy") 
@@ -277,7 +277,7 @@ help pages will tell you their aesthetics and default stats
 Let's try geom_area
 ===============
 ```{r, eval=TRUE}
-Births %>%
+Births2 %>%
   ggplot(aes(x=date, y=births, fill=wday)) + 
   geom_area()
 ```
@@ -312,6 +312,52 @@ clinical trial
 ?HELPrct
 ```
 
+Why are these people in the study?
+==================================
+
+```{r}
+HELPrct %>% 
+  ggplot(aes(x=substance)) + 
+  geom_bar()
+```
+
+\pause
+
+* Hmm.  What's up with `y`?
+\pause
+
+    * `stat_bin()` is being applied to the data before the 
+    `geom_bar()` gets to do its thing.  Binning creates the
+    `y` values.
+
+Data Flow
+=========
+
+\[
+\mbox{org data}
+\stackrel{\mbox{\ stat\ }}{\longrightarrow}
+\mbox{statified}
+\stackrel{\mbox{aesthetics}}{\longrightarrow}
+\mbox{aesthetic data}
+\stackrel{\mbox{\ scales\ }}{\longrightarrow}
+\mbox{scaled data}
+\]
+
+Simplifications:
+
+ * aesthetics get computed twice, once before the stat and again after.   Examples: bar charts, histograms
+ 
+* item we need to look at the aesthetics to figure out which variable 
+   to bin 
+   
+    * then the stat does the binning
+    * bin counts become part of the aesthetics for geom: `y=..count..`
+    
+* This process happens *in each layer*
+
+* `stat_identity()` is the "do nothing" stat.
+
+
 How old are people in the HELP study?
 ===============================
 
@@ -339,30 +385,6 @@ HELPrct %>%
   ggplot(aes(x=age)) + 
   geom_histogram(binwidth=2)
 ```
-
-Data Flow
-=========
-
-\[
-\mbox{org data}
-\stackrel{\mbox{\ stat\ }}{\longrightarrow}
-\mbox{statified}
-\stackrel{\mbox{aesthetics}}{\longrightarrow}
-\mbox{aesthetic data}
-\stackrel{\mbox{\ scales\ }}{\longrightarrow}
-\mbox{scaled data}
-\]
-
-Simplifications:
-
- * aesthetics get computed twice, once before the stat and again after.   Example: histograms
- 
-* item we need to look at the aesthetics to figure out which variable 
-   to bin 
-   
-    * then the stat does the binning
-    * bin counts become part of the aesthetics for geom: `y=..count..`
-* This process happens *in each layer*
 
 
 How old are people in the HELP study? -- Other geoms
@@ -599,7 +621,7 @@ Things I haven't mentioned (much)
 
 ```{r, fig.width=14}
 require(ggthemes)
-qplot( x=date, y=births, data=Births) + theme_wsj()
+qplot( x=date, y=births, data=Births2) + theme_wsj()
 ```
 
 Things I haven't mentioned (much)
@@ -615,7 +637,7 @@ Things I haven't mentioned (much)
 
 ```{r, eval=FALSE, fig.width=14}
 require(xkcd)
-qplot( x=date, y=births, data=Births, color=wday, 
+qplot( x=date, y=births, data=Births2, color=wday, 
        geom="smooth", se=FALSE) +
   theme_xkcd()
 ```
