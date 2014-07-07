@@ -53,7 +53,7 @@ Arrival and opening dinner
 
 #. A First Case Study
 
-* [Slides](http://dtkaplan.github.io/CVC/Summer2014/Notes/MedicareSpending/PriceOfHealth.html)
+    * [Slides](http://dtkaplan.github.io/CVC/Summer2014/Notes/MedicareSpending/PriceOfHealth.html)
 
 #. RStudio orientation 
     
@@ -70,14 +70,15 @@ Arrival and opening dinner
 #. How to organize your data
     a. Canonical format: tables, cases and variables, variable types, codebook
     #. Separate analysis from data storage.
-    #. **Group Activity**: Entering data [link to spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&usp=sharing)
     #. **Activity**: The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct.  Identify the elements of this spreadsheet that are not in standard form for a data table.
+    #. **Activity**: Enter data [in this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&usp=sharing)
+    indicating types of data you are interested in.
 
 
 ## Tuesday
 
 1. Working with data
-    #. taking a look at data
+    a. taking a look at data
     #. getting data into R
     #. important data operations using `dplyr`
     #. getting data out of R
