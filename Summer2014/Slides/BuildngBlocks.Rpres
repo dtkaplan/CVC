@@ -24,10 +24,12 @@ Some types of objects you should know about
 
 Character: text
 ```{r}
-name <- "John Doe"
+name <- "John Doe"     # character data must be quoted
 ```
 Numeric: numbers
 ```{r}
 x <- 27.5
 ```
+
+
 
