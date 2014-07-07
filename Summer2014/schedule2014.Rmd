@@ -52,37 +52,28 @@ Arrival and opening dinner
     a. **Activity**: Split up into groups of three or four and introduce yourselves. For each person, another person should write a short bio (or other introductory information).  Use this [Google Doc](https://docs.google.com/document/d/17kGxROGm43oMt5nyKIPY4Pp2oRdB_gVLkRJ2lv-aRFE/edit?usp=sharing). 
 
 #. A First Case Study
-    a. The CIA factbook
-      1. The web site and data scraping.
-      #. The `CIAdata()` function.
-      #. What might you want to do with this. Display, model, ...
 
 #. RStudio orientation 
-    Materials from USCOTS in Notes/RStudio
-
+    
 #. Less Volume, More Creativity -- An R Quick Start
 
-#. RMarkdown **LINK TO NOTES/SLIDES**  
-    Materials from USCOTS in Notes/Rmarkdown
+#. RMarkdown 
     a. Creating PDF/HTML/Word documents in RStudio
-    #. **Activity**: Write and publish a description of some straightforward, data-oriented topic you'd like to present in class.  Keep it simple.  We'll do more complex things in the 2nd half of the workshop.
+    #. **Activity**: Write and publish a description of some 
+    straightforward, data-oriented topic you'd like to present in class. 
+        * Keep it simple.  We'll do more complex things in the 2nd half of the workshop.
+        * Include at least 1 plot (even if unrelated) to make sure 
+        you know how to do that.
     
-#. Basic R building blocks : **LINK TO NOTES/SLIDES**
-    a. the basics: assignment, etc.
-    #. numbers, strings, 
-    #. what is a package?
+#. Basic R building blocks : 
+    a. most important objects
+    #. containers
+    #. packages
     
-#. Data Organization: **LINK TO NOTES/SLIDES**
+#. How to organize your data
     a. Canonical format: tables, cases and variables, variable types, codebook
     #. Separate analysis from data storage.
     #. **Activity**: The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct.  Identify the elements of this spreadsheet that are not in standard form for a data table.
-    #. Easy access to data
-        a. from packages with `data()`
-        #. from the web with `read.data()`.  Why you should distribute links rather than files.
-        #. `file.choose()` for files on your own machine.
-    #. Multiple tables
-        a. Medicare procedures. (See case study.)
-    #. More about *data scraping* in the second half of the workshop.
 
 #. The graphics-data interface  
     a. graphing concepts
