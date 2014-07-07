@@ -67,7 +67,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h3>Resources</h3>
 <ul>
 <li><code>mosaic</code> package (version 0.9-0 or greater) and its vignettes are <a href="http://cran.r-project.org/web/packages/mosaic/index.html">available via CRAN</a> and also via <a href="https://github.com/rpruim/mosaic">github</a></li>
-<li><a href="http://acc.calvin.edu">The Calvin College RStudio server</a> has provided accounts for all workshop participants.</li>
+<li><a href="http://acc.calvin.edu:8787">The Calvin College RStudio server</a> has provided accounts for all workshop participants.</li>
 <li>Data and Computing Fundamentals <a href="http://htmlpreview.github.io/?https://github.com/dtkaplan/DataAndComputingFundamentals/blob/master/Spring2013/syllabus2013.html">spring 2013 course syllabus</a></li>
 <li>Materials for our <a href="http://uscots2013.mosaic-web.org/Workshop">USCOTS 2013 Workshop</a> on Teaching Statistics Using R.</li>
 <li>Slides and files for sessions will be posted in the schedule as we go along</li>
@@ -88,17 +88,54 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="monday" class="section level2">
 <h2>Monday</h2>
 <ol style="list-style-type: decimal">
-<li><p>Welcome and Introductions</p></li>
-<li><p>A First Case Study</p></li>
-<li><p>RStudio orientation</p></li>
+<li>Welcome
+<ol style="list-style-type: lower-alpha">
+<li>Paul Overvoorde</li>
+<li><a href="Slides/IntroOverview.html">Goals and outline for the week</a></li>
+</ol></li>
+<li>Introductions
+<ol style="list-style-type: lower-alpha">
+<li><strong>Activity</strong>: Split up into groups of three or four and introduce yourselves. For each person, another person should write a short bio (or other introductory information). Use this <a href="https://docs.google.com/document/d/17kGxROGm43oMt5nyKIPY4Pp2oRdB_gVLkRJ2lv-aRFE/edit?usp=sharing">Google Doc</a>.</li>
+</ol></li>
+<li>A First Case Study
+<ol style="list-style-type: lower-alpha">
+<li>The CIA factbook</li>
+</ol>
+<ol style="list-style-type: decimal">
+<li>The web site and data scraping.</li>
+<li>The <code>CIAdata()</code> function.</li>
+<li>What might you want to do with this. Display, model, …</li>
+</ol></li>
+<li><p>RStudio orientation Materials from USCOTS in Notes/RStudio</p></li>
 <li><p>Less Volume, More Creativity – An R Quick Start</p></li>
-<li>RMarkdown
+<li>RMarkdown <strong>LINK TO NOTES/SLIDES</strong><br /> Materials from USCOTS in Notes/Rmarkdown
 <ol style="list-style-type: lower-alpha">
 <li>Creating PDF/HTML/Word documents in RStudio</li>
 <li><strong>Activity</strong>: Write and publish a description of some straightforward, data-oriented topic you’d like to present in class. Keep it simple. We’ll do more complex things in the 2nd half of the workshop.</li>
 </ol></li>
-<li><p>Basic R building blocks</p></li>
-<li><p>Data Organization</p></li>
+<li>Basic R building blocks : <strong>LINK TO NOTES/SLIDES</strong>
+<ol style="list-style-type: lower-alpha">
+<li>the basics: assignment, etc.</li>
+<li>numbers, strings,</li>
+<li>what is a package?</li>
+</ol></li>
+<li>Data Organization: <strong>LINK TO NOTES/SLIDES</strong>
+<ol style="list-style-type: lower-alpha">
+<li>Canonical format: tables, cases and variables, variable types, codebook</li>
+<li>Separate analysis from data storage.</li>
+<li><strong>Activity</strong>: The spreadsheet <a href="http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx">here</a> contains data on the Minneapolis 2013 election by ward and precinct. Identify the elements of this spreadsheet that are not in standard form for a data table.</li>
+<li>Easy access to data
+<ol style="list-style-type: lower-alpha">
+<li>from packages with <code>data()</code></li>
+<li>from the web with <code>read.data()</code>. Why you should distribute links rather than files.</li>
+<li><code>file.choose()</code> for files on your own machine.</li>
+</ol></li>
+<li>Multiple tables
+<ol style="list-style-type: lower-alpha">
+<li>Medicare procedures. (See case study.)</li>
+</ol></li>
+<li>More about <em>data scraping</em> in the second half of the workshop.</li>
+</ol></li>
 <li>The graphics-data interface
 <ol style="list-style-type: lower-alpha">
 <li>graphing concepts</li>
@@ -118,7 +155,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li><p>Online data</p></li>
 <li><p>Databases</p></li>
 </ol></li>
-<li><p>Identifying sources of data from your mini-case study</p></li>
+<li><p>Finding data</p></li>
 <li><p>Merging data from multiple sources (joining)</p></li>
 <li><p>Reports on mini-cases</p></li>
 </ol>
