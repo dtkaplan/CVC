@@ -22,7 +22,7 @@ opts_chunk$set(
   size="small",
   tidy=FALSE,
   fig.width=7,
-  fig.height=2.5
+  fig.height=3
   )
 ```
 
@@ -252,5 +252,12 @@ Explore Your Name
 ```{r}
 BabyNamesWithRank %>% 
   filter( name=="Randy" & sex=="M" ) -> Randy
-xyplot( rank ~ year, data = Randy)
+xyplot( count ~ year, data = Randy, type="l")
+```
+
+Explore Your Name
+=================
+```{r}
+xyplot( rank ~ year, data = Randy,
+        type="l", ylim=c(7000,0))
 ```
