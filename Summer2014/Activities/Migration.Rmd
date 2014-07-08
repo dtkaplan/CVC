@@ -34,7 +34,7 @@ filter(MigrationFlows,Y1990>20,Y2000>20) %>%
 
 Referring to the sample, you can see that in year 2000 there were 24,118 males who moved from Poland to Kazakhstan. In that year, there were 2289 females who moved from Indonesia to Australia.
 
-## Basic Questions {#basic,numbered}
+## Basic Questions 
 
 ### Structure of data
 

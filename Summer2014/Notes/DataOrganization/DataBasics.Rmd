@@ -160,6 +160,7 @@ and so on.
 Links on the CVC [Workshop Schedule](http://dtkaplan.github.io/CVC/Summer2014/schedule2014.html).
 
 1. Critique a [file's organization](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx)
+2. More complicated situation. [Military Families](https://dl.dropboxusercontent.com/u/5098197/Math155/ActiveDuty_MaritalStatus.xls)
 #. Enter some data
 
 ```{r}
