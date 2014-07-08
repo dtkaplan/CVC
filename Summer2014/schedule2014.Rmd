@@ -86,15 +86,15 @@ Arrival and opening dinner
 
 #. The graphics-data interface  
     a. graphing concepts: [slides](Notes/GraphicsBasics/graphics-basics.html)
-    #. introduction to `ggplot2` 
+    #. introduction to `ggplot2` [slides](Slides/ggplotIntro.pdf)
 
 
 ## Wednesday 
 
 ### Morning
-
-#. More reports on mini-cases 
-    a. Visualizing some data table operations. [Link](Notes/Dplyr/Apps.html)
+    a. Visualizing some data operations. [Link to app](Notes/Dplyr/Apps.html)
+    #. Thinking about data operations.
+    #. Joining in R
 
 --------------
 
