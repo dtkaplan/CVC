@@ -2,7 +2,7 @@
 title: "Migration between Countries"
 author: "Daniel Kaplan"
 date: "CVC Workshop, July 2014"
-output: pdf_document
+output: html_document
 ---
 
 ```{r include=FALSE}
@@ -12,7 +12,7 @@ require(xtable)
 require(igraph)
 require(knitr)
 options(xtable.type='latex')
-ShowAnswers=FALSE 
+ShowAnswers=TRUE 
 opts_chunk$set(tidy=FALSE,comment=NA,message=FALSE,warning=FALSE,include=ShowAnswers)
 options(na.rm=TRUE)
 
@@ -54,12 +54,14 @@ Referring to the sample, you can see that in year 2000 there were 24,118 males w
    summarize(MigrationFlows,ncountries=length(origincode))
    ```
 
-* Construct a table that combines the females and males for each country pair.
-
-* How many migrants originated (that is, emigrants) in each country in 2000?
+* Construct a table that combines the females and males for each country pair for year 2000?
+    * The resulting data table will have about 50,000 rows.
     * Imagine what the table containing the result will look like.  How many rows? Is the meaning of a row the same or different in the result than in `MigrationFlows`. Which variables will you use in from `MigrationFlows` to construct the table with the results?  What will be the variables in the result table?
     * Hint: `sum()` to add numbers together, `group_by()`, `summarize()`  
     Use `head()` or `sample_n()` to display just a few rows of your result. 
+
+* How many migrants originated (that is, emigrants) in each country in 2000?
+
 
 * Which 5 countries had the largest number of emigrants?  (Hint: `arrange()`, `desc()`)
 
