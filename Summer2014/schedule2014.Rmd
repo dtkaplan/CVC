@@ -81,13 +81,13 @@ Arrival and opening dinner
     a. taking a look at data
     #. getting data into R
     #. important data operations using `dplyr`
+    #. merging data from multiple sources (joining) 
     #. getting data out of R
 
 #. The graphics-data interface  
     a. graphing concepts
     #. introduction to `ggplot2` 
 
-#. Merging data from multiple sources (joining) 
 
 ## Wednesday 
 
