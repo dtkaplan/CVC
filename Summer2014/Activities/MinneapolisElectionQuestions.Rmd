@@ -1,0 +1,264 @@
+---
+title: "Minneapolis Election Questions"
+date: "CVC Workshop: July 2014"
+output: word_document
+author: Barbara Borges Ribiero
+---
+
+Take a look at the following dataset and the story behind it:
+
+In 2013, Minneapolis had a mayoral election. This was the second time that the city used [ranked choice voting].  The individual ballots contain more information about voter preferences for candidates than in the traditional form of vote-for-one-candidate balloting.
+
+The city provides access to the individual ballots; here they are in an R format.  
+
+
+```{r, message=FALSE, warning=FALSE}
+library(DCFdevel)
+data(Minneapolis2013)
+minn <- Minneapolis2013 # Just to save a bit of typing later
+head(minn)
+```
+
+
+### Ranked Choice Voting
+
+Ranked choice voting (RCV) works as follows:
+
+- As a voter, you get to choose three candidates, in order: 1st (the one you prefer the most), 2nd and 3rd. You can write names in all three places, or only in the first place or only the first two places. If you write in the same candidate twice or three times, you're wasting your second or third votes (in other words, if you rank one candidate as your first, second, and third choice, it is the same as if you left the second and third choices blank).
+
+- After voting is completed, all the first place votes are tallied.
+
+- The candidate with the least votes is eliminated.
+
+- All the voters who voted first for the eliminated candidate get their ballots revisited. A second tally occurs looking at everyone's current vote (this will be the first vote if your first candidate hasn't been eliminated, or second if you're first candidate was eliminated, or third if both your first and second candidates were eliminated).
+
+- This process continues until there's only two candidates. The one with most current votes wins.
+
+<br>
+
+According to the website [FairVoteMinnesota](http://fairvotemn.org/FAQmpls), here are a few advantages of RCV relative to "traditional" voting:
+
+- RCV achieves an elected body that more accurately represents voters' preferences, giving fair representation to voters in proportion to their voting strength. 
+
+- RCV does away with "strategic" voting - people are free to vote for who they like most and need not fear "letting in" the candidate that they prefer the least.
+
+<br>
+<br>
+
+**Task 1: ** Calcultate the total number of voters.
+
+```{r, echo=FALSE}
+nrow(minn)
+```
+
+<br>
+
+**Task 2: ** Calcultate the total number of candidates.
+
+```{r, echo=FALSE}
+candFirst <- minn %>% group_by(First) %>% summarize(n=n())
+nrow(candFirst)
+```
+
+<br>
+
+**Task 3: ** Calculate the total number of wards.
+
+```{r, echo=FALSE}
+wards <- minn %>% group_by(Ward) %>% summarize(n=n())
+nrow(wards)
+```
+
+<br>
+
+**Task 4: ** Calculate the total number of precincts (note that may be several `P-1` precincts -- one for each ward).
+
+```{r, echo=FALSE}
+precincts <- minn %>% group_by(Ward, Precinct) %>% summarize(n=n())
+nrow(precincts)
+```
+
+<br>
+
+**Task 5: ** Calculate the total number of precincts in each ward and make sure that they add up to the total.
+
+```{r, echo=FALSE}
+precincts <- minn %>% group_by(Ward, Precinct) %>% summarize(n=n())
+precincts <- precincts %>% group_by(Ward) %>% summarize(n_Precincts = n())
+precinctsTotal <- precincts %>% summarize(n=sum(n_Precincts))
+precinctsTotal
+```
+
+<br>
+
+**Task 6: ** In the main dataset, transform the variables `First`, `Second` and `Third` from the class `factor` to the class `character`.
+
+```{r, echo=FALSE}
+minn <- minn %>% mutate(First=as.character(First),
+                        Second=as.character(Second),
+                        Third=as.character(Third))
+```
+
+<br>
+
+**Task 7: ** In the main dataset, replace the candidates with less than 500 votes in the `First` place with the string `"minor"`
+
+```{r, echo=FALSE}
+voteCount <- minn %>% group_by(First) %>% dplyr::tally(sort=TRUE)
+keepers <- filter(voteCount,n>500)$First
+minn <- mutate(minn,
+               First=ifelse(First %in% keepers,First,'Minor'),
+               Second=ifelse(Second %in% keepers,Second,'Minor'),
+               Third=ifelse(Third %in% keepers,Third,'Minor'))
+```
+
+<br>
+
+**Task 8: ** In the main dataset, add a new column called `originalChoice` that holds the name of the `First` candidate for each row. This is obviously redundant at this stage, but it will help us once we start doing elimination rounds.
+
+```{r, echo=FALSE}
+minn <- minn %>% mutate(originalChoice = First)
+```
+
+<br>
+
+**Task 9: **
+Find the five most popular `First-Second` pairings. Here's what you should get:
+
+```{r, echo=FALSE}
+firstSecond <- minn %>% group_by(First, Second) %>% summarize(n=n())
+head(firstSecond, n=5)
+```
+
+<br>
+
+**Task 10: ** Count the first-place votes for each candidate. Here's what you should get:
+
+```{r, echo=FALSE}
+firstPlace <- minn %>% group_by(First) %>% summarize(n=n())
+firstPlace
+```
+
+<br>
+
+**Task 11: ** Arrange the table obtained in the previous task by descending order (of vote count). Here's what you should get:
+
+```{r, echo=FALSE}
+descFirstPlace <- arrange(firstPlace, desc(n))
+descFirstPlace
+```
+
+<br>
+
+**Task 12: ** Find the first candidate to be eliminated. Here's what you should get:
+
+```{r, echo=FALSE}
+loser <- firstPlace %>% filter(n == min(n))
+loser[["First"]]
+```
+
+<br>
+
+**Task 13: ** In the main dataset, replace the eliminated candidate with the string `"undervote"`. There a certain subtlety about this: if the eliminated candidate name occurs in variable `Third`, you can go ahead and replace it with `"undervote"`. But if it occurs in `Second`, you should replace it with `Third`. Do you understand why? What if it occurs in the variable `First`?
+
+```{r, echo=FALSE}
+minnRound1 <- mutate(minn,
+            Third=ifelse(Third==loser[["First"]],'none',Third),
+            Second=ifelse(Second==loser[["First"]],Third,Second),
+            First=ifelse(First==loser[["First"]],Second,First))
+```
+
+<br>
+
+**Task 14: ** Do 5 more elimination rounds. If you summarize the resulting dataset by vote count (grouped by the `First` variable), here's what you should get (`head` only, arranged in descending order):
+
+```{r, echo=FALSE}
+loser <- descFirstPlace[nrow(descFirstPlace),]
+winners <- head(descFirstPlace, nrow(descFirstPlace)-1)
+
+minnRound2 <- mutate(minnRound1,
+            Third=ifelse(Third==loser[["First"]],'none',Third),
+            Second=ifelse(Second==loser[["First"]],Third,Second),
+            First=ifelse(First==loser[["First"]],Second,First))
+
+
+
+
+loser <- winners[nrow(winners),]
+winners <- head(winners, nrow(winners)-1)
+
+minnRound3 <- mutate(minnRound2,
+            Third=ifelse(Third==loser[["First"]],'none',Third),
+            Second=ifelse(Second==loser[["First"]],Third,Second),
+            First=ifelse(First==loser[["First"]],Second,First))
+
+
+
+
+loser <- winners[nrow(winners),]
+winners <- head(winners, nrow(winners)-1)
+
+minnRound4 <- mutate(minnRound3,
+            Third=ifelse(Third==loser[["First"]],'none',Third),
+            Second=ifelse(Second==loser[["First"]],Third,Second),
+            First=ifelse(First==loser[["First"]],Second,First))
+
+
+
+loser <- winners[nrow(winners),]
+winners <- head(winners, nrow(winners)-1)
+
+minnRound5 <- mutate(minnRound4,
+            Third=ifelse(Third==loser[["First"]],'none',Third),
+            Second=ifelse(Second==loser[["First"]],Third,Second),
+            First=ifelse(First==loser[["First"]],Second,First))
+
+
+
+loser <- winners[nrow(winners),]
+winners <- head(winners, nrow(winners)-1)
+
+minnRound6 <- mutate(minnRound5,
+            Third=ifelse(Third==loser[["First"]],'none',Third),
+            Second=ifelse(Second==loser[["First"]],Third,Second),
+            First=ifelse(First==loser[["First"]],Second,First))
+
+
+top <- minnRound6 %.% group_by(First, originalChoice) %.% dplyr::tally(sort=TRUE)
+head(arrange(top, desc(n)))
+```
+
+<br>
+
+**Task 15: ** Use the dataset obtained (and displayed) in the last task to make a bar plot showing `First` in the x-axis, count in the y-axis and colored by `originalChoice`. Here's what you should obtain:
+
+```{r, echo=FALSE}
+gg <- ggplot(top, aes(x=First, y=n, fill=originalChoice))
+gg + geom_bar(stat="identity")
+```
+
+<br>
+
+For those interested, here's what this graph looks like after all elimination rounds:
+
+```{r, echo=FALSE}
+removeOne <- function(V, round=1){
+  for (i in 1:round) {
+    tmp <- group_by(V,First) %.% dplyr::tally(sort=TRUE) %.% 
+      filter(First!='none')
+    who <- tail(tmp,1)$First
+    message(paste('Candidate dropped:', who))
+    V <- mutate(V,
+           Third=ifelse(Third==who,'none',Third),
+           Second=ifelse(Second==who,Third,Second),
+           First=ifelse(First==who,Second,First)
+    )
+  }
+  return(V)
+}
+
+top2 <- removeOne(minn, round=11)
+top2 <- top2 %.% group_by(First, originalChoice) %.% dplyr::tally(sort=TRUE)
+gg <- ggplot(top2, aes(x=First, y=n, fill=originalChoice))
+gg + geom_bar(stat="identity")
+```

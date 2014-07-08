@@ -80,7 +80,7 @@ Arrival and opening dinner
 1. Working with data
     a. taking a look at data
     #. getting data into R
-    #. important data operations using `dplyr`
+    #. [important data operations](Slides/dplyrLessVolume.html) using `dplyr`
     #. merging data from multiple sources (joining) 
     #. getting data out of R
 
