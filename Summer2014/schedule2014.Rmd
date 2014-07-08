@@ -85,7 +85,7 @@ Arrival and opening dinner
     #. getting data out of R
 
 #. The graphics-data interface  
-    a. graphing concepts
+    a. graphing concepts: [slides](Notes/GraphicsBasics/graphics-basics.html)
     #. introduction to `ggplot2` 
 
 
