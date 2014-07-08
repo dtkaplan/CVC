@@ -53,7 +53,7 @@ Arrival and opening dinner
 
 #. A First Case Study
 
-* [Slides](http://dtkaplan.github.io/CVC/Summer2014/Notes/MedicareSpending/PriceOfHealth.html)
+    * [Slides](http://dtkaplan.github.io/CVC/Summer2014/Notes/MedicareSpending/PriceOfHealth.html)
 
 #. RStudio orientation 
     
@@ -64,44 +64,30 @@ Arrival and opening dinner
     #. [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
     #. **Activity**: Write and publish a description of some 
     straightforward, data-oriented topic you'd like to present in class. 
-        * Keep it simple.  We'll do more complex things in the 2nd half of the workshop.
         * Include at least 1 plot (even if unrelated) to make sure 
-        you know how to do that.
-    
-#. Basic R building blocks : 
-    a. most important objects
-    #. containers
-    #. packages
+        you know how to do that.  
     
 #. How to organize your data
     a. Canonical format: tables, cases and variables, variable types, codebook
     #. Separate analysis from data storage.
-    #. **Group Activity**: Entering data [link to spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&usp=sharing)
     #. **Activity**: The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct.  Identify the elements of this spreadsheet that are not in standard form for a data table.
+    #. **Activity**: Enter data [in this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&usp=sharing)
+    indicating types of data you are interested in.
 
-#. The graphics-data interface  
-    a. graphing concepts
-    #. important data operations
-    #. introduction to `ggplot2` 
-    
-#. Mini-cases mini-reports
 
 ## Tuesday
 
-1. Sources of data, and how to get it in to R
-    a. Data in packages
+1. Working with data
+    a. taking a look at data
+    #. getting data into R
+    #. important data operations using `dplyr`
+    #. merging data from multiple sources (joining) 
+    #. getting data out of R
 
-    #. Data in Files
-      
-    #. Online data 
-        
-    #. Databases
-        
-#. Finding data
+#. The graphics-data interface  
+    a. graphing concepts
+    #. introduction to `ggplot2` 
 
-#. Merging data from multiple sources (joining)
-    
-#. Reports on mini-cases 
 
 ## Wednesday 
 
