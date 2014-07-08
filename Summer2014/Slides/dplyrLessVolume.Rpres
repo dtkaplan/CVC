@@ -219,7 +219,9 @@ Baby Names
 ```{r}
 # fetch these from http://www.calvin.edu/~rpruim/data/BabyNames.rda
 load("../../Data/BabyNames.rda")  # your path will be different
-head(BabyNames, 2)
+str(BabyNames, 2)  # ack! those years are character data
+BabyNames <- mutate(BabyNames, year = as.numeric(year))
+str(BabyNames, 2)  # that's better
 ```
 
 Adding in the ranks
