@@ -94,6 +94,7 @@ Arrival and opening dinner
 ### Morning
 
 #. More reports on mini-cases 
+    a. Visualizing some data table operations. [Link](Notes/Dplyr/Apps.html)
 
 --------------
 
