@@ -86,7 +86,7 @@ Arrival and opening dinner
 
 #. The graphics-data interface  
     a. graphing concepts: [slides](Notes/GraphicsBasics/graphics-basics.html)
-    #. introduction to `ggplot2` [slides](Slides/ggplotIntro.pdf)
+    #. introduction to `ggplot2` [slides](Slides/ggplot2Intro.pdf)
 
 
 ## Wednesday 
