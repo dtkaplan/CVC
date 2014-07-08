@@ -232,11 +232,11 @@ it this way:
 
 ```{r}
 Births2 %>%
-  ggplot(aes(x=date, y=births), color="navy") + 
-  geom_point()  
+  ggplot(aes(x=date, y=births)) +   # map these 
+  geom_point(color = "navy")        # set this
 ```
 
-* Note that `colour = "navy"` is now outside of the aesthetics list.  That's how `ggplot2` distinguishes between mapping and setting.
+* Note that `color = "navy"` is now outside of the aesthetics list.  That's how `ggplot2` distinguishes between mapping and setting.
 
 How do we make this plot?
 ===========================
@@ -244,16 +244,16 @@ How do we make this plot?
 ```{r, echo=FALSE}
 Births2 %>%
   ggplot(aes(x=date, y=births)) + 
-  geom_line(aes(color=wday)) +
-  geom_point(color="navy") 
+  geom_line(aes(color=wday)) +        # map color here
+  geom_point(color="navy")            # set color here
 ```
 \pause
 
 ```{r, eval=FALSE}
 Births2 %>%
   ggplot(aes(x=date, y=births)) + 
-  geom_line(aes(color=wday)) +
-  geom_point(color="navy") 
+  geom_line(aes(color=wday)) +       # map color here
+  geom_point(color="navy")           # set color here
 ```
 
 * `ggplot()` establishes the default data and aesthetics
