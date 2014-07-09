@@ -92,9 +92,14 @@ Arrival and opening dinner
 ## Wednesday 
 
 ### Morning
-    a. Visualizing some data operations. [Link to app](Notes/Dplyr/Apps.html)
-    #. Thinking about data operations.
-    #. Joining in R
+
+1. Visualizing some data operations. [Link to app](Notes/Dplyr/Apps.html)
+#. Thinking about data operations.
+#. Joining in R
+#. Separate hour-long workshops
+    a. Teaching with R
+    #. ggplot2
+    #. Shiny
 
 --------------
 
