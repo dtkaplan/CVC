@@ -48,3 +48,7 @@ Things to think about:
     Use left to winnow the cases from right.
 #. Do you want to supplement the cases in the right with extra cases?
     When more than one case in the left matches a case in the right, generate cases that give each of the possibilities.
+
+## Other two-table operations
+
+Union, setdiff, Intersection, ...
