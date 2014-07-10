@@ -4,4 +4,8 @@
 *.rdb
 *.rdx
 *-cache
+yob*txt
+*.md
+*~
+*-figure/
 
