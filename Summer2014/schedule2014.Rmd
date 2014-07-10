@@ -122,7 +122,9 @@ Arrival and opening dinner
 
 #. Presentations/Group discussions on topics, as needed
     a. [Accessing data from Google's BigQuery using SQL in R](../Data/Birthdays/Birthdays.html)
-
+    #. Scraping and Cleaning Data from the web
+    #. Github and RStudio
+    
 ## Friday 
 
 #. Work Sessions
