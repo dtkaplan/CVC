@@ -1,0 +1,143 @@
+---
+title: "Fetching BigQuery Data"
+author: "R Pruim"
+date: "July 9, 2014"
+output: html_document
+---
+
+```{r, include=FALSE}
+ProcessData <- FALSE
+if (! ProcessData) load("Birthdays.rda")
+```
+
+This is a breif description of the process required to fetch data
+from a sample data table in Google's BigQuery database.
+The idea of looking here for data came from a 
+[blog post](http://chmullig.com/2012/06/births-by-day-of-year/)
+which pulled in births by day of year from one of the data tables.
+
+### R Notes
+The following packaes are required for the code below.
+```{r, message=FALSE}
+require(dplyr)
+require(mosaic)
+require(bigrquery)
+require(magrittr)
+require(lubridate)
+```
+The code querying Google BigQuery data needs to run in an interactive session, so
+it isn't runing live while this is being knit.  Here's the session info:
+```{r}
+sessionInfo()
+```
+
+### Public data available at Google BigQuery
+
+Google provides a few large data sets in their 
+[sample database](https://developers.google.com/bigquery/docs/sample-tables).
+
+Name        | Summary | # Rows
+----------- | ------- | ------
+gsod        | Samples from US weather stations since 1929 | 115M
+mlab        | Measurement data of broadband connection performance |	240B
+natality    | Birth information for the United States from 1969 to 2008 |	68M
+shakespeare |	Word index for works of Shakespeare	| 164K
+wikipedia	  | Revision information for Wikipedia articles	| 314M
+
+
+### Code book for Natality data
+
+The code books are availble for all of these data sets (as are
+some example queries).  For example, the natality code book is available at 
+[https://developers.google.com/bigquery/docs/dataset-natality](https://developers.google.com/bigquery/docs/dataset-natality).
+
+Some notes from the code book:
+
+* cases are individual live births.
+* numerous variables are available, including year, month, day, sex, and some basic information about mother and child.
+* **Important**: `record_weight` (1 or 2) indicates whether 
+the data come from a region that reported 50% of births (2) or 
+all births (1).  This is important if trying to count/estimate the total  number of births on a given day.
+
+### Grabbing a Birthdays data set
+
+#### Signing up for acces
+Before you can grab data, you need to sign up for access at
+[https://developers.google.com/bigquery/sign-up](https://developers.google.com/bigquery/sign-up) and create (at least one) project.  When you make your first query, you will be asked to 
+authenticate, but the authentication information can be 
+cached so that you only have to do that step once.
+
+#### Fetching via an SQL query
+
+The following code fetches the desired data from Google.
+```{r eval=ProcessData}
+queryString <- paste(
+  "SELECT year, month, day, state, sum(record_weight) AS births",
+  "FROM natality",        # name of table
+  "WHERE year < 1989",    # no day-level data after this
+  "group by year, month, day, state")
+
+Birthdays.download <-
+  query_exec("publicdata",     # project
+             "samples",        # database
+             queryString,      # query
+             billing="mosaic-2014",    # project to bill to (this is free)
+             max_pages=Inf)   # don't limit the number of rows
+```
+
+```{r include=FALSE, eval=FALSE}
+save(Birthdays.download, file="Birthdays-download.rda")
+```
+```{r echo=FALSE}
+if (!ProcessData) load("Birthdays-download.rda")
+```
+
+
+#### Post-processing with dplyr and lubridate
+```{r, warning=FALSE}
+Birthdays <- 
+  Birthdays.download %>%
+    group_by(year, month, day, state) %>% 
+    summarise(births=sum(births)) %>%
+    mutate(
+      date = ymd(paste(year,month,day, sep="/")),
+      wday = wday(date, label=TRUE, abbr=TRUE)
+      ) %>%
+    select(state, year, month, day, date, wday, births) %>%
+  as.data.frame()
+```
+
+
+#### Sanity checks
+There were some warnings (hidden in this output) about dates that could not be converted.
+Let's see what happened.
+```{r}
+Birthdays %>% 
+  filter(is.na(date)) %>% 
+  mosaic::sample(5)
+```
+Those 99th days of the month look suspicious.  It isn't clear 
+exactly what they code, but all of the bad dates come from these day codes that are 99.
+```{r}
+Birthdays %>% 
+  filter(is.na(date)) %>%
+  group_by(year) %>%
+  summarise( n=n(), min.day=min(day), max.day=max(day))
+tally( is.na(date) ~ (day==99), data=Birthdays, format="count") 
+```
+Let's check how the number of bad codes varies by state
+```{r}
+Birthdays %>% 
+  group_by(state) %>%
+  summarise(n=n(), bad=sum(day > 50)) %>%
+  arrange(bad/n)
+```  
+Let's filter those 99's out
+```{r}
+Birthdays <-
+  Birthdays %>% filter(day < 99)
+```
+```{r eval=ProcessData}
+#### Saving in R native format for later use.
+save(Birthdays, file="Birthdays.rda")
+```
