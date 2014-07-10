@@ -23,12 +23,12 @@ Working Schedule, July 7-11, 2014
 
 ### Resources
 * `mosaic` package (version 0.9-0 or greater) and its vignettes are [available via CRAN](http://cran.r-project.org/web/packages/mosaic/index.html) and also via [github](https://github.com/rpruim/mosaic)
-* [The Calvin College RStudio server](http://acc.calvin.edu:8787) has provided accounts for 
-all workshop participants.
+* [The Calvin College RStudio server](http://acc.calvin.edu:8787) has provided accounts for all workshop participants.
 * Data and Computing Fundamentals [spring 2013 course syllabus](http://htmlpreview.github.io/?https://github.com/dtkaplan/DataAndComputingFundamentals/blob/master/Spring2013/syllabus2013.html)
 * Materials for our [USCOTS 2013 Workshop](http://uscots2013.mosaic-web.org/Workshop) on
 Teaching Statistics Using R.
 * Slides and files for sessions will be posted in the schedule as we go along
+
 
 
 ### Provide Feedback
@@ -92,9 +92,15 @@ Arrival and opening dinner
 ## Wednesday 
 
 ### Morning
-    a. Visualizing some data operations. [Link to app](Notes/Dplyr/Apps.html)
-    #. Thinking about data operations.
-    #. Joining in R
+
+1. Visualizing some data operations. [Link to app](Notes/Dplyr/Apps.html)
+#. Joining in R
+#. Thinking about data operations.
+
+#. Parallel hour-long workshops
+    a. Teaching with R
+    #. `ggplot2`  [slides](Slides/ggplot2Intro.pdf)
+    #. Shiny
 
 --------------
 
@@ -102,21 +108,26 @@ Arrival and opening dinner
 
 1. Welcome new-comers
 
-#. Quick review of first 2.5 days
+#. Work session with consultations and collaboration
+
+## Thursday
 
 #. How to find what you need
     a. Google
     #. CRAN task views
     #. installing packages (CRAN, github, files)
     #. documentation and vignettes
-    
-#. Project selection
-    #. identify purpose: lectures, labs, assignments, projects, research, etc.
-    #. make a list of things you want to know how to do in R
-    #. beginning searching for resources (data, packages, concepts, etc.)
 
-## Thursday
+#. Work Sessions
 
+#. Presentations/Group discussions on topics, as needed
+    a. [Accessing data from Google's BigQuery using SQL in R](../Data/Birthdays/Birthdays.html)
 
 ## Friday 
 
+#. Work Sessions
+
+#. Presentations/Group discussions on topics, as needed
+
+#. Progress Reports & Debriefing
+    * How do we carry the momentum back to our home institutions?
