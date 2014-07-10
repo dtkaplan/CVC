@@ -1,0 +1,46 @@
+---
+title: "An exercise on data operations"
+author: "DTK"
+date: "July 10, 2014"
+output: html_document
+---
+
+```{r include=FALSE}
+require(DCFdevel)
+require(mosaic)
+```
+
+## Broad Description
+
+Your task is to find the fraction of the population in each country that lives in cities larger than 100,000.
+
+## The Data
+
+For the purposes of this exercise, you will use **three** data frames:
+```{r}
+require(DCFdevel)
+require(mosaic)
+data(WorldCities) # Creates WorldCities
+pop <- CIAdata(2119) # population data
+codes <- fetchData("countrycodes.csv")
+```
+
+Each of these frames has information about the identity of a country, but perhaps in different forms.  By grouping, summarizing, joining, and arithmetic, you should be able to construct the answer to the problem.
+
+ISO2 and ISO3 are different, but related, official standards for identifying countries.
+
+## Tools
+
+*The `dplyr()` functions such as `group_by()`, `mutate()`, `summarize()`, etc. 
+*The `DCFdevel::toISO3()`.  See the documentation for that function.  Here's an example:
+```{r}
+toISO3(c('Canada','England','Great Britain', 'United Kingdom'))
+```
+
+## Process
+
+Before writing the computer commands to perform the operation:
+
+* Look at the names and contents of the variables in the different data frames.
+* Draw a flow diagram of what processes will be required.  
+    Only then, translate your process into computer instructions.

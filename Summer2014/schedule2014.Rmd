@@ -112,11 +112,14 @@ Arrival and opening dinner
 
 ## Thursday
 
-#. How to find what you need
+#. How to find what you need [link to notes](Notes/Packages/UsingPackages.html)
     a. Google
     #. CRAN task views
     #. installing packages (CRAN, github, files)
     #. documentation and vignettes
+
+#. A Small exercise on dplyr
+    [Instructions here](Activities/WorldPop.html)
 
 #. Work Sessions
 

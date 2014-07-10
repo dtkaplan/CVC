@@ -1,0 +1,93 @@
+---
+title: "Using Packages"
+author: "RJP talking, DTK writing"
+date: "July 10, 2014"
+output: html_document
+---
+
+## Packages
+
+If you use R enough, eventually you will want to perform a specialized calculation.  There is a community of people who distribute software via packages, so what you need may already exist.
+
+## Lots of Packages
+
+5700 packages on CRAN, then there's BioConductor and Github
+
+## CRAN
+
+Comprehensive R Archive Network
+
+Main page: <cran.r-project.org>
+    Many books, reference cards, and short documents (in a variety of languages)
+
+* Task Views
+* The R Journal
+* Packages
+
+## Task Views
+
+Human curated lists of packages and why you might want to use them.
+
+Example: **Genetics**
+    One of the subdivisions: **Importing sequence data**, links to, amoung others, the `seqinr` package.
+    
+## A First Look at a Package: seqinr.
+
+Follow link to the package (or get it from a web search)
+
+* **Version**  A version of, say, 3.XXX means that the package has been significantly revised at least 3 times, a sign of staying power and that someone might be interested in maintaining it.
+* **Depends** Often you'll need an up-to-date version of R.  
+* **Suggests** Other packages that enable features or examples from the package, but aren't strictly necessary for using the packages.
+* **Enhances** Other packages that will work better with this package.
+* **Published** Gives you an idea of when the package was last updated. If the date is before the last major version of R was released, it's more likely that there are going to be difficulties.
+* **Author** You know ...
+* **Maintainer** 
+* **Licensing** usually suitable for education.  If you are using the package commercially, check the details of the license.
+* **URL** typically where the package is maintained.  `r-forge`, `github`, etc. are signs that the package is being developed collaboratively, which is often an advantage.
+* **Needs Compilation** be aware that you may need to install other tools on your computer, e.g. `g++`.
+* **Citation** how to cite the package in work that depends on it.
+* **In views** Is the package listed in one or more R Task Views?  This is a good sign.
+* **Reference manual** The function-by-function documentation all in one document.  
+    * Gives you a sense of the scope.  If there are three functions, the package is likely doing just one thing (and maybe doining it well).  A very large number of functions can be indicative of a package that provides a range of services or implements a complicated 
+* **Package source** The computer code, etc. that implements the package
+* **Vignettes** These are typically narratives or tutorials.  Some people find these **much** more useful than the documentation for getting started.
+* **Binaries**.  Files ready for installation without compilation.  Make sure to check the version numbers on the different platforms; some binaries are obselescent..
+
+* **Reverse depends**, **Reverse imports**, **Reverse suggests**: Lists some other packages that use this one. It's a good sign when package has many of these, particularly if they are popular.  (But a brand new package won't have these, no matter how good the package is.)
+
+## Installing the Package
+
+You need to install the package on your system.  This need only be done once ---or when there are updates--- no matter how many times you use the package.
+
+
+## Loading the Package
+
+This you need to do **every** time you use the package.  If you are using R-arkdown, be sure to `require()` the package in your document.  
+
+A nice way to do this is to create a chunk with directive `{r include=FALSE}` to avoid including in your document the numerous messages that are generated when a package is loaded.
+
+**NOTE**: Even though it's called "loading a package," don't use `load()` to do it.  Use `require()` or `library()`. (It doesn't really matter which.)  The `load()` function does something quite different, involving bringing previously created objects (such as data frames) into R.
+
+## Criteria for Evaluating Packages
+
+* Maintaining.  Being able to use the package over time.
+* Documentation.
+* Correctness.
+    * Publications: RJournal
+    * Textbooks: Many texts have a package associated with them.
+    
+* Popularity. Signs: "reverse depends"
+    * Essay on `[rbloggers](http://www.r-bloggers.com/)`
+
+## No Vignettes
+
+Try a web search on `using seqinr R` or whatever the package is called.  You may find articles, books that use the package, tutorials.  Why aren't these vignettes?  Probably because they were written by someone other than the package authors.
+
+## R Bloggers and other Blogs
+
+This is a good way to find out about new developments. <www.r-bloggers.com>
+
+
+## FAQ
+
+1. How do you transfer packages when you update R.
