@@ -118,6 +118,9 @@ Arrival and opening dinner
     #. installing packages (CRAN, github, files)
     #. documentation and vignettes
 
+#. A Small exercise on dplyr
+    [Instructions here](Activities/WorldPop.html)
+
 #. Work Sessions
 
 #. Presentations/Group discussions on topics, as needed
