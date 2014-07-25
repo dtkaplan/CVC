@@ -1,7 +1,7 @@
 ---
 title: "Introduction to ggplot2"
 author: "R Pruim"
-date: "May 29, 2014"
+date: "July, 2014"
 output:
   beamer_presentation:
     colortheme: seagull
