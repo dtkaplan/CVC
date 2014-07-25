@@ -129,6 +129,8 @@ Arrival and opening dinner
     #. Github and RStudio
     
 ## Friday 
+#. Presentations/Group discussions on topics, as needed
+    a. [Modeling with R](../Slides/CVC-modeling.Rnd)
 
 #. Work Sessions
 
