@@ -5,7 +5,11 @@ date: "June 21, 2015"
 output: html_document
 ---
 
+**Currently all the chunks work for me at the console but the end ones lead
+to segfaults in knitr.  Don't know why.**
+
 ```{r setup, include=FALSE}
+
 knitr::opts_chunk$set(eval = TRUE, include = TRUE, echo = TRUE)
 
 require(mosaic)
