@@ -8,10 +8,11 @@ date: "CVC 2015"
 
 ```{r setup, include=FALSE}
 
-knitr::opts_chunk$set(eval = TRUE, include = TRUE, echo = TRUE)
+knitr::opts_chunk$set(eval = TRUE, include = TRUE, echo = TRUE, size="tiny")
 
 require(mosaic)
 online <- FALSE
+options(with=120)
 ```
 
 ```{r authenticate, include=FALSE, eval=online}
