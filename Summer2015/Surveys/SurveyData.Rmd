@@ -1,21 +1,20 @@
 ---
-title: "Pre-Workshop PreSurvey"
-author: "R Pruim"
-date: "June 21, 2015"
+title: "Pre-Workshop Survey"
+date:  CVC 2015
 output: html_document
 ---
 
-**Currently all the chunks work for me at the console but the end ones lead
-to segfaults in knitr.  Don't know why.**
+
 
 ```{r setup, include=FALSE}
 
 knitr::opts_chunk$set(eval = TRUE, include = TRUE, echo = TRUE)
 
 require(mosaic)
+online <- FALSE
 ```
 
-```{r authenticate, include=FALSE}
+```{r authenticate, include=FALSE, eval=online}
 # This chunk needs to be run once interactively with the location of this file
 # as the working directory.  That will save an authentication token for
 # subsequent non-interactive processing.  Only those with access to the spreadsheet
@@ -24,15 +23,14 @@ require(googlesheets)
 gs_auth()
 ```
 
-```{r load, include=FALSE}
+```{r load, include=FALSE, eval=online}
 google_survey <- gs_title("CVC 2015 Pre-Workshop Survey (Responses)")
 gs_read(google_survey) -> PreSurvey
 dim(PreSurvey)
 ```
 
-```{r rename, include=FALSE}
-names(PreSurvey) <-
-  c(
+```{r rename, include=FALSE, eval=online}
+new_names <- c(
     "time",
     "name",
     "google",
@@ -71,55 +69,62 @@ names(PreSurvey) <-
     "programmingSAS",
     "programmingOther2"
   )
+if (length(new_names) == ncol(PreSurvey)) names(PreSurvey) <- new_names
 PreSurvey_raw <- PreSurvey
-recode1 <- function(x) derivedFactor(
-  never    = grepl("Never", x),
-  `used it, but`     = grepl("Have used, but", x),
-  basic    = grepl("Basic", x),
-  quite    = grepl("Quite", x),
-  high     = grepl("go to", x),
-  .default = "other",
-  .ordered = TRUE
-)
-recode2 <- function(x) derivedFactor(
-  `never used it`    = grepl("Never", x),
-  `used it, but`    = grepl("Used it", x),
-  `pretty comfortable`    = grepl("Pretty", x),
-  `very comfortable`      = grepl("Very", x),
-  .default = "other",
-  .ordered = TRUE
-)
-PreSurvey <-
-  PreSurvey %>%
-  mutate( 
-    dataR       = recode1(dataR),
-    dataExcel   = recode1(dataExcel),
-    dataMinitab = recode1(dataMinitab),
-    dataMatlab  = recode1(dataMatlab),
-    dataSAS     = recode1(dataSAS),
-    dataSPSS    = recode1(dataSPSS),
-    dataJMP     = recode1(dataJMP),
-    dataTableau     = recode1(dataTableau),
-    dataOther     = recode1(dataOther),
-    programmingR = recode1(programmingR),
-    programmingPerl = recode1(programmingPerl),
-    programmingPython = recode1(programmingPython),
-    programmingJava = recode1(programmingJava),
-    programmingC = recode1(programmingC),
-    programmingOther = recode1(programmingOther),
-    usedR = recode2(usedR),
-    usedRStudio = recode2(usedRStudio),
-    usedRMarkdown = recode2(usedRMarkdown),
-    usedMosaic = recode2(usedMosaic),
-    usedDplyr = recode2(usedDplyr),
-    usedGgplot2 = recode2(usedGgplot2),
-    usedSQL = recode2(usedSQL),
-    usedGithub = recode2(usedGithub),
-    anythingElse = as.character(anythingElse)
+```
+
+```{r include=FALSE}
+PreSurvey_raw <- readRDS("RawSurvey.rds")
+PreSurvey <- PreSurvey_raw
+PreSurvey <- PreSurvey %>% 
+  select( - dataX, - usedX, -usedY, - programmingOther2, 
+          -programmingOther1, - programmingSAS) 
+```
+
+```{r recode, include=FALSE}
+recode1 <- function(x) {
+  res <- derivedFactor(
+    never    = grepl("^Never", x),
+    used     = grepl("^Have used, but", x),
+    basic    = grepl("^Basic", x),
+    quite    = grepl("^Quite", x),
+    high     = grepl("^Very", x),
+    .default = NA,
+    .ordered = TRUE,
+    .method   = "first",
+    .debug   = "always"
   )
-PreSurvey <- 
-  PreSurvey %>%
-  filter(!grepl("Horton|Baumer|Pruim|Kaplan", name))
+  return(res)
+}
+
+recode2 <- function(x) {
+  res <- derivedFactor(
+    never    = grepl("^Never", x),
+    used    = grepl("^Used it", x),
+    `pretty comfortable`    = grepl("^Pretty", x),
+    `very comfortable`      = grepl("^Very", x),
+    .default = NA,
+    .ordered = TRUE,
+    .method = "first",
+    .debug = "always"
+  )
+  return(res)
+}
+
+idx <- grep("data", names(PreSurvey)) 
+for (i in idx) {
+  cat(i)
+  PreSurvey[[i]] <- recode1(PreSurvey_raw[[i]])
+}
+
+idx <- grep("programming", names(PreSurvey))
+for (i in idx) PreSurvey[[i]] <- recode1(PreSurvey_raw[[i]])
+
+idx <- grep("used", names(PreSurvey))
+for (i in idx) PreSurvey[[i]] <- recode2(PreSurvey_raw[[i]])
+
+PreSurvey <- PreSurvey[!grepl("Horton", PreSurvey$name), ]
+PreSurvey <- PreSurvey[!grepl("Baumer", PreSurvey$name), ]
 ```
 
 ## How people work with data
@@ -166,7 +171,7 @@ UsedIt[order(-scores), ]
 
 ## Programming Experience
 
-```{r programming, echo=FALSE, eval=FALSE}
+```{r programming, echo=FALSE, eval=TRUE}
 programmingTools <- 
   rbind(
     tally(~ programmingR, data=PreSurvey),
@@ -185,10 +190,19 @@ programmingTools[order(-scores), ]
 
 ## Comments in Anything Else section
 
-```{r comments, results='asis', echo=FALSE, eval=FALSE}
+```{r comments, results='asis', echo=FALSE, eval=TRUE}
 PreSurvey2 <- PreSurvey %>% filter(!is.na(anythingElse))
                             
 cat(paste("### ", PreSurvey2$name, "\n\n", 
           PreSurvey2$anythingElse, sep="",
           collapse="\n\n"))
+```
+
+## Person level responses
+```{r, echo=FALSE}
+data.frame(PreSurvey[, grepl("name|data", names(PreSurvey))])
+data.frame(PreSurvey[, grepl("name|programming", names(PreSurvey))]) 
+data.frame(PreSurvey[, grepl("name|used", names(PreSurvey))])
+
+# PreSurvey3 %>% select(name, hi, quite) %>% data.frame()
 ```
