@@ -1,9 +1,12 @@
 ---
 title: "Pre-Workshop Survey"
 date: "CVC 2015"
-output: pdf_document
+output:
+    pdf_document:
+      includes:
+        in_header: header.tex
+      keep_tex: yes
 ---
-
 
 
 ```{r setup, include=FALSE}
@@ -11,6 +14,7 @@ output: pdf_document
 knitr::opts_chunk$set(eval = TRUE, include = TRUE, echo = TRUE, size="tiny")
 
 require(mosaic)
+require(xtable)
 online <- FALSE
 options(with=120)
 ```
@@ -43,12 +47,12 @@ new_names <- c(
     "dataMinitab",
     "dataSAS",
     "dataJMP",
-    "programmingR",
-    "programmingPython",
-    "programmingJava",
-    "programmingC",
-    "programmingPerl",
-    "programmingOther",
+    "progR",
+    "progPython",
+    "progJava",
+    "progC",
+    "progPerl",
+    "progOther",
     "usedR",
     "usedRStudio",
     "usedRMarkdown",
@@ -66,9 +70,9 @@ new_names <- c(
     "dataX",
     "usedX",
     "usedY",
-    "programmingOther1",
-    "programmingSAS",
-    "programmingOther2"
+    "progOther1",
+    "progSAS",
+    "progOther2"
   )
 if (length(new_names) == ncol(PreSurvey)) names(PreSurvey) <- new_names
 PreSurvey_raw <- PreSurvey
@@ -76,10 +80,11 @@ PreSurvey_raw <- PreSurvey
 
 ```{r include=FALSE}
 PreSurvey_raw <- readRDS("RawSurvey.rds")
+PreSurvey_raw$abname <- abbreviate(PreSurvey_raw$name, 12)
 PreSurvey <- PreSurvey_raw
 PreSurvey <- PreSurvey %>% 
-  select( - dataX, - usedX, -usedY, - programmingOther2, 
-          -programmingOther1, - programmingSAS) 
+  select( - dataX, - usedX, -usedY, - progOther2, 
+          -progOther1, - progSAS) 
 ```
 
 ```{r recode, include=FALSE}
@@ -101,9 +106,9 @@ recode1 <- function(x) {
 recode2 <- function(x) {
   res <- derivedFactor(
     never    = grepl("^Never", x),
-    used    = grepl("^Used it", x),
-    `pretty comfortable`    = grepl("^Pretty", x),
-    `very comfortable`      = grepl("^Very", x),
+    used     = grepl("^Used it", x),
+    comfortable = grepl("^Pretty", x),
+    hi       = grepl("^Very", x),
     .default = NA,
     .ordered = TRUE,
     .method = "first",
@@ -118,7 +123,7 @@ for (i in idx) {
   PreSurvey[[i]] <- recode1(PreSurvey_raw[[i]])
 }
 
-idx <- grep("programming", names(PreSurvey))
+idx <- grep("prog", names(PreSurvey))
 for (i in idx) PreSurvey[[i]] <- recode1(PreSurvey_raw[[i]])
 
 idx <- grep("used", names(PreSurvey))
@@ -175,12 +180,12 @@ UsedIt[order(-scores), ]
 ```{r programming, echo=FALSE, eval=TRUE}
 programmingTools <- 
   rbind(
-    tally(~ programmingR, data=PreSurvey),
-    tally(~ programmingC, data=PreSurvey),
-    tally(~ programmingJava, data=PreSurvey),
-    tally(~ programmingPython, data=PreSurvey),
-    tally(~ programmingPerl, data=PreSurvey),
-    tally(~ programmingOther, data=PreSurvey)
+    tally(~ progR, data=PreSurvey),
+    tally(~ progC, data=PreSurvey),
+    tally(~ progJava, data=PreSurvey),
+    tally(~ progPython, data=PreSurvey),
+    tally(~ progPerl, data=PreSurvey),
+    tally(~ progOther, data=PreSurvey)
   )
 row.names(programmingTools) <- c("R", "C", "Java", "Python", "Perl", "Other")
 scores <- programmingTools %*% c(0,1,3,5,8)
@@ -189,21 +194,30 @@ programmingTools[order(-scores), ]
 ```
 
 
-## Comments in Anything Else section
+## Comments in Anything Else an Collaboration Sections
 
 ```{r comments, results='asis', echo=FALSE, eval=TRUE}
 PreSurvey2 <- PreSurvey %>% filter(!is.na(anythingElse))
                             
-cat(paste("### ", PreSurvey2$name, "\n\n", 
-          PreSurvey2$anythingElse, sep="",
+cat(paste("### ", PreSurvey$name, "\n\n", 
+          gsub("\\.,", ".", PreSurvey$collaborate), "\n\n", 
+          ifelse(is.na(PreSurvey$anythingElse), "", PreSurvey$anythingElse), 
+          "\n\n",
+          sep="",
           collapse="\n\n"))
 ```
 
 ## Person level responses
-```{r, echo=FALSE}
-data.frame(PreSurvey[, grepl("name|data", names(PreSurvey))])
-data.frame(PreSurvey[, grepl("name|programming", names(PreSurvey))]) 
-data.frame(PreSurvey[, grepl("name|used", names(PreSurvey))])
+\begin{landscape}
+\tiny
 
-# PreSurvey3 %>% select(name, hi, quite) %>% data.frame()
+```{r, echo=FALSE, results="asis"}
+PreSurvey <- data.frame(PreSurvey)
+row.names(PreSurvey) <- PreSurvey$name
+xtable(PreSurvey[, grepl("data", names(PreSurvey))])
+xtable(PreSurvey[, grepl("prog", names(PreSurvey))])
+xtable(PreSurvey[, grepl("used", names(PreSurvey))])
+
 ```
+
+\end{landscape}
