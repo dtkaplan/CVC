@@ -1,10 +1,8 @@
 ---
 title: "Working Schedule"
-author: "CVC 2015"
-date: "July 13-17, 2015"
+
 output: 
   html_document:
-    mathjax: null
     template: null
     css: ../stylesheets/cvc.css
     
@@ -23,8 +21,13 @@ output:
 <ul></ul>
 </nav>
 <section>
-      
-## CVC 2015
+     
+           
+<header>
+<h1>CVC 2015</h1>
+<p>Computation and Visualization Consortium</p>
+</header> 
+
 # Resources and Working Schedule
 
 ## Resources

@@ -20,7 +20,7 @@ output:
 <section>
       
 <header>
-<h1>CVC</h1>
+<h1>CVC 2015</h1>
 <p>Computation and Visualization Consortium</p>
 </header>
 
