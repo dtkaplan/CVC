@@ -1,5 +1,5 @@
 ---
-title: "CVC 2015 Schedule"
+title: "CVC 2015 Overview"
 output: 
   html_document:
     css: ../stylesheets/cvc.css
