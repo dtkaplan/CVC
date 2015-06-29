@@ -6,7 +6,7 @@ output:
   html_document:
     mathjax: null
     template: null
-    css: ../stylesheets/styles.css
+    css: ../stylesheets/cvc.css
     
 ---
 
