@@ -37,6 +37,8 @@ output:
   * [The Calvin College RStudio server](http://rstudio.calvin.edu:8787) has provided accounts for all workshop participants.
 Teaching Statistics Using R.
   * Slides and files for sessions will be posted in the schedule as we go along (see below).
+  * The [CVC 2015 R Pubs site](http://rpubs.com/uscots-2015) can be used
+  to post documents for others to see.
 
 
 
@@ -60,31 +62,34 @@ Arrival day for many coming from out of town.
 ### Monday
 
  1. Welcome
-    a. Welcome to CVC [Ben Baumer]
+    a. Welcome to CVC [Ben]
     b. [Goals and outline for the week](Slides/IntroOverview.html) [Randy]
 
  2. Introductions [Randy]
     a. **Activity**: Split up into groups of three or four and introduce yourselves. 
     b. [Google Doc](https://docs.google.com/document/d/1Zt5AYH7HsXTbIl5d6gjn0E_-e5m59IBmIo0jrIkLXsI/edit?usp=sharing) for second part. 
 
- 3. A First Case Study [Danny]
+ 3. A First Case Study using Medicare Data [Danny]
 
     * [Slides](http://dtkaplan.github.io/CVC/Summer2014/Notes/MedicareSpending/PriceOfHealth.html)
 
  4. Introduction to R and R Studio [Randy]
- 
-    * [Less Volume, More Creativity -- An R Quick Start](Slides/LessVolume.html) [Randy]
-    * Getting your own data into R [Randy]
+
+    * Layout and configuration of RStudio 
+    * [Less Volume, More Creativity -- An R Quick Start](Slides/LessVolume.html) 
+    * Getting your own data into R
+    
     * **Activity**: Create a plot using data that you have imported into R.
 
  5. [RMarkdown](http://prezi.com/e7wtfnacj9ub/) [Nick/Ben]
  
-    a. Creating PDF/HTML/Word documents in RStudio
-    b. [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
+    * Creating PDF/HTML/Word documents in RStudio
+    * [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
     c. **Activity**: Write and publish a description of some 
     straightforward, data-oriented topic you'd like to present in class. 
         * Include at least 1 plot (even if unrelated) to make sure 
         you know how to do that.  
+        * Bonus: import data from a CSV or some other file.
     
  6. How to organize your data [Danny]
     a. Rectangular format: cases (rows) and variables (columns)
@@ -100,7 +105,27 @@ Arrival day for many coming from out of town.
 
 ### Tuesday
 
+ 1. Project Reports [Ben]
+    a. **Activity**: come prepared to give a (very brief) 
+    report on the status of your project idea(s).
+ 
+ 2. The graphics-data interface [Danny/Randy] 
+    a. graphing concepts: [slides](Slides/GraphicsBasics/graphics-basics.html)
+    b. **Activity:** data <-> graphs
+    
+ 3. Introduction to `ggplot2` [slides](Slides/ggplot2Intro.pdf) [Randy]
+    a. Turning the concepts into pictures with the grammar of graphics
+
+ 4. Working with data -- 5 verbs of `dplyr`
+    * Getting your data into the right shape for plotting
+    * [important data operations](Slides/dplyrLessVolume.html) using `dplyr`
+
+
+
 ### Wednesday
+
+ 1. More data wrangling with `dplyr`
+    a. merging data from multiple sources (joining) 
 
 ### Thursday
 
