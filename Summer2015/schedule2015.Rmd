@@ -64,20 +64,21 @@ Arrival day for many coming from out of town.
     b. [Goals and outline for the week](Slides/IntroOverview.html) [Randy]
 
  2. Introductions [Randy]
-    a. **Activity**: Split up into groups of three or four and introduce yourselves. For each person, another person should write a short bio (or other introductory information).  Use this [Google Doc](https://docs.google.com/document/d/1Zt5AYH7HsXTbIl5d6gjn0E_-e5m59IBmIo0jrIkLXsI/edit?usp=sharing). 
+    a. **Activity**: Split up into groups of three or four and introduce yourselves. 
+    b. [Google Doc](https://docs.google.com/document/d/1Zt5AYH7HsXTbIl5d6gjn0E_-e5m59IBmIo0jrIkLXsI/edit?usp=sharing) for second part. 
 
  3. A First Case Study [Danny]
 
-  * [Slides](http://dtkaplan.github.io/CVC/Summer2014/Notes/MedicareSpending/PriceOfHealth.html)
+    * [Slides](http://dtkaplan.github.io/CVC/Summer2014/Notes/MedicareSpending/PriceOfHealth.html)
 
- 4. RStudio orientation 
-    
- 5. Introduction to R
-  * [Less Volume, More Creativity -- An R Quick Start](Slides/LessVolume.html) [Randy]
-  * Getting your own data into R [Randy]
-  * **Activity**: Create a plot using data that you have imported into R.
+ 4. Introduction to R and R Studio [Randy]
+ 
+    * [Less Volume, More Creativity -- An R Quick Start](Slides/LessVolume.html) [Randy]
+    * Getting your own data into R [Randy]
+    * **Activity**: Create a plot using data that you have imported into R.
 
- 6. [RMarkdown](http://prezi.com/e7wtfnacj9ub/) [Nick]
+ 5. [RMarkdown](http://prezi.com/e7wtfnacj9ub/) [Nick/Ben]
+ 
     a. Creating PDF/HTML/Word documents in RStudio
     b. [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
     c. **Activity**: Write and publish a description of some 
@@ -85,12 +86,9 @@ Arrival day for many coming from out of town.
         * Include at least 1 plot (even if unrelated) to make sure 
         you know how to do that.  
     
- 7. How to organize your data
+ 6. How to organize your data [Danny]
     a. Rectangular format: cases (rows) and variables (columns)
-       * not the only format -- especially these days
-       * very useful format for structured data and for plotting
-       * best to master rectangular data before moving on to other things
-       
+
     b. Separate analysis from data storage.
        * don't forget a codebook that describes your cases and variables in detail
        
