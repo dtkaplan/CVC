@@ -1,0 +1,78 @@
+---
+title: "CVC 2015 Schedule"
+output: 
+  html_document:
+    css: ../stylesheets/cvc.css
+
+---
+
+<script src="../javascripts/main.js"></script>
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<div class="wrapper">
+<nav>
+<ul></ul>
+</nav>
+<section>
+      
+<header>
+<h1>CVC</h1>
+<p>Computation and Visualization Consortium</p>
+</header>
+
+## Summer Workshop for Science^[We construe "science" broadly to include the natural and social sciences, as well as statistics, mathematics, and computer science. If you teach and want to integrate the use of data into your classes, this workshop is for you!] Faculty and Instructors 
+
+### July 13-17, 2015 
+
+The **first half** of the workshop starts at **9 am on July 13**. This portion of the workshop aims to introduce faculty members to the open source software package, RStudio. These days will serve as an introduction to using R for handling data and graphics and include
+
+*  An introduction to the RStudio environment
+*  A “Doing More with Less Cookbook” for R
+*  Designing and creating sophisticated graphical data visualizations
+*  Data wrangling: Manipulating data for graphics and insight
+*  Preparing documents that include text, static and dynamic graphics, and analysis
+
+The **second half** of the workshop concludes at noon on July 17. During this time participants will dig in on their own projects -- the “work” part of the workshop. Time will be spent:
+
+*  Expanding elements of first half of workshop
+*  Planning a case study
+*  Development of case studies (individually or in small groups)
+
+In order to support project development, participants will learn specific skills as needed including topics such as:
+
+*  Summarizing data with models
+    * how to construct plausible models and fit them
+    * displaying models on graphics
+    * displaying inferential ideas on graphs
+*  Basic data scraping skills (how to get data from web sites)
+*  Connecting to and working with large databases in R
+*  More advanced data cleaning skills
+*  Additional programming skills
+*  resampling and bootstrap methods
+
+All aspects of the workshop will be "hands on."  The workshop leaders include several nationally recognized educators in data, graphics, and statistics.  You provide the subject-matter expertise, we'll help you exploit the power of modern compuation. 
+
+## In your classes ...
+
+A major purpose of the second half of the workshop is to provide advice and help in setting up a data visualization/computing project for you to use in your own classes.  The tools you will learn are powerful enough that you will be able to create a substantial project *during* the workshop, and will need just a few hours to tune it up when you get home.
+
+To encourage people who are doing this, we will be offering a $500 stipend for participants who develop an executable classroom or lab activity.
+
+![New York City Weather](http://asbcllc.com/visualizations/weather/gotham_2014/plot.svg)
+
+*A data graphic made with the powerful tools used in the CVC workshop: R, ggplot2 and dplyr.* 
+
+CVC projects from Summer 2014 include
+
+* An analysis comparing the lyrics of Beyoncé and Jay Z
+* Dendrogram analysis of gene expression in leukemia
+* A semester's introductory cell bio and genetics lab  
+* Phylogenetics of mite harvestmen biodiversity
+* Using maps in introductory statistics
+
+
+<!-- REMEMBER TO ADD THE LIST OF PROJECTS FROM LAST YEAR -->
