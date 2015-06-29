@@ -1,7 +1,7 @@
 ---
 title: "Working Schedule"
 author: "CVC 2015"
-date: "June 29, 2015"
+date: "July 13-17, 2015"
 output: 
   html_document:
     mathjax: null
@@ -11,15 +11,91 @@ output:
 ---
 
 
-# Working Schedule
+<script src="../javascripts/main.js"></script>
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<div class="wrapper">
+<nav>
+<ul></ul>
+</nav>
+<section>
+      
 ## CVC 2015
+# Resources and Working Schedule
+
+## Resources
+
+  * [CRAN](http://cran.r-project.org) (Comprehensive R Archive Network) has lots of R-related stuff
+  * The `mosaic` package (version 0.10 or greater) and its vignettes are [available via CRAN](http://cran.r-project.org/web/packages/mosaic/index.html) and also via [github](https://github.com/ProjectMOSAIC/mosaic)
+  * [The Calvin College RStudio server](http://rstudio.calvin.edu:8787) has provided accounts for all workshop participants.
+Teaching Statistics Using R.
+  * Slides and files for sessions will be posted in the schedule as we go along (see below).
+
+
+
+## Provide Feedback
+
+We'll use this Google Doc to record your questions and comments and to provide
+responses.  Feel free to edit it at anytime before, during, or (shortly) after the workshop.
+
+  * [Google Doc](https://docs.google.com/document/d/1AN1vOgnUF2zM5SNHPW17kdt1BMPGbK0izqXCBWvXj4M/edit?usp=sharing) 
+
+## Working Schedule
 
 This scheule will be updated throughout the workshop.  All items should be 
 considered tentative until they happen since we will adjust things to 
 meet the needs and wishes of the participants.
 
+### Sunday
+
+Arrival day for many coming from out of town.  
+
 ### Monday
+
+ 1. Welcome
+    a. Welcome to CVC [Ben Baumer]
+    b. [Goals and outline for the week](Slides/IntroOverview.html) [Randy]
+
+ 2. Introductions [Randy]
+    a. **Activity**: Split up into groups of three or four and introduce yourselves. For each person, another person should write a short bio (or other introductory information).  Use this [Google Doc](https://docs.google.com/document/d/1Zt5AYH7HsXTbIl5d6gjn0E_-e5m59IBmIo0jrIkLXsI/edit?usp=sharing). 
+
+ 3. A First Case Study [Danny]
+
+  * [Slides](http://dtkaplan.github.io/CVC/Summer2014/Notes/MedicareSpending/PriceOfHealth.html)
+
+ 4. RStudio orientation 
+    
+ 5. Introduction to R
+  * [Less Volume, More Creativity -- An R Quick Start](Slides/LessVolume.html) [Randy]
+  * Getting your own data into R [Randy]
+  * **Activity**: Create a plot using data that you have imported into R.
+
+ 6. [RMarkdown](http://prezi.com/e7wtfnacj9ub/) [Nick]
+    a. Creating PDF/HTML/Word documents in RStudio
+    b. [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
+    c. **Activity**: Write and publish a description of some 
+    straightforward, data-oriented topic you'd like to present in class. 
+        * Include at least 1 plot (even if unrelated) to make sure 
+        you know how to do that.  
+    
+ 7. How to organize your data
+    a. Rectangular format: cases (rows) and variables (columns)
+       * not the only format -- especially these days
+       * very useful format for structured data and for plotting
+       * best to master rectangular data before moving on to other things
+       
+    b. Separate analysis from data storage.
+       * don't forget a codebook that describes your cases and variables in detail
+       
+    c. **Activity**: The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct.  Identify the elements of this spreadsheet that are not in standard rectangular data format.
+    
+    d. **Activity**: Enter data [in this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&usp=sharing)
+    indicating types of data you are interested in.
+
 
 ### Tuesday
 
