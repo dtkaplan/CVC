@@ -1,0 +1,31 @@
+---
+title: "Working Schedule"
+author: "CVC 2015"
+date: "June 29, 2015"
+output: 
+  html_document:
+    mathjax: null
+    template: null
+    css: ../stylesheets/styles.css
+    
+---
+
+
+# Working Schedule
+
+## CVC 2015
+
+This scheule will be updated throughout the workshop.  All items should be 
+considered tentative until they happen since we will adjust things to 
+meet the needs and wishes of the participants.
+
+### Monday
+
+### Tuesday
+
+### Wednesday
+
+### Thursday
+
+### Friday
+
