@@ -89,7 +89,7 @@ Arrival day for many coming from out of town.
         * Include at least 1 plot (even if unrelated) to make sure 
         you know how to do that.  
         * Bonus: import data from a CSV or some other file.
-<!--    
+        
  6. How to organize your data [Danny]
     a. Rectangular format: cases (rows) and variables (columns)
 
@@ -100,7 +100,7 @@ Arrival day for many coming from out of town.
     
     d. **Activity**: Enter data [in this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&usp=sharing)
     indicating types of data you are interested in.
--->
+
 
 
 ### Tuesday
