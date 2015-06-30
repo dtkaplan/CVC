@@ -26,6 +26,10 @@ output:
 
 ## Summer Workshop for Science^[We construe "science" broadly to include the natural and social sciences, as well as statistics, mathematics, and computer science. If you teach and want to integrate the use of data into your classes, this workshop is for you!] Faculty and Instructors 
 
+### Feedback and Questions
+
+We have created a [Feedback and Questions google doc](https://docs.google.com/document/d/1AN1vOgnUF2zM5SNHPW17kdt1BMPGbK0izqXCBWvXj4M/edit?usp=sharing) with questions (and answers) about the workshop.
+
 ### July 13-17, 2015 
 
 The **first half** of the workshop starts at **9 am on July 13**. This portion of the workshop aims to introduce faculty members to the open source software package, RStudio. These days will serve as an introduction to using R for handling data and graphics and include
