@@ -84,7 +84,7 @@ Arrival day for many coming from out of town.
     
     * **Activity**: Create a plot using data that you have imported into R.
 
- 5. [RMarkdown](http://prezi.com/e7wtfnacj9ub/) [Nick/Ben]
+ 5. [RMarkdown](http://prezi.com/e7wtfnacj9ub/) [Nick]
  
     * Creating PDF/HTML/Word documents in RStudio
     * [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
@@ -123,6 +123,7 @@ Arrival day for many coming from out of town.
  4. Working with data -- 5 verbs of `dplyr` [Danny]
     * Getting your data into the right shape for graphing or analysis
     * **Activity**: Baby names [Nick]
+    * Creating Functions [Randy]
     
  5. Getting your own data into R [Randy?]
     a. CSV
@@ -133,9 +134,8 @@ Arrival day for many coming from out of town.
 ### Wednesday
  
  1. More data wrangling with `dplyr` and `tidyr` [Danny]
-    a. `group_by()`
-    b. merging data from multiple sources (joining)
-    c. `gather()`
+    a. merging data from multiple sources (joining)
+    b. `gather()`
     
  2. More `ggplot2` [Randy]
     
@@ -144,20 +144,18 @@ Arrival day for many coming from out of town.
     b. Additional Sessions
 
 ### Thursday
+  1. Finding R packages and documentation [Randy]
 
 ### Friday
 
-### Addition Topics TBD
+### Additional Topics TBD
 
-  1. Getting data from a database [Ben?]
-  2. Finding R packages and documentation [?]
-  3. Github [Randy]
-  4. Shiny [Danny?]
-  5. Maps [?]
-  6. Machine learning [?]
-  7. Text mining [?]
-  8. Modeling in R [Nick]
-  9. Writing functions [Randy]
-     * **Activity**: `Birthdays`
+  1. Getting data from a database [Ben]
+  2. Github [Randy]
+  3. Shiny [Danny]
+  4. Maps [Danny]
+  5. Machine learning [Danny]
+  6. Text mining [Nick]
+  7. Modeling in R [Nick]
 
 
