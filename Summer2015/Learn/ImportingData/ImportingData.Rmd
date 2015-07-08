@@ -1,7 +1,7 @@
 ---
 title: "Getting Data Into R"
-author: "CVC 2015"
-date: "June 29, 2015"
+date: "CVC 2015"
+author: R Pruim
 output: html_document
 ---
 
