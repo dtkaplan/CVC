@@ -77,9 +77,9 @@ We will work with you to find and learn what you need
 
 ## It's not quite that tidy
 
-We will having you working already in Part 1, 
+You will be working already in Part 1, 
 
-  * Goal: By Wednesday lunch, everyone will have
+  * **Goal**: By Wednesday lunch, everyone will have
     * tried out a number of "exercises" in R/RStudio/RMarkdown
     
     * learned something new and have more new things they
@@ -104,9 +104,9 @@ There will also be some shopping in Part 2
 
  2. You leave here equipped to continue learning after the workshop is over.
 
- 3. You got to know some interesting people  (and what they are interested in).
+ 3. You get to know some interesting people (and what they are interested in).
 
- 4. You had an enjoyable week.
+ 4. You have an enjoyable week.
 
 ## A note about the "schedule"
 
