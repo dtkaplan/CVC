@@ -45,7 +45,7 @@ frameborder="0" allowfullscreen>
 
 More details at [http://dtkaplan.github.io/CVC/Summer2015/schedule2015.html](../schedule2015.html)
 
- * **Please bookmark this page.**  We will post links to materials on this page wo you can access.
+ * **Please bookmark this page.**  We will post links to materials on this page so you can access them.
 
 ## Outline of the workshop -- Part 1
 
