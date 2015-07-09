@@ -1,0 +1,223 @@
+---
+title: "Pre-Workshop Survey"
+date: "CVC 2015"
+output:
+    pdf_document:
+      includes:
+        in_header: header.tex
+      keep_tex: yes
+---
+
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(eval = TRUE, include = TRUE, echo = TRUE, size="tiny")
+
+require(mosaic)
+require(xtable)
+online <- FALSE
+options(with=120)
+```
+
+```{r authenticate, include=FALSE, eval=online}
+# This chunk needs to be run once interactively with the location of this file
+# as the working directory.  That will save an authentication token for
+# subsequent non-interactive processing.  Only those with access to the spreadsheet
+# will be able to load it, of course.
+require(googlesheets)
+gs_auth()
+```
+
+```{r load, include=FALSE, eval=online}
+google_survey <- gs_title("CVC 2015 Pre-Workshop Survey (Responses)")
+gs_read(google_survey) -> PreSurvey
+dim(PreSurvey)
+```
+
+```{r rename, include=FALSE, eval=online}
+new_names <- c(
+    "time",
+    "name",
+    "google",
+    "email",
+    "dataR",
+    "dataExcel",
+    "dataMatlab",
+    "dataSPSS",
+    "dataMinitab",
+    "dataSAS",
+    "dataJMP",
+    "progR",
+    "progPython",
+    "progJava",
+    "progC",
+    "progPerl",
+    "progOther",
+    "usedR",
+    "usedRStudio",
+    "usedRMarkdown",
+    "usedMosaic",
+    "usedDplyr",
+    "usedGgplot2",
+    "ideas",
+    "collaborate",
+    "usedSQL",
+    "usedGithub",
+    "anythingElse",
+    "dataTableau",
+    "dataOther",
+    "X",
+    "dataX",
+    "usedX",
+    "usedY",
+    "progOther1",
+    "progSAS",
+    "progOther2"
+  )
+if (length(new_names) == ncol(PreSurvey)) names(PreSurvey) <- new_names
+PreSurvey_raw <- PreSurvey
+```
+
+```{r include=FALSE}
+PreSurvey_raw <- readRDS("RawSurvey.rds")
+PreSurvey_raw$abname <- abbreviate(PreSurvey_raw$name, 12)
+PreSurvey <- PreSurvey_raw
+PreSurvey <- PreSurvey %>% 
+  select( - dataX, - usedX, -usedY, - progOther2, 
+          -progOther1, - progSAS) 
+```
+
+```{r recode, include=FALSE}
+recode1 <- function(x) {
+  res <- derivedFactor(
+    never    = grepl("^Never", x),
+    used     = grepl("^Have used, but", x),
+    basic    = grepl("^Basic", x),
+    quite    = grepl("^Quite", x),
+    high     = grepl("^Very", x),
+    .default = NA,
+    .ordered = TRUE,
+    .method   = "first",
+    .debug   = "always"
+  )
+  return(res)
+}
+
+recode2 <- function(x) {
+  res <- derivedFactor(
+    never    = grepl("^Never", x),
+    used     = grepl("^Used it", x),
+    comfortable = grepl("^Pretty", x),
+    hi       = grepl("^Very", x),
+    .default = NA,
+    .ordered = TRUE,
+    .method = "first",
+    .debug = "always"
+  )
+  return(res)
+}
+
+idx <- grep("data", names(PreSurvey)) 
+for (i in idx) {
+  cat(i)
+  PreSurvey[[i]] <- recode1(PreSurvey_raw[[i]])
+}
+
+idx <- grep("prog", names(PreSurvey))
+for (i in idx) PreSurvey[[i]] <- recode1(PreSurvey_raw[[i]])
+
+idx <- grep("used", names(PreSurvey))
+for (i in idx) PreSurvey[[i]] <- recode2(PreSurvey_raw[[i]])
+
+PreSurvey <- PreSurvey[!grepl("Horton", PreSurvey$name), ]
+PreSurvey <- PreSurvey[!grepl("Baumer", PreSurvey$name), ]
+```
+
+## How people work with data
+
+```{r data, echo=FALSE}
+dataTools <- 
+  rbind(
+    tally(~ dataR, data=PreSurvey),
+    tally(~ dataExcel, data=PreSurvey),
+    tally(~ dataMinitab, data=PreSurvey),
+    tally(~ dataMatlab, data=PreSurvey),
+    tally(~ dataSPSS, data=PreSurvey),
+    tally(~ dataSAS, data=PreSurvey),
+    tally(~ dataJMP, data=PreSurvey),
+    tally(~ dataOther, data=PreSurvey)
+  )
+row.names(dataTools) <- c("R", "Excel", "Minitab", "Matlab", "SPSS", "SAS", "JMP", "Other")
+scores <- dataTools %*% c(0,1,3,5,8)
+dataTools <- data.frame(dataTools)
+dataTools[order(-scores), ]
+```
+
+
+
+## Things people have, have not used
+
+```{r used, echo=FALSE}
+UsedIt <- 
+  rbind(
+    tally(~ usedR, data=PreSurvey),
+    tally(~ usedRStudio, data=PreSurvey),
+    tally(~ usedRMarkdown, data=PreSurvey),
+    tally(~ usedMosaic, data=PreSurvey),
+    tally(~ usedDplyr, data=PreSurvey),
+    tally(~ usedGgplot2, data=PreSurvey),
+    tally(~ usedSQL, data=PreSurvey),
+    tally(~ usedGithub, data=PreSurvey)
+  )
+row.names(UsedIt) <- c("R", "RStudio", "RMarkdown", "mosaic", "dplyr", "ggplot2", "SQL", "Github")
+scores <- UsedIt %*% c(0,1,3,5)
+UsedIt <- data.frame(UsedIt)
+UsedIt[order(-scores), ]
+```
+
+## Programming Experience
+
+```{r programming, echo=FALSE, eval=TRUE}
+programmingTools <- 
+  rbind(
+    tally(~ progR, data=PreSurvey),
+    tally(~ progC, data=PreSurvey),
+    tally(~ progJava, data=PreSurvey),
+    tally(~ progPython, data=PreSurvey),
+    tally(~ progPerl, data=PreSurvey),
+    tally(~ progOther, data=PreSurvey)
+  )
+row.names(programmingTools) <- c("R", "C", "Java", "Python", "Perl", "Other")
+scores <- programmingTools %*% c(0,1,3,5,8)
+programmingTools <- data.frame(programmingTools)
+programmingTools[order(-scores), ]
+```
+
+
+## Comments in Anything Else an Collaboration Sections
+
+```{r comments, results='asis', echo=FALSE, eval=TRUE}
+PreSurvey2 <- PreSurvey %>% filter(!is.na(anythingElse))
+                            
+cat(paste("### ", PreSurvey$name, "\n\n", 
+          gsub("\\.,", ".", PreSurvey$collaborate), "\n\n", 
+          ifelse(is.na(PreSurvey$anythingElse), "", PreSurvey$anythingElse), 
+          "\n\n",
+          sep="",
+          collapse="\n\n"))
+```
+
+## Person level responses
+\begin{landscape}
+\tiny
+
+```{r, echo=FALSE, results="asis"}
+PreSurvey <- data.frame(PreSurvey)
+row.names(PreSurvey) <- PreSurvey$name
+xtable(PreSurvey[, grepl("data", names(PreSurvey))])
+xtable(PreSurvey[, grepl("prog", names(PreSurvey))])
+xtable(PreSurvey[, grepl("used", names(PreSurvey))])
+
+```
+
+\end{landscape}
