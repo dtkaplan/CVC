@@ -1,0 +1,88 @@
+---
+title: "Outpatient Data"
+author: "Danny Kaplan"
+date: "July 9, 2015"
+output: html_document
+---
+
+THE FOLLOWING IS FOR THE OUTPATIENT DATA
+
+CMS makes the data available in several formats, as described on their [download page](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Physician-and-Other-Supplier.html). A first task for a citizen-statistician is to determine whether it's feasible to work with the data.  Is it too large to process and present on the computer available?  Will it take too much time to clean and process?
+
+Answering these questions calls for a bit of technical knowledge: enough to be able to read the documentation for the data and make appropriate judgments. At a start, it's important to be able to identify key technical words.  Here's part of the CMS description of the data:
+
+> Data are available in two formats:
+
+>    * Tab delimited file format (requires importing into database or statistical software; SAS® read-in language is included in the download ZIP package)
+>    * Microsoft Excel format (.xlsx), split by provider last name (note: organizational providers with name starting with a numeric are available in the “YZ” file).
+    
+> CMS has also created two summary tables: 1) aggregated information by physician or other supplier and 2) aggregated information by State and HCPCS code.   
+
+Among the technical terms here are *tab delimited file format*, *SAS read-in language*, *ZIP*, *Microsoft Excel* `.xlsx`, *aggregated by physician*, *aggregated by state*, *aggregated by HCPCS code*. Some of these terms are purely data science (e.g. tab-delimited), some are related to the domain of health care (e.g. HCPCS). It can be non-trivial to a newcomer to know for sure which is which, although web resources can help (such as this [Wikipedia page on HCPCS](https://en.wikipedia.org/wiki/Healthcare_Common_Procedure_Coding_System).
+
+Two terms that are particularly important here are:
+
+* **tab delimited file**: a format analogous to CSV and hence potentially easy to access as *tidy data*.
+* **zip**: a file format that is analogous to a suitcase: it can hold several different items in a compressed format suitable for easy transport.^[If "suitcase" is too informal for you, an alternative word is "portmanteau."] You "unzip" such a file to gain access to the uncompressed contents.
+
+The availability of a zip file containing a tab-delimited file is a promising sign that it can be straightforward to access the data.^[You might be tempted to use the `.xlsx` format of data.  A good way to understand the difficulties of this for large data sets is to try to do it.] The [download page](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Physician-and-Other-Supplier.html) gives more detailed information about the zip and tab-delimited file:
+
+> Note: This Compressed ZIP package contains the tab delimited data file (Medicare-Physician-and-Other-Supplier-PUF-CY2012.txt) which is 1.7GB uncompressed and contains more than 9 million records, thus importing this file into Microsoft Excel will result in an incomplete loading of data.  Use of database or statistical software is required; a SAS® read-in statement is supplied.  Additionally, this ZIP package contains the following supporting documents: CMS-AMA-CPT-2011-license-agreement.pdf, Medicare-Physician-and-Other-Supplier-PUF-SAS-Infile.sas, Medicare-Physician-and-Other-Supplier-PUF-Methodology.pdf]
+
+Again, this technical information can be daunting to a newcomer.  Some information that will help in interpreting the note.
+
+* `.pdf` is a document format, so the files likely have to do with documentation or other information intended for a human reader.
+* `.sas` is a format used for the SAS statistics package.  *Data Computing* uses the R format, so the `.sas` file may be irrelevant.  If that turns out not to be the case, R can read `.sas` files.
+
+This simple information can avoid mis-steps.  For instance, you don't need to worry about acquiring an SAS license^[The [SAS store](https://www.sas.com/store/software/analytics-pro/prodPERSANL.html) gives a price of $9000 for a single-user license.] or learning SAS: you'll use R instead.
+
+What to make of the information about the size of the data: "1.7GB uncompressed [containing] more than 9 million records?"  Is this too big to access on the computer you have available? As you'll see, this will not be a problem on contemporary computers running R.  
+
+## Loading the Data into R
+
+For simplicity, the CMS data are available to you via the `DataComputing` package which provides three data tables: `MedicareCharges`, `MedicareProviders`, and `DirectRecoveryGroups`.
+
+```{r}
+library(DataComputing)
+```
+
+It can be instructive to follow the process of loading the data directly from the Centers for Medicare and Medicaid Studies into R. (Again, you don't need to do this unless you want to experience the process or apply the pattern to a new source of data.)
+
+1) Download the `.zip` file to your computer. It turns out to be 395 MB and takes about 45 minutes on a low-end home broadband connection. It would be much faster on an institutional connection.
+
+2) Uncompress the file.  On OS-X and Windows, there will be a utility to do this that can be activated by double-clicking on the `.zip` file icon.  Uncompressed, the file is 1700 MB (that is, 1.7 GB).  Check your result against the documentation on the download site to make sure it matches.
+
+3) Identify the location of the data file in the unzipped directory. The download page documentation says the file will be named `Medicare-Physician-and-Other-Supplier-PUF-CY2012.txt`
+
+4) Read the data file into R.  There are several functions available to do this. (See *Data Computing* Chapter 15, "Scraping and Cleaning Data".)  For instance, this statement will bring up a standard file-navigator to let you specify the file you want to read.
+```{r eval=FALSE}
+CMS_Data <- data.table::fread(file.choose())
+```
+This is a good time to do some quick checks to make sure the data table you've created matches the one described on the download page.  For instance,
+```{r eval=FALSE}
+nrow(CMS_Data)
+```
+```{r echo=FALSE}
+nrow(MedicareCharges)
+
+
+5) If you want, you can save `CMS_Data` in R format.
+
+and uncompressed
+
+
+### Getting the Data
+
+The compressed tab-delimited file is 395 MB.  Uncompressed it's 1700 MB. This seems large. 
+
+How do I even look at these data?  Could a student manage this in the time frame of, say a course project?
+
+I downloaded the tab-delimited file (taking about 45 minutes with a broadband connection), uncompressed it (taking about 0.5 % of my disk space), read it into R, and then saved it in a standard R format.  It's now part of the `DCFdevel` package.
+
+```{r}
+fileName <- "/Users/kaplan/KaplanFiles/DCF-2014/CaseStudies/MedicareSpending/CMS-data-2013-05-06.rda"
+load(fileName)
+MedicareSpending <- med
+```
+
+Perhaps surprisingly, all that data, in the standard R format, is only `r round(file.info("CMS-data-2013-05-06.rda")$size/1e4)/100` MB. What accounts for the disparity?  Do I have the right data?
