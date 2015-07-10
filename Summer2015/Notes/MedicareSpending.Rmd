@@ -11,9 +11,12 @@ output:
 ```{r include=FALSE}
 require(DataComputing)
 require(mosaic)
-require(reshape2)
-knitr::opts_chunk$set(tidy=FALSE, cache=TRUE)
+library(dplyr)
+library(ggplot2)
+knitr::opts_chunk$set(tidy=FALSE, cache=TRUE, out.width="50%")
 library(maps)
+library(tidyr)
+library(ggmap)
 #load us map data
 all_states <- map_data("state")
 #plot all states with ggplot
@@ -151,119 +154,193 @@ MedicareCharges %>%
             charged = sum(totalDischarges * aveCharges))
 ```
 
-$246 billion was charged.  "Only" $67 billion was paid
+$246 billion was charged.  "Only" $67 billion was paid.
 
-## How much do payments and charges vary by state?
+## Variation by provider
 
+Do different providers charge and get paid differently? To answer this question, it would be helpful to have a data table that looks like this:
 
+Provider | Average payment
+---------|-----------------
+10001    | 24000
+10005    | 29000
+         | and so on.
+         
+The numbers here are made up, but the structure of the data table is not.  Each row is one case: a provider.  Each column is one variable: the provider ID and the average charge.      
 
-```{r}
-MedicareSpending %>% group_by(Provider.State) %>%
-  summarize( 
-    TotalPaid = mean( Average.Total.Payments, na.rm=TRUE ),
-    TotalCharged = mean( Average.Covered.Charges, na.rm=TRUE )
-    )  -> StateCharges
+Data like this are called "glyph-ready." Once you have data in this form, it can be very easy to make whatever plot or other display you want.
 
-tmp <- transform( StateCharges, State=reorder( Provider.State, TotalPaid ))
-ggplot( melt(tmp,variable.name="Amount"), aes(x=State, y=value/1000, color=Amount)) +
-  geom_point( ) + scale_y_log10(breaks=c(1,5,10,15,20,30,40)) + 
-  xlab("State") + ylab("1000 USD per procedure")
-```
-
-Maybe better to show the variation within states:
-```{r}
-tmp <- select(MedicareSpending, State=Provider.State, 
-              Charged=Average.Covered.Charges,
-              Paid=Average.Total.Payments)
-tmp %>% transform(State=reorder(State, Paid, FUN=median)) -> tmp
-tmp2 <- melt(tmp,variable.name="Amount")
-ggplot( tmp2, aes(x = State, group = State, y = value/1000)) +
-  geom_boxplot( ) + scale_y_log10(breaks = c(1,5,10,15,20,30,40,80,160,320)) + 
-  xlab("State") + ylab("1000 USD per procedure") + facet_grid( ~Amount )
-```
-
-Now by DRG:
+*Wrangling* is the process by which data are manipulated (or "transformed" or "processed") from their original form into a glyph-ready form.  Here's the original form of the `MedicareCharges` table:
 
 ```{r}
-# Transform the codes to just their numbers.
-DRGnums <- substr(as.character(levels(MedicareSpending$DRG.Definition)),0,3)
-MedicareSpending$DRG <- factor(MedicareSpending$DRG.Definition, labels=DRGnums)
+head(MedicareCharges)
 ```
+
+It's important to be aware that the meaning of a *case* in the glyph-ready data is different from that in the `MedicareCharges` data.  
+
+EXERCISE: What is a case in the glyph-ready data? What is a case in the `MedicareCharges` data?
+
+Just to show what a wrangling statement looks like, here's one for producing the glyph-ready data for payments to providers:
+
+```{r}
+ProviderPayments <-
+  MedicareCharges %>%
+  group_by(idProvider) %>%
+  summarise(avePayment = mean(avePayments))
+```
+
+The glpyh-ready table looks like this:
+```{r}
+ProviderPayments
+```
+
+Displays of the variation in payments can be made in several ways.  For instance:
+
+```{r}
+densityplot( ~ avePayment, data = ProviderPayments)
+sd( ~ avePayment, data = ProviderPayments)
+favstats( avePayment, data = ProviderPayments)
+```
+
+There's a lot of variation!  
+
+Perhaps that might be due to different providers offering different procedures?  To examine the variation from one DRG to another, a glyph-ready table like this would be appropriate:
+
+DRG | average payment
+----|-----------------
+039 | 33000
+057 | 20000
+    | and so on
+    
+The wrangling statement for producing this glyph-ready data table is very similar to that used to create the provider-by-provider payments.  (Try figuring it out yourself.)
+
+Here's a display of the result:
+```{r echo=FALSE}
+MedicareCharges %>%
+  group_by(drg) %>%
+  summarise(avePayment = mean(avePayments)) %>%
+  ggplot(aes(x=avePayment)) + 
+  geom_density(fill="grey", color="grey") + 
+  geom_rug() +
+  ggtitle("Variation in payment by DRG") +
+  xlab("Payment ($US)")
+```
+
+
+
+## Variations by State?
+
+Now consider the variation in average payments and charges by state.  There are many ways to display variation: histograms, density plots, etc. But before any of these can be constructed, you'll need to have a data table that looks more or less like this:
+
+State |  average payment | average charge
+------|------------------|-------------
+AK    | 5000             | 15000
+AL    | 6000             | 12000
+      | and so on.       |
+
+Here is one possible display of the information:
+
+```{r echo=FALSE}
+StateCharges <- 
+  MedicareProviders %>%
+  select(idProvider, stateProvider, zipProvider) %>%
+  left_join(MedicareCharges) %>%
+  group_by(stateProvider) %>%
+  summarise(
+    ave_payment = mean(avePayments),
+    ave_charge  = mean(aveCharges) ) %>%
+  mutate(stateProvider=reorder(stateProvider, ave_payment )) %>% 
+  gather(key = "direction", value ="amount", ave_payment, ave_charge) 
+ggplot(StateCharges, aes(y = amount, x = stateProvider)) + 
+  geom_point(aes(color=direction)) +
+  scale_y_log10(breaks=c(1000,5000,10000,15000,20000,30000,40000)) + 
+  xlab("State") + 
+  ylab("USD per procedure") +
+  theme(axis.text.x = element_text(angle = 60))
+```
+
+EXERCISE: Graphics choices
+
+Describe some of the choices made in this display.  Comment on whether they are effective or not for addressing these questions: How much variation is there in charges?  In payments? Do states that charge a lot get paid a lot? How much larger are charges than payments? How does a particular state compare to the rest?
+
+<!-- ANSWERS
+
+1. Frame: amount versus state.  We might have chosen payment versus charge instead.
+1. Order states by payment amount. Shows variation nicely. Allows one state to be compared to the rest.
+2. Log axis for dollar amount.  Allows the low amounts to be seen easily on the same scale as the high amounts.
+
+--> 
+
+Another possible display shows the variation with DRG within each state while allowing the states themselves to be easily compared.
+
+```{r echo=FALSE}
+DRGStateCharges <- 
+  MedicareProviders %>%
+  select(idProvider, stateProvider, zipProvider) %>%
+  left_join(MedicareCharges) %>%
+  mutate(stateProvider=
+           reorder(stateProvider, avePayments, FUN=median)) %>% 
+  mutate(drg = reorder(drg, avePayments, FUN=median)) %>%
+  gather(key = "direction", value ="amount", avePayments, aveCharges)
+ggplot(DRGStateCharges, aes(x=stateProvider, y=amount )) +
+  geom_boxplot( ) + 
+    scale_y_log10(breaks = 1000*c(1,5,10,15,20,30,40,80,160,320)) + 
+  xlab("State") + 
+  ylab("USD per procedure") +
+  theme(axis.text.x = element_text(angle = 60)) +
+  facet_grid( direction ~ . )
+```
+
 
 ## Range of Costs by DRG
 
 ```{r}
-MedicareSpending %>% select( State=Provider.State,
-              Charged=Average.Covered.Charges,
-              Paid=Average.Total.Payments,
-              DRG) -> tmp 
-tmp %>%  mutate(DRG=reorder(DRG, Paid, FUN=median)) %>%
-  sample_n(size=100000) -> tmp
-tmp2 <- melt(tmp,variable.name="Amount")
-ggplot( tmp2, aes(x = DRG, y = value/1000)) +
-  geom_boxplot( ) + scale_y_log10(breaks = c(1,5,10,15,20,30,40,60,80,100,150,200,300,500)) + 
-  xlab("DRG") + ylab("1000 USD per procedure") + facet_grid( ~Amount )
+ggplot(DRGStateCharges, aes(x=drg, y=amount )) +
+  geom_boxplot( ) + 
+    scale_y_log10(breaks = 1000*c(1,5,10,15,20,30,40,80,160,320)) + 
+  xlab("DRG") + 
+  ylab("USD per procedure") +
+  theme(axis.text.x = element_text(angle = 60)) +
+  facet_grid( direction ~ . )
 ```
+
+
 
 ## Comparing the 3 highest and 3 lowest cost states and some other big ones
 
-```{r}
-nstates <- 3
-tmp <- arrange(StateCharges,TotalPaid)
-extremes <- rbind(head(tmp,nstates),tail(tmp,nstates))$Provider.State
-extremes <- c(as.character(extremes),'NY','CA','TX','MN')
-MedicareSpending %>% 
-  select( State=Provider.State,
-              # Charged=Average.Covered.Charges,
-              Paid=Average.Total.Payments,
-              DRG) %>%
-  mutate(DRG=reorder(DRG, Paid, FUN=median)) %>%
-  filter( State %in% extremes) -> ExtremeStates
-ggplot( ExtremeStates, aes(x = DRG, y = Paid/1000)) +
-  geom_boxplot( ) + scale_y_log10(breaks = c(1,5,10,15,20,30,40,60,80,100,150,200,300,500)) + 
-  xlab("DRG") + ylab("1000 USD per procedure") + facet_wrap( ~ State, nrow=3 )
+```{r echo=FALSE}
+extremes <- c('AL', 'AR', 'MA', 'CA', 'TX', 'WV')
+DRGStateCharges %>%
+  filter(stateProvider %in% extremes,
+         direction == "aveCharges") -> ExtremeStates
+ggplot( ExtremeStates, aes(x = drg, y = amount)) +
+  geom_boxplot( ) + 
+  scale_y_log10(
+    breaks = 1000*c(1,5,10,20,50,100,500)) + 
+  xlab("DRG") + ylab("USD per procedure") + 
+  facet_wrap( ~ stateProvider, nrow=3 )
 ```
 
-The DRGs vary in the same way within a state.  Let's pick one DRG to investigate.  Perhaps the one that appears in the most states.
+## DRG 872 (for example)
+
+The DRGs vary in the same way within a state.  Let's pick one DRG to investigate: 872: **SEPTICEMIA OR SEVERE SEPSIS W/O MV 96+ HOURS W/O MCC**
 
 ```{r}
-MedicareSpending %>% select( State=Provider.State,
-              Charged=Average.Covered.Charges,
-              Paid=Average.Total.Payments,
-              DRG, ZIP=Provider.Zip.Code) -> SmallMed
-SmallMed %>% group_by(DRG) %>% 
-  summarize( med = median(Paid), nStates=length(unique(State)), 
-             nZips=length(unique(ZIP))) %>%
-  arrange(med) %>% 
-  filter( rank(med) %in% c(45:55))
+DRG872 <-
+  MedicareCharges %>%
+  filter(drg == 872)
+DRG872 <-
+  MedicareProviders %>%
+  select(idProvider, stateProvider, zipProvider) %>%
+  left_join(DRG872) 
 ```
+  
 
-Let's take DRG 872: **SEPTICEMIA OR SEVERE SEPSIS W/O MV 96+ HOURS W/O MCC**
+## Demographics
 
-```{r}
-SmallMed %>% filter( DRG=='872') -> DRG872
-```
+Although the CMS data has no demographic information, other sources do.  The `DataComputing` package provides `ZipDemography` and `ZipGeography` with information on population, age distribution, income, disability, etc.
 
-## Bring in the ZIPs
-
-This service is provided in `r nrow(DRG872)` ZIP codes.  Almost all of those ZIP codes have only one provider:
-
-```{r}
-table(table(DRG872$ZIP))
-```
-
-How much does the cost differ by state?
-
-```{r}
-DRG872 %>% group_by(State) %>% mutate(med=median(Paid)) -> tmp
-DRG872$State <- reorder(DRG872$State, tmp$med)
-ggplot(DRG872, aes(x=State, y=Paid)) + 
-  geom_boxplot(color='red',fill=NA, aes(y=Charged)) + 
-  geom_boxplot(fill=NA) + scale_y_log10(breaks=c(1000,2000,4000,8000,15000,30000,60000,120000,240000))
-```
-
-Let's pick some ZIP code variables:
-```{r}
+```{r echo = FALSE}
 data(ZipDemography)
 data(ZipGeography)
 ZD <- select(ZipDemography, ZIP, Pop=Totalpopulation,
@@ -272,9 +349,12 @@ ZD <- select(ZipDemography, ZIP, Pop=Totalpopulation,
              Disabled=Disabilitystatuspopulation21to64years,
              Income=Medianhouseholdincomedollars)
 ZG <- select(ZipGeography, ZIP, Latitude, Longitude, LandArea)
-Zips <- inner_join(ZD, ZG) %>% mutate(ZIP = as.character(ZIP))
+Zips <- inner_join(ZD, ZG) %>% mutate(ZIP = as.integer(ZIP))
+```
 
-DRG872 <- mutate(DRG872, ZIP=as.character(ZIP)) %>% inner_join( Zips)
+```{r echo=FALSE}
+DRG872 <- DRG872 %>% 
+  inner_join( Zips, by = c(zipProvider = "ZIP"))
 ```
 
 
@@ -282,63 +362,109 @@ DRG872 <- mutate(DRG872, ZIP=as.character(ZIP)) %>% inner_join( Zips)
 ## Looking at Charged versus demography
 
 ```{r, dev='png'}
-ggplot( DRG872, aes(x=Over65/Pop, y=Charged)) +
-  geom_point() + scale_y_log10() 
-ggplot( DRG872, aes(x=Income, y=Charged)) +
-  geom_point() + scale_y_log10() 
-ggplot( DRG872, aes(x=LandArea, y=Charged)) +
-  geom_point() + scale_y_log10() + scale_x_log10()
-ggplot( DRG872, aes(x=Pop/LandArea, y=Charged)) +
-  geom_point() + scale_y_log10() + scale_x_log10()
+ggplot( DRG872, aes(x=Over65/Pop, y=aveCharges)) +
+  geom_point(alpha = 0.5) + scale_y_log10() 
+ggplot( DRG872, aes(x=Income, y=aveCharges)) +
+  geom_point(alpha = 0.5) + scale_y_log10() 
+ggplot( DRG872, aes(x=LandArea, y=aveCharges)) +
+  geom_point(alpha = 0.5) + scale_y_log10() + scale_x_log10()
+ggplot( DRG872, aes(x=Pop/LandArea, y=aveCharges)) +
+  geom_point(alpha = 0.5) + scale_y_log10() + scale_x_log10()
 ```
 
+The last two plots suggest that there are two clusters of providers based on demographic variables.  If desired, simple machine-learning techniques could be used to define the clusters.
+
+## The New York Times map
+
 ```{r}
-DRG872 <- transform(DRG872, Rgroup=ntiles(Charged,4))
-ggplot(DRG872, aes(x=Longitude,y=Latitude,color=Rgroup)) + 
-  geom_point() + facet_wrap(~ Rgroup,nrow=2) + geom_polygon( data=all_states, aes(x=long, y=lat, group = group),colour="white", fill=NA )
+DRG872 <- 
+  DRG872 %>% 
+  transform(Rgroup=ntiles(aveCharges,4))
+
+ggplot(DRG872 %>% filter( !stateProvider %in% c("AK","HI")), aes(x=Longitude,y=Latitude,color=Rgroup)) + 
+  geom_point(alpha=.6) + 
+  geom_polygon( data=all_states, aes(x=long, y=lat, group = group),colour="white", fill=NA )
 ```
+
+Or, if you prefer, 
+```{r echo=FALSE}
+frame <- ggmap(get_map("US", zoom = 4))
+```
+
+```{r echo=FALSE}
+frame + 
+  geom_point(data = DRG872,
+             aes(x=Longitude, y=Latitude, color=Rgroup), alpha = 0.6)
+```
+
+
 
 ## Doing things for all the DRGs
 
-Fit `log(Charge)` to `DRG` and take the residual.
+One way to compare institutions across DRGs is to consider the residual of each charge to the average for that DRG.  
 
 ```{r}
-mod <- lm(log10(Charged) ~ DRG, data = SmallMed)
-SmallMed$Resid <- resid(mod)
-SmallMed <- mutate(SmallMed, ZIP=as.character(ZIP)) %>% inner_join( Zips)
+Charges <- MedicareProviders %>%
+  select(idProvider, stateProvider, zipProvider) %>%
+  left_join(MedicareCharges) %>% 
+  inner_join( Zips, by = c(zipProvider = "ZIP"))
+```
+
+```{r}
+mod <- lm(log10(aveCharges) ~ drg, data = Charges)
+Charges$resid <- resid(mod)
+Charges <- 
+  Charges %>%
+  mutate(rgroup = ntiles(resid, 9))
 ```
 
 ```{r dev='png'}
-SmallMed$State <- reorder(SmallMed$State, SmallMed$Resid)
-ggplot( SmallMed, aes(x=State, y=Resid)) + geom_boxplot()
-ggplot( SmallMed, aes(x=Pop/LandArea, y=Resid)) +
-  geom_point(alpha=.02) + scale_x_log10()
+ggplot( Charges, aes(x=Pop/LandArea, y=resid)) +
+  geom_point(alpha=.02) + 
+  scale_x_log10()
 ```
 
-```{r}
+Or, looking at average residuals (compared to entire nation) of each provider:
 
-SmallMed <- transform(SmallMed, Rgroup=ntiles(Resid,9))
-ggplot(SmallMed, aes(x=Longitude,y=Latitude,color=Rgroup)) + 
-  geom_point() + facet_wrap(~ Rgroup,nrow=3) + geom_polygon( data=all_states, aes(x=long, y=lat, group = group),colour="white", fill=NA )
+```{r echo=FALSE}
+ProviderResids <-
+  Charges %>% 
+  group_by(idProvider, Latitude, Longitude) %>%
+  summarize(mresid = mean(resid, na.rm=TRUE)) 
 ```
 
 
+Or, more locally
+```{r echo=FALSE}
+frame2 <- ggmap(get_map("Connecticut", zoom=7))
+frame2 + 
+  geom_point(data = ProviderResids,
+             aes(x=Longitude, y=Latitude, size=mresid,
+                 color=mresid), alpha = 0.6)
+```
 
-## Models?
+0.4 on a log10 scale is a factor of 2.5 in charges.
 
-```{r}
-mod2 <- lm(Resid ~ 
-             I(Pop/LandArea) + Income + I(College/Pop), data=SmallMed )
+
+## Models
+
+When examining the relationships among multiple variables, linear models can be a good place to start.  Note that glyph-ready data is also *model-ready*.
+
+Something is wrong in the join with Zips.
+
+```{r echo=FALSE, eval=FALSE}
+ResidsWithDemographics <- ProviderResids %>%
+  inner_join(MedicareProviders) %>%
+  inner_join(Zips, by=c(zipProvider = "ZIP")) %>%
+  mutate(pop_density = Pop / LandArea, 
+         college_educated = College / Pop)
+mod2 <- lm(mresid ~ Income + Pop, data = ResidsWithDemographics)
+             I(Pop/LandArea) + Income + I(College/Pop),
+           data=ResidsWithDemographics )
 rsquared(mod2)
 anova(mod2)
-mod3 <- lm(Resid ~ I(Pop/LandArea) + Income + I(College/Pop) + State + Latitude, data=SmallMed )
+mod3 <- lm(mresid ~ I(Pop/LandArea) + Income + I(College/Pop) + State + Latitude, 
+           data=ResidsWithDemographics )
 rsquared(mod3)
 anova(mod3)
 ```
-
-Can we capture the effect of `State` with demographic variables?
-
-
-
-## Normalizing the Data
-
