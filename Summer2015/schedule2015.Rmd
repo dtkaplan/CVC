@@ -71,16 +71,14 @@ Arrival day for many coming from out of town.
 
  3. A First Case Study using Medicare Data [Danny]
 
-    * [Slides](http://dtkaplan.github.io/CVC/Summer2014/Notes/MedicareSpending/PriceOfHealth.html)
+    * [Slides](http://dtkaplan.github.io/CVC/Summer2015/Intro/MedicareSpending.html)
 
  4. Introduction to R and R Studio [Randy]
 
-    * Layout and configuration of RStudio 
-    * [Less Volume, More Creativity -- An R Quick Start](Slides/LessVolume.html) 
+    * [Less Volume, More Creativity -- An R Quick Start](Learn/LessVolume/LessVolume.html) 
     * Importing CSV files
         * [Notes](Learn/ImportingData/ImportingData.html)
         * [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
-        * [Gender.xls](Learn/ImportingData/Gener.xls)
     
     * **Activity**: Create a plot using data that you have imported into R.
 
@@ -125,11 +123,10 @@ Arrival day for many coming from out of town.
     * **Activity**: Baby names [Nick]
     * Creating Functions [Randy]
     
- 5. Getting your own data into R [Randy?]
-    a. CSV
-    b. Excel
-    c. Google
-    d. etc.
+ 5. Getting your own data into R [Randy]
+        * [Notes](Learn/ImportingData/ImportingData.html)
+        * [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
+        * [Gender.xls](Learn/ImportingData/Gener.xls)
  
 ### Wednesday
  
