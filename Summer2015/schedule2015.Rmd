@@ -115,19 +115,22 @@ Arrival day for many coming from out of town.
     a. graphing concepts: [slides](Slides/VizQuickStart.html) [Randy/Danny]
     b. **Activity:** data <-> graphs [Danny]
     
- 3. Introduction to `ggplot2` [slides](Learn/ggplot2/ggplot2Intro.pdf) [Randy]
-    * Turning the concepts into pictures with the grammar of graphics
+ 3. Introduction to `ggplot2` --  turning the concepts into pictures with the grammar of graphics
+ 
+    a. [slides](Learn/ggplot2/ggplot2Intro.pdf) 
+    b. [Dope Sheets](Learn/ggplot2/DopeSheets.pdf)
 
  4. Working with data -- 5 verbs of `dplyr` [Danny]
-    * Getting your data into the right shape for graphing or analysis
-    * **Activity**: Baby names [Nick]
-    * Creating Functions [Randy]
+ 
+    a. Getting your data into the right shape for graphing or analysis
+    b. **Activity**: Baby names [Nick]
+    c. Creating Functions [Randy]
     
  5. Getting your own data into R [Randy]
  
- * [Notes](Learn/ImportingData/ImportingData.html)
- * [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
- * [Gender.xls](Learn/ImportingData/Gener.xls)
+    a. [Notes](Learn/ImportingData/ImportingData.html)
+    b. [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
+    c. [Gender.xls](Learn/ImportingData/Gener.xls)
  
 ### Wednesday
  
