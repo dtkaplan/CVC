@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r include=FALSE}
-library(DCF)
+library(babynames)
 library(ggplot2)
 library(mosaic)
 your_turn <- function(...) {
@@ -16,7 +16,7 @@ your_turn <- function(...) {
 
 Each year, the US Social Security Administration publishes a list of the most popular names given to babies.  In 2014, [the list](http://www.ssa.gov/oact/babynames/#ht=2) shows Emma and Olivia leading for girls, Noah and Liam for boys.
 
-The `BabyNames` data table in the `DCF` package comes from the Social Security Administration's listing of the names givens to babies in each year, and the number of babies of each sex given that name. (Only names with 5 or more babies are published by the SSA.)
+The `babynames` data table in the `babynames` package comes from the Social Security Administration's listing of the names givens to babies in each year, and the number of babies of each sex given that name. (Only names with 5 or more babies are published by the SSA.)
 
 
 ## Warm-ups
@@ -27,19 +27,19 @@ When starting, it can be helpful to work with a small subset of the data.  When 
 
 ```{r}
 SmallSubset <-
-  BabyNames %>%
+  babynames %>%
   filter(year > 2000) %>%
   sample_n(size = 200)
 ```
 
-Note: Chunks in this template are headed with `{r eval=FALSE}`.  Change this to `{r}` when you are ready to compile
 
+Note: Chunks in this template are headed with `{r eval=FALSE}`.  Change this to `{r}` when you are ready to compile
 
 ### 1. How many babies are represented?
 
 ```{r eval=FALSE}
 SmallSubset %>%
-  summarise(total = ????) # a reduction verb
+  summarise(total = ????(n)) # a reduction verb
 ```
 
 ### 2. How many babies are there in each year?
@@ -47,7 +47,7 @@ SmallSubset %>%
 ```{r eval=FALSE}
 SmallSubset %>% 
   group_by(????) %>% 
-  summarise(total = ????)
+  summarise(total = ????(n))
 ```
 
 ### 3. How many distinct names in each year?
@@ -72,7 +72,7 @@ SmallSubset %>%
 
 ```{r eval=FALSE}
 Result <-
-  BabyNames %>%
+  babynames %>%
   ????(name %in% c("Jane", "Mary")) %>% # just the Janes and Marys
   group_by(????, ????) %>% # for each year for each name
   summarise(count = ????)
@@ -96,11 +96,11 @@ ggplot(data=Result, aes(x = year, y = count)) +
 
 ```{r eval=FALSE}
 Result2 <-
-  BabyNames %>%
+  babynames %>%
   group_by(year) %>%
-  mutate(total = ????(count)) %>%
+  mutate(total = ????(n)) %>%
   filter(????) %>%
-  mutate(proportion = ???? / ????)
+  mutate(proportion = n / total)
 ```
 
 * Why is `sex` a variable in `Result2`? Eliminate it, keeping just the girls.

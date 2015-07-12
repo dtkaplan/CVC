@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r include=FALSE}
-library(DCF)
+library(babynames)
 library(ggplot2)
 library(mosaic)
 your_turn <- function(...) {
@@ -20,11 +20,11 @@ your_turn <- function(...) {
 
 ### 1. How many babies are represented?
 
-Add up the `count` over the names and years.  
+Add up the `n` (count) over the names and years.  
 
 ```{r}
-BabyNames %>%
-  summarise(total = sum(count)) 
+babynames %>%
+  summarise(total = sum(n)) 
 ```
 
 Note that `summarise()` clobbers all the variables in the input data table other than those used for grouping. (No variables were used for grouping here.)
@@ -33,9 +33,9 @@ Note that `summarise()` clobbers all the variables in the input data table other
 ### 2. How many babies are there in each year?
 
 ```{r}
-BabyNames %>% 
+babynames %>% 
   group_by(year) %>% 
-  summarise(total = sum(count)) 
+  summarise(total = sum(n)) 
 ```
 
 With `year` made a grouping variable, a separate calculation is done for each year, and `year` appears in the output.
@@ -43,7 +43,7 @@ With `year` made a grouping variable, a separate calculation is done for each ye
 ### 3. How many distinct names in each year?
 
 ```{r}
-BabyNames %>%
+babynames %>%
   group_by(year) %>%
   summarise(name_count = n_distinct(name))
 ```
@@ -51,7 +51,7 @@ BabyNames %>%
 ### 4. How many distinct names of each sex in each year?
 
 ```{r}
-BabyNames %>%
+babynames %>%
   group_by(year, sex) %>%
   summarise(name_count = n_distinct(name))
 ```
@@ -62,10 +62,10 @@ BabyNames %>%
 
 ```{r}
 Result <-
-  BabyNames %>%
+  babynames %>%
   filter(name %in% c("Jane", "Mary")) %>% 
   group_by(name, year) %>% # for each year
-  summarise(count = sum(count))
+  summarise(count = sum(n))
 ```
 
 ### 2. Plot out the result of (1)
@@ -92,22 +92,22 @@ ggplot(data=Result, aes(x = year, y = count)) +
 
 ```{r}
 Result2 <-
-  BabyNames %>%
+  babynames %>%
   group_by(year) %>%
-  mutate(total = sum(count)) %>%
+  mutate(total = sum(n)) %>%
   filter(name %in% c("Mary", "Jane")) %>%
-  mutate(proportion = count / total)
+  mutate(proportion = n / total)
 ```
 
 * Why is `sex` a variable in `Result2`? Eliminate it, keeping just the girls.
     ```{r}
 Result2 <-
-  BabyNames %>%
+  babynames %>%
   filter(sex == "F") %>%
   group_by(year) %>%
-  mutate(total = sum(count)) %>%
+  mutate(total = sum(n)) %>%
   filter(name %in% c("Mary", "Jane")) %>%
-  mutate(proportion = count / total)        
+  mutate(proportion = n / total)        
 ```
 
 * What happens if the `filter()` step is put *before* the `mutate()` step?
