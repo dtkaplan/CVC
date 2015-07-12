@@ -82,7 +82,7 @@ Arrival day for many coming from out of town.
     
     * **Activity**: Create a plot using data that you have imported into R.
 
- 5. [RMarkdown](http://prezi.com/e7wtfnacj9ub/) [Nick]
+ 5. [RMarkdown](http://prezi.com/vq6l5yqpnqma/) [Nick]
  
     * Creating PDF/HTML/Word documents in RStudio
     * [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
@@ -90,7 +90,6 @@ Arrival day for many coming from out of town.
     straightforward, data-oriented topic you'd like to present in class. 
         * Include at least 1 plot (even if unrelated) to make sure 
         you know how to do that.  
-        * Bonus: import data from a CSV or some other file.
         
  6. How to organize your data [Danny]
     a. Rectangular format: cases (rows) and variables (columns)
@@ -123,14 +122,14 @@ Arrival day for many coming from out of town.
  4. Working with data -- 5 verbs of `dplyr` [Danny]
  
     a. Getting your data into the right shape for graphing or analysis
-    b. **Activity**: Baby names [Nick]
-    c. Creating Functions [Randy]
+    b. **Activity**: [Baby names](Learn/BabyNames/WhatHappenedToJane.Rmd) [Nick]
+    c. Writing Functions [Randy]
     
  5. Getting your own data into R [Randy]
  
     a. [Notes](Learn/ImportingData/ImportingData.html)
     b. [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
-    c. [Gender.xls](Learn/ImportingData/Gener.xls)
+    c. [Gender.xls](Learn/ImportingData/Gender.xls)
  
 ### Wednesday
  
