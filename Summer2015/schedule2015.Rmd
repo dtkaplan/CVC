@@ -90,6 +90,8 @@ Arrival day for many coming from out of town.
     straightforward, data-oriented topic you'd like to present in class. 
         * Include at least 1 plot (even if unrelated) to make sure 
         you know how to do that.  
+        * Use the mosaic `plain` html template as a starting point
+        * Share this on RPubs (see board for login and password)
         
  6. How to organize your data [Danny]
     a. Rectangular format: cases (rows) and variables (columns)
