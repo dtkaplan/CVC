@@ -430,17 +430,18 @@ Or, looking at average residuals (compared to entire nation) of each provider:
 ProviderResids <-
   Charges %>% 
   group_by(idProvider, Latitude, Longitude) %>%
-  summarize(mresid = mean(resid, na.rm=TRUE)) 
+  summarize(mresid = mean(resid, na.rm=TRUE)) %>%
+  mutate(big = c("low","mid", "high")[2+sign(mresid) * (abs(mresid) > 0.2)])
 ```
 
 
 Or, more locally
-```{r echo=FALSE}
-frame2 <- ggmap(get_map("Connecticut", zoom=7))
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+frame2 <- ggmap(get_map("Connecticut", zoom=6))
 frame2 + 
   geom_point(data = ProviderResids,
-             aes(x=Longitude, y=Latitude, size=mresid,
-                 color=mresid), alpha = 0.6)
+             aes(x=Longitude, y=Latitude, size=abs(mresid),
+                 color = big), alpha = 0.5)
 ```
 
 0.4 on a log10 scale is a factor of 2.5 in charges.
