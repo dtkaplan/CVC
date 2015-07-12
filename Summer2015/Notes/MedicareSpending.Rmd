@@ -1,5 +1,5 @@
 ---
-title: "The Price of Health"
+title: "Health-Care Spending"
 author: "Daniel Kaplan"
 date: "Data Computing"
 output: 
@@ -452,18 +452,38 @@ When examining the relationships among multiple variables, linear models can be 
 
 Something is wrong in the join with Zips.
 
-```{r echo=FALSE, eval=FALSE}
-ResidsWithDemographics <- ProviderResids %>%
+```{r echo=FALSE}
+ResidsWithDemographics <- 
+  ProviderResids %>%
   inner_join(MedicareProviders) %>%
-  inner_join(Zips, by=c(zipProvider = "ZIP")) %>%
-  mutate(pop_density = Pop / LandArea, 
-         college_educated = College / Pop)
+  inner_join(
+    select(Zips, -Latitude, -Longitude), 
+    by=c(zipProvider = "ZIP")) 
+```
+
+```{r echo=FALSE}
+# Work around for mysterious problem with next chunk
+ResidsWithDemographics$pop_density <- 
+  with(ResidsWithDemographics,  Pop / LandArea)
+ResidsWithDemographics$college_educated <- 
+  with(ResidsWithDemographics,  College / Pop)
+```
+
+```{r echo=FALSE, eval=FALSE}
+# Why doesn't this work????
+foo <- 
+  ResidsWithDemographics %>%
+  mutate(pop_density = Pop / LandArea), 
+         college_educated = College)
+```
+
+```{r}
 mod2 <- lm(mresid ~ Income + Pop, data = ResidsWithDemographics)
-             I(Pop/LandArea) + Income + I(College/Pop),
-           data=ResidsWithDemographics )
 rsquared(mod2)
 anova(mod2)
-mod3 <- lm(mresid ~ I(Pop/LandArea) + Income + I(College/Pop) + State + Latitude, 
+mod3 <- lm(mresid ~ 
+             pop_density + Income + college_educated + 
+             stateProvider + Latitude, 
            data=ResidsWithDemographics )
 rsquared(mod3)
 anova(mod3)
