@@ -1,0 +1,131 @@
+---
+title: "What Happened to Jane?  --- Answers"
+author: "Data Computing"
+date: "CVC 2015"
+output: html_document
+---
+
+```{r include=FALSE}
+library(DCF)
+library(ggplot2)
+library(mosaic)
+your_turn <- function(...) {
+  "Your statement should replace 'your_turn()' in this chunk."
+}
+```
+
+
+## Warm-ups
+
+
+### 1. How many babies are represented?
+
+Add up the `count` over the names and years.  
+
+```{r}
+BabyNames %>%
+  summarise(total = sum(count)) 
+```
+
+Note that `summarise()` clobbers all the variables in the input data table other than those used for grouping. (No variables were used for grouping here.)
+
+
+### 2. How many babies are there in each year?
+
+```{r}
+BabyNames %>% 
+  group_by(year) %>% 
+  summarise(total = sum(count)) 
+```
+
+With `year` made a grouping variable, a separate calculation is done for each year, and `year` appears in the output.
+
+### 3. How many distinct names in each year?
+
+```{r}
+BabyNames %>%
+  group_by(year) %>%
+  summarise(name_count = n_distinct(name))
+```
+
+### 4. How many distinct names of each sex in each year?
+
+```{r}
+BabyNames %>%
+  group_by(year, sex) %>%
+  summarise(name_count = n_distinct(name))
+```
+
+## Popularity of Jane and Mary
+
+### 1. Track the yearly number of Janes and Marys over the years.
+
+```{r}
+Result <-
+  BabyNames %>%
+  filter(name %in% c("Jane", "Mary")) %>% 
+  group_by(name, year) %>% # for each year
+  summarise(count = sum(count))
+```
+
+### 2. Plot out the result of (1)
+
+Put `year` on the x-axis and the count of each name on the y-axis.
+
+```{r}
+ggplot(data=Result, aes(x = year, y = count)) +
+  geom_point()
+```
+
+* *Map* the name (Mary or Jane) to the aesthetic of color.  Remember that mapping to aesthetics is always done inside the `aes()` function.
+* Instead of using dots as the glyph, use a line that connects consecutive values: `geom_line()`.
+* Change the y-axis label to "Yearly Births": `+ ylab("Yearly Births")`
+* *Set* the line thickness to `size=2`. Remember that "setting" refers to adjusting the value of an aesthetic to a constant.  Thus, it's *outside* the `aes()` function.
+
+```{r}
+ggplot(data=Result, aes(x = year, y = count)) +
+  geom_line(aes(color = name), size=2) +
+  ylab("Yearly Births")
+```
+
+### 3. Look at the *proportion* of births rather than the count
+
+```{r}
+Result2 <-
+  BabyNames %>%
+  group_by(year) %>%
+  mutate(total = sum(count)) %>%
+  filter(name %in% c("Mary", "Jane")) %>%
+  mutate(proportion = count / total)
+```
+
+* Why is `sex` a variable in `Result2`? Eliminate it, keeping just the girls.
+    ```{r}
+Result2 <-
+  BabyNames %>%
+  filter(sex == "F") %>%
+  group_by(year) %>%
+  mutate(total = sum(count)) %>%
+  filter(name %in% c("Mary", "Jane")) %>%
+  mutate(proportion = count / total)        
+```
+
+* What happens if the `filter()` step is put *before* the `mutate()` step?
+
+The `total` is just for Mary and Jane, ignoring all the other babies.
+
+* Graph the results
+```{r}
+ggplot(data=Result2, aes(x = year, y = proportion)) +
+  geom_line(aes(color = name), size=2) +
+  ylab("Yearly Births")
+```
+
+* Add a vertical line to mark a year in which something happened that might relate to the increase or decrease the popularity of the name.  Example: The movie [*Whatever Happened to Baby Jane*](http://en.wikipedia.org/wiki/What_Ever_Happened_to_Baby_Jane%3F_%281962_film%29) came out in 1962.  The glyph is a vertical line: `geom_vline()`.
+  
+```{r}
+ggplot(data=Result2, aes(x = year, y = proportion)) +
+  geom_line(aes(color = name), size=2) +
+  ylab("Yearly Births") +
+  geom_vline(x=1962)
+```
