@@ -179,7 +179,11 @@ sum( ~ totalDischarges, data = MedicareCharges)</code></pre>
 <div id="variation-by-provider" class="section level2">
 <h2>Variation by provider</h2>
 <p>Do different providers charge and get paid differently? To answer this question, it would be helpful to have a data table that looks like this:</p>
-<p>Provider | Average payment ———|—————– 10001 | 24000 10005 | 29000 | and so on.</p>
+<pre><code>Provider | Average payment
+---------|----------------- 
+10001    | 24000
+10005    | 29000
+         | and so on.</code></pre>
 <p>The numbers here are made up, but the structure of the data table is not. Each row is one case: a provider. Each column is one variable: the provider ID and the average charge.</p>
 <p>Data like this are called “glyph-ready.” Once you have data in this form, it can be very easy to make whatever plot or other display you want.</p>
 <p><em>Wrangling</em> is the process by which data are manipulated (or “transformed” or “processed”) from their original form into a glyph-ready form. Here’s the original form of the <code>MedicareCharges</code> table:</p>

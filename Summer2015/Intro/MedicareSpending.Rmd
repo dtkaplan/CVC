@@ -160,12 +160,14 @@ $246 billion was charged.  "Only" $67 billion was paid.
 
 Do different providers charge and get paid differently? To answer this question, it would be helpful to have a data table that looks like this:
 
+```
 Provider | Average payment
----------|-----------------
+---------|----------------- 
 10001    | 24000
 10005    | 29000
          | and so on.
-         
+```
+        
 The numbers here are made up, but the structure of the data table is not.  Each row is one case: a provider.  Each column is one variable: the provider ID and the average charge.      
 
 Data like this are called "glyph-ready." Once you have data in this form, it can be very easy to make whatever plot or other display you want.
