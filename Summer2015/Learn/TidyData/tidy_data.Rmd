@@ -1,0 +1,80 @@
+---
+title: Tidy Data
+author: D Kaplan
+date: "CVC 2015"
+output: 
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r include=FALSE}
+require(DataComputing)
+require(dplyr)
+require(printr)
+```
+
+
+# Data has all sorts of forms
+
+<iframe width="210" height="158" src="https://www.youtube.com/embed/MDMRcyJKzdU" frameborder="0" allowfullscreen></iframe>
+
+photos, signals, sequences, text
+
+We're going to use just one very simple format: the *data table*.
+
+## Data Tables
+
+```{r echo=FALSE}
+set.seed(101)
+Tmp <- BabyNames %>% sample_n(size = 5) %>% arrange(year)
+row.names(Tmp) <- NULL
+Tmp
+```
+
+## Anatomy of a data table
+
+<div class="columns-2">
+
+![](Images/02_ColumnRow.png)
+
+<!-- Source: <http://www.gcflearnfree.org/access2010/2.2> -->
+
+* A row is always a **case**
+* A column is always a **variable**
+
+</div>
+
+## What's a variable?
+
+<div class="columns-2">
+
+![](Images/02_ColumnRow.png)
+
+A quantity or category that may vary from case to case.
+
+Two main types:
+
+1. Quantitative: a number
+2. Categorical: one of a set of discrete possibilities
+
+
+### In Tidy Data
+
+* No units
+* No footnotes
+* Same kind of thing for each case, e.g. don't mix miles and km.
+
+</div>
+
+## Cases
+
+The **object** from which the variables were measured.
+
+Examples: 
+* A person, a country, an earthquake, a bike rental
+
+
+
+# Cases and Variables
+
+Personnel in the US armed forces: [spreadsheet](https://docs.google.com/spreadsheets/d/1Ow6Cm4z-Z1Yybk3i352msulYCEDOUaOghmo9ALajyHo/edit#gid=1811988794)
