@@ -44,6 +44,16 @@ is great.
 
 # Getting Oriented to RStudio
 
+## Access to RStudio Sever
+
+ * [rstudio.calvin.edu](http://rstudio.calvin.edu:8787)
+ * Use your gmail email address as userid
+ * If you are not logged in to gmail, you will be sent to google to authenticate.
+
+<center>
+<img src="images/rstudio-calvin.png" width=85%>
+</center>
+
 ## Menu
 
  * Files, Edit, Code, View, etc.
@@ -697,17 +707,17 @@ bwplot( age ~ sex, data=HELPrct )
 ```
 
 ```{r echo=FALSE}
-  mean( age ~ sex, data=HELPrct )
-    coef(lm( age ~ sex, data=HELPrct ))
+   mean( age ~ sex, data=HELPrct )
+coef(lm( age ~ sex, data=HELPrct ))
 ```
 
 ## Exercises
 
 Answer each question with both a numberical summary and a graphical summary.
 
- 1. Are boys feet larger than girls feet (`KidsFeet`)
+ 1. Are boys feet larger than girls feet? (`KidsFeet`)
  
- 2. 
+ 2. Do boys and girls differently shaped feet? (`KidsFeet`)
 
 # Some Other Things in mosaic
 
