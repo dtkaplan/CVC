@@ -63,7 +63,7 @@ Arrival day for many coming from out of town.
 
  1. Welcome
     a. Welcome to CVC [Ben]
-    b. [Goals and outline for the week](Slides/IntroOverview.html) [Randy]
+    b. [Goals and outline for the week](Intro/IntroOverview.html) [Randy]
 
  2. Introductions [Randy]
     a. **Activity**: Split up into groups of three or four and introduce yourselves. 
@@ -113,7 +113,7 @@ Arrival day for many coming from out of town.
     report on the status of your project idea(s).
  
  2. The graphics-data interface
-    a. graphing concepts: [slides](Slides/VizQuickStart.html) [Randy/Danny]
+    a. graphing concepts: [slides](Learn/VizConcepts/VizConcepts.html) [Randy/Danny]
     b. **Activity:** data <-> graphs [Danny]
     
  3. Introduction to `ggplot2` --  turning the concepts into pictures with the grammar of graphics
