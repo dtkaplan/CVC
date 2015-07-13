@@ -116,11 +116,17 @@ Two main types:
 2. Categorical: one of a set of discrete possibilities
 
 
-### In Tidy Data
+## In Tidy Data
 
 * No units
 * No footnotes
+
+Instead, this information should go into a codebook.
+
+Values and Cases need to be commensurate
+
 * Same kind of thing for each case, e.g. don't mix miles and km.
+* Within a variable, only the same kind of value for each case.
 
 </div>
 
@@ -160,3 +166,17 @@ Go to this spreadsheet ...[Personnel in the US armed forces](https://docs.google
 4. Suppose that the case was "an individual in the armed forces."  
     What variables would you use to capture the information in this table?
 
+## Creating a chain of evidence
+
+It's important to be able to state definitely where your data came from.
+
+Part of this is not to edit your data.  Once you have a table, don't change anything in it.
+
+Instead, do your data-transformations in R so that you have a complete statement of how the data you collected are related to your analysis.
+
+## Summary
+
+* Data Table: Rectangular format: cases (rows) and variables (columns)
+* Separate analysis from data storage.
+* Use a codebook to describe your cases and variables in detail
+* Keep your data **tidy**

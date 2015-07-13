@@ -94,14 +94,16 @@ Arrival day for many coming from out of town.
         * Share this on RPubs [here](http://rpubs.com/uscots-2015) via "publish" button in RStudio. (See board for login and password.)
         
  6. How to organize your data [Danny]
-    a. Rectangular format: cases (rows) and variables (columns)
-
-    b. Separate analysis from data storage.
-       * don't forget a codebook that describes your cases and variables in detail
-       
-    c. **Activity**: The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct.  Identify the elements of this spreadsheet that are not in standard rectangular data format.
     
-    d. **Activity**: Enter data [in this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&usp=sharing)
+    a. [Introduction slides](http://dtkaplan.github.io/CVC/Summer2015/Learn/TidyData/tidy_data.html), but the basics are
+    
+    * Rectangular format: cases (rows) and variables (columns)
+    * Separate analysis from data storage.
+    * use a codebook to describe your cases and variables in detail
+       
+    b. **Activity**: The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct.  Identify the elements of this spreadsheet that are not in standard rectangular data format.
+    
+    c. **Activity**: Enter data [in this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&usp=sharing)
     indicating types of data you are interested in.
 
 

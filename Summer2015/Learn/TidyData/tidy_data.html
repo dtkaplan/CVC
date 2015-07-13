@@ -231,12 +231,20 @@
 <li>Categorical: one of a set of discrete possibilities</li>
 </ol>
 
-<h3>In Tidy Data</h3>
+</article></slide><slide class=''><hgroup><h2>In Tidy Data</h2></hgroup><article  id="in-tidy-data">
 
 <ul>
 <li>No units</li>
 <li>No footnotes</li>
+</ul>
+
+<p>Instead, this information should go into a codebook.</p>
+
+<p>Values and Cases need to be commensurate</p>
+
+<ul>
 <li>Same kind of thing for each case, e.g. don&#39;t mix miles and km.</li>
+<li>Within a variable, only the same kind of value for each case.</li>
 </ul></div>
 
 </article></slide><slide class=''><hgroup><h2>Cases</h2></hgroup><article  id="cases">
@@ -276,7 +284,24 @@
 <li>How are the data not tidy?</li>
 <li>What might these data look like in tidy form?</li>
 <li>Suppose that the case was &quot;an individual in the armed forces.&quot;<br/>What variables would you use to capture the information in this table?</li>
-</ol></article></slide>
+</ol>
+
+</article></slide><slide class=''><hgroup><h2>Creating a chain of evidence</h2></hgroup><article  id="creating-a-chain-of-evidence">
+
+<p>It&#39;s important to be able to state definitely where your data came from.</p>
+
+<p>Part of this is not to edit your data. Once you have a table, don&#39;t change anything in it.</p>
+
+<p>Instead, do your data-transformations in R so that you have a complete statement of how the data you collected are related to your analysis.</p>
+
+</article></slide><slide class=''><hgroup><h2>Summary</h2></hgroup><article  id="summary">
+
+<ul>
+<li>Data Table: Rectangular format: cases (rows) and variables (columns)</li>
+<li>Separate analysis from data storage.</li>
+<li>Use a codebook to describe your cases and variables in detail</li>
+<li>Keep your data <strong>tidy</strong></li>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>
