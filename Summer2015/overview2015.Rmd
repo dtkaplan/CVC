@@ -28,7 +28,7 @@ output:
 
 ### Working Schedule
 
-A working schedule will be maintained [here](schedule.html) during
+A working schedule will be maintained [here](schedule2015.html) during
 the workshop.  This will include links to presentations and resources
 from the workshop.
 
