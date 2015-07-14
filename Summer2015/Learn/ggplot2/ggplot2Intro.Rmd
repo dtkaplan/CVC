@@ -21,6 +21,7 @@ opts_chunk$set(
   message=FALSE,
   warning=FALSE,
   size='small',
+  cache=TRUE,
   tidy=FALSE
   )
 require(lubridate)
@@ -49,7 +50,7 @@ What I can't do in one session
 
 
 Set up
-===
+======
 
 ```{r}
 require(mosaic)
@@ -70,16 +71,16 @@ The grammar of graphics
 
  * x position, y position, color, fill, shape, size, etc.
 
-**stat**: a transformation applied to data before geom gets it
-
- * example: histograms work on binned data
- 
 **scale**: conversion of raw data to visual display
 
  * particular assignment of colors, shapes, sizes, etc. 
  
 **guide**: helps user convert visual data back into raw data (legends, axes)
 
+**stat**: a transformation applied to data before geom gets it
+
+ * example: histograms work on binned data
+ 
 How do we make this plot?
 =========================
 
@@ -91,19 +92,37 @@ ggplot(
 
 \pause
 
-What does R need to know?
+Two Questions:
 
 \pause
 
- * data source: `Births78`
-
- * geom: points
-
- * aesthetics: 
+ 1. What do we want R to do?  (What is the goal?)
  
-    * `date -> x`
-    * `births -> y`
-    * default color (same for all points) 
+ 
+ 2. What does R need to know?
+
+How do we make this plot?
+=========================
+
+```{r, echo=FALSE}
+ggplot(
+  data=Births78, aes(x=date, y=births)) + 
+  geom_point()
+```
+
+Two Questions:
+
+ 1. Goal: scatterplot = a plot with points
+ 
+ 2. What does R need to know?
+ 
+    * data source: `Births78`
+
+    * aesthetics: 
+ 
+        * `date -> x`
+        * `births -> y`
+        * default color (same for all points) 
 
 
 How do we make this plot?
@@ -114,44 +133,59 @@ ggplot(data=Births78, aes(x=date, y=births)) +
   geom_point()
 ```
 
-What does R need to know?
-\pause
+ 1. Goal: scatterplot = a plot with points
+ 
+    * `ggplot() + geom_point()`
+ 
+ 2. What does R need to know?
+ 
+    * data source: `data = Births78`
 
-* a plot with points: `ggplot() + geom_point()`
-
-\pause
-
-* how to map our aesthetics: `aes(x=date, y=births)`
-
-\pause
-
- * What data to use: `data = Births78`
+    * aesthetics: `aes(x = date, y = births)`
 
 \pause
 
-```{r, eval=FALSE}
-ggplot(data = Births78) + 
-  geom_point(aes(x=date, y=births))
+```{r, eval=FALSE, fig.height=1.5}
+ggplot(data=Births78, aes(x=date, y=births)) + 
+  geom_point()
 ```
 
+\pause
+
+```{r, eval=FALSE, fig.height=1.5}
+ggplot() +
+  geom_point(data=Births78, aes(x=date, y=births))  
+```
 
 How do we make this plot?
 ====================
 
 ```{r, echo=FALSE}
 Births78 <- 
-  Births78 %>% mutate(wday = lubridate::wday(date, label=TRUE))
+  Births78 %>% mutate(wday = wday(date, label=TRUE))
 ggplot(data=Births78) +
   geom_point(aes(x=date, y=births, color=wday)) 
 ```
 
-What information has changed?  \pause
+What has changed?  \pause
 
-* new aesthetic: mapping color to day of week
+ * new aesthetic: mapping color to day of week
 
-```{r, eval=FALSE}
-Births78 <-  Births78 %>% 
-  mutate(wday = lubridate::wday(date, label=TRUE))
+Adding day of week to the data set
+==================================
+
+The `wday()` function in the `lubridate` package computes 
+the day of the week from a date.
+
+```{r}
+Births78 <-  
+  Births78 %>% 
+  mutate(wday = wday(date, label=TRUE))
+```
+
+\pause
+
+```{r, fig.height=2.0}
 ggplot(data=Births78) +
   geom_point(aes(x=date, y=births, color=wday))
 ```
@@ -190,14 +224,12 @@ lines
 ```{r, eval=FALSE}
 ggplot(data=Births78, 
        aes(x=date, y=births, color=wday)) + 
-  geom_point() + 
-  geom_line()
+  geom_point() +  geom_line()
 ```
 \pause
 
  *  The layers are placed one on top of the other:  the points 
-are *below* and the lines are *above*.   Sometimes the order of 
-the layers can be important because of overplotting.
+are *below* and the lines are *above*.   
 
  * `data` and `aes` specified in `ggplot()` affect all geoms
  
@@ -275,7 +307,7 @@ Other geoms
 apropos("^geom_")
 ```
 
-help pages will tell you their aesthetics and default stats
+help pages will tell you their aesthetics, default stats, etc.
 
 ```{r, eval=FALSE}
 ?geom_area             # for example
@@ -373,7 +405,7 @@ How old are people in the HELP study?
 ===============================
 
 \pause
-```{r, fig.height=1.5}
+```{r, fig.height=1.5, message=TRUE}
 HELPrct %>% 
   ggplot(aes(x=age)) + 
   geom_histogram()
@@ -418,6 +450,7 @@ Every geom comes with a default stat
 
 * for simple cases, the stat is `stat_identity()` which does nothing
 * we can mix and match geoms and stats however we like
+
 ```{r, fig.height=2.0}
 HELPrct %>% 
   ggplot(aes(x=age)) + 
@@ -426,7 +459,7 @@ HELPrct %>%
 
 Selecting stat and geom manually
 ================================
-Every stat comes with a default geom
+Every stat comes with a default geom, every geom with a default stat
 
 * we can specify stats instead of geom, if we prefer
 * we can mix and match geoms and stats however we like
@@ -464,18 +497,18 @@ Your turn:  How much do they drink? (i1)
 ===================
 
 Create a plot that shows the distribution of the average daily
-alcohol consumption in the past 30 days (`i2`).
+alcohol consumption in the past 30 days (`i1`).
 
 How much do they drink? (i1)
 ===================
 
 ```{r, fig.height=1.5}
 HELPrct %>% 
-  ggplot(aes(x=i1)) +  geom_histogram()
+  ggplot(aes(x=i1)) + geom_histogram()
 ```
 ```{r, fig.height=1.5}
 HELPrct %>% 
-  ggplot(aes(x=i1)) +  geom_area(stat="density")
+  ggplot(aes(x=i1)) + geom_area(stat="density")
 ```
 
 Covariates: Adding in more variables
@@ -607,6 +640,16 @@ Multiple layers
 ggplot( data=HELPrct, aes(x=sex, y=age)) +
   geom_boxplot(outlier.size=0) +
   geom_jitter(alpha=.6) +
+  coord_flip()
+```
+
+Multiple layers
+===============
+
+```{r}
+ggplot( data=HELPrct, aes(x=sex, y=age)) +
+  geom_boxplot(outlier.size=0) +
+  geom_point(alpha=.6, position=position_jitter(width=.1, height=0)) +
   coord_flip()
 ```
 

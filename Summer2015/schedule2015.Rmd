@@ -114,7 +114,7 @@ Arrival day for many coming from out of town.
     a. **Activity**: come prepared to give a (very brief) 
     report on the status of your project idea(s).
  
- 2. The graphics-data interface
+ 2. The graphics-data interface [Danny]
     a. graphing concepts: [slides](Learn/VizConcepts/VizConcepts.html) [Randy/Danny]
     b. **Activity:** data <-> graphs [Danny]
     
@@ -141,7 +141,7 @@ Arrival day for many coming from out of town.
     a. merging data from multiple sources (joining)
     b. `gather()`
     
- 2. More `ggplot2` [Randy]
+ 2. More `ggplot2`? [Randy]
     
  3. Plans for Phase 2
     a. Project Quick Reports
@@ -161,5 +161,3 @@ Arrival day for many coming from out of town.
   5. Machine learning [Danny]
   6. Text mining [Nick]
   7. Modeling in R [Nick]
-
-
