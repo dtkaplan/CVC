@@ -117,6 +117,7 @@ Arrival day for many coming from out of town.
  2. The graphics-data interface [Danny]
     a. graphing concepts: [slides](Learn/VizConcepts/VizConcepts.html) [Randy/Danny]
     b. **Activity:** data <-> graphs [Danny]
+    PDF with [the graphs](Learn/VizConcepts/Exercise/graphics_for_grammar.pdf) & the [questions](Learn/VizConcepts/Exercise/graphics_questions.pdf)
     
  3. Introduction to `ggplot2` --  turning the concepts into pictures with the grammar of graphics
  
