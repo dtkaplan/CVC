@@ -105,7 +105,7 @@ Quiz: What kind of thing is each argument?
 
 ## Key Data Verbs
 
-Memorize these and what they do!
+Memorize these and what they do! 
 
 * `arrange()`
 * `filter()`
@@ -114,35 +114,19 @@ Memorize these and what they do!
 * `select()`
 * `summarise()`
 
+You also need to know what arguments are needed for each.
+
 Also very important, but to be covered later, 
 
 * joins such as `inner_join()`
 
 Some others, `sample_n()`, `rename()`, ...
 
+## Zebrafish
+
+Help me edit this file to show some of the data verbs at work.
+
 ## Try them out
 
-* Barbara's Shiny App
+* [Barbara's Shiny App](http://rstudio.calvin.edu:3838/rpruim/dataOps/)
 
-## Small exercises
-
-
-## Basement
-
-1. Minimal R [DTK, 5 min] THE SLIDES WILL GO HERE.
-    * data frames
-    * functions and arguments
-    * piping
-#. Wrangling data verbs vs reduction verbs vs transformation verbs. [DTK, 10 min] THESE WILL BE A FEW SLIDES.  REFER TO THE CHEAT SHEET.
-#. Activity: What happened to Mary and Jane? [DTK, 15 min] THIS WILL BE USCOTS-02.Rmd
-    * `filter()`, piping, `select()`, `arrange()`
-    * filter by name, by sex, by year range.
-    * `group_by()` and `summarise()`
-
-Wrangling data verbs vs reduction verbs vs transformation verbs. [DTK, 10 min] THESE WILL BE A FEW SLIDES.  REFER TO THE CHEAT SHEET.
-
-* `group_by()` and `summarise()`
-* Add up selected names over the years.
-* How many babies in each year?
-* How many distinct names in each year?
-* Entropy?

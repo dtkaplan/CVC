@@ -179,9 +179,14 @@
 
 </article></slide><slide class=''><hgroup><h2>Reduction Functions</h2></hgroup><article  id="reduction-functions">
 
-<p>Take as arguments * variable(s) * transformation expressions</p>
+<p>Take as arguments</p>
 
-</article></slide><slide class=''><hgroup><h2>Examples</h2></hgroup><article  id="examples">
+<ul>
+<li>variable(s)</li>
+<li>transformation expressions</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Examples of Simple Wrangling Statements</h2></hgroup><article  id="examples-of-simple-wrangling-statements">
 
 <ol>
 <li><code>filter(NHANES, age &gt;= 21)</code></li>
@@ -208,34 +213,37 @@
 <li><code>OrdwayBirds %&gt;% join(SpeciesName, by=c(&quot;&quot;))</code></li>
 </ol>
 
-</article></slide><slide class=''><hgroup><h2>Basement</h2></hgroup><article  id="basement">
+</article></slide><slide class=''><hgroup><h2>Key Data Verbs</h2></hgroup><article  id="key-data-verbs">
 
-<ol>
-<li>Minimal R [DTK, 5 min] THE SLIDES WILL GO HERE.
-
-<ul>
-<li>data frames</li>
-<li>functions and arguments</li>
-<li>piping</li>
-</ul></li>
-<li>Wrangling data verbs vs reduction verbs vs transformation verbs. [DTK, 10 min] THESE WILL BE A FEW SLIDES. REFER TO THE CHEAT SHEET.</li>
-<li>Activity: What happened to Mary and Jane? [DTK, 15 min] THIS WILL BE USCOTS-02.Rmd
+<p>Memorize these and what they do!</p>
 
 <ul>
-<li><code>filter()</code>, piping, <code>select()</code>, <code>arrange()</code></li>
-<li>filter by name, by sex, by year range.</li>
-<li><code>group_by()</code> and <code>summarise()</code></li>
-</ul></li>
-</ol>
+<li><code>arrange()</code></li>
+<li><code>filter()</code></li>
+<li><code>group_by()</code></li>
+<li><code>mutate()</code></li>
+<li><code>select()</code></li>
+<li><code>summarise()</code></li>
+</ul>
 
-<p>Wrangling data verbs vs reduction verbs vs transformation verbs. [DTK, 10 min] THESE WILL BE A FEW SLIDES. REFER TO THE CHEAT SHEET.</p>
+<p>You also need to know what arguments are needed for each.</p>
+
+<p>Also very important, but to be covered later,</p>
 
 <ul>
-<li><code>group_by()</code> and <code>summarise()</code></li>
-<li>Add up selected names over the years.</li>
-<li>How many babies in each year?</li>
-<li>How many distinct names in each year?</li>
-<li>Entropy?</li>
+<li>joins such as <code>inner_join()</code></li>
+</ul>
+
+<p>Some others, <code>sample_n()</code>, <code>rename()</code>, &#8230;</p>
+
+</article></slide><slide class=''><hgroup><h2>Zebrafish</h2></hgroup><article  id="zebrafish">
+
+<p>Help me edit this file to show some of the data verbs at work.</p>
+
+</article></slide><slide class=''><hgroup><h2>Try them out</h2></hgroup><article  id="try-them-out">
+
+<ul>
+<li><a href='http://rstudio.calvin.edu:3838/rpruim/dataOps/' title=''>Barbara&#39;s Shiny App</a></li>
 </ul></article></slide>
 
 
