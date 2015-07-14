@@ -128,6 +128,8 @@ Arrival day for many coming from out of town.
  
     a. Getting your data into the right shape for graphing or analysis
     b. **Activity**: [Baby names](Learn/BabyNames/WhatHappenedToJane.Rmd) [Nick]
+<!-- [Baby names sample solution](Learn/BabyNames/WhatHappenedToJane-answers.pdf) -->    
+
     c. Writing Functions [Randy]
     
  5. Getting your own data into R [Randy]
