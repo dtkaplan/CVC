@@ -208,12 +208,14 @@ There's a lot of variation!
 
 Perhaps that might be due to different providers offering different procedures?  To examine the variation from one DRG to another, a glyph-ready table like this would be appropriate:
 
+```
 DRG | average payment
 ----|-----------------
 039 | 33000
 057 | 20000
     | and so on
-    
+```
+
 The wrangling statement for producing this glyph-ready data table is very similar to that used to create the provider-by-provider payments.  (Try figuring it out yourself.)
 
 Here's a display of the result:
