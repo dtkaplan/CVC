@@ -20,8 +20,35 @@ They are interesting *why?* [DTK: Even though I have a joint paper about the act
 
 # Data as they arrived for me
 
+Mary, this is just for our internal purposes.  It's here to document where the data came from and provide a "chain of evidence" for the validity of the data to be presented in your research publication.  (But I should have saved the original CSV file with a better name to refer to this specific run.)
+
 ```{r}
-OriginalForm <- readr::read_csv("Zebrafish.csv")
+OriginalForm <- readr::read_csv("Zebrafish.csv",
+                                stringsAsFactor)
 OriginalForm[1:8,1:6]
 ```
+
+I'm going to translate this to a long form. Think of this as cleaning more than it is wrangling.  Cleaning is often ugly.
+```{r}
+Tmp <- t(OriginalForm) # transpose
+nms <- Tmp[1,]
+Tmp <- Tmp[-1,]
+nrows <- nrow(Tmp)
+Tmp <- data.frame(matrix(as.numeric(Tmp), nrow = nrows),
+                  stringsAsFactors=FALSE)
+names(Tmp) <- nms
+Activity <- gather(Tmp, "fish", "value", -time, -temp)
+```
+
+Temperature to Fahrenheit
+Time to hours
+
+Just fish A1
+
+Just temperatures greater than 28 degrees
+
+Mean and standard deviation of each fish
+
+Arrange by maximum activity for each fish
+
 
