@@ -180,3 +180,19 @@ Instead, do your data-transformations in R so that you have a complete statement
 * Separate analysis from data storage.
 * Use a codebook to describe your cases and variables in detail
 * Keep your data **tidy**
+
+
+## Exercise 1
+
+The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct. 
+
+1. What is the case here?
+2. How are the data not tidy?
+3. What might these data look like in tidy form?
+4. The data table `DataComputing::Minneapolis2013` lists the choices on individual ballots.  What is the case?
+5. The cases in `DataComputing::Minneapolis2013` can be aggregated to produce *some* of the variables in the spreadsheet.  
+    a. Which variables in the spreadsheet *cannot* be recreated from an aggregation of the ballot data? (Background on the voting law: to vote, a person must be registered in advance or do so at the polling place.  Votes can be made at the polling place or, for a voter who is away, by mail as an absentee.  Some ballots are not legible or otherwise violate voting rules; these are called "spoiled." )
+    b. Imagine a data table like `DataComputing::Minneapolis2013` that could be aggregated to produce the variables in the spreadsheet.  What would the cases be in that table?
+    
+    
+<!-- ANSWER to 5. The variables relating to registration and absentee voting have information not in the ballot data table. The disaggregated table would have "registered voters" as cases

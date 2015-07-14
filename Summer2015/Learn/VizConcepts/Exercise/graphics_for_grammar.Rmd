@@ -1,0 +1,54 @@
+---
+title: "Graphics for Grammar Analysis"
+author: "Danny Kaplan"
+date: "Data Computing"
+output: rmarkdown::tufte_handout
+---
+
+# Scientific graphics
+
+## One \hrulefill
+
+\includegraphics[width=2in]{GraphicsFiles/AndyZ-1.png}
+
+## Two \hrulefill
+
+\includegraphics[width=\textwidth]{GraphicsFiles/AndyZ-2.png}
+
+## Three \hrulefill
+
+\includegraphics[width=3in]{GraphicsFiles/AndyZ-3.png}
+
+## Four \hrulefill
+
+\includegraphics[width=\textwidth]{GraphicsFiles/AndyZ-4.png}
+
+# Data Visualizations
+
+## Five \hrulefill
+
+\includegraphics[width=\textwidth]{GraphicsFiles/NYT-admissions-gap.png}
+
+## Six \hrulefill
+
+\includegraphics[width=\textwidth]{GraphicsFiles/NYT-pitching.png}
+
+## Seven \hrulefill
+
+\includegraphics[width=\textwidth]{GraphicsFiles/NYT-science-exam.png}
+
+## Eight \hrulefill
+
+\includegraphics[width=\textwidth]{GraphicsFiles/sankey.png}
+
+
+
+
+
+
+
+
+
+
+
+
