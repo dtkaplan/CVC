@@ -126,7 +126,7 @@ Arrival day for many coming from out of town.
 
  4. Working with data -- 5 verbs of `dplyr` [Danny]    
     Getting your data into the right shape for graphing or analysis
-    a. [Slides](Summer2015/Learn/Wrangling/WranglingQuickStart.html) and [Zebrafish analysis Rmd](Summer2015/Learn/Wrangling/Zebrafish.Rmd) and a [wrangling application](http://rstudio.calvin.edu:3838/rpruim/dataOps/)
+    a. [Slides](Learn/Wrangling/WranglingQuickStart.html) and [Zebrafish analysis Rmd](Learn/Wrangling/Zebrafish.Rmd) and a [wrangling application](http://rstudio.calvin.edu:3838/rpruim/dataOps/)
     b. **Activity**: [Baby names](Learn/BabyNames/WhatHappenedToJane.Rmd) [Nick]
 <!-- [Baby names sample solution](Learn/BabyNames/WhatHappenedToJane-answers.pdf) -->    
     c. Writing Functions [Randy]
