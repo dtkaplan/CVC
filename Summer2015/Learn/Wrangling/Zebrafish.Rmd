@@ -1,0 +1,27 @@
+---
+title: "Zebrafish motion"
+author: "Danny Kaplan & Mary Harrington"
+date: "July 14, 2015"
+output: html_document
+---
+
+```{r message=FALSE,warning=FALSE}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(printr) # for nice table printing
+```
+
+# Introduction
+
+[Still in draft ...] Zebrafish are fish who swim ... *add more profound description*.
+
+They are interesting *why?* [DTK: Even though I have a joint paper about the activity of Mauthner neurons in zebrafish, that probably has nothing to do with Mary's interests.
+
+# Data as they arrived for me
+
+```{r}
+OriginalForm <- readr::read_csv("Zebrafish.csv")
+OriginalForm[1:8,1:6]
+```
+

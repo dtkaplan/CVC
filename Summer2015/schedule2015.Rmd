@@ -125,8 +125,8 @@ Arrival day for many coming from out of town.
     b. [Dope Sheets](Learn/ggplot2/DopeSheets.pdf)
 
  4. Working with data -- 5 verbs of `dplyr` [Danny]
- 
-    a. Getting your data into the right shape for graphing or analysis
+    Getting your data into the right shape for graphing or analysis
+    a. [Slides](Summer2015/Learn/Wrangling/WranglingQuickStart.html) and [Zebrafish analysis Rmd](Summer2015/Learn/Wrangling/Zebrafish.Rmd) and a [wrangling application](http://rstudio.calvin.edu:3838/rpruim/dataOps/)
     b. **Activity**: [Baby names](Learn/BabyNames/WhatHappenedToJane.Rmd) [Nick]
     c. Writing Functions [Randy]
     

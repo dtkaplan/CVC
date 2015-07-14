@@ -1,0 +1,148 @@
+---
+title: "Wrangling Quick Start"
+author: "Daniel Kaplan"
+date: "Data Computing"
+output: ioslides_presentation
+---
+
+```{r include=FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+## Wrangling
+
+The process of transforming, aggregating, and combining data to put it in a glyph-ready form for your particular purpose.
+
+### Other terms used
+
+* Data Processing
+* Data Manipulation
+
+### *Data Computing* book uses "Wrangling" because
+
+* "Wrangling" is distinctive and therefore rises about cognitive noise
+* "Wrangling" doesn't carry misleading connotations 
+    * "Processing" suggests routine
+    * "Manipulation" suggests nefarious intent
+    
+## Five Main Kinds of "Things"
+
+"Thing" a.k.a. "object"
+
+1. **Data tables**: contain variables 
+    Our convention: first letter is upper-case: `BabyNames`
+#. **Variables**: the stuff in data tables
+    Our convention: first letter is lower-case: `year`
+#. **Scalars**: e.g. `"Treatment"`, `42`
+#. **Functions** and their arguments: Specify actions and carry them out
+    - positional arguments
+    - named arguments
+#. **Pipes**: Arrange sequences of actions
+
+## Three Main Kinds of Functions for Wrangling
+
+1. Data verbs
+2. Transformation functions
+3. Reduction functions
+
+## Data Verbs
+
+- **Always** take a data table as an input.
+- May also take other arguments, e.g. 
+    * variables, 
+    * transformation or reduction operations
+    * a second data table
+- **Always** return a data table as the output
+
+Note: Our style is **never** to use `$` or other indexing operations.  If you're using `$`, try to figure out another way.
+
+## Transformation Functions
+
+Always take variables and/or scalars as inputs
+
+EXAMPLES 
+
+A transformation expression is typically:
+
+- `function(variable)`
+- `function(variable1, variable2)`
+- `function(variable, scalar)`
+
+For instance:
+
+- `age > 18`
+- `weight / height ^ 2`
+
+## Reduction Functions
+
+Take as arguments
+
+* variable(s)
+* transformation expressions
+
+
+## Examples of Simple Wrangling Statements
+
+1. `filter(NHANES, age >= 21)`
+#. `group_by(BabyNames, name, year)`
+#. `select(NHANES, age, smoking)`
+#. `mutate(NHANES, age_group = ntiles(age, 5))`
+#. `join(OrdwayBirds, SpeciesName, by=c("species" = "corrected"))`
+
+Quiz: What kind of thing is each argument?
+
+## Pipes
+
+* Streamline the appearance of data verbs
+* Support chains of operations: a step-by-step style
+
+1. `NHANES %>% filter(age >= 21)`
+#. `BabyNames %>% group_by(name, year)`
+#. `NHANES %>% select(age, smoking)`
+#. `NHANES %>% mutate(age_group = ntiles(age, 5))`
+#. `OrdwayBirds %>% join(SpeciesName, by=c(""))`
+
+## Key Data Verbs
+
+Memorize these and what they do!
+
+* `arrange()`
+* `filter()`
+* `group_by()`
+* `mutate()`
+* `select()`
+* `summarise()`
+
+Also very important, but to be covered later, 
+
+* joins such as `inner_join()`
+
+Some others, `sample_n()`, `rename()`, ...
+
+## Try them out
+
+* Barbara's Shiny App
+
+## Small exercises
+
+
+## Basement
+
+1. Minimal R [DTK, 5 min] THE SLIDES WILL GO HERE.
+    * data frames
+    * functions and arguments
+    * piping
+#. Wrangling data verbs vs reduction verbs vs transformation verbs. [DTK, 10 min] THESE WILL BE A FEW SLIDES.  REFER TO THE CHEAT SHEET.
+#. Activity: What happened to Mary and Jane? [DTK, 15 min] THIS WILL BE USCOTS-02.Rmd
+    * `filter()`, piping, `select()`, `arrange()`
+    * filter by name, by sex, by year range.
+    * `group_by()` and `summarise()`
+
+Wrangling data verbs vs reduction verbs vs transformation verbs. [DTK, 10 min] THESE WILL BE A FEW SLIDES.  REFER TO THE CHEAT SHEET.
+
+* `group_by()` and `summarise()`
+* Add up selected names over the years.
+* How many babies in each year?
+* How many distinct names in each year?
+* Entropy?
