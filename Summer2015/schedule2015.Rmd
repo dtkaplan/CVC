@@ -130,8 +130,9 @@ Arrival day for many coming from out of town.
         * [Zebrafish analysis Rmd](Learn/Wrangling/ZebrafishRmd.html) 
         * Zebrafish raw data: [Zebrafish.csv](Learn/Wrangling/Zebrafish.csv)
         * Zebrafish tidied/wrangled data: [Activity.csv](Learn/Wrangling/Activity.csv)
-    b. **Activity**: [Baby names](Learn/BabyNames/WhatHappenedToJaneRmd.html) [Nick]
-<!-- [Baby names sample solution](Learn/BabyNames/WhatHappenedToJane-answers.pdf) -->    
+    b. **Activity**: [Baby names](Learn/BabyNames/WhatHappenedToJaneCopyPasteRmd.html) [Nick]
+    * [Baby names sample solution](Learn/BabyNames/WhatHappenedToJane-answers.pdf)    
+    
  5. Getting your own data into R [Randy]
  
     a. [Notes](Learn/ImportingData/ImportingData.html)
