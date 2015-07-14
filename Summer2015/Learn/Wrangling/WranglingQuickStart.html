@@ -173,7 +173,7 @@
 <p>For instance:</p>
 
 <ul>
-<li><code>age &gt; 18</code></li>
+<li><code>Age &gt; 18</code></li>
 <li><code>weight / height ^ 2</code></li>
 </ul>
 
@@ -186,15 +186,18 @@
 <li>transformation expressions</li>
 </ul>
 
+</article></slide><slide class=''><hgroup><h2>The Data We&#39;re Going to Use</h2></hgroup><article  id="the-data-were-going-to-use">
+
+<pre class = 'prettyprint lang-r'>require(babynames)
+BabyNames &lt;- babynames  # another name for the data frame</pre>
+
 </article></slide><slide class=''><hgroup><h2>Examples of Simple Wrangling Statements</h2></hgroup><article  id="examples-of-simple-wrangling-statements">
 
-<ol>
-<li><code>filter(NHANES, age &gt;= 21)</code></li>
-<li><code>group_by(BabyNames, name, year)</code></li>
-<li><code>select(NHANES, age, smoking)</code></li>
-<li><code>mutate(NHANES, age_group = ntiles(age, 5))</code></li>
-<li><code>join(OrdwayBirds, SpeciesName, by=c(&quot;species&quot; = &quot;corrected&quot;))</code></li>
-</ol>
+<pre class = 'prettyprint lang-r'>filter(NHANES, Age &gt;= 21)
+select(NHANES, Age, SmokeNow)
+mutate(NHANES, Age_group = ntiles(Age, 5))
+summarise(NHANES, mean.age = mean(Age))
+arrange(NHANES, Age)</pre>
 
 <p>Quiz: What kind of thing is each argument?</p>
 
@@ -205,28 +208,35 @@
 <li>Support chains of operations: a step-by-step style</li>
 </ul>
 
-<ol>
-<li><code>NHANES %&gt;% filter(age &gt;= 21)</code></li>
-<li><code>BabyNames %&gt;% group_by(name, year)</code></li>
-<li><code>NHANES %&gt;% select(age, smoking)</code></li>
-<li><code>NHANES %&gt;% mutate(age_group = ntiles(age, 5))</code></li>
-<li><code>OrdwayBirds %&gt;% join(SpeciesName, by=c(&quot;&quot;))</code></li>
-</ol>
+<pre class = 'prettyprint lang-r'>NHANES %&gt;% filter(Age &gt;= 21)
+NHANES %&gt;% select(Age, SmokeNow)
+NHANES %&gt;% mutate(Age_group = ntiles(Age, 5))
+NHANES %&gt;% summarise(Age_group = ntiles(Age, 5))
+NHANES %&gt;% arrange(Age)</pre>
 
 </article></slide><slide class=''><hgroup><h2>Key Data Verbs</h2></hgroup><article  id="key-data-verbs">
 
 <p>Memorize these and what they do!</p>
 
 <ul>
-<li><code>arrange()</code></li>
-<li><code>filter()</code></li>
-<li><code>group_by()</code></li>
-<li><code>mutate()</code></li>
-<li><code>select()</code></li>
-<li><code>summarise()</code></li>
+<li><code>arrange()</code> &#8211; put data in a specified order</li>
+<li><code>filter()</code> &#8211; subset some of the rows/cases</li>
+<li><code>select()</code> &#8211; subset some of the columns/variables</li>
+<li><code>mutate()</code> &#8211; add a variable (column)</li>
+<li><code>summarise()</code> &#8211; summarise the data with a single row</li>
 </ul>
 
-<p>You also need to know what arguments are needed for each.</p>
+</article></slide><slide class=''><hgroup><h2>Working subset by subset with group_by</h2></hgroup><article  id="working-subset-by-subset-with-group_by">
+
+<pre class = 'prettyprint lang-r'>group_by(BabyNames, name, year)
+BabyNames %&gt;% group_by(name, year)</pre>
+
+<ul>
+<li><code>group_by()</code> puts the data into groups</li>
+<li>nothing will be apparent until you do subsequent operations</li>
+</ul>
+
+</article></slide><slide class=''><hgroup><h2>Bringing in data from multiple sources</h2></hgroup><article  id="bringing-in-data-from-multiple-sources">
 
 <p>Also very important, but to be covered later,</p>
 
@@ -234,16 +244,22 @@
 <li>joins such as <code>inner_join()</code></li>
 </ul>
 
-<p>Some others, <code>sample_n()</code>, <code>rename()</code>, &#8230;</p>
+</article></slide><slide class=''><hgroup><h2>There are a few other things as well</h2></hgroup><article  id="there-are-a-few-other-things-as-well">
+
+<p>Examples: <code>sample_n()</code>, <code>rename()</code>, &#8230;</p>
 
 </article></slide><slide class=''><hgroup><h2>Zebrafish</h2></hgroup><article  id="zebrafish">
 
-<p>Help me edit this file to show some of the data verbs at work.</p>
+<p>Help me edit <a href='ZebrafishRmd.html' title=''>this file</a> to show some of the data verbs</p>
 
 </article></slide><slide class=''><hgroup><h2>Try them out</h2></hgroup><article  id="try-them-out">
 
 <ul>
-<li><a href='http://rstudio.calvin.edu:3838/rpruim/dataOps/' title=''>Barbara&#39;s Shiny App</a></li>
+<li><p><a href='http://rstudio.calvin.edu:3838/rpruim/dataOps/' title=''>Barbara&#39;s Shiny App</a></p>
+
+<ul>
+<li>This may not be working at the moment</li>
+</ul></li>
 </ul></article></slide>
 
 
