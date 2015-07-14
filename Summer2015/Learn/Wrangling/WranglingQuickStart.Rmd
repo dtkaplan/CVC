@@ -148,7 +148,11 @@ Examples: `sample_n()`, `rename()`, ...
 ## Zebrafish
 
 Help me edit [this file](ZebrafishRmd.html)
-to show some of the data verbs with [this data](Zebrafish.csv)
+to show some of the data verbs 
+
+ * original data: [Zebrafish.csv](Zebrafish.csv)
+
+ * tidied and wrangled a bit: [Activity.csv](Activity.csv)
 
 ## Try them out
 

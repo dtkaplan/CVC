@@ -23,8 +23,7 @@ They are interesting *why?* [DTK: Even though I have a joint paper about the act
 Mary, this is just for our internal purposes.  It's here to document where the data came from and provide a "chain of evidence" for the validity of the data to be presented in your research publication.  (But I should have saved the original CSV file with a better name to refer to this specific run.)
 
 ```{r}
-OriginalForm <- readr::read_csv("Zebrafish.csv",
-                                stringsAsFactor)
+OriginalForm <- readr::read_csv("Zebrafish.csv")
 OriginalForm[1:8,1:6]
 ```
 
