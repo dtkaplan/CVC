@@ -141,15 +141,16 @@ Arrival day for many coming from out of town.
  
 ### Wednesday
  
- 1. More data wrangling with `dplyr` and `tidyr` [Danny]
-    a. merging data from multiple sources (joining)
-    b. `gather()`
+ 1. More data wrangling with `dplyr` and `tidyr` 
+    a. merging data from multiple sources [Danny]
+        [Slides](Learn/Join/joins.html), [bird-species spreadsheet](https://docs.google.com/spreadsheets/d/1GDKeulVSRXL7Q_5Q0a7Offc_IPX2T4sZ80VN5VLASew/edit#gid=0), and the zebrafish treatment [CSV file](Learn/Wrangling/FishTx.csv) 
+    b. `gather()` [Randy]
     
  2. More `ggplot2` [Randy]
     
  3. Plans for Phase 2
     a. Project Quick Reports
-    b. Additional Sessions
+    b. "Breakout" Sessions
 
  4. Writing Functions [Randy]
     
