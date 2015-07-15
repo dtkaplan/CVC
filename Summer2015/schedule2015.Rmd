@@ -143,19 +143,17 @@ Arrival day for many coming from out of town.
  
  1. More data wrangling with `dplyr` and `tidyr` 
     a. merging data from multiple sources [Danny]
-        [Slides](Learn/Join/joins.html), [bird-species spreadsheet](https://docs.google.com/spreadsheets/d/1GDKeulVSRXL7Q_5Q0a7Offc_IPX2T4sZ80VN5VLASew/edit#gid=0), and the zebrafish treatment [CSV file](Learn/Wrangling/FishTx.csv) 
+        * [Slides](Learn/Join/joins.html) 
+        * [bird-species spreadsheet](https://docs.google.com/spreadsheets/d/1GDKeulVSRXL7Q_5Q0a7Offc_IPX2T4sZ80VN5VLASew/edit#gid=0), 
+        * zebrafish treatment [CSV file](Learn/Wrangling/FishTx.csv) 
     b. `gather()` [Randy]
+        * [Notes](Learn/TidyData/TidyGapMinder.html)
     c. Building precursors [paper](http://www.amherst.edu/~nhorton/precursors)
+    
  2. Quick Shiny intro [Example](https://r.amherst.edu/apps/nhorton/sat/) 
  
- 3. More `ggplot2` [Randy]
-    
- 4. Plans for Phase 2
-    a. Project Quick Reports
-    b. "Breakout" Sessions
+ 3. Ingesting your own data and starting on your project
 
- 5. Writing Functions [Randy]
-    
 ### Thursday
 
   1. Finding R packages and documentation [Randy]
@@ -171,3 +169,10 @@ Arrival day for many coming from out of town.
   5. Machine learning [Danny]
   6. Text mining [Nick]
   7. Modeling in R [Nick]
+  8. Writing Functions [Randy]
+  9. More `ggplot2` [Randy]
+ 10. Basic Statistical Methods
+ 11. Data Scraping from the Web
+     a. Finding packages that provide interfaces to APIs
+ 12. Image Analysis
+    
