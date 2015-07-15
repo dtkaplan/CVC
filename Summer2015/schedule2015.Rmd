@@ -145,14 +145,16 @@ Arrival day for many coming from out of town.
     a. merging data from multiple sources [Danny]
         [Slides](Learn/Join/joins.html), [bird-species spreadsheet](https://docs.google.com/spreadsheets/d/1GDKeulVSRXL7Q_5Q0a7Offc_IPX2T4sZ80VN5VLASew/edit#gid=0), and the zebrafish treatment [CSV file](Learn/Wrangling/FishTx.csv) 
     b. `gather()` [Randy]
+    c. Building precursors [paper](http://www.amherst.edu/~nhorton/precursors)
+ 2. Quick Shiny intro [Example](https://r.amherst.edu/apps/nhorton/sat/) 
+ 
+ 3. More `ggplot2` [Randy]
     
- 2. More `ggplot2` [Randy]
-    
- 3. Plans for Phase 2
+ 4. Plans for Phase 2
     a. Project Quick Reports
     b. "Breakout" Sessions
 
- 4. Writing Functions [Randy]
+ 5. Writing Functions [Randy]
     
 ### Thursday
 
