@@ -6,9 +6,11 @@ output: ioslides_presentation
 ---
 
 ```{r include=FALSE}
-library(ggplot2)
-library(dplyr)
+require(NHANES)
+require(mosaic)
+require(babynames)
 ```
+
 
 ## Wrangling
 
@@ -71,7 +73,7 @@ A transformation expression is typically:
 
 For instance:
 
-- `age > 18`
+- `Age > 18`
 - `weight / height ^ 2`
 
 ## Reduction Functions
@@ -81,14 +83,22 @@ Take as arguments
 * variable(s)
 * transformation expressions
 
+## The Data We're Going to Use
+
+```{r}
+require(babynames)
+BabyNames <- babynames  # another name for the data frame
+```
 
 ## Examples of Simple Wrangling Statements
 
-1. `filter(NHANES, age >= 21)`
-#. `group_by(BabyNames, name, year)`
-#. `select(NHANES, age, smoking)`
-#. `mutate(NHANES, age_group = ntiles(age, 5))`
-#. `join(OrdwayBirds, SpeciesName, by=c("species" = "corrected"))`
+```{r, results = "hide"}
+filter(NHANES, Age >= 21)
+select(NHANES, Age, SmokeNow)
+mutate(NHANES, Age_group = ntiles(Age, 5))
+summarise(NHANES, mean.age = mean(Age))
+arrange(NHANES, Age)
+```
 
 Quiz: What kind of thing is each argument?
 
@@ -97,36 +107,55 @@ Quiz: What kind of thing is each argument?
 * Streamline the appearance of data verbs
 * Support chains of operations: a step-by-step style
 
-1. `NHANES %>% filter(age >= 21)`
-#. `BabyNames %>% group_by(name, year)`
-#. `NHANES %>% select(age, smoking)`
-#. `NHANES %>% mutate(age_group = ntiles(age, 5))`
-#. `OrdwayBirds %>% join(SpeciesName, by=c(""))`
+```{r, eval = FALSE}
+NHANES %>% filter(Age >= 21)
+NHANES %>% select(Age, SmokeNow)
+NHANES %>% mutate(Age_group = ntiles(Age, 5))
+NHANES %>% summarise(Age_group = ntiles(Age, 5))
+NHANES %>% arrange(Age)
+```
 
 ## Key Data Verbs
 
 Memorize these and what they do! 
 
-* `arrange()`
-* `filter()`
-* `group_by()`
-* `mutate()`
-* `select()`
-* `summarise()`
+* `arrange()` -- put data in a specified order
+* `filter()`  -- subset some of the rows/cases
+* `select()`  -- subset some of the columns/variables
+* `mutate()`  -- add a variable (column)
+* `summarise()` -- summarise the data with a single row
 
-You also need to know what arguments are needed for each.
+## Working subset by subset with group_by
+
+```{r results="hide"}
+group_by(BabyNames, name, year)
+BabyNames %>% group_by(name, year)
+```
+
+* `group_by()` puts the data into groups
+* nothing will be apparent until you do subsequent operations
+
+## Bringing in data from multiple sources
 
 Also very important, but to be covered later, 
 
 * joins such as `inner_join()`
 
-Some others, `sample_n()`, `rename()`, ...
+## There are a few other things as well
+
+Examples: `sample_n()`, `rename()`, ...
 
 ## Zebrafish
 
-Help me edit this file to show some of the data verbs at work.
+Help me edit [this file](ZebrafishRmd.html)
+to show some of the data verbs 
+
+ * original data: [Zebrafish.csv](Zebrafish.csv)
+
+ * tidied and wrangled a bit: [Activity.csv](Activity.csv)
 
 ## Try them out
 
 * [Barbara's Shiny App](http://rstudio.calvin.edu:3838/rpruim/dataOps/)
 
+    * This may not be working at the moment
