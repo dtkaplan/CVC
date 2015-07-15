@@ -1,0 +1,100 @@
+---
+title: "Joins"
+author: "Danny Kaplan"
+date: "CVC 2015"
+output: ioslides_presentation
+---
+
+```{r include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(printr)
+```
+
+## Combining Two Tables
+
+All of the data verbs we have used up to now take a single data table as an input.
+
+Sometimes you need to combine data between different sources.
+
+* Perhaps they come from different experiments or institutions.
+* Perhaps they are completely different types of data, e.g. medical treatment records and demographic or education data.
+    - Example: `MedicareCharges`, `MedicareProviders`, `DirectRecoveryGroups`.
+    - Example: the registrar's database
+
+## Row-wise concatenation
+
+Slapping one data table onto another row-wise is *sometimes* an appropriate activity, but it is ... **not a join!**
+
+Example of using row-wise concatenation:
+
+* Each day's new earthquakes are available through a geophysics site.  You're collecting all the events over a long period of time.
+
+## Column-wise concatenation
+
+You're TA just entered the students grades for assignment 7 into a spreadsheet, sorted by student name.
+
+You have your master spreadsheet with assignments 1 through 6.
+
+Concatenate the assignment-7 grades as a new variable for your master spreadsheet.
+
+
+** Watch out!** This is a brittle process. 
+
+## Things that can go wrong here
+
+* Suppose your TA's sheet has sorted the students by last name and yours has them sorted by first name.
+* Suppose you delete students who drop the course, but the TA doesn't have this information.
+
+## Instead ...
+
+1. Match the students in one table to those in the other.
+2. Gently lift the Assignment-7 data for each student from the TA's table into the appropriate cell in your table.
+
+This is one example of a join. There are other kinds of join for situations where there might be multiple matches between cases in the two tables.
+
+## Example: Zebrafish
+
+Continuation of the example [here](../Wrangling/Zebrafish.html) 
+
+
+## Activity: Grade-point averages
+
+Here are three data tables relating student grades in courses at Macalester in 2005 (?)
+
+```{r}
+grades <- read.csv("http://tiny.cc/mosaic/grades.csv",
+                   stringsAsFactors = FALSE)
+courses <- read.csv("http://tiny.cc/mosaic/courses.csv",
+                    stringsAsFactors = FALSE)
+grade_to_number <- read.csv("http://tiny.cc/mosaic/grade-to-number.csv",
+                            stringsAsFactors = FALSE)
+```
+
+## Activity: Tasks
+
+1. How many students in each department?
+#. What fraction of grades are below B+ in each department?
+#. What's the grade-point average (GPA) for each student?
+#. What's the 95% confidence interval on the GPA for each student?
+#. Grade-point average for each department or instructor
+#. (Statistically more sophisticated) To what extent does the grade reflect the student or the department or instructor?
+
+## Joining for cleaning
+
+Birds at the Ordway Nature Preserve
+
+```{r eval=FALSE}
+devtools::install_github("DataComputing/DataComputing")
+require(DataComputing)
+View(OrdwayBirds)
+help(OrdwayBirds)
+```
+
+As a group, let's correct the species names using [this data table](https://docs.google.com/spreadsheets/d/1GDKeulVSRXL7Q_5Q0a7Offc_IPX2T4sZ80VN5VLASew/edit#gid=0).
+
+## Task for the birds
+
+Count how many birds there are of each species in `OrdwayBirds` using the corrected species names.
+
+

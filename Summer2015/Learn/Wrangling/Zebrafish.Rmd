@@ -23,8 +23,7 @@ They are interesting *why?* [DTK: Even though I have a joint paper about the act
 Mary, this is just for our internal purposes.  It's here to document where the data came from and provide a "chain of evidence" for the validity of the data to be presented in your research publication.  (But I should have saved the original CSV file with a better name to refer to this specific run.)
 
 ```{r}
-OriginalForm <- readr::read_csv("Zebrafish.csv",
-                                stringsAsFactor)
+OriginalForm <- readr::read_csv("Zebrafish.csv")
 OriginalForm[1:8,1:6]
 ```
 
@@ -40,6 +39,11 @@ names(Tmp) <- nms
 Activity <- gather(Tmp, "fish", "value", -time, -temp)
 ```
 
+```{r}
+Activity %>% head(10)
+nrow(Activity)
+```
+
 Temperature to Fahrenheit
 Time to hours
 
@@ -50,5 +54,94 @@ Just temperatures greater than 28 degrees
 Mean and standard deviation of each fish
 
 Arrange by maximum activity for each fish
+
+
+
+
+
+Convert temp to Fahrenheit
+```{r}
+Activity2 <- 
+  Activity %>% 
+  mutate(tempF = 32 + (9/5) * temp) 
+head(Activity2, 10) 
+Activity2 %>% 
+  filter(fish == "A3") %>%
+  head()
+Activity2 %>% 
+  group_by(fish) %>%
+  summarise(mean_temp = mean(tempF, na.rm = TRUE)) 
+Activity2 %>% 
+ggplot(aes(x = value, y = tempF)) +
+  geom_point(aes(color = fish))
+```
+
+
+# Time Series
+
+As I (DTK) understand things, we're looking for temporal patterns in fish activity.  Here's a quick plot for each fish:
+```{r}
+Activity %>%
+  ggplot(aes(x=time, y=value)) + 
+  geom_line(aes(color=fish))
+```
+
+*DTK*: There's something going on, but with 96 fish it's a very crowded plot.
+
+*MH*: Could we plot out the fish individually?
+
+*DTK*: Yes, but what are you going to do with 96 different plots?
+
+*MH*: Perhaps divide up the fish by treatment group.  You can tell from the letter of the fish name what treatment that fish received.
+
+*DTK*: OK.  What's the code?
+
+*MH*: It's a bit complicated.  I'm putting a CSV file that translates between fish name and code.  There are 96 cases, one for each well. (Some of the wells were empty.)  Here it is:
+```{r}
+Treatments <- read.csv("FishTx.csv",
+                       stringsAsFactors = FALSE)
+Treatments %>% sample_n(size=5)
+nrow(Treatments)
+```
+
+## Joining the treatment with the activity data
+
+```{r}
+Tmp <- 
+  Activity %>%
+  inner_join(Treatments)
+Tmp %>% sample_n(5)
+nrow(Tmp)
+```
+
+```{r}
+Tmp %>%
+  ggplot(aes(x=time, y=value)) + 
+  geom_line(aes(color=fish)) + 
+  facet_grid( Tx ~ .)
+```
+
+*DTK*: Some observations from this simple graph ...
+
+1. The empty wells have a different level of behavior than many of the fish. (That's expected, right?)
+1. The time pattern for the empty wells is strikingly similar to the the pattern for the wells with fish.  Why?  Might this be leakage between the reading for the wells? Perhaps a fish was accidentally put into one of the nominally empty wells?
+1. There seem to be some differences between the DD treated fish and LD treated fish in the *level* of activity even though the pattern over time is similar.
+1. Fish with higher overall activity seem to have higher fluctuations in activity.
+1. There are color bands in the plots.  I'm thinking this is because each 12-well row in the 96-well plate is being assigned a similar color in the plot.  So perhaps there is different activity in each column.  Would this be a fish-activity effect or an instrumentation effect.  
+
+Some suggestions:
+
+* Let's see how similar the 24 empty wells are.
+* Look at the log of activity.
+* Subtract out the empty-well level of activity from each fish.  Maybe do this in logarithm land.
+* Transform the time axis to be scaled in days. Were the fish exposed to a 24-hour zeitgeber? If not, do they have a circadian rhythm different from 24 hours?
+* Let's build a model of activity using plate row and column as covariates variables.  We'd also include treatment and time of (circadian) day.  This will be a heirarchical model, since well column is nested within treatment.  Or maybe leave time out of the model and use the residuals to display the time pattern.
+
+
+
+
+
+
+
 
 
