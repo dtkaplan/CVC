@@ -157,6 +157,7 @@ Arrival day for many coming from out of town.
 ### Thursday
 
   1. Finding R packages and documentation [Randy]
+  2. Shiny tutorial. [Danny & Randy] The group designed an app to be embedded in an Rmd file.  Here's the [Rmd file](Learn/Shiny/OurDistribution.Rmd).  We deployed the app [here](https://dtkaplan.shinyapps.io/OurDistributionDemo).  Try it out!
 
 ### Friday
 
