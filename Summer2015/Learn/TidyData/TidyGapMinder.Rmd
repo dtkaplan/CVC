@@ -56,17 +56,56 @@ years.  We will use this data to make a plot something like this one
 
 You can view this data [here](https://docs.google.com/spreadsheets/d/1kWH_xdJDM4SMfT_Kzpkk-1yuxWChfurZuWYjfmv51EA/pub?gid=0).
 
-If you look at it, you will see that we have some work ahead of us to make this usable (i.e. glyph ready) for our plot.
+If you look at it, you will see that we have some work ahead of us to make 
+this usable (i.e. glyph ready) for our plot.  But first let's import
+the data, then we will figure out how to get it glyph ready.
 
-In theory, we should be able to grab this data directly from the google sheet 
-or from the downloaded excel spreadsheet.  
-In practice, both of these failed for me.
-So I downloaded the excel version and saved the data as a csv file, which I was
-able to import.
+### Grabbing the data directly from google
 
- * Here's the [csv file](HIV.csv) if you want to skip a couple steps.
+We can use the `googlesheets` package makes it possible to
+grab the data directly from google.
 
-OK.  Let's read in the data.
+First we establish a connection to the google spreadsheet.
+```{r, error=TRUE}
+require(googlesheets)
+google_connection <-
+  gs_url("https://docs.google.com/spreadsheets/d/1kWH_xdJDM4SMfT_Kzpkk-1yuxWChfurZuWYjfmv51EA/pub?gid=0", visibility="public")
+```
+
+Then we import the data from the first worksheet at
+this connection.  (You can specify other spreadsheets 
+if you don't want the first one, but the first one is the default.)
+
+```{r, error=TRUE}
+HIVdata <- gs_read(google_connection)
+```
+
+Unfortunately, this particular spreadsheet doesn't read 
+in quite right.  But is we specify the range of cells that 
+contain data, then it works.  The connection object
+reports a bunch of information, including the number 
+of rows and columns in the worksheets.
+
+```{r}
+google_connection$ws$row_extent
+google_connection$ws$col_extent
+```
+We can use this information to select a range, and then
+things work.
+```{r}
+HIVdata <- 
+  gs_read(google_connection,
+          range = cell_limits(c(1,1), c(276, 34))
+  )
+dim(HIVdata)
+```
+
+
+### Grabbing the data via csv
+
+If you have trouble getting the data from google, you can load it from
+[this CSV file](HIV.csv) instead.
+
 ```{r}
 HIVdata <- read.csv("HIV.csv", header = TRUE, stringsAsFactors = FALSE) 
 ```
@@ -75,6 +114,11 @@ HIVdata <- read.csv("HIV.csv", header = TRUE, stringsAsFactors = FALSE)
 
 If we consider a case to to an observation of a country in a given year, then these data are not tidy.  We would like to have a data table with variables
 `country`, `year`, and `HIV.perc`  There are several problems that need fixing.
+
+```{r}
+head(HIVdata, 3)
+```
+
 
 The "name" of the first variable
 is really a title for the data set and should be changed to `country`.
@@ -136,14 +180,29 @@ Now the data are ready for a plot.  Let's compare just a few countries.
 There is very little data before 1990, so we'll filter the data to include
 just the more recent years.
 
-```{r}
+```{r, fig.width=8}
 HIVdata4 %>%
-  filter(country %in% c("Uganda", "Kenya", "Tanzania", "United States")) %>%
+  filter(country %in% c("Uganda", "Kenya", "Tanzania", "South Africa",
+                        "Zimbabwe", "United States")) %>%
   filter(year > 1988) %>%
   ggplot(aes(x = year, y = HIV.perc, color = country)) +
   geom_line(size=2, alpha=0.5) 
 ```
 
+If we reorder the countries based on the HIV prevalence, then our
+legend will be in a better order compared with the plot.
+
+```{r, fig.width=8}
+HIVdata4 %>%
+  filter(country %in% c("Uganda", "Kenya", "Tanzania", "South Africa",
+                        "Zimbabwe", "United States")) %>%
+  filter(year > 1988) %>%
+  mutate(country = 
+           reorder(country, HIV.perc, 
+                   function(x) - max(x, na.rm=TRUE))) %>% 
+  ggplot(aes(x = year, y = HIV.perc, color = country)) +
+  geom_line(size=2, alpha=0.5) 
+```
 ## Exercises
 
  1. Download an additional data file from Gapminder, tidy it, and merge it with the HIV data so that you can make a scatter plot of HIV prevelance vs some other variable that might reveal and interesting pattern?  What will you do about the fact that you have multiple years?  
