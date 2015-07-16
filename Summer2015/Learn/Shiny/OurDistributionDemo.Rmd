@@ -1,0 +1,75 @@
+---
+title: "Sampling Distribution Demonstration"
+author: "Heros of the CVC Meeting"
+date: "July 16, 2015"
+output: html_document
+runtime: shiny
+---
+
+```{r include=FALSE}
+library(mosaic)
+library(mosaicData)
+```
+
+# Introduction
+
+<iframe width="420" height="315" src="https://www.youtube.com/embed/VBrzoxgbStk" frameborder="0" allowfullscreen></iframe>
+
+# Activity
+
+```{r, echo=FALSE}
+inputPanel(
+  selectInput("n_trials", label = "Number of trials:",
+              choices = c(10, 20, 35, 50, 100), selected = 10),
+  
+  selectInput("n_sample", label = "Sample size (n):",
+              choices = c(25, 100, 400, 1600, 6400), selected = 100),
+  checkboxInput("show_table", 
+                label="Show the stupid table!", 
+                value = TRUE )
+)
+```
+
+```{r echo=FALSE}
+inputPanel(
+
+)
+```
+
+
+```{r, echo=FALSE}
+TT <- reactive({
+  do(input$n_trials %>% as.numeric()) * 
+    cor(age ~ net, data=
+          TenMileRace %>% 
+          sample_n(size=as.numeric(input$n_sample)))
+})
+```
+
+
+The correlation between `age` and `net` is
+
+```{r, echo=FALSE}
+renderTable({
+  if (input$show_table) TT()
+})
+```
+
+```{r, echo=FALSE}
+renderPlot({
+  ggplot(TT(), aes(x=result)) + geom_histogram()
+})
+```
+
+Let's plot out the results
+
+```{r, echo=FALSE}
+renderPlot({ 
+  ggplot(
+    mosaicData::TenMileRace %>% 
+      sample_n(size=as.numeric(input$n_sample)), 
+    aes(x=age, y = net)) + 
+    geom_point()
+})
+```
+
