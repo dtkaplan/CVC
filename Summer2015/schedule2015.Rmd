@@ -161,6 +161,13 @@ Arrival day for many coming from out of town.
 
 ### Friday
 
+ 1. Please fill out the  [Project Report Form](http://goo.gl/forms/v3mLfgSwEo)
+ 
+ 2. Live Project Reports
+    a. Sanjive Qazi -- Interactive Clusters in Shiny
+    b. Dominique -- Shiny & Generating Data on the fly
+    c. Simon -- Student Lab in Rmd with a Dygraph
+
 ### Additional Topics TBD
 
   1. Getting data from a database [Ben]
