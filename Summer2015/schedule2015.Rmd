@@ -156,8 +156,14 @@ Arrival day for many coming from out of town.
 
 ### Thursday
 
-  1. Finding R packages and documentation [Randy]
-  2. Shiny tutorial. [Danny & Randy] The group designed an app to be embedded in an Rmd file.  Here's the [Rmd file](Learn/Shiny/OurDistributionDemo.Rmd).  We deployed the app [here](https://dtkaplan.shinyapps.io/OurDistributionDemo).  Try it out!
+ 1. More ggplot (see notes above) [Randy]
+ 
+ 2. Writing Functions [Randy]
+  
+    a. [Notes](Learn/WritingFunctions/HowToWriteFunctions.html)
+    b. [Rds file](Learn/WritingFunctions/HIVdata.Rds)
+
+ 3. Shiny tutorial. [Danny & Randy] The group designed an app to be embedded in an Rmd file.  Here's the [Rmd file](Learn/Shiny/OurDistributionDemo.Rmd).  We deployed the app [here](https://dtkaplan.shinyapps.io/OurDistributionDemo).  Try it out!
 
 ### Friday
 
@@ -168,6 +174,8 @@ Arrival day for many coming from out of town.
     b. Dominique -- Shiny & Generating Data on the fly
     c. Simon -- Student Lab in Rmd with a Dygraph
 
+ 3. Finding R packages and documentation [Nick]
+  
 ### Additional Topics TBD
 
   1. Getting data from a database [Ben]
