@@ -1,0 +1,365 @@
+---
+title: "Writing Functions"
+author: "R Pruim"
+date: "CVC 2015"
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 8
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+
+```{r, include = FALSE}
+# Don't delete this chunk if you are using the mosaic package
+# This loads the mosaic and dplyr packages
+require(mosaic)
+require(tidyr)
+```
+
+```{r, include = FALSE}
+# Some customization.  You can alter or delete as desired (if you know what you are doing).
+
+# This changes the default colors in lattice plots.
+trellis.par.set(theme = theme.mosaic())  
+
+# knitr settings to control how R chunks work.
+require(knitr)
+opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small"    # slightly smaller font for code
+)
+```
+
+```{r, include=FALSE}
+# Load additional packages here.  Uncomment the line below to use Project MOSAIC data sets.
+# require(mosaicData)   
+```
+
+
+## Automating Plot Generation
+
+Yesterday we grabbed data on HIV prevalance from GapMinder,
+and after a bit of clean up, we created a plot.  I've saved the data
+as an [Rds file]("HIVdata.Rds"),
+so we can skip the clean up for now and focus on the plot
+
+```{r}
+HIVdata <- readRDS("HIVdata.Rds")
+head(HIVdata, 3)
+```
+
+Here's a plot we made with this data.
+
+```{r}
+HIVdata %>%
+  filter(country %in% c("Uganda", "Kenya", "Tanzania", "South Africa",
+                        "Zimbabwe", "United States")) %>%
+  filter(year > 1988) %>%
+  mutate(country = 
+           reorder(country, HIV.perc, 
+                   function(x) - max(x, na.rm = TRUE))) %>% 
+  ggplot(aes(x = year, y = HIV.perc, color = country)) +
+  geom_line(size = 2, alpha = 0.5) 
+```
+
+Actually, I've added one new feature to the plot.  I've reordered the levels 
+of `country` so that the lines in the legend are in roughly the same order as the
+lines on the plot.
+
+Now let's turn this into a simple (and not particularly useful)
+function.
+
+```{r}
+HIVplot <- function() {
+  HIVdata %>%
+    filter(country %in% c("Uganda", "Kenya", "Tanzania", "South Africa",
+                          "Zimbabwe", "United States")) %>%
+    filter(year > 1988) %>%
+    mutate(country = 
+             reorder(country, HIV.perc, 
+                     function(x) - max(x, na.rm = TRUE))) %>% 
+    ggplot(aes(x = year, y = HIV.perc, color = country)) +
+    geom_line(size = 2, alpha = 0.5) 
+}
+```
+Notice that the only difference is the first and last lines.  The first
+line indicates that we are going to create a function named 
+`HIVplot` and the portion between the curly braces is the definition.
+The object created by the last expression in the function body 
+is returned - in this case, the plot.
+
+As is, the funciton is not so useful, becuase it doesn't have any
+arguments, so it can only create the same plot repeatedly.  But even
+this can be useful for tasks that you want to repeat frequently in exactly
+the same way -- it can save a lot of typing:
+
+```{r}
+HIVplot()
+```
+
+We can generalize this by adding some arguments that let us 
+change features of the plot.  For example, we could add the abilty
+to adjust the width of the lines as follows:
+
+```{r}
+HIVplot2 <- function(linewidth = 2) {
+  HIVdata %>%
+    filter(country %in% c("Uganda", "Kenya", "Tanzania", "South Africa",
+                          "Zimbabwe", "United States")) %>%
+    filter(year > 1988) %>%
+    mutate(country = 
+             reorder(country, HIV.perc, 
+                     function(x) - max(x, na.rm = TRUE))) %>% 
+    ggplot(aes(x = year, y = HIV.perc, color = country)) +
+    geom_line(size = linewidth, alpha = 0.5) 
+}
+```
+
+```{r}
+HIVplot2(linewidth = 5)
+```
+
+In a similar way, we can add several arguments to our function.  Let's
+add the following:
+
+ * `data`: the name of our data set (in case we have data with a different name later)
+ * `indicator`: the name of the column that contains the data to be plotted against
+     time.  GapMinder calls these indicators, so we are borrowing their terminology.
+     (As a fancy bonus, we'll call `match.arg()` to allow for abbreviation of the
+     name.)
+ * `countries`: the countries we want to display
+ * `linewidth`: the thickness of the lines that we draw
+ * `first_year`: the first year we want to display
+ * `opacity`: how opaque the lines are (between 0 and 1)
+
+Below we create a function with these arguments, and then
+in the body of the function, plug them in in the appropriate places.
+
+Here are few things to know about the new function definition.
+
+ 1. Default values of the the arguments can be specified in the function
+declaration.  That way, we don't have to provide a value for 
+every argument.  Arguments can be specified by (unique prefix of)
+a name or by position.  It is a common practice in R to use the
+first arguement or two without names and then to use names for the 
+other arguments, which will typically have default values so that only
+those being overridden need to be specified.
+
+ 2. Because our indicator variable is described by a character string, we need 
+to use `aes_string()` rather than `aes()` to describe the aesthetics.
+
+ 3. Our new function can plot time series for any data wet that has columns named
+`country` and `year` and an additional column containing the "indicator" to be 
+plotted.  So we should give the function a name that reflects this generality.
+We could call it `GapminderPlot()`, since it is designed to work with 
+GapMinder data sets, or we could name it `TimeSeriesPlot()`, although it is
+not very flexibly designed for arbitrary time series data.
+
+ 4. We could make this even more general if we allowed column names to 
+ be specified for `country` and `year` as well as `indicator`.  Deciding how
+ general to make a function is an important part of the design.  Often
+ you will return to functions later to make them more general becuase you
+ find that they almost do some other task you didn't think of when you originally
+ wrote the function.
+
+```{r}
+GapMinderPlot <- 
+  function( 
+    data, 
+    indicator,
+    countries = c( "South Africa", "Zimbabwe", "United States"),
+    linewidth = 1.2,
+    first_year = min(~year, data = data),
+    opacity = .8
+    ) 
+    {
+
+  # this finds indicator among the names of the variables even if it is abbreviated
+  # to a unique prefix.
+  indicator <- match.arg(indicator, names(data)) 
+  
+  data %>%
+    filter(country %in% countries) %>%
+    filter(year >= first_year) %>%
+    ggplot(aes_string(x = "year", y = indicator, color = "country")) +
+    geom_line(size = linewidth, alpha = opacity)
+}
+```
+
+Now we can make a plot using our function
+
+```{r}
+GapMinderPlot( HIVdata, "HIV", linewidth = 4)
+GapMinderPlot( HIVdata, "HIV",
+               countries = c("United States", "South Africa", "Kenya"),
+               first_year = 1990,
+               linewidth = 1) 
+```
+
+We have lost one feature in this version.  We have lost the reordering of the
+countries.  This can be reintroduced, but it is tricky to do it with mutate since 
+we don't know the name of the variable to be reordered when we are writing the 
+function.  (It is determined by the user's value of `indicator`, which is a character
+string.)  Below is one way to do it.
+
+While we are at it, let's make the
+default value of `indicator` be the name of the third column of `data` (where it will
+be located if the data are processed from GapMinder the way we have done it).
+
+```{r}
+GapMinderPlot <- 
+  function( 
+    data, 
+    indicator = names(data)[3], 
+    countries = c( "South Africa", "Zimbabwe", "United States"),
+    linewidth = 1.2,
+    first_year = min(~year, data = data),
+    opacity = .8
+    ) 
+    {
+
+  # this finds indicator among the names of the variables even if it is abbreviated
+  # to a unique prefix.
+  indicator <- match.arg(indicator, names(data)) 
+  
+  data <- data %>%
+    filter(country %in% countries) %>%
+    filter(year >= first_year)
+  
+  data[["country"]] <- 
+    reorder(data[["country"]], data[[indicator]], function(x) - max(x, na.rm = TRUE))
+ 
+  data %>% 
+    ggplot(aes_string(x = "year", y = indicator, color = "country")) +
+    geom_line(size = linewidth, alpha = opacity)
+}
+```
+
+```{r}
+GapMinderPlot( HIVdata,
+               countries = c("United States", "South Africa", "Kenya"),
+               first_year = 1990,
+               linewidth = 1) 
+```
+
+## Loading Data from GapMinder
+
+Now let's create a function that can read in data from a GapMinder
+spreadhseet and reformat the resutling data so that is is glyph
+ready for our plot.
+
+```{r}
+require(googlesheets)
+```
+
+```{r, loaddata}
+load_gapminder <- function( url, name = "value") {
+  google_connection <- gs_url( url, visibility = "public" )
+  
+  # using the dimensions of the spread sheet, read the portion
+  # that contains data.  Specifying the range should not be necessary
+  # for newer google sheets.
+  result <-
+    gs_read(google_connection,
+            range = cell_limits(c(1,1),
+                                c(google_connection$ws$row_extent[1],
+                                  google_connection$ws$col_extent[1]))
+    ) 
+  
+  # name the first column country
+  names(result)[1] <- "country"
+ 
+  # convert from wide to long format 
+  result <- 
+    result %>% 
+    gather( year, value, -country ) %>% 
+    mutate( year = extract_numeric(year))
+  
+  # rename the indicator column
+  names(result)[3] <- name
+  result    # returned value since it is the last line evaluated
+}
+```
+
+```{r}
+hiv_url <- 
+  "https://docs.google.com/spreadsheets/d/1kWH_xdJDM4SMfT_Kzpkk-1yuxWChfurZuWYjfmv51EA/pub?gid=0"
+HIVdata2 <- load_gapminder(hiv_url, name = "HIV.perc")
+GapMinderPlot(HIVdata2, "HIV.perc")
+```
+
+We can also load other GapMinder spreadsheets by supplying a different URL.
+Here is life expectency data.
+
+```{r}
+le_url <-
+  "https://docs.google.com/spreadsheets/d/1H3nzTwbn8z4lJ5gJ_WfDgCeGEXK3PVGcNjQ_U5og8eo/pub?gid=0"
+LifeExpectency <- load_gapminder( le_url, name = "life.expectancy" ) 
+```
+
+We can now use our plotting function with any of these data sets.
+
+```{r}
+GapMinderPlot( LifeExpectency )
+GapMinderPlot( HIVdata )
+```
+
+## The Big Picture
+
+ 1. If you find yourself wanting to copy a chunk of code, make one little change, and then run it again, then you are likely in a situation where a function would be useful.
+ 
+ 2. You can begin your function by wrapping your code chunk in 
+ 
+```r
+my_function_name <- function () {
+
+  # old code goes here
+  
+}
+```
+
+ 3. Now choose one small thing that you would like to be able to vary.  Provide 
+ a name for the argument and a default value (if there is a reasonable default) and
+ replace the specific value in your code with the argument name from your 
+ function declaration.
+ 
+ 4. Keep an eye out for ways you could make your function more general than your 
+ immediate task.  Not only does that make your function more widely useful, but 
+ often the function is easier to write, and clearer to read if it is a bit more general.
+ 
+ 5. But build up slowly.  Don't go crazy with 27 complicated options all at once.
+ You can add in new arguments one at a time or in small groups of arguments that 
+ work together.
+ 
+ 6. If your function will be useful in multiple files or projects, you should
+ consider putting it into a package.  Simple packages created for your own use
+ are not that hard to build.  Once you have made your package, you can simply
+ `require()` it in any file or project where you want to use your new function.
+ It is also easy to share packages with others who might be interested in using
+ your function.
+ 
+ 7. Comment your code.  Don't write comments for simple code that is clear by itself, but do write comments 
+   * for complicated code where it might not be immediately clear what is happening
+   * explaining **why** you are doing things
+   * outlining the **big picture** (how you are thinking about the task at hand)
+   * alerting the reader to subtleties (or with students, unfamiliar functions or
+   new features of the langauge.)
+   
+8. But don't confuse comments with text that belongs in a proper document.
+
+## Exercises
+
+ 1. Make `GapMinderPlot` more general by allowing the user to select columns rather
+ than requiring that they be called `country` and `year`.
+ 
+ 2. Write a data loading function for a kind of data you expect to encounter 
+ frequently.
+ 
+ 3. Write a plotting function for a kind of plot you anticipate making frequently.
+ 
