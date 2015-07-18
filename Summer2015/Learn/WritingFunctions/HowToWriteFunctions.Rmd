@@ -310,6 +310,19 @@ GapMinderPlot( LifeExpectency )
 GapMinderPlot( HIVdata )
 ```
 
+Note that because our function returns a ggplot object, we can "add" to it just like 
+to any other ggplot object.
+
+```{r}
+GapMinderPlot( LifeExpectency, opacity=0.5, countries=c("United States", "Germany", "South Africa") ) +
+  labs(y = "Life Expectency", x = "Year", title = "Life Expectency Over Time") +
+  theme_bw() +
+  annotate("text", x= 1863, y=45, label = "Civil War") +
+  annotate("text", x= 1916, y=64, label = "WWW 1") +
+  annotate("text", x= 1942, y=76, label = "WWW 2")
+```
+
+
 ## The Big Picture
 
  1. If you find yourself wanting to copy a chunk of code, make one little change, and then run it again, then you are likely in a situation where a function would be useful.
