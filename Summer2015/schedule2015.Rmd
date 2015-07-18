@@ -163,7 +163,9 @@ Arrival day for many coming from out of town.
     a. [Notes](Learn/WritingFunctions/HowToWriteFunctions.html)
     b. [Rds file](Learn/WritingFunctions/HIVdata.Rds)
 
- 3. Shiny tutorial. [Danny & Randy] The group designed an app to be embedded in an Rmd file.  Here's the [Rmd file](Learn/Shiny/OurDistributionDemo.Rmd).  We deployed the app [here](https://dtkaplan.shinyapps.io/OurDistributionDemo).  Try it out!
+ 3. Shiny tutorial. [Danny & Randy] The group designed an app to be embedded in an Rmd file.  
+    a. Here's the [Rmd file](Learn/Shiny/OurDistributionDemo.Rmd).  
+    b. We deployed the app [here](https://dtkaplan.shinyapps.io/OurDistributionDemo).  Try it out!
 
 ### Friday
 
