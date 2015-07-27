@@ -138,6 +138,8 @@ Arrival day for many coming from out of town.
     a. [Notes](Learn/ImportingData/ImportingData.html)
     b. [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
     c. [Gender.xls](Learn/ImportingData/Gender.xls)
+    
+    Post workshop: a DataCamp [tutorial](http://blog.datacamp.com/r-data-import-tutorial/)
  
 ### Wednesday
  
