@@ -127,6 +127,7 @@ Arrival day for many coming from out of town.
  4. Working with data -- 5 verbs of `dplyr` [Danny]    
     Getting your data into the right shape for graphing or analysis
     a. [Slides](Learn/Wrangling/WranglingQuickStart.html) 
+    b. A case study with workshop participant Mary Harrington
         * [Zebrafish analysis Rmd](Learn/Wrangling/ZebrafishRmd.html) 
         * Zebrafish raw data: [Zebrafish.csv](Learn/Wrangling/Zebrafish.csv)
         * Zebrafish tidied/wrangled data: [Activity.csv](Learn/Wrangling/Activity.csv)
