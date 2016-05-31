@@ -71,9 +71,12 @@ All aspects of the workshop will be "hands on."  The workshop leaders include se
 
 ## In your classes ...
 
-A major purpose of the second half of the workshop is to provide advice and help in setting up a data visualization/computing project for you to use in your own classes.  The tools you will learn are powerful enough that you will be able to create a substantial project *during* the workshop, and will need just a few hours to tune it up when you get home.
+A major purpose of the second half of the workshop is to provide advice and help
+in setting up a data visualization/computing project for you to use in your own
+classes.  The tools you will learn are powerful enough that you will be able to
+create a substantial project *during* the workshop, and will need just a few
+hours to tune it up when you get home.
 
-To encourage people who are doing this, we will be offering a $500 stipend for participants who develop an executable classroom or lab activity.
 
 ![New York City Weather](http://asbcllc.com/visualizations/weather/gotham_2014/plot.svg)
 
