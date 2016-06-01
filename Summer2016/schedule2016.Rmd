@@ -1,6 +1,5 @@
 ---
 title: "Working Schedule"
-date: "CVC 2016"
 
 output: 
   html_document:
@@ -25,13 +24,13 @@ output:
      
            
 <header>
-<h1>CVC 2016</h1>
+<h1>CVC 2016 Working Schedule</h1>
 <p>Computation and Visualization Consortium</p>
 </header> 
 
-# Resources and Working Schedule
+## Resources and Working Schedule
 
-## Resources
+### Resources
 
   * [CRAN](http://cran.r-project.org) (Comprehensive R Archive Network) has lots of R-related stuff
   * The `mosaic` package (version 0.13 or greater) and its vignettes are [available via CRAN](http://cran.r-project.org/web/packages/mosaic/index.html) and also via [github](https://github.com/ProjectMOSAIC/mosaic)
@@ -40,27 +39,27 @@ Teaching Statistics Using R.
   * Slides and files for sessions will be posted in the schedule as we go along (see below).
 
 
-## Provide Feedback
+### Provide Feedback
 
 We'll use this Google Doc to record your questions and comments and to provide
 responses.  Feel free to edit it at anytime before, during, or (shortly) after the workshop.
 
   * [Google Doc](https://docs.google.com/document/d/1AtoWauyDoBsHJd7yywkJNgiNaAXPiBjNhqO9Yw72jys/edit?usp=sharing)
 
-## Working Schedule
+### Working Schedule
 
 This scheule will be updated throughout the workshop.  All items should be 
 considered tentative until they happen since we will adjust things to 
 meet the needs and wishes of the participants.
 
-### Sunday
+#### Sunday
 
 Arrival day for many coming from out of town.  
 
-### Monday
+#### Monday
 
  1. Welcome (9am)
-    a. Welcome to CVC [Jo]
+    a. Welcome to CVC/Pomona [Jo]
     b. [Goals and outline for the week](Intro/IntroOverview.html) [Randy]
 
  2. Introductions [Randy]
@@ -106,32 +105,39 @@ Arrival day for many coming from out of town.
 -->
 
 
-### Tuesday
-
+#### Tuesday
  
- 1. The graphics-data interface 
+ 1. Project check-in: sharing ideas and one-on-ones
+ 
+ 2. The graphics-data interface 
     a. graphing concepts: [slides](Learn/VizConcepts/VizConcepts.html) [Randy/Danny]
     b. **Activity:** data <-> graphs [Danny]
     PDF with [the graphs](Learn/VizConcepts/Exercise/graphics_for_grammar.pdf) & the [questions](Learn/VizConcepts/Exercise/graphics_questions.pdf)
     
- 2. Introduction to `ggplot2` --  turning the concepts into pictures with the grammar of graphics
- 
+ 3. Introduction to `ggplot2` --  turning the concepts into pictures with the grammar of graphics
+
+<!-- 
     a. [slides](Learn/ggplot2/ggplot2Intro.pdf) 
     b. [Dope Sheets](Learn/ggplot2/DopeSheets.pdf) 
+-->
 
- 3. Working with data -- 5 verbs of `dplyr` [Jo]    
+ 4. Working with data -- 5 verbs of `dplyr` [Jo]    
     Getting your data into the right shape for graphing or analysis
     
- 4. Getting your own data into R [Randy]
- 
+ 5. Getting your own data into R [Randy]
+
+<!-- 
     a. [Notes](Learn/ImportingData/ImportingData.html)
     b. [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
     c. [Gender.xls](Learn/ImportingData/Gender.xls)
     d. a DataCamp [tutorial](http://blog.datacamp.com/r-data-import-tutorial/)
+-->
  
-### Wednesday
+#### Wednesday
  
  1. More data wrangling with `dplyr` and `tidyr` 
+ 
+ <!--
     a. merging data from multiple sources [Danny]
         * [Slides](Learn/Join/joins.html) 
         * [bird-species spreadsheet](https://docs.google.com/spreadsheets/d/1GDKeulVSRXL7Q_5Q0a7Offc_IPX2T4sZ80VN5VLASew/edit#gid=0), 
@@ -139,15 +145,22 @@ Arrival day for many coming from out of town.
     b. `gather()`, `spread()`, `separate()` [Randy]
         * [Notes](Learn/TidyData/TidyGapMinder.html)
     c. Building precursors [paper](http://www.amherst.edu/~nhorton/precursors)
+-->
     
  2. Quick Shiny intro [Example](https://r.amherst.edu/apps/nhorton/sat/) 
  
  3. Ingesting your own data and starting on your project
+ 
+ 4. Optional Tutorials TBA
 
-### Thursday
+#### Thursday
+
+ 1. Working on projects
+ 
+ 2. Optional Tutorials TBA
 
 
-### Friday
+#### Friday
 
  1. Please fill out the  [Project Report Form]()
  
@@ -157,7 +170,7 @@ Arrival day for many coming from out of town.
  3. Finding R packages and documentation [Nick]
 -->
   
-### Additional Topics TBD
+#### Additional Topics TBD
 
 In the second half of the workshop, we will offer optional tutorials on topics of 
 interest to several workshop participants.   Here are some potential topics, but 
