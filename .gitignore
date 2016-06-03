@@ -12,4 +12,8 @@ ggmapTemp.png
 *_cache/
 *_files/
 .httr-oauth
-
+Surveys/
+ParticipantPresentations/
+stylesheets/testing.css/
+xkcd.ttf
+RawSurvey.rds
