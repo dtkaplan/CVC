@@ -9,3 +9,7 @@ yob*txt
 *~
 *-figure/
 ggmapTemp.png
+*_cache/
+*_files/
+.httr-oauth
+
