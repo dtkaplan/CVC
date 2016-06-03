@@ -173,7 +173,8 @@ Arrival day for many coming from out of town.
 
 In the second half of the workshop, we will offer optional tutorials on topics of 
 interest to several workshop participants.   Here are some potential topics, but 
-don't be afraid to suggest others.
+don't be afraid to suggest others. If there is a name listed by a topic, talk to
+that person to find out more.
 
   1. Github [Randy]
   3. Shiny [Danny, Nick, or Jo]
