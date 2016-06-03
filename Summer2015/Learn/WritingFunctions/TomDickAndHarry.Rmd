@@ -1,0 +1,92 @@
+---
+title: Every Tom, Dick, and Harry
+author: Writing Functions in R
+date: "CVC 2015"
+output: 
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r, include = FALSE}
+require(mosaic)
+require(babynames)
+```
+
+## What ever happened to Jane (and Mary)?
+
+```{r}
+babynames %>% 
+  group_by(sex, year) %>% mutate(total = sum(n)) %>%
+  group_by(name, sex, year) %>% mutate(prop2 = n / total) %>%
+  filter(name %in% c("Mary", "Jane"), sex == "female") %>%
+  ggplot() +
+  geom_line(aes(x = year, y = prop, color = name))
+```
+
+## What ever happened to Jane (and Mary) (and Mary Jane)?
+
+```{r}
+BabyNames2 <-
+  babynames %>% 
+  group_by(sex, year) %>% mutate(total = sum(n)) %>%
+  group_by(name, sex, year) %>% mutate(prop2 = n / total) 
+```
+
+```{r}
+BabyNames2 %>%
+  filter(name %in% c("Mary", "Jane"), sex=="F") %>%
+  ggplot() +
+  geom_line(aes(x = year, y = prop, color = name))
+```
+
+
+
+## What about Tom, Dick, and Harry?
+
+We would like to generalize our code to handle any set of names
+we want to compare.  In R we do this by writing **functions**.
+
+We begin with our two questions:
+
+ 1. What do we want R to do?
+   
+    * This determines the name of the function (and what it does/returns)
+    * `NameTrendPlot()` might be a good name for the function
+ 
+ 2. What does it need to know to do this?
+ 
+    * This determines the arguemnt list (list of inputs) to the function
+    * The function will need to know which names to track.  
+    * We should probably have an argument to restrict to just one sex.
+    
+## Creating a function in R
+
+The general form of a fucntion definition is
+
+```{r}
+functionName <- function( arg1 = default1, arg2 = default2, ... ) {
+  # do stuff here
+  # result of last line is returned.  
+  # Can also use explicit return().
+}
+```
+
+## What about Tom, Dick, and Harry?
+
+```{r}
+NameTrend <- function(names, sex) {
+  BabyNames2 %>%
+    filter(name %in% names, sex %in% sex) %>%
+    ggplot() +
+    geom_line(aes(x = year, y = prop, color = name, linetype=sex))
+}
+```
+
+## What about Tom, Dick, and Harry?
+
+``{r}
+NameTrend(c("Tom", "Dick", "Harry"), sex=="M")
+```
+
+
+

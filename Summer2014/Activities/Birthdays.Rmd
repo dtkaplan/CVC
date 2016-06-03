@@ -1,0 +1,45 @@
+---
+title: "Birthday Examples"
+author: "R Pruim"
+date: "July 11, 2014"
+output:
+  html_document:
+    fig_height: 4
+    fig_width: 10
+---
+
+The `Birthdays` data frame contains information on the number of births
+each day in each US state over a period of approximately 20 years.
+```{r, message=FALSE}
+require(mosaic)
+require(mosaicData)
+head(Birthdays)
+Birthdays %>% filter(state=="MI") -> MIBirths
+MIBirths %>% 
+  ggplot() +
+  geom_line(aes(x=date, y=births, color=wday))
+```
+
+There are some days with very few births.  Let's remove those and remake our plot.
+```{r}
+MIBirths %>% filter(births > 100) %>%
+  ggplot() +
+  geom_line(aes(x=date, y=births, color=wday))
+```
+
+### Adding Annual Births and percentages
+
+```{r}
+require(mosaic)
+BirthdaysWithAnnualBirths <-  
+  Birthdays %>% 
+  group_by(state, year) %>% 
+  mutate(annualBirths=sum(births), birthsProp = births / annualBirths) 
+```
+
+The proportions make it easier to compare states of different sizes
+```{r}
+BirthdaysWithAnnualBirths %>% 
+  filter(state %in% c("MI", "CA") & births > 50 & year == 1980) %>%
+  ggplot( aes(x=date, y=birthsProp, color=state ) ) + geom_point()
+```

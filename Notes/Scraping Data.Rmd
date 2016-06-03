@@ -1,0 +1,49 @@
+---
+title: "Scraping Data"
+author: "R Pruim"
+date: "July 10, 2014"
+output: html_document
+---
+
+## CIA World Factbook
+
+Google for [CIA factbook](https://www.cia.gov/library/publications/the-world-factbook/)a
+
+*  Go to references and then Guide to Country Comparisons and you will 
+land [here](https://www.cia.gov/library/publications/the-world-factbook/rankorder/rankorderguide.html)
+    * there will be lots of data sets you can navigate to
+    * each one will have a download link to get to the data, 
+    for example at [https://www.cia.gov/library/publications/the-world-factbook/rankorder/rawdata_2186.txt](https://www.cia.gov/library/publications/the-world-factbook/rankorder/rawdata_2186.txt)
+
+We can read this with
+```{r}
+require(RCurl)
+url <- "https://www.cia.gov/library/publications/the-world-factbook/rankorder/rawdata_2186.txt"
+ciaData <- read.delim(textConnection(getURL(url)))
+head(ciaData)
+```
+
+### Wikipedia FIFA world rankings
+
+[http://en.wikipedia.org/wiki/FIFA_World_Rankings](http://en.wikipedia.org/wiki/FIFA_World_Rankings) has some tables that we would like to scrape.
+
+We need the `XML` pacakge for this
+```{r}
+require(XML)
+```
+
+```{r}
+url <- "http://en.wikipedia.org/wiki/FIFA_World_Rankings"
+fifa <- readHTMLTable(url, stringsAsFactors=FALSE)
+str(fifa, max.level=1)
+length(fifa)
+```
+
+### Brainy Zip
+
+```{r}
+url <-  "http://www.brainyzip.com/zipcodes/53/53001.html"
+zip <- readHTMLTable(url)
+str(zip, max.level=1)
+zip[[2]]
+```

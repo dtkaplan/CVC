@@ -1,0 +1,78 @@
+Airlines
+========================================================
+author: R Pruim 
+date: 2014 CVC workshop
+
+
+Big Data Example -- Airlines
+============================
+```{r,include=FALSE}
+user <- "mth292"
+passwd <- "RememberPi"
+```
+```{r,eval=TRUE}
+require(RMySQL)
+airlines <- src_mysql(
+  dbname="airlines", 
+  host="rucker.smith.edu", 
+  user=user, password=passwd) 
+airlines
+```
+
+Ontime arrival and departure
+============================
+How big is it?
+```{r}
+OnTime <- tbl(airlines, "ontime")
+OnTime %>% 
+  summarise( millionsOfRecords = n()/1e6 )
+```
+
+Ontime arrival and departure
+============================
+How big is it?
+```{r}
+OnTime %>% 
+  group_by(Year) %>% 
+  summarise( moR = n() / 1e6 )
+```
+
+```{r include=FALSE}
+airport <- tbl(airlines, "airports")
+carriers <- tbl(airlines, "carriers")
+planes <- tbl(airlines, "planes")
+airlinesSummary <- tbl(airlines, "summary")
+```
+
+
+Grabbing a subset -- 2013 GRR flights
+=====================================
+```{r}
+OnTime %>% 
+  filter( Year==2013, Origin=="GRR" | Dest=="GRR" ) %>%
+  select( DayofMonth, Month, Origin, Dest, ArrDelay, DepDelay ) %>%
+  mutate( Outbound = Origin=="GRR" )  -> GRR2013
+GRR2013 %>% summarise( n = n() )
+```
+
+GRR Flights
+===========
+```{r}
+GRR2013 %>%
+  group_by( Month, Outbound) %>%
+  arrange( Month ) %>%
+  summarise( 
+    n = n(),
+    meanDD=mean(DepDelay), 
+    meanAD = mean(ArrDelay), 
+    meanInFlightGain = mean(DepDelay - ArrDelay) ) -> GRRdelay
+GRRdelay
+```
+
+How many flights in one day?
+===========================
+```{r}
+OneDay <- OnTime %>%
+  filter( Year==2014, DayofMonth==3, Month==3)
+OneDay %>% summarise( flights = n() )
+```
