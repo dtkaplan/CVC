@@ -187,7 +187,7 @@ that person to find out more.
   9. More `ggplot2` [Randy]
  10. `ggvis` [Nick or Randy]
  11. Data Scraping from the Web
-  1. Getting data from a database
+  1. Getting data from a database [Nick]
  12. Image Analysis
  13. Resampling [Nick]
  10. Basic Statistical Methods
