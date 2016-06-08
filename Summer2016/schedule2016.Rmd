@@ -190,7 +190,6 @@ that person to find out more.
   1. Getting data from a database
  12. Image Analysis
  13. Resampling [Nick]
- 14. Machine learning [Danny]
  10. Basic Statistical Methods
  15. Linear models with "Less Volume, More Creativity" [Nick or Jo]
  16. Other topics as the arise 
