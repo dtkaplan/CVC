@@ -176,21 +176,21 @@ interest to several workshop participants.   Here are some potential topics, but
 don't be afraid to suggest others. If there is a name listed by a topic, talk to
 that person to find out more.
 
-  1. Github [Randy]
-  3. Shiny [Danny, Nick, or Jo]
-  4. Leaflets, etc. [Danny]
-  5. Maps [Danny]
-  5. Machine learning [Danny]
-  6. Text mining [Nick]
-  7. Modeling in R [Nick]
-  8. Writing Functions [Randy]
-  9. More `ggplot2` [Randy]
- 10. `ggvis` [Nick or Randy]
- 11. Data Scraping from the Web
-  1. Getting data from a database [Nick]
- 12. Image Analysis
- 13. Resampling [Nick]
- 10. Basic Statistical Methods
- 15. Linear models with "Less Volume, More Creativity" [Nick or Jo]
- 16. Other topics as the arise 
+1. Github [Randy]
+3. Shiny [Danny, Nick, or Jo]
+4. Leaflets, etc. [Danny]
+5. Maps [Danny]
+5. Machine learning [Danny]
+6. Text mining [Nick]
+7. Modeling in R [Nick]
+8. Writing Functions [Randy]
+9. More `ggplot2` [Randy]
+10. `ggvis` [Nick or Randy]
+11. Data Scraping from the Web
+1. Getting data from a database
+12. Image Analysis
+13. Resampling [Nick]
+10. Basic Statistical Methods
+15. Linear models with "Less Volume, More Creativity" [Nick or Jo]
+16. Other topics as the arise 
  
