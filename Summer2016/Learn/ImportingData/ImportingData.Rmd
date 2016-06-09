@@ -6,10 +6,17 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(eval = TRUE, include = TRUE, echo = TRUE)
+knitr::opts_chunk$set(
+  eval = TRUE, 
+  include = TRUE, 
+  echo = TRUE,
+  cache = FALSE,
+  size = "small")
+require(tidyr)
+require(readxl)
 require(mosaic)
 trellis.par.set(theme = col.mosaic())
-require(tidyr)
+options(width = 90, digits = 3)
 ```
 
 
@@ -47,15 +54,22 @@ and most data handling software can export to CSV and import from CSV, so it
 good to learn how to work with CSV data.
 
 Excel can also export to CSV, but it is safer to import Excel data directly, since 
-the export to CSV and reimport can sometimes corrupt data (dates, especially) and there
-are many subtleties related to different versions of Excel.  Fortunately the 
-`googlesheets` package makes it easy to import directly from Excel, and RStudio 
-now includes a GUI for this.  (Also, choosing "save as CSV" in Excel is awkward and 
-Excel doesn't provide a true "export as CSV" option.)
+the export to CSV and reimport.  Reading directly from Excel has several advantages:
 
-**Exercise:** Obtain a csv file or Excel spreadsheet containing data.  
+  * It avoids having multiple copies of the data, which could become out 
+  of sync and cause confusion.
+  * It makes it easy to automate work with Excel spreadsheets.
+  * It allows you to work with Excel spreasheets even if you don't have 
+  Excel running (or even installed) on your machine.
+  * If we use the `readxl` package for this, then certain oddities of 
+  Excel files are taken care of for us.
+  Most importantly, `readxl` takes care of 
+  date conversion an knows how to handle data from multiple versions of 
+  Excel.  (This can be a source of major problems if you use Excel-generated
+  CSV files.)
+
+**Exercise:** Obtain a csv file or Excel spreadsheet containing data.
 You can create or use your own data or find a data set online.
-
 
 ### Uploading Files to RStudio Server
 
@@ -73,37 +87,46 @@ That's all there is to it.  You can use this procedure to upload files of any ty
 
 ### Importing Data into your R Session
 
- 1. In the Environment Tab find "Import Dataset".  
+  1. In the Environment Tab find "Import Dataset".
  
- 2. Choose the appropriate file type
+  2. Choose the appropriate file type
  
- ![import from](ImportFrom.png)
+  ![import from](ImportFrom.png)
  
-    * Note: The files must live on the same machine as RStudio.  If you
+    Note: The files must live on the same machine as RStudio.  If you
     are using the web version of RStudio, you may need to upload your file
     first.  See the previous section.
-    
- 3. Navigate to the file, or paste in the URL.
  
- 4. Name the data set (the default name is derived from the file name).
+  3. In the form below, fill out the information for your data set
+  
+    a. Navigate to the file, or paste in the URL.
  
- 5. Fill out the form to declare the structure of the file.
+    b. Name the data set (the default name is derived from the file name).
  
- 6. Hit "Import" to import the data.
+    c. Fill out the form to declare the structure of the file.
+ 
+    d. Hit "Import" to import the data.
+ 
+    ![](ImportDetails.png)
+  
 
 This will place the data set in your working environment.
 
 ### Using R commands directly
 
+If you import data using the interface described above, you will see that RStudio
+executes some commands in the console.
 Using RStudio's ability to import data is handy for interactive use,
 but it is not part of a reproducible workflow an can't be use in
-RMarkdown documents.  So it is good to learn how to use R commands 
-to import CSV files.
+RMarkdown documents. You can simply copy and paste the commands from the console 
+(skip the `View()` command if you are copying into an RMarkdown document since 
+`View()` is not available there.)
 
-*Note: When you use RStudio's interactive interface, the command used to read the file is printe in the console, so you can also import interactively and copy this command into your RMarkdown document.*
-
+Since CSV files are very common and there are multiple ways to import CSV
+files, it is good to know a bit more about CSV imports.
 The main functions we can use for this are `read.csv()` 
-and `readr::read_csv()`.  These functions work similarly.
+and `readr::read_csv()` and `mosaic::read.file()`.
+These functions work similarly.
 
 For our example, we will use the `Anscombe.csv` file which you can obtain using the command below.
 
@@ -112,51 +135,56 @@ download.file(
   "http://vincentarelbundock.github.io/Rdatasets/csv/car/Anscombe.csv",
   "Anscombe.csv")
 ```
+
+Now let's import the data using each of these three functions.
 ```{r}
 Anscombe1 <- read.csv("Anscombe.csv", header=TRUE)
 require(readr)
 Anscombe2 <- read_csv("Anscombe.csv")
+require(mosaic)
+Anscombe3 <- read.file("Anscombe.csv")
 ```
 
-The following shows a few of the differences between the two functions.
+The following shows a few of the differences among these functions.
 
 ```{r}
 inspect(Anscombe1)
 inspect(Anscombe2)
+inspect(Anscombe3)
 ```
 
   * `read.csv()` needs to be told that there is a header row containing
-  the variable names.
+  the variable names.  The others need to be told when there is *not* a header row.
   
-  * `read.csv()` modifies variable names to make them "nice";  
-  `read_csv()` does not.  
+  * `read.csv()` modifies variable names to make them "nice";
+  `read_csv()` does not.
   Notice that in `Anscombe2` has no name for the first variable, 
-  while `Anscombe1` renames this as `X`.
+  while `Anscombe1` renames this as `X`.  We can rename this manually
+  if we like:
   
-  * `read.csv()` converts character data into factor data (by default);
-    `read_csv()` does not.
-
 ```{r}
 names(Anscombe2)[1] <- "state"  # rename first variable
 xyplot( education ~ income, data = Anscombe2)
-
 ```
+
+  * `read.csv()` converts character data into factor data (by default);
+    `read_csv()` does not.
+
+  * `read.file()` uses the file name to guess which of several functions to use 
+  for file import.  In this case it is using `read.csv()`.  It can also read 
+  several other types of files.  See `?read.file` for details.
+  
+  * depending on the file structure, `read_csv()` or `read.csv()` may fail when 
+  the other succeeds.  It's good to know about both if you are using data from
+  online sources.
+  
 
 ## Importing Excel Spreadsheets
 
-It is also possible to import data directly from an Excel spreadsheet without
-first saving it as a CSV file.  
-This has some important advantages:
+In the same way, we can use R commands to import from an Excel spreadsheet (for example,
+by copying and pasting from the console after using the GUI).  Here's what that 
+would look like.
 
-  * It avoids having multiple copies of the data, which could become out of sync and cause confusion.
-  * It makes it easy to automate work with Excel spreadsheets.
-  * It allows you to work with Excel spreasheets even if you don't have 
-  Excel running (or even installed) on your machine
-  * If we use the `readxl` package for this, then certain oddities of 
-  Excel files are taken care of for us.  
-  Most importantly, `readxl` takes care of 
-  date conversion an knows how to handle data from multiple versions of 
-  Excel.
   
 ```{r, eval=FALSE}
 download.file(
@@ -168,15 +196,15 @@ The first two rows of this spreadsheet don't contain data, so we'll skip
 them.
 
 ```{r}
-require(readxl)
+require(readxl) 
 Gender <- read_excel("Gender.xls", skip=2)
-glimpse(Gender[, 1:10])
+inspect(Gender[, 1:10])
 ```
 
 We would like to reformat this data so that year is one of the variables
 instead of having a column for each year.  We can do this with
 the `tidyr` package; we just need to inicate which columns should be
-converte to data an give a name for the variable (`key`) and its 
+converte to data and give a name for the variable (`key`) and its 
 values (`value`).  The remaining variables are duplicated as needed.
 
 ```{r}
@@ -188,8 +216,9 @@ Gender2 <-
     `1960`:`2014`
   ) %>% 
   filter(!is.na(value)) %>%
-  mutate(year = as.numeric(as.character(year)))
-glimpse(Gender2)
+  mutate(year = extract_numeric(year))
+inspect(Gender2)
+head(Gender2)
 ```
 
 Now we can pick one of the inicators and some countries and compare
@@ -228,7 +257,7 @@ import data from Minitab, S, SAS, Stat, Systat, Weka, octave, and more.
 
 For data specialized for particular purposes,
 you might check a relevant
-[CRAN Task View](http://cran.r-project.org/web/views/).  
+[CRAN Task View](http://cran.r-project.org/web/views/).
 
 For things related
 to biological applications, [Bioconductor](http://www.bioconductor.org/) is another place to look.  In particular, take a look at the 
