@@ -21,7 +21,18 @@ On Wednesday afternoon, Hilary Parker (from Stitch Fix http://multithreaded.stit
 
 PRE-WORKSHOP PREPARATION:
 
-A major purpose of the workshop is to provide advice and help in setting up a data visualization/computing project for you to use in your own classes. The tools you will learn are powerful enough that you will be able to create a substantial project during the workshop, and will need just a few hours to tune it up when you get home.  If possible, you should spend some time thinking about a project that could come together for you during the workshop.
+A major purpose of the workshop is to provide advice and help in setting up a
+data visualization/computing project for you to use in your own classes. The
+tools you will learn are powerful enough that you will be able to create a
+substantial project during the workshop, and will need just a few hours to tune
+it up when you get home.  If possible, you should spend some time thinking about
+a project that could come together for you during the workshop.
+
+R and RSTUDIO
+
+We will provide you with access to an RStudio server account that will let you work with
+R and RStudio in the cloud without any installation required on your part.  But you might also
+like to install R and RStudio locally on your own desktop or laptop.
 
 Looking forward to seeing you all!
 
