@@ -56,9 +56,9 @@ meet the needs and wishes of the participants.
 
 Arrival day for many coming from out of town. 
 
-  * Opening reception, 5 pm - 7 pm at Jo Hardin's house
+**Opening reception**, 5 pm - 7 pm at Jo Hardin's house
  
-    * Check your email for details.
+  * Check your email for details.
 
 ### Monday
 
@@ -77,7 +77,7 @@ Arrival day for many coming from out of town.
  4. Introduction to R and R Studio [Randy]
 
     * [Less Volume, More Creativity -- An R Quick Start](Learn/LessVolume/LessVolume.html) 
-    * Importing CSV files
+    * Importing CSV and Excel files into RStudio
         * [Notes](Learn/ImportingData/ImportingData.html)
         * [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
     
