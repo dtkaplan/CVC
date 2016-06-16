@@ -6,7 +6,28 @@ output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, tidy = FALSE, size = "small")
+require(dplyr)
+require(tidyr)
+require(ggplot2)
+require(babynames)
+require(googlesheets)
+require(nycflights13)
+require(NHANES)
+require(lattice)
+Babynames <- babynames
+names(NHANES) <- tolower(names(NHANES))
+```
+
+## Set Up 
+
+```{r}
+require(dplyr); require(tidyr)
+require(ggplot2); require(lattice)
+require(googlesheets)
+require(babynames); require(nycflights13); require(NHANES)
+Babynames <- babynames
+names(NHANES) <- tolower(names(NHANES))
 ```
 
 ## Tidy Data
@@ -62,18 +83,7 @@ Data verbs take data tables as input and give data tables as output
     + first_value(), last_value(), and nth_value(x, n): (like x[1], x[length(x)], and x[n] )
 
 
-```{r message=FALSE, warning=FALSE, echo=FALSE}
-require(dplyr)
-require(tidyr)
-require(ggplot2)
-require(babynames)
-require(googlesheets)
-require(nycflights13)
-require(NHANES)
-require(lattice)
-Babynames = babynames
-names(NHANES) <- tolower(names(NHANES))
-```
+
 
 ## Finally, some Examples!
 
@@ -165,22 +175,27 @@ NHANES %>% summarise(n())
 
 ```{r}
 # total weight of all the people in NHANES (silly)
-NHANES %>% mutate(weightlb = weight*2.2) %>% summarise(sum(weightlb, na.rm=TRUE))
+NHANES %>% 
+  mutate(weightlb = weight*2.2) %>% 
+  summarise(sum(weightlb, na.rm=TRUE))
 ```
 
 ## 5. summarize(): computes summary statistics
 
 ```{r}
 # mean weight of all the people in NHANES
-NHANES %>% mutate(weightlb = weight*2.2) %>% summarise(mean(weightlb, na.rm=TRUE))
+NHANES %>% 
+  mutate(weightlb = weight*2.2) %>% 
+  summarise(mean(weightlb, na.rm=TRUE))
 ```
 
 ## 5. summarize() with group_by()
 
 ```{r}
 # mean weight of all the people in NHANES
-NHANES %>% mutate(weightlb = weight*2.2) %>% 
-  group_by(education) %>% 
+NHANES %>% 
+  mutate(weightlb = weight*2.2) %>%  
+  group_by(education) %>%  
   summarise(mean(weightlb, na.rm=TRUE))
 ```
 
