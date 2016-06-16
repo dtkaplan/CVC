@@ -1,0 +1,195 @@
+---
+title: "dplyr"
+author: "Jo Hardin"
+date: "June 21, 2016"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Tidy Data
+
+- rows (cases/observational units) and 
+- columns (variables).  
+
+- The key is that *every* row is a case and *every* column is a variable.  
+
+- No exceptions.
+
+## Chaining 
+
+The pipe syntax (%>%) takes a data frame (or data table) and sends it to the argument of a function.  
+
+
+- x %>% f(y) is the same as f(x, y)
+
+- y %>% f(x, ., z) is the same as f(x,y,z)
+
+
+## Building Tidy Data
+
+- object_name = function_name(arguments) 
+- object_name = data_table %>% function_name(arguments) 
+- object_name = data_table %>%  
+  &nbsp; &nbsp; &nbsp;    &nbsp; &nbsp; &nbsp; function_name(arguments) %>%  
+  &nbsp; &nbsp; &nbsp;     &nbsp; &nbsp; &nbsp; function_name(arguments)
+
+- in chaining, the value (on left) %>% is **first argument** to the function (on right)
+
+
+## 5 Main Data Verbs
+
+Data verbs take data tables as input and give data tables as output
+
+1. select(): removes unwanted *variables* (and rename() )
+2. filter():  removes/subsets unwanted *cases*
+3. mutate(): transforms the variable (and transmute() like mutate, returns only new variables)
+4. arrange(): reorders the cases
+5. summarize(): computes summary statistics
+
+## Other Data Verbs
+- distinct(): returns the unique values in a table
+- sample_n(): take a random row(s)
+- head():  grab the first few rows
+- tail(): grab the last few rows
+- group_by(): SUCCESSIVE functions are applied to groups
+- summarise():  
+    + min(), max(), mean(), sum(), sd(), median(), and IQR()
+    + n(): number of observations in the current group
+    + n_distinct(): number of unique values
+    + first_value(), last_value(), and nth_value(x, n): (like x[1], x[length(x)], and x[n] )
+
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+require(dplyr)
+require(tidyr)
+require(ggplot2)
+require(babynames)
+require(googlesheets)
+require(nycflights13)
+require(NHANES)
+require(lattice)
+Babynames = babynames
+names(NHANES) <- tolower(names(NHANES))
+```
+
+## Finally, some Examples!
+
+```{r}
+Babynames %>% nrow()
+Babynames %>% names()
+```
+
+## Finally, some Examples!
+
+```{r}
+Babynames %>% glimpse()
+```
+
+## Finally, some Examples!
+
+```{r}
+Babynames %>% head()
+```
+
+## Finally, some Examples!
+
+```{r}
+Babynames %>% sample_n(size=5)
+```
+
+
+## NHANES Data
+
+```{r}
+names(NHANES)
+```
+
+## 1. select(): removes unwanted *variables*
+
+
+find the sleep variables
+
+```{r}
+NHANESsleep <- NHANES %>% 
+  select(gender, age, weight, race1, race3, education, sleeptrouble,
+         sleephrsnight, tvhrsday, tvhrsdaychild, physactive)
+names(NHANESsleep)
+dim(NHANESsleep)
+```
+
+## 2. filter():  removes/subsets unwanted *cases* 
+
+subset for college students
+
+```{r fig.width=5, fig.height=3, fig.center=TRUE}
+NHANESsleep <- NHANESsleep %>% filter(age %in% c(18:22))
+histogram(~age, data=NHANESsleep)
+```
+
+## 3. mutate(): transforms the variable 
+
+mutate or transmute to create a new variable?
+
+```{r }
+NHANESsleep %>% mutate(weightlb = weight*2.2) %>% head(3)
+```
+
+## 3. mutate(): transforms the variable 
+
+mutate or transmute to create a new variable?
+
+```{r }
+NHANESsleep %>% transmute(weightlb = weight*2.2) %>% head(3)
+```
+
+## 3. mutate(): transforms the variable 
+
+mutate or transmute to create a new variable?
+
+```{r }
+NHANESsleep <- NHANESsleep %>% mutate(weightlb = weight*2.2)
+```
+
+
+## 5. summarize(): computes summary statistics
+
+```{r}
+# number of people (cases) in NHANES
+NHANES %>% summarise(n())
+```
+
+## 5. summarize(): computes summary statistics
+
+```{r}
+# total weight of all the people in NHANES (silly)
+NHANES %>% mutate(weightlb = weight*2.2) %>% summarise(sum(weightlb, na.rm=TRUE))
+```
+
+## 5. summarize(): computes summary statistics
+
+```{r}
+# mean weight of all the people in NHANES
+NHANES %>% mutate(weightlb = weight*2.2) %>% summarise(mean(weightlb, na.rm=TRUE))
+```
+
+## 5. summarize() with group_by()
+
+```{r}
+# mean weight of all the people in NHANES
+NHANES %>% mutate(weightlb = weight*2.2) %>% 
+  group_by(education) %>% 
+  summarise(mean(weightlb, na.rm=TRUE))
+```
+
+## 4. arrange(): reorders the cases
+
+```{r}
+# mean weight of all the people in NHANES
+NHANES %>% mutate(weightlb = weight*2.2) %>% 
+  group_by(education) %>% 
+  summarise(avewt = mean(weightlb, na.rm=TRUE)) %>% 
+  arrange(avewt)
+```
