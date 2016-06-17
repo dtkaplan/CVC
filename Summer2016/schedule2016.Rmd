@@ -127,7 +127,13 @@ Arrival day for many coming from out of town.
 
  4. Working with data -- 5 verbs of `dplyr` [Jo]    
     Getting your data into the right shape for graphing or analysis
-    
+ 
+     a. [slides](Learn/Wrangling/dplyrCVC.html) for presentation; 
+        [markdown file](Learn/Wrangling/dplyrCVC.Rmd) also available
+ 
+    b. [Worksheet](Learn/Wrangling/dplyrwrkshtCVC.html) for presentation; 
+       [markdown file](Learn/Wrangling/dplyrwrkshtCVC.Rmd) also available (and on the Calvin server)
+  
  5. Getting your own data into R [Randy]
 
 <!-- 
@@ -157,7 +163,7 @@ Arrival day for many coming from out of town.
  
  4. Optional Tutorials TBA
  
- 5. 4 pm:  Seminar with Hilary Parker (from [Stitch Fix](http://multithreaded.stitchfix.com/blog/) and [Not So Standard Deviations](https://soundcloud.com/nssd-podcast) 
+ 5. 4 pm:  Seminar with Hilary Parker (from [Stitch Fix](http://multithreaded.stitchfix.com/blog/) and [Not So Standard Deviations](https://soundcloud.com/nssd-podcast) )
 
 ### Thursday
 
