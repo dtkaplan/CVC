@@ -51,9 +51,9 @@ The pipe syntax (%>%) takes a data frame (or data table) and sends it to the arg
 
 ## Building Tidy Data
 
-- object_name = function_name(arguments) 
-- object_name = data_table %>% function_name(arguments) 
-- object_name = data_table %>%  
+- object_name <-  function_name(arguments) 
+- object_name <-  data_table %>% function_name(arguments) 
+- object_name <-  data_table %>%  
   &nbsp; &nbsp; &nbsp;    &nbsp; &nbsp; &nbsp; function_name(arguments) %>%  
   &nbsp; &nbsp; &nbsp;     &nbsp; &nbsp; &nbsp; function_name(arguments)
 
