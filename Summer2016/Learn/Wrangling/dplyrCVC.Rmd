@@ -1,33 +1,12 @@
 ---
-title: "dplyr"
+title: "dplyr presentation"
 author: "Jo Hardin"
 date: "June 21, 2016"
 output: ioslides_presentation
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, tidy = FALSE, size = "small")
-require(dplyr)
-require(tidyr)
-require(ggplot2)
-require(babynames)
-require(googlesheets)
-require(nycflights13)
-require(NHANES)
-require(lattice)
-Babynames <- babynames
-names(NHANES) <- tolower(names(NHANES))
-```
-
-## Set Up 
-
-```{r}
-require(dplyr); require(tidyr)
-require(ggplot2); require(lattice)
-require(googlesheets)
-require(babynames); require(nycflights13); require(NHANES)
-Babynames <- babynames
-names(NHANES) <- tolower(names(NHANES))
+knitr::opts_chunk$set(echo = TRUE, tidy=FALSE, size="small")
 ```
 
 ## Tidy Data
@@ -51,11 +30,12 @@ The pipe syntax (%>%) takes a data frame (or data table) and sends it to the arg
 
 ## Building Tidy Data
 
-- object_name <-  function_name(arguments) 
-- object_name <-  data_table %>% function_name(arguments) 
-- object_name <-  data_table %>%  
-  &nbsp; &nbsp; &nbsp;    &nbsp; &nbsp; &nbsp; function_name(arguments) %>%  
-  &nbsp; &nbsp; &nbsp;     &nbsp; &nbsp; &nbsp; function_name(arguments)
+- object_name <- function_name(arguments) 
+- object_name <- data_table %>% function_name(arguments) 
+- object_name <-   
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;data_table %>%  
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; function_name(arguments) %>%  
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; function_name(arguments)
 
 - in chaining, the value (on left) %>% is **first argument** to the function (on right)
 
@@ -76,6 +56,7 @@ Data verbs take data tables as input and give data tables as output
 - head():  grab the first few rows
 - tail(): grab the last few rows
 - group_by(): SUCCESSIVE functions are applied to groups
+- ungroup():  reverse the grouping action
 - summarise():  
     + min(), max(), mean(), sum(), sd(), median(), and IQR()
     + n(): number of observations in the current group
@@ -83,7 +64,13 @@ Data verbs take data tables as input and give data tables as output
     + first_value(), last_value(), and nth_value(x, n): (like x[1], x[length(x)], and x[n] )
 
 
-
+```{r message=FALSE, warning=FALSE, echo=TRUE}
+require(mosaic)
+require(babynames)
+require(NHANES)
+Babynames = babynames
+names(NHANES) <- tolower(names(NHANES))
+```
 
 ## Finally, some Examples!
 
@@ -123,9 +110,11 @@ names(NHANES)
 find the sleep variables
 
 ```{r}
-NHANESsleep <- NHANES %>% 
+NHANESsleep <- 
+  NHANES %>% 
   select(gender, age, weight, race1, race3, education, sleeptrouble,
          sleephrsnight, tvhrsday, tvhrsdaychild, physactive)
+
 names(NHANESsleep)
 dim(NHANESsleep)
 ```
@@ -155,15 +144,6 @@ mutate or transmute to create a new variable?
 NHANESsleep %>% transmute(weightlb = weight*2.2) %>% head(3)
 ```
 
-## 3. mutate(): transforms the variable 
-
-mutate or transmute to create a new variable?
-
-```{r }
-NHANESsleep <- NHANESsleep %>% mutate(weightlb = weight*2.2)
-```
-
-
 ## 5. summarize(): computes summary statistics
 
 ```{r}
@@ -192,18 +172,19 @@ NHANES %>%
 ## 5. summarize() with group_by()
 
 ```{r}
-# mean weight of all the people in NHANES
+# mean weight of all the people in NHANES, broken down by education
 NHANES %>% 
-  mutate(weightlb = weight*2.2) %>%  
-  group_by(education) %>%  
+  mutate(weightlb = weight*2.2) %>% 
+  group_by(education) %>% 
   summarise(mean(weightlb, na.rm=TRUE))
 ```
 
 ## 4. arrange(): reorders the cases
 
 ```{r}
-# mean weight of all the people in NHANES
-NHANES %>% mutate(weightlb = weight*2.2) %>% 
+# mean weight, by education, sorted
+NHANES %>% 
+  mutate(weightlb = weight*2.2) %>% 
   group_by(education) %>% 
   summarise(avewt = mean(weightlb, na.rm=TRUE)) %>% 
   arrange(avewt)
