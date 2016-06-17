@@ -63,6 +63,7 @@ Data verbs take data tables as input and give data tables as output
     + n_distinct(): number of unique values
     + first_value(), last_value(), and nth_value(x, n): (like x[1], x[length(x)], and x[n] )
 
+## You should know that I did this:
 
 ```{r message=FALSE, warning=FALSE, echo=TRUE}
 require(mosaic)
