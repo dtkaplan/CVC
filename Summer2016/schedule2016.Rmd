@@ -108,6 +108,12 @@ Arrival day for many coming from out of town.
     indicating types of data you are interested in.
 -->
 
+ 7. Project Example -- Dynamic Data [Jo]    
+ 
+     a. [slides](Learn/ProjectExamples/DynDataCVC.html) for presentation; 
+        [markdown file](Learn/ProjectExamples/DynDataCVC.Rmd) also available  
+     b. [manuscript](http://arxiv.org/abs/1603.04912) on arXiv  
+     c. [complete example markdown files](http://research.pomona.edu/johardin/papers-and-publications/) also available
 
 ### Tuesday
  
@@ -131,7 +137,7 @@ Arrival day for many coming from out of town.
      a. [slides](Learn/Wrangling/dplyrCVC.html) for presentation; 
         [markdown file](Learn/Wrangling/dplyrCVC.Rmd) also available
  
-    b. [Worksheet](Learn/Wrangling/dplyrwrkshtCVC.html) for presentation; 
+     b. [Worksheet](Learn/Wrangling/dplyrwrkshtCVC.html) for presentation; 
        [markdown file](Learn/Wrangling/dplyrwrkshtCVC.Rmd) also available (and on the Calvin server)
   
  5. Getting your own data into R [Randy]
