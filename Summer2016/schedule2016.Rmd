@@ -32,7 +32,7 @@ output:
 ## Resources
 
   * [CRAN](http://cran.r-project.org) (Comprehensive R Archive Network) has lots of R-related stuff
-  * The `mosaic` package (version 0.13 or greater) and its vignettes are [available via CRAN](http://cran.r-project.org/web/packages/mosaic/index.html) and also via [github](https://github.com/ProjectMOSAIC/mosaic)
+  * The `mosaic` package (version 0.14 or greater) and its vignettes are [available via CRAN](http://cran.r-project.org/web/packages/mosaic/index.html) and also via [github](https://github.com/ProjectMOSAIC/mosaic)
   * [The Calvin College RStudio server](http://rstudio.calvin.edu) has provided accounts for all workshop participants.
     * [Change passwords here](https://freeipa1.cs.calvin.edu/)
   * Slides and files for sessions will be posted in the schedule as we go along (see below).
