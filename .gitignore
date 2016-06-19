@@ -1,11 +1,11 @@
 .Rproj.user
+*.Rproj
 *.Rhistory
 *.RData
 *.rdb
 *.rdx
 *-cache
 yob*txt
-*.md
 *~
 *-figure/
 ggmapTemp.png
@@ -17,3 +17,5 @@ ParticipantPresentations/
 stylesheets/testing.css/
 xkcd.ttf
 RawSurvey.rds
+Summer2016/CVCFileSharing/CVCFileSharing.Rproj
+Summer2016/CVCFileSharing/PutFilesHere/Wrangling/dplyrCVCsides.Rmd

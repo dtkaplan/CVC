@@ -34,6 +34,7 @@ output:
   * [CRAN](http://cran.r-project.org) (Comprehensive R Archive Network) has lots of R-related stuff
   * The `mosaic` package (version 0.14 or greater) and its vignettes are [available via CRAN](http://cran.r-project.org/web/packages/mosaic/index.html) and also via [github](https://github.com/ProjectMOSAIC/mosaic)
   * [The Calvin College RStudio server](http://rstudio.calvin.edu) has provided accounts for all workshop participants.
+    * [Change passwords here](https://freeipa1.cs.calvin.edu/)
 Teaching Statistics Using R.
   * Slides and files for sessions will be posted in the schedule as we go along (see below).
 
@@ -47,13 +48,17 @@ responses.  Feel free to edit it at anytime before, during, or (shortly) after t
 
 ## Working Schedule
 
-This scheule will be updated throughout the workshop.  All items should be 
+This schedule will be updated throughout the workshop.  All items should be 
 considered tentative until they happen since we will adjust things to 
 meet the needs and wishes of the participants.
 
 ### Sunday
 
-Arrival day for many coming from out of town.  
+Arrival day for many coming from out of town. 
+
+**Opening reception**, 5 pm - 7 pm at Jo Hardin's house
+ 
+  * Check your email for details.
 
 ### Monday
 
@@ -72,7 +77,7 @@ Arrival day for many coming from out of town.
  4. Introduction to R and R Studio [Randy]
 
     * [Less Volume, More Creativity -- An R Quick Start](Learn/LessVolume/LessVolume.html) 
-    * Importing CSV files
+    * Importing CSV and Excel files into RStudio
         * [Notes](Learn/ImportingData/ImportingData.html)
         * [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
     
@@ -103,6 +108,12 @@ Arrival day for many coming from out of town.
     indicating types of data you are interested in.
 -->
 
+ 7. Project Example -- Dynamic Data [Jo]    
+ 
+     a. [slides](Learn/ProjectExamples/DynDataCVC.html) for presentation; 
+        [markdown file](Learn/ProjectExamples/DynDataCVC.Rmd) also available  
+     b. [manuscript](http://arxiv.org/abs/1603.04912) on arXiv  
+     c. [complete example markdown files](http://research.pomona.edu/johardin/papers-and-publications/) also available
 
 ### Tuesday
  
@@ -122,7 +133,13 @@ Arrival day for many coming from out of town.
 
  4. Working with data -- 5 verbs of `dplyr` [Jo]    
     Getting your data into the right shape for graphing or analysis
-    
+ 
+     a. [slides](Learn/Wrangling/dplyrCVC.html) for presentation; 
+        [markdown file](Learn/Wrangling/dplyrCVC.Rmd) also available
+ 
+     b. [Worksheet](Learn/Wrangling/dplyrwrkshtCVC.html) for presentation; 
+       [markdown file](Learn/Wrangling/dplyrwrkshtCVC.Rmd) also available (and on the Calvin server)
+  
  5. Getting your own data into R [Randy]
 
 <!-- 
@@ -151,12 +168,16 @@ Arrival day for many coming from out of town.
  3. Ingesting your own data and starting on your project
  
  4. Optional Tutorials TBA
+ 
+ 5. 4 pm:  Seminar with Hilary Parker (from [Stitch Fix](http://multithreaded.stitchfix.com/blog/) and [Not So Standard Deviations](https://soundcloud.com/nssd-podcast) )
 
 ### Thursday
 
  1. Working on projects
  
  2. Optional Tutorials TBA
+ 
+ 3. Dinner at [Buca di Beppo](http://www.bucadibeppo.com/restaurants/ca/claremont/)
 
 
 ### Friday

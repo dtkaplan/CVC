@@ -43,7 +43,7 @@ frameborder="0" allowfullscreen>
 1. Shop
 2. Work
 
-More details at [http://dtkaplan.github.io/CVC//schedule2015.html](../schedule2015.html)
+More details at [http://dtkaplan.github.io/CVC/schedule2016.html](../schedule2016.html)
 
  * **Please bookmark this page.**  We will post links to materials on this page so you can access them.
 
