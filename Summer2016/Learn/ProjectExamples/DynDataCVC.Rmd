@@ -16,7 +16,7 @@ require(readr)
 
 ## What is Dynamic Data?
 
-In conrast to (most) *static* data, *dynamic* data...  
+In contrast to (most) *static* data, *dynamic* data...  
 
 - is compiled / kept up to date by someone else
 - is uploaded directly from the internet 
