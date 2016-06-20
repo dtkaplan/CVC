@@ -88,7 +88,7 @@ Arrival day for many coming from out of town.
     * Creating PDF/HTML/Word documents in RStudio
     * [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
     * [Example: Student evaluations](CVCFileSharing/PutFilesHere/RMarkdown/student-evals.Rmd)
-    c. **Activity**: Write and publish a description of some 
+    *. **Activity**: Write and publish a description of some 
     straightforward, data-oriented topic you'd like to present in class. 
         * Include at least 1 plot (even if unrelated) to make sure 
         you know how to do that.  
