@@ -56,7 +56,7 @@ learning from data and give you an opportunity to give them a test drive
 
   * introduction to R and RStudio
   * data visualization
-  * data manipulation (tidying, cleaining, summarizing, etc.)
+  * data manipulation (tidying, cleaning, summarizing, etc.)
   * reproducible workflow with RMarkdown
     
 You get to "try things on" and "see how they fit"
