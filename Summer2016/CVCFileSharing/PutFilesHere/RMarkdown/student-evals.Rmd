@@ -80,9 +80,9 @@ different course and columns represent variables about the courses and
 professors.
 
 ```{r load-data, message=FALSE}
-library(oilabs)
 library(mosaic)
-data(evals)
+evals <- read.csv("http://www.amherst.edu/~nhorton/workshop/evals.csv",
+  stringsAsFactors=FALSE)
 ```
 
 variable         | description
