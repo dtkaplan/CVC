@@ -1,0 +1,495 @@
+---
+title: "Health-Care Spending"
+author: "Daniel Kaplan"
+date: "Data Computing"
+output: 
+  html_document:
+    theme: journal
+    fig_caption: true
+---
+
+```{r include=FALSE}
+require(DataComputing)
+require(mosaic)
+library(dplyr)
+library(ggplot2)
+knitr::opts_chunk$set(tidy=FALSE, cache=TRUE, out.width="50%")
+library(maps)
+library(tidyr)
+library(ggmap)
+#load us map data
+all_states <- map_data("state")
+#plot all states with ggplot
+```
+
+## Background
+
+High costs for medical care have been a national concern for more than a decade. There is a wealth of data about medical spending; insurance companies and the government pay most medical costs and keep extensive and detailed records.  Nonetheless, until recently there has been little data available to journalists and other citizens.  The insurance and government data systems are complex and few other organizations have had the resources to study the data. That has changed in the last few years with "open data" programs in government.
+
+In May 2013, the [Centers for Medicare and Medicaid Services](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/index.html) (CMS) released data on the price Medicare fee-for-service health services at hospitals around the US in year 2011.  
+
+This attracted press attention.  For example, a headline in the New York Times read ["Hospital Billing Varies Wildly, Government Data Shows"](http://www.nytimes.com/2013/05/08/business/hospital-billing-varies-wildly-us-data-shows.html).  
+
+![NYT Map.  Is this showing up with a caption?](NYT-map.png)
+
+A [map with the article](http://www.nytimes.com/interactive/2013/05/08/business/how-much-hospitals-charge.html?_r=0) shows the geographic disparities in hospital charges.  
+
+## Studying the Medicare Data
+
+The national news reports emphasize geographic disparities in the billing for procedures. A *citizen-statistician* might be interested to dig deeper into these disparities, perhaps with a local focus.  Or, she might want to investigate what other factors are associated with varying prices, for instance:   
+
+1. The type of procedure.
+#. The number of patients receiving the procedure at a given hospital.
+#. Age, wealth, and other demographic characteristics of the area.
+
+## Accessing the Data
+
+CMS makes the data available in four formats at this this [download page](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Inpatient2013.html) with similar pages for years 2011 and 2012.  The four formats are
+
+1. [Inpatient charge data, FY 2013, Microsoft Excel](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Downloads/Inpatient_Data_2013_XLSX.zip)
+2. [Inpatient charge data, FY 2013, Comma Separated Values](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Downloads/Inpatient_Data_2013_CSV.zip)
+3. [National and State Summaries, Microsoft Excel](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Downloads/Inpatient_Summary_2013_XLSX.zip)
+4. [National and State Summaries, Comma Separated Values](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Downloads/Inpatient_Summary_2013_CSV.zip)
+
+As you can see, there are two kinds of data: "charge data" and "national and state summaries."  There are also two kinds of data table file formats: Excel and CSV.  Usually, as here, the two file formats contain the same data; you only need to use one of them. It's generally easier to use the CSV format.
+
+A codebook in PDF format is provided under a link labelled *[methodology](http://www.cms.gov/Research-Statistics-Data-and-Systems/Statistics-Trends-and-Reports/Medicare-Provider-Charge-Data/Downloads/Inpatient_Methodology.pdf)*. This CMS documentation doesn't specify in a concise way what a *case* means.  After you load the data into R, you can figure this out.
+
+For convenience the 2011 inpatient data are available in the `DataComputing` package in the form of three data tables: `MedicareCharges`, `MedicareProviders`, and `DirectRecoveryGroups`. This case study will work with those tables.
+
+#### Checking the Data
+
+The New York *Times* says:
+
+> The data for 3,300 hospitals, released by the federal Centers for Medicare and Medicaid Services, shows wide variations not only regionally but among hospitals in the same area or city.
+
+A quick summary of the data using commands that students might encounter in an introductory statistics course:
+```{r}
+nrow(MedicareCharges)
+nrow(MedicareProviders)
+```
+
+The second number corresponds well with the New York *Times* description. But why are there `r nrow(MedicareCharges)` rows if there are only `r nrow(MedicareProviders)` hospitals?  Because there is a separate listing for each of 100 procedures (known as a Direct Recovery Group (DRG)).
+
+```{r}
+nrow(DirectRecoveryGroups)
+```
+
+If every provider had a listing for every DRG, there would be `r nrow(MedicareProviders)` times `r nrow(DirectRecoveryGroups)` cases in `MedicareCharges`. There's only about half that many; a typical provider is listed roughly 50 times.
+
+
+
+## Loading the data directly from the source
+
+It can be instructive to follow the process of loading the data directly from the Centers for Medicare and Medicaid Studies into R. Again, you don't need to do this unless you want to experience the process or apply the pattern to a new source of data, for instance the 2013 or other more recent data.
+
+Using a browser, download the file at the link to the "inpatient data" in CSV format.  As you'll see, the result is a file named `Inpatient_Data_2013_CSV.zip`.  This is not actually a `.csv` file; it is a `.zip` compressed file.  A `.zip` file is analogous to a suitcase: it can hold several different items in a compressed format suitable for easy transport.^[If "suitcase" is too informal for you, an alternative word is "portmanteau."] You "unzip" such a file to gain access to the uncompressed contents. 
+
+The `Inpatient_Data_2013_CSV.zip` contains just one item.  Opening the suitcase (that is, "unzipping" it) extracts that item: `Medicare_Provider_Charge_Inpatient_DRG100_FY2013.csv`.^[It would have been nicer if the single item in the suitcase had a name related to the suitcase itself, e.g. `Inpatient_Data_2013.csv`.  Then you would know exactly what to expect.]
+
+Similarly, you can uncompress the "summary" zip file.  This will reveal two files:
+
+1. `Medicare_Charge_Inpatient_DRG100_DRG_Summary_by_DRG_FY2013.csv`  
+2. `Medicare_Charge_Inpatient_DRG100_DRG_Summary_by_DRGState_FY2013.csv`
+
+It turns out that you won't need the summary files, but look at them anyways.
+
+It's informative to look at the size of the `.csv` files.  This helps you to evaluate whether or not you will have problems handling the files.
+
+* Inpatient CSV file: 26.9 MB
+* DRG summary file: 0.009 MB (that is, 9 KB)
+* DRG/State summary file: 0.462 MB (that is, 462 KB)
+
+A file of 26.9 MB is easily handled by today's personal computers.  Note that the summary files are much smaller.  That makes sense for a summary! The DRG/State summary file is about 50 times larger than the DRG summary file. Why do you think?  What is it about states in the US that suggests a number like 50?
+
+You can load the `.csv` data into R with commands like these:
+```{r eval=FALSE}
+Inpatients <- readr::read_csv(file.choose())
+# Navigate to the CSV file
+# And similarly for the two summary files
+DRGState <- readr::fread(file.choose())
+DRG <- readr::fread(file.choose())
+```
+
+Once you have read in these three data tables, look at their sizes in the *Environment* tab in RStudio.  It's common for the table stored in R to be much smaller than the CSV file it was created from, in this case 13.2 MB versus 26.9 MB for the inpatient data.
+
+### EXERCISE: Pack your suitcase neatly
+
+Download the `.zip` files for both year 2011 and 2013.  The contents of the files are arranged differently in the two years. (This is *not* good!) Explain how the contents (that is, the files, their names, and their location) are different.
+
+## Sanity Checks
+
+It's useful to compare the data to your expectations for what values should be.  This can help reveal your misconceptions about what the data are.  So ask some easy questions for which you already have an approximate answer.
+
+## How many procedures?
+
+There are about 300 million people in the US.  It's reasonable to expect that millions of inpatient procedures are performed, only a fraction of which are covered by Medicare or Medicaid.  The `totalDischarges` variable gives the number of people in each DRG for each hospital.  Add these up to get the total number of procedures listed in the data.
+
+R provides several different "dialects" for such calculations. In "base R" you might write
+```{r}
+with(data = MedicareCharges, sum(totalDischarges))
+```
+With the `mosaic` package you can write this more concisely (and do more complex calculations such as breaking down the total by some other variable):
+```{r}
+library(mosaic)
+sum( ~ totalDischarges, data = MedicareCharges)
+```
+
+These notes, as in the *Data Computing* Book, use the dialect provided by the `dplyr` package.  For very simple tasks such as this, `dplyr` will seem more verbose, but `dplyr` also provides more power for complicated calculations.
+```{r}
+MedicareCharges %>%
+  summarize(total = sum(totalDischarges))
+```
+
+Of course, all three dialects provide the same answer: about 7 million in-patient procedures are contained in the `MedicareCharges` data.
+
+
+## How much is Spent?
+
+How much did Medicare pay out for these services?  We expect that it will be many billions of dollars.
+
+```{r}
+MedicareCharges %>%
+  summarise(paid = sum(totalDischarges * avePayments),
+            charged = sum(totalDischarges * aveCharges))
+```
+
+$246 billion was charged.  "Only" $67 billion was paid.
+
+## Variation by provider
+
+Do different providers charge and get paid differently? To answer this question, it would be helpful to have a data table that looks like this:
+
+```
+Provider | Average payment
+---------|----------------- 
+10001    | 24000
+10005    | 29000
+         | and so on.
+```
+        
+The numbers here are made up, but the structure of the data table is not.  Each row is one case: a provider.  Each column is one variable: the provider ID and the average charge.      
+
+Data like this are called "glyph-ready." Once you have data in this form, it can be very easy to make whatever plot or other display you want.
+
+*Wrangling* is the process by which data are manipulated (or "transformed" or "processed") from their original form into a glyph-ready form.  Here's the original form of the `MedicareCharges` table:
+
+```{r}
+head(MedicareCharges)
+```
+
+It's important to be aware that the meaning of a *case* in the glyph-ready data is different from that in the `MedicareCharges` data.  
+
+EXERCISE: What is a case in the glyph-ready data? What is a case in the `MedicareCharges` data?
+
+Just to show what a wrangling statement looks like, here's one for producing the glyph-ready data for payments to providers:
+
+```{r}
+ProviderPayments <-
+  MedicareCharges %>%
+  group_by(idProvider) %>%
+  summarise(avePayment = mean(avePayments))
+```
+
+The glpyh-ready table looks like this:
+```{r}
+ProviderPayments
+```
+
+Displays of the variation in payments can be made in several ways.  For instance:
+
+```{r}
+densityplot( ~ avePayment, data = ProviderPayments)
+sd( ~ avePayment, data = ProviderPayments)
+favstats( avePayment, data = ProviderPayments)
+```
+
+There's a lot of variation!  
+
+Perhaps that might be due to different providers offering different procedures?  To examine the variation from one DRG to another, a glyph-ready table like this would be appropriate:
+
+```
+DRG | average payment
+----|-----------------
+039 | 33000
+057 | 20000
+    | and so on
+```
+
+The wrangling statement for producing this glyph-ready data table is very similar to that used to create the provider-by-provider payments.  (Try figuring it out yourself.)
+
+Here's a display of the result:
+```{r echo=FALSE}
+MedicareCharges %>%
+  group_by(drg) %>%
+  summarise(avePayment = mean(avePayments)) %>%
+  ggplot(aes(x=avePayment)) + 
+  geom_density(fill="grey", color="grey") + 
+  geom_rug() +
+  ggtitle("Variation in payment by DRG") +
+  xlab("Payment ($US)")
+```
+
+
+
+## Variations by State?
+
+Now consider the variation in average payments and charges by state.  There are many ways to display variation: histograms, density plots, etc. But before any of these can be constructed, you'll need to have a data table that looks more or less like this:
+
+State |  average payment | average charge
+------|------------------|-------------
+AK    | 5000             | 15000
+AL    | 6000             | 12000
+      | and so on.       |
+
+Here is one possible display of the information:
+
+```{r echo=FALSE}
+StateCharges <- 
+  MedicareProviders %>%
+  select(idProvider, stateProvider, zipProvider) %>%
+  left_join(MedicareCharges) %>%
+  group_by(stateProvider) %>%
+  summarise(
+    ave_payment = mean(avePayments),
+    ave_charge  = mean(aveCharges) ) %>%
+  mutate(stateProvider=reorder(stateProvider, ave_payment )) %>% 
+  gather(key = "direction", value ="amount", ave_payment, ave_charge) 
+ggplot(StateCharges, aes(y = amount, x = stateProvider)) + 
+  geom_point(aes(color=direction)) +
+  scale_y_log10(breaks=c(1000,5000,10000,15000,20000,30000,40000)) + 
+  xlab("State") + 
+  ylab("USD per procedure") +
+  theme(axis.text.x = element_text(angle = 60))
+```
+
+EXERCISE: Graphics choices
+
+Describe some of the choices made in this display.  Comment on whether they are effective or not for addressing these questions: How much variation is there in charges?  In payments? Do states that charge a lot get paid a lot? How much larger are charges than payments? How does a particular state compare to the rest?
+
+<!-- ANSWERS
+
+1. Frame: amount versus state.  We might have chosen payment versus charge instead.
+1. Order states by payment amount. Shows variation nicely. Allows one state to be compared to the rest.
+2. Log axis for dollar amount.  Allows the low amounts to be seen easily on the same scale as the high amounts.
+
+--> 
+
+Another possible display shows the variation with DRG within each state while allowing the states themselves to be easily compared.
+
+```{r echo=FALSE}
+DRGStateCharges <- 
+  MedicareProviders %>%
+  select(idProvider, stateProvider, zipProvider) %>%
+  left_join(MedicareCharges) %>%
+  mutate(stateProvider=
+           reorder(stateProvider, avePayments, FUN=median)) %>% 
+  mutate(drg = reorder(drg, avePayments, FUN=median)) %>%
+  gather(key = "direction", value ="amount", avePayments, aveCharges)
+ggplot(DRGStateCharges, aes(x=stateProvider, y=amount )) +
+  geom_boxplot( ) + 
+    scale_y_log10(breaks = 1000*c(1,5,10,15,20,30,40,80,160,320)) + 
+  xlab("State") + 
+  ylab("USD per procedure") +
+  theme(axis.text.x = element_text(angle = 60)) +
+  facet_grid( direction ~ . )
+```
+
+
+## Range of Costs by DRG
+
+```{r}
+ggplot(DRGStateCharges, aes(x=drg, y=amount )) +
+  geom_boxplot( ) + 
+    scale_y_log10(breaks = 1000*c(1,5,10,15,20,30,40,80,160,320)) + 
+  xlab("DRG") + 
+  ylab("USD per procedure") +
+  theme(axis.text.x = element_text(angle = 60)) +
+  facet_grid( direction ~ . )
+```
+
+
+
+## Comparing the 3 highest and 3 lowest cost states and some other big ones
+
+```{r echo=FALSE}
+extremes <- c('AL', 'AR', 'MA', 'CA', 'TX', 'WV')
+DRGStateCharges %>%
+  filter(stateProvider %in% extremes,
+         direction == "aveCharges") -> ExtremeStates
+ggplot( ExtremeStates, aes(x = drg, y = amount)) +
+  geom_boxplot( ) + 
+  scale_y_log10(
+    breaks = 1000*c(1,5,10,20,50,100,500)) + 
+  xlab("DRG") + ylab("USD per procedure") + 
+  facet_wrap( ~ stateProvider, nrow=3 )
+```
+
+## DRG 872 (for example)
+
+The DRGs vary in the same way within a state.  Let's pick one DRG to investigate: 872: **SEPTICEMIA OR SEVERE SEPSIS W/O MV 96+ HOURS W/O MCC**
+
+```{r}
+DRG872 <-
+  MedicareCharges %>%
+  filter(drg == 872)
+DRG872 <-
+  MedicareProviders %>%
+  select(idProvider, stateProvider, zipProvider) %>%
+  left_join(DRG872) 
+```
+  
+
+## Demographics
+
+Although the CMS data has no demographic information, other sources do.  The `DataComputing` package provides `ZipDemography` and `ZipGeography` with information on population, age distribution, income, disability, etc.
+
+```{r echo = FALSE}
+data(ZipDemography)
+data(ZipGeography)
+ZD <- select(ZipDemography, ZIP, Pop=Totalpopulation,
+             Over65=X65yearsandover,
+             College=Bachelorsdegreeorhigher,
+             Disabled=Disabilitystatuspopulation21to64years,
+             Income=Medianhouseholdincomedollars)
+ZG <- select(ZipGeography, ZIP, Latitude, Longitude, LandArea)
+Zips <- inner_join(ZD, ZG) %>% mutate(ZIP = as.integer(ZIP))
+```
+
+```{r echo=FALSE}
+DRG872 <- DRG872 %>% 
+  inner_join( Zips, by = c(zipProvider = "ZIP"))
+```
+
+
+
+## Looking at Charged versus demography
+
+```{r, dev='png'}
+ggplot( DRG872, aes(x=Over65/Pop, y=aveCharges)) +
+  geom_point(alpha = 0.5) + scale_y_log10() 
+ggplot( DRG872, aes(x=Income, y=aveCharges)) +
+  geom_point(alpha = 0.5) + scale_y_log10() 
+ggplot( DRG872, aes(x=LandArea, y=aveCharges)) +
+  geom_point(alpha = 0.5) + scale_y_log10() + scale_x_log10()
+ggplot( DRG872, aes(x=Pop/LandArea, y=aveCharges)) +
+  geom_point(alpha = 0.5) + scale_y_log10() + scale_x_log10()
+```
+
+The last two plots suggest that there are two clusters of providers based on demographic variables.  If desired, simple machine-learning techniques could be used to define the clusters.
+
+## The New York Times map
+
+```{r}
+DRG872 <- 
+  DRG872 %>% 
+  transform(Rgroup=ntiles(aveCharges,4))
+
+ggplot(DRG872 %>% filter( !stateProvider %in% c("AK","HI")), aes(x=Longitude,y=Latitude,color=Rgroup)) + 
+  geom_point(alpha=.6) + 
+  geom_polygon( data=all_states, aes(x=long, y=lat, group = group),colour="white", fill=NA )
+```
+
+Or, if you prefer, 
+```{r echo=FALSE}
+frame <- ggmap(get_map("US", zoom = 4))
+```
+
+```{r echo=FALSE}
+frame + 
+  geom_point(data = DRG872,
+             aes(x=Longitude, y=Latitude, color=Rgroup), alpha = 0.6)
+```
+
+
+
+## Doing things for all the DRGs
+
+One way to compare institutions across DRGs is to consider the residual of each charge to the average for that DRG.  
+
+```{r}
+Charges <- MedicareProviders %>%
+  select(idProvider, stateProvider, zipProvider) %>%
+  left_join(MedicareCharges) %>% 
+  inner_join( Zips, by = c(zipProvider = "ZIP"))
+```
+
+```{r}
+mod <- lm(log10(aveCharges) ~ drg, data = Charges)
+Charges$resid <- resid(mod)
+Charges <- 
+  Charges %>%
+  mutate(rgroup = ntiles(resid, 9))
+```
+
+```{r dev='png'}
+ggplot( Charges, aes(x=Pop/LandArea, y=resid)) +
+  geom_point(alpha=.02) + 
+  scale_x_log10()
+```
+
+Or, looking at average residuals (compared to entire nation) of each provider:
+
+```{r echo=FALSE}
+ProviderResids <-
+  Charges %>% 
+  group_by(idProvider, Latitude, Longitude) %>%
+  summarize(mresid = mean(resid, na.rm=TRUE)) %>%
+  mutate(big = c("low","mid", "high")[2+sign(mresid) * (abs(mresid) > 0.2)])
+```
+
+
+Or, more locally
+```{r echo=FALSE,message=FALSE,warning=FALSE}
+frame2 <- ggmap(get_map("Connecticut", zoom=6))
+frame2 + 
+  geom_point(data = ProviderResids,
+             aes(x=Longitude, y=Latitude, size=abs(mresid),
+                 color = big), alpha = 0.5)
+```
+
+0.4 on a log10 scale is a factor of 2.5 in charges.
+
+
+## Models
+
+When examining the relationships among multiple variables, linear models can be a good place to start.  Note that glyph-ready data is also *model-ready*.
+
+Something is wrong in the join with Zips.
+
+```{r echo=FALSE}
+ResidsWithDemographics <- 
+  ProviderResids %>%
+  inner_join(MedicareProviders) %>%
+  inner_join(
+    select(Zips, -Latitude, -Longitude), 
+    by=c(zipProvider = "ZIP")) 
+```
+
+```{r echo=FALSE}
+# Work around for mysterious problem with next chunk
+ResidsWithDemographics$pop_density <- 
+  with(ResidsWithDemographics,  Pop / LandArea)
+ResidsWithDemographics$college_educated <- 
+  with(ResidsWithDemographics,  College / Pop)
+```
+
+```{r echo=FALSE, eval=FALSE}
+# Why doesn't this work????
+foo <- 
+  ResidsWithDemographics %>%
+  mutate(pop_density = Pop / LandArea), 
+         college_educated = College)
+```
+
+```{r}
+mod2 <- lm(mresid ~ Income + Pop, data = ResidsWithDemographics)
+rsquared(mod2)
+anova(mod2)
+mod3 <- lm(mresid ~ 
+             pop_density + Income + college_educated + 
+             stateProvider + Latitude, 
+           data=ResidsWithDemographics )
+rsquared(mod3)
+anova(mod3)
+```
