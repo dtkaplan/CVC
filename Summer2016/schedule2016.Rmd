@@ -83,6 +83,13 @@ Arrival day for many coming from out of town.
     
     * **Activity**: Create a plot using data that you have imported into R.
 
+ 7. Project Example -- Dynamic Data [Jo]    
+ 
+     a. [slides](Learn/ProjectExamples/DynDataCVC.html) for presentation; 
+        [markdown file](Learn/ProjectExamples/DynDataCVC.Rmd) also available  
+     b. [manuscript](http://arxiv.org/abs/1603.04912) on arXiv  
+     c. [complete example markdown files](http://research.pomona.edu/johardin/papers-and-publications/) also available
+
  5. [RMarkdown](http://prezi.com/vq6l5yqpnqma/) [Nick]
  
     * Creating PDF/HTML/Word documents in RStudio
@@ -109,12 +116,6 @@ Arrival day for many coming from out of town.
     indicating types of data you are interested in.
 -->
 
- 7. Project Example -- Dynamic Data [Jo]    
- 
-     a. [slides](Learn/ProjectExamples/DynDataCVC.html) for presentation; 
-        [markdown file](Learn/ProjectExamples/DynDataCVC.Rmd) also available  
-     b. [manuscript](http://arxiv.org/abs/1603.04912) on arXiv  
-     c. [complete example markdown files](http://research.pomona.edu/johardin/papers-and-publications/) also available
 
 ### Tuesday
  
