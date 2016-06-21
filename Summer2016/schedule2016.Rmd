@@ -122,11 +122,11 @@ Arrival day for many coming from out of town.
  1. Project check-in: sharing ideas and one-on-ones
  
  2. The graphics-data interface 
-    a. graphing concepts: [slides](Learn/VizConcepts/VizConcepts.html) [Randy/Danny]
+    a. graphing concepts: [slides](Learn/VizConcepts/VizConcepts.html) [Danny]
     b. **Activity:** data <-> graphs [Danny]
     PDF with [the graphs](Learn/VizConcepts/Exercise/graphics_for_grammar.pdf) & the [questions](Learn/VizConcepts/Exercise/graphics_questions.pdf)
     
- 3. Introduction to `ggplot2` --  turning the concepts into pictures with the grammar of graphics
+ 3. Introduction to `ggplot2` --  turning the concepts into pictures with the grammar of graphics [Randy]
 
     a. [slides](Learn/ggplot2/ggplot2Intro.pdf) 
 <!-- 
@@ -137,10 +137,10 @@ Arrival day for many coming from out of town.
     Getting your data into the right shape for graphing or analysis
  
      a. [slides](Learn/Wrangling/dplyrCVC.html) for presentation; 
-        [markdown file](Learn/Wrangling/dplyrCVC.Rmd) also available
+        <!-- [markdown file](Learn/Wrangling/dplyrCVC.Rmd) also available -->
  
      b. [Worksheet](Learn/Wrangling/dplyrwrkshtCVC.html) for presentation; 
-       [markdown file](Learn/Wrangling/dplyrwrkshtCVC.Rmd) also available (and on the Calvin server)
+       [markdown file](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVC.Rmd) also available (and on the Calvin server)
   
  5. Getting your own data into R [Randy]
 
