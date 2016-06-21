@@ -201,7 +201,7 @@ Displays of the variation in payments can be made in several ways.  For instance
 ```{r}
 densityplot( ~ avePayment, data = ProviderPayments)
 sd( ~ avePayment, data = ProviderPayments)
-favstats( avePayment, data = ProviderPayments)
+favstats( ~ avePayment, data = ProviderPayments)
 ```
 
 There's a lot of variation!  
@@ -441,7 +441,7 @@ ProviderResids <-
 
 Or, more locally
 ```{r echo=FALSE,message=FALSE,warning=FALSE}
-frame2 <- ggmap(get_map("Connecticut", zoom=6))
+frame2 <- ggmap(get_map("Los Angeles", zoom=6))
 frame2 + 
   geom_point(data = ProviderResids,
              aes(x=Longitude, y=Latitude, size=abs(mresid),
