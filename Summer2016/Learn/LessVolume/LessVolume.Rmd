@@ -736,7 +736,7 @@ data(HELPrct)
 
 
  * single and multiple variable graphical summaries
- * single and multiple variabble numerical summaries
+ * single and multiple variable numerical summaries
  * linear models
 ```{r eval = FALSE}
   mean( age ~ sex, data = HELPrct )
@@ -751,7 +751,7 @@ coef(lm( age ~ sex, data = HELPrct ))
 
 ## Exercises
 
-Answer each question with both a numberical summary and a graphical summary.
+Answer each question with both a numerical summary and a graphical summary.
 
  1. Are boys feet larger than girls feet? (`KidsFeet`)
  
