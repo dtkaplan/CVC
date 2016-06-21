@@ -14,6 +14,10 @@ output:
     fig_width: 5
 ---
 
+*Source file* 
+```{r, results='asis', echo=FALSE}
+DataComputing::includeSourceDocuments()
+```
 
 ```{r, include=FALSE}
 # Don't delete this chunk if you are using the mosaic package
@@ -63,11 +67,11 @@ the data, then we will figure out how to get it glyph ready.
 ### Grabbing the data directly from google
 
 We can use the `googlesheets` package makes it possible to
-grab the data directly from google.
+grab the data directly from google. Make sure you have `googlesheets` installed.
 
 First we establish a connection to the google spreadsheet.
 ```{r, error=TRUE}
-require(googlesheets)
+library(googlesheets)
 google_connection <-
   gs_url("https://docs.google.com/spreadsheets/d/1kWH_xdJDM4SMfT_Kzpkk-1yuxWChfurZuWYjfmv51EA/pub?gid=0", visibility="public")
 ```

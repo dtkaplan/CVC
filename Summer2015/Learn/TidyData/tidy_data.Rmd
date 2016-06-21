@@ -1,7 +1,7 @@
 ---
 title: Tidy Data
 author: D Kaplan
-date: "CVC 2015"
+date: "CVC June 20, 2016"
 output: 
   ioslides_presentation:
     widescreen: true

@@ -6,8 +6,7 @@ output: html_document
 ---
 
 ```{r include=FALSE}
-library(babynames)
-library(ggplot2)
+library(DataComputing)
 library(mosaic)
 your_turn <- function(...) {
   "Your statement should replace 'your_turn()' in this chunk."
@@ -16,7 +15,7 @@ your_turn <- function(...) {
 
 Each year, the US Social Security Administration publishes a list of the most popular names given to babies.  In 2014, [the list](http://www.ssa.gov/oact/babynames/#ht=2) shows Emma and Olivia leading for girls, Noah and Liam for boys.
 
-The `babynames` data table in the `babynames` package comes from the Social Security Administration's listing of the names givens to babies in each year, and the number of babies of each sex given that name. (Only names with 5 or more babies are published by the SSA.)
+The `BabyNames` data table in the `DataComputing` package comes from the Social Security Administration's listing of the names givens to babies in each year, and the number of babies of each sex given that name. (Only names with 5 or more babies are published by the SSA.)
 
 
 ## Warm-ups
