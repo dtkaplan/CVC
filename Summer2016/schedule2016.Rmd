@@ -180,6 +180,8 @@ Arrival day for many coming from out of town.
  
  2. Live Project Reports
 
+ 3. Closing thoughts and goodbyes (finish at 3:00pm)
+
 <!--
  3. Finding R packages and documentation [Nick]
 -->
