@@ -141,6 +141,8 @@ Arrival day for many coming from out of town.
  
      b. [Worksheet](Learn/Wrangling/dplyrwrkshtCVC.html) for presentation; 
        [markdown file](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVC.Rmd) also available (and on the Calvin server)
+
+     <!-- c. [Sample solution Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVCsol.Rmd) [Sample solution html](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVCsol.html) -->
   
  
 ### Wednesday
@@ -157,9 +159,9 @@ Arrival day for many coming from out of town.
     c. Building precursors [paper](http://www.amherst.edu/~nhorton/precursors)
 -->
     
- 2. Quick Shiny intro [Example](https://r.amherst.edu/apps/nhorton/sat/) 
+ 2. Quick Shiny interlude [Example 1 ](https://r.amherst.edu/apps/nhorton/sat/) [Nick]
  
- 3. Ingesting your own data and starting on your project
+ 3. Ingesting your own data and next steps for your project
  
  4. Optional Tutorials TBA
  
@@ -179,6 +181,8 @@ Arrival day for many coming from out of town.
  1. Please fill out the  [Project Report Form]()
  
  2. Live Project Reports
+
+ 3. Closing thoughts and goodbyes (finish at 3:00pm)
 
 <!--
  3. Finding R packages and documentation [Nick]

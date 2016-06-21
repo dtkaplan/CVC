@@ -1,15 +1,20 @@
+
 ---
 title: "dplyr presentation"
 author: "Jo Hardin"
 date: "June 21, 2016"
-output: ioslides_presentation
+output: 
+  ioslides_presentation: 
+    smaller: yes
+    top: 50%
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, tidy=FALSE, size="small")
+knitr::opts_chunk$set(echo = TRUE, tidy=FALSE, size="small",
+                      fig.width=8, fig.height=6)
 ```
 
-## Tidy Data
+## Tidy Data 
 
 - rows (cases/observational units) and 
 - columns (variables).  
@@ -28,7 +33,7 @@ The pipe syntax (%>%) takes a data frame (or data table) and sends it to the arg
 - y %>% f(x, ., z) is the same as f(x,y,z)
 
 
-## Building Tidy Data
+## Building Tidy Data 
 
 - object_name <- function_name(arguments) 
 - object_name <- data_table %>% function_name(arguments) 
@@ -69,18 +74,18 @@ Data verbs take data tables as input and give data tables as output
 require(mosaic)
 require(babynames)
 require(NHANES)
-Babynames <- babynames
+Babynames = babynames
 names(NHANES) <- tolower(names(NHANES))
 ```
 
-## Finally, some Examples!
+## Finally, some Examples! 
 
 ```{r}
 Babynames %>% nrow()
 Babynames %>% names()
 ```
 
-## Finally, some Examples!
+## Finally, some Examples! 
 
 ```{r}
 Babynames %>% glimpse()
@@ -92,7 +97,7 @@ Babynames %>% glimpse()
 Babynames %>% head()
 ```
 
-## Finally, some Examples!
+## Finally, some Examples! 
 
 ```{r}
 Babynames %>% sample_n(size=5)
@@ -190,3 +195,191 @@ NHANES %>%
   summarise(avewt = mean(weightlb, na.rm=TRUE)) %>% 
   arrange(avewt)
 ```
+
+## Your Turn 
+
+When starting, it can be helpful to work with a small subset of the data.  When you have your data wrangling statements in working order, shift to the entire data table.
+
+```{r}
+SmallSubset <-
+  Babynames %>%
+  filter(year > 2000) %>%
+  sample_n(size = 200)
+
+names(SmallSubset)
+```
+
+
+## How many babies are represented?
+
+```{r eval=FALSE}
+SmallSubset %>%
+  summarise(total = ????(n)) # a reduction verb
+```
+
+## How many babies are represented?
+
+```{r}
+SmallSubset %>%
+  summarise(total=sum(n))
+```
+
+
+## How many babies are there in each year?
+
+```{r eval=FALSE}
+SmallSubset %>% 
+  group_by(????) %>% 
+  summarise(total = ????(n))
+```
+
+## How many babies are there in each year?
+
+```{r}
+SmallSubset %>% 
+  group_by(year) %>% 
+  summarise(total = sum(n))
+```
+
+## How many distinct names in each year?
+
+```{r eval=FALSE}
+SmallSubset %>%
+  group_by(????) %>%
+  summarise(name_count = n_distinct(????))
+```
+
+## How many distinct names in each year?
+
+```{r}
+SmallSubset %>%
+  group_by(year) %>%
+  summarise(name_count = n_distinct(name))
+```
+
+## How many distinct names of each sex in each year?
+
+```{r eval=FALSE}
+SmallSubset %>%
+  group_by(????, ????) %>%
+  summarise(????)
+```
+
+## How many distinct names of each sex in each year?
+
+```{r}
+SmallSubset %>%
+  group_by(year, sex) %>%
+  summarise(name_count=n_distinct(name))
+```
+
+
+## Track the yearly number of Janes and Marys over the years.
+
+```{r eval=FALSE}
+Result <-
+  Babynames %>%
+  ????(name %in% c("Jane", "Mary")) %>% # just the Janes and Marys
+  group_by(????, ????) %>% # for each year for each name
+  summarise(count = ????)
+```
+
+## Track the yearly number of Janes and Marys over the years.
+
+```{r}
+Result <-
+  Babynames %>%
+  filter(name %in% c("Jane", "Mary")) %>% # just the Janes and Marys
+  group_by(name, year) %>% # for each year for each name
+  summarise(count = sum(n))
+```
+
+## Plot out the result
+
+Put `year` on the x-axis and the count of each name on the y-axis.  Note that `ggplot()` commands use `+` rather than `%>%`.
+
+```{r eval=FALSE}
+ggplot(data=Result, aes(x = year, y = count)) +
+  geom_point()
+```
+
+* *Map* the name (Mary or Jane) to the aesthetic of color.  Remember that mapping to aesthetics is always done inside the `aes()` function.
+* Instead of using dots as the glyph, use a line that connects consecutive values: `geom_line()`.
+* Change the y-axis label to "Yearly Births": `+ ylab("Yearly Births")`
+* *Set* the line thickness to `size=2`. Remember that "setting" refers to adjusting the value of an aesthetic to a constant.  Thus, it's *outside* the `aes()` function.
+
+## Plot out the result
+
+```{r fig.width=5, fig.height=3, fig.center=TRUE}
+ggplot(data=Result, aes(x = year, y = count)) +
+  geom_line(aes(color=name), size=2) + 
+  ylab("Yearly Births")
+```
+
+
+## Look at the *proportion* of births rather than the count
+
+```{r eval=FALSE}
+Result2 <-
+  Babynames %>%
+  group_by(year) %>%
+  mutate(total = ????(n)) %>%
+  filter(????) %>%
+  mutate(proportion = n / total)
+```
+
+
+## Look at the *proportion* of births rather than the count
+
+Just as you did with count vs year, graph proportion vs year.
+```{r eval=FALSE}
+Result2 %>%
+  Your ggplot statements go here!
+```
+* Add a vertical line to mark a year in which something happened that might relate to the increase or decrease the popularity of the name.  Example: The movie [*Whatever Happened to Baby Jane*](http://en.wikipedia.org/wiki/What_Ever_Happened_to_Baby_Jane%3F_%281962_film%29) came out in 1962.  The glyph is a vertical line: `geom_vline()`.
+
+## Look at the *proportion* of births rather than the count
+
+```{r}
+Result2 <-
+  Babynames %>%
+  filter(sex == "F") %>%
+  group_by(year) %>%
+  mutate(total = sum(n)) %>%
+  filter(name %in% c("Mary", "Jane")) %>%
+  mutate(proportion = n / total)
+```
+
+## Look at the *proportion* of births rather than the count
+
+```{r fig.width=5, fig.height=3, fig.center=TRUE}
+ggplot(data=Result2, aes(x=year, y=proportion)) +
+  geom_line(aes(color=name), size=2) +
+  ylab("Yearly Births") +
+  geom_vline(xintercept=1962)
+```
+
+ 
+  
+##  Pick out name(s) of interest to you 
+
+Plot out their popularity over time.
+
+##  Pick out name(s) of interest to you 
+
+```{r fig.width=5, fig.height=3, fig.center=TRUE}
+Frances <- babynames %>%
+  filter(name== "Frances") 
+```
+
+##  Pick out name(s) of interest to you 
+
+```{r fig.width=5, fig.height=3, fig.center=TRUE}
+Frances %>% ggplot(aes(x=year, y=n)) +
+  geom_point(aes(color=sex), size=.5) + 
+  geom_line(aes(color=sex)) + 
+  geom_vline(xintercept=2006) + scale_y_log10() +
+  ylab("Yearly total on log10 scale")
+```
+
+
