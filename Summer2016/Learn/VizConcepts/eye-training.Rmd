@@ -1,0 +1,62 @@
+---
+title: "Eye-Training for Data Graphics"
+author: "Data Computing"
+date: "Feb 24, 2016"
+output: rmarkdown::tufte_handout
+---
+
+```{r include=FALSE}
+library(DataComputing)
+```
+
+\newcommand{\Questions}{{\marginnote{ \\1. What variables constitute the frame?\\2. What glyphs are used?\\3. What are the aesthetics for those glyphs?\\4. Which variable is mapped to each aesthetic?\\5. Which variable, if any, is used for faceting?\\6. Which scales are displayed with a guide?}}}
+
+# Group One
+
+\Questions
+\includegraphics[angle=90, origin=c, width=\textwidth]{Images/NYT-admissions-gap.png}
+
+\newpage
+
+\Questions
+\includegraphics[angle=90, origin=c, width=\textwidth]{Images/NYT-football-leagues.png}
+
+\newpage
+
+\Questions
+\includegraphics[angle=90, origin=c, width=\textwidth]{Images/NYT-house-prices.png}
+
+\newpage
+
+\Questions
+\includegraphics[angle=90, origin=c, width=\textwidth]{Images/sankey.png}
+
+\newpage
+
+\Questions
+\includegraphics[angle=90, origin=c, width=\textwidth]{Images/NYT-map.png}
+
+\newpage
+
+\Questions
+\includegraphics[angle=90, origin=c, width=\textwidth]{Images/NYT-pitching.png}
+
+\newpage
+
+\Questions
+\includegraphics[angle=90, origin=c, width=\textwidth]{Images/NYT-recession.png}
+
+\newpage
+
+\Questions
+\includegraphics[angle=90, origin=c, width=\textwidth]{Images/NYT-science-exam.png}
+
+\newpage
+
+\Questions
+\includegraphics[angle=90, origin=c, width=\textwidth]{Images/NYT-Taxes.png}
+
+\newpage
+
+\Questions
+\includegraphics[angle=90, origin=c, width=\textwidth]{Images/AndyZCladistics.png}

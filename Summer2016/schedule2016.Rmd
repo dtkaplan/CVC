@@ -124,15 +124,14 @@ Arrival day for many coming from out of town.
  2. The graphics-data interface 
     a. graphing concepts: [slides](Learn/VizConcepts/VizConcepts.html) [Danny]
     b. **Activity:** data <-> graphs [Danny]
-    PDF with [the graphs](Learn/VizConcepts/Exercise/graphics_for_grammar.pdf) & the [questions](Learn/VizConcepts/Exercise/graphics_questions.pdf)
-    
+    PDF with [the graphs](Learn/VizConcepts/eye-training.pdf)
  3. Introduction to `ggplot2` --  turning the concepts into pictures 
  with the grammar of graphics [Randy]
 
     a. [slides](Learn/ggplot2/ggplot2Intro.pdf) 
     b. [Dope Sheets](Learn/ggplot2/DopeSheets.pdf) 
 
- 4. R parts of speech [Danny]
+ 4. R parts of speech [Danny].   [slides](Learn/Parts_of_speech/R-command-structure.html)
  
  5. Working with data -- 5 verbs of `dplyr` [Jo]    
     Getting your data into the right shape for graphing or analysis
