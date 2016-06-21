@@ -159,7 +159,7 @@ Arrival day for many coming from out of town.
     
  2. Quick Shiny interlude [Example 1 ](https://r.amherst.edu/apps/nhorton/sat/) [Nick]
  
- 3. Ingesting your own data and starting on your project
+ 3. Ingesting your own data and next steps for your project
  
  4. Optional Tutorials TBA
  
