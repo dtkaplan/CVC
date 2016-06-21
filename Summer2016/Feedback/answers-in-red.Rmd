@@ -1,0 +1,44 @@
+---
+title: "Assignment 17"
+author: "Annika Halvorson"
+date: "6/21/2016"
+output: 
+  html_document
+---
+
+<style type="text/css">
+.studentanswer {color: red;}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+
+Please answer each of the following with a short essay, replacing the "your answer here" with your answer, including any chunks needed to support it.
+
+### 1. Climate Change
+
+The rain in Spain falls mainly ...
+
+#### Answer to 1. {.studentanswer}
+
+Global climate change, IMHO, means that Spanish rain will fall elsewhere. But maybe there's a third place that will be sending rain to Spain. Or will it be submerged, like Florida. Some arithmetic might help:
+
+```{r}
+sqrt(1:10)
+```
+
+
+### 2. Political correctness
+
+The adjective "HUUUGE" is correctly applied to which kind of objects.
+
+#### Answer to 2. {.studentanswer}
+
+Walls and hands.
+
+### Reminder
+
+Upload your file to our course-support software system [here](http://a.link.to/the/assignment).
