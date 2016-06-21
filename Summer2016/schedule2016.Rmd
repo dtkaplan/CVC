@@ -140,7 +140,7 @@ Arrival day for many coming from out of town.
         [markdown file](Learn/Wrangling/dplyrCVC.Rmd) also available
  
      b. [Worksheet](Learn/Wrangling/dplyrwrkshtCVC.html) for presentation; 
-       [markdown file](Learn/Wrangling/dplyrwrkshtCVC.Rmd) also available (and on the Calvin server)
+       [markdown file](https://rawgithub.com/dtkaplan/CVC/tree/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVC.Rmd) also available (and on the Calvin server)
   
  5. Getting your own data into R [Randy]
 
