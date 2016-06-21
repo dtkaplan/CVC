@@ -69,7 +69,7 @@ Data verbs take data tables as input and give data tables as output
 require(mosaic)
 require(babynames)
 require(NHANES)
-Babynames = babynames
+Babynames <- babynames
 names(NHANES) <- tolower(names(NHANES))
 ```
 
