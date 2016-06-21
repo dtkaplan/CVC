@@ -126,12 +126,15 @@ Arrival day for many coming from out of town.
     b. **Activity:** data <-> graphs [Danny]
     PDF with [the graphs](Learn/VizConcepts/Exercise/graphics_for_grammar.pdf) & the [questions](Learn/VizConcepts/Exercise/graphics_questions.pdf)
     
- 3. Introduction to `ggplot2` --  turning the concepts into pictures with the grammar of graphics [Randy]
+ 3. Introduction to `ggplot2` --  turning the concepts into pictures 
+ with the grammar of graphics [Randy]
 
     a. [slides](Learn/ggplot2/ggplot2Intro.pdf) 
     b. [Dope Sheets](Learn/ggplot2/DopeSheets.pdf) 
 
- 4. Working with data -- 5 verbs of `dplyr` [Jo]    
+ 4. R parts of speech [Danny]
+ 
+ 5. Working with data -- 5 verbs of `dplyr` [Jo]    
     Getting your data into the right shape for graphing or analysis
  
      a. [slides](Learn/Wrangling/dplyrCVC.html) for presentation; 
@@ -140,14 +143,6 @@ Arrival day for many coming from out of town.
      b. [Worksheet](Learn/Wrangling/dplyrwrkshtCVC.html) for presentation; 
        [markdown file](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVC.Rmd) also available (and on the Calvin server)
   
- 5. Getting your own data into R [Randy]
-
-<!-- 
-    a. [Notes](Learn/ImportingData/ImportingData.html)
-    b. [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
-    c. [Gender.xls](Learn/ImportingData/Gender.xls)
-    d. a DataCamp [tutorial](http://blog.datacamp.com/r-data-import-tutorial/)
--->
  
 ### Wednesday
  
