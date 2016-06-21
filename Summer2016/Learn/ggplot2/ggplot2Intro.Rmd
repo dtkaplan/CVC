@@ -21,10 +21,10 @@ opts_chunk$set(
   message = FALSE,
   warning = FALSE,
   size = 'small',
-  cache = TRUE,
+  cache = FALSE,
   tidy = FALSE
   )
-require(lubridate)
+# require(lubridate)
 require(sysfonts)
 require(xkcd)
 options(width = 65)
@@ -53,8 +53,8 @@ Set up
 ======
 
 ```{r}
-require(mosaic)
-require(lubridate) # package for working with dates
+require(mosaic)    # loads ggplot2 as well
+theme_set(theme_minimal())
 data(Births78)     # restore fresh version of Births78
 head(Births78, 3)
 ```
@@ -161,8 +161,6 @@ How do we make this plot?
 ====================
 
 ```{r, echo = FALSE}
-Births78 <- 
-  Births78 %>% mutate(wday = wday(date, label = TRUE))
 ggplot(data = Births78) +
   geom_point(aes(x = date, y = births, color = wday)) 
 ```
@@ -171,19 +169,10 @@ What has changed?  \pause
 
  * new aesthetic: mapping color to day of week
 
-Adding day of week to the data set
-==================================
 
-The `wday()` function in the `lubridate` package computes 
-the day of the week from a date.
+Mapping color to day of week
+====================
 
-```{r}
-Births78 <-  
-  Births78 %>% 
-  mutate(wday = wday(date, label = TRUE))
-```
-
-\pause
 
 ```{r, fig.height = 2.0}
 ggplot(data = Births78) +
@@ -432,17 +421,15 @@ HELPrct %>%
 
 How old are people in the HELP study? -- Other geoms
 ===============================
-```{r, fig.height = 1.7}
+```{r, fig.height = 2.3, size = "small"}
 HELPrct %>% 
   ggplot(aes(x = age)) + 
-  geom_freqpoly(binwidth = 2)
+  geom_ash(binwidth = 2, colour = "navy", size = 1.2) +
+  geom_density(colour = "forestgreen", size = 1.2) +
+  geom_freqpoly(binwidth = 2, aes(y = ..density..)) 
 ```
 
-```{r, fig.height = 1.7}
-HELPrct %>% 
-  ggplot(aes(x = age)) + 
-  geom_density()
-```
+
 
 Selecting stat and geom manually
 ================================
@@ -467,7 +454,7 @@ Every stat comes with a default geom, every geom with a default stat
 ```{r, fig.height = 2.0}
 HELPrct %>% 
   ggplot(aes(x = age)) + 
-  stat_density( geom = "line")
+  stat_density(geom = "line")
 ```
 
 More combinations
@@ -545,7 +532,7 @@ Using color and facets
 ```{r, fig.height = 1.3}
 HELPrct %>% 
   ggplot(aes(x = i1, color = substance)) + 
-  geom_line(stat = "density") + facet_grid( . ~ sex )
+  geom_line(stat = "density") + facet_grid( . ~ sex)
 ```
 
 Boxplots 
@@ -593,10 +580,9 @@ Issues with bigger data
 =========
 
 ```{r}
-require(NHANES)
-dim(NHANES)
+require(NHANES); dim(NHANES)
 NHANES %>%  ggplot(aes(x = Height, y = Weight)) +
-  geom_point() + facet_grid( Gender ~ PregnantNow )
+  geom_point() + facet_grid(Gender ~ PregnantNow)
 ```
 
 * Although we can see a generally positive association (as we would 
@@ -610,7 +596,8 @@ One way to deal with overplotting is to set the opacity low.
 ```{r}
 NHANES %>% 
   ggplot(aes(x = Height, y = Weight)) +
-  geom_point(alpha = 0.01) + facet_grid( Gender ~ PregnantNow )
+  geom_point(alpha = 0.01) + 
+  facet_grid(Gender ~ PregnantNow)
 ```
 
 geom_density2d
@@ -621,7 +608,7 @@ geom altogether.
 ```{r}
 NHANES %>% 
   ggplot(aes(x = Height, y = Weight)) +
-  geom_density2d() + facet_grid( Gender ~ PregnantNow )
+  geom_density2d() + facet_grid(Gender ~ PregnantNow)
 ```
 
 
@@ -637,7 +624,7 @@ Multiple layers
 ===============
 
 ```{r}
-ggplot( data = HELPrct, aes(x = sex, y = age)) +
+ggplot(data = HELPrct, aes(x = sex, y = age)) +
   geom_boxplot(outlier.size = 0) +
   geom_jitter(alpha = .6) +
   coord_flip()
@@ -646,10 +633,10 @@ ggplot( data = HELPrct, aes(x = sex, y = age)) +
 Multiple layers
 ===============
 
-```{r}
-ggplot( data = HELPrct, aes(x = sex, y = age)) +
+```{r, size = "small"}
+ggplot(data = HELPrct, aes(x = sex, y = age)) +
   geom_boxplot(outlier.size = 0) +
-  geom_point(alpha = .6, position = position_jitter(width = .1, height = 0)) +
+  geom_point(position = position_jitter(width = .3, height = 0)) +
   coord_flip()
 ```
 
@@ -659,7 +646,7 @@ Labeling
 ```{r}
 NHANES %>% 
   ggplot(aes(x = Height, y = Weight)) +
-  geom_hex() + facet_grid( Gender ~ PregnantNow ) +
+  geom_hex() + facet_grid(Gender ~ PregnantNow) +
   labs(x = "waist (m)", y = "weight (kg)", 
        title = "weight vs height")
 ```
@@ -694,7 +681,8 @@ Things I haven't mentioned (much)
 
 ```{r, eval = FALSE, fig.width = 14}
 require(xkcd)
-ggplot(data = Births78, aes(x = date, y = births, colour = wday)) +
+ggplot(data = Births78, 
+       aes(x = date, y = births, colour = wday)) +
        geom_smooth(se = FALSE) + theme_xkcd()
 ```
 ![births](images/xkcdBirths.png)
