@@ -1,7 +1,7 @@
 ---
 title: "Command Patterns in R"
 author: "Danny Kaplan"
-date: "Data Computing"
+date: "CVC June 21, 2016"
 output: slidy_presentation
 ---
 
@@ -15,19 +15,27 @@ require(DataComputing)
 Your commands will be written as chains.  
 
 * Each link in the chain will be a data verb and its arguments.
-    - The very first link is usually a data table.
+    - The very first link is usually a data frame.
     
 * Links are connected by the chaining symbol `%>%`
 
 * Often, but not always, you will save the output of the chain in a named object.
     - This is done with the *assignment operator*, `<-`
-    
+```
+    Name_of_result <-     
+      Starting_data_frame  %>%    
+      first verb (arguments for details) %>%   
+      next verb (and its arguments) %>%    
+           ... and so on, up through ...   
+      last verb (and its arguments)  
+```
+
 ## An example command chain
 
 ```{r}
 Princes <- 
   BabyNames %>%
-  filter(grepl("Prince",name)) %>%
+  filter(grepl("Prince", name)) %>%
   group_by(year) %>%
   summarise(total = sum(count))
 ```
@@ -46,16 +54,17 @@ There are two distinct aspects involved in reading or writing a command chain.
 
 The focus today is on syntax.
 
-## Parts of Speech
+## Part of Speech
+
 From the dictionarty 
 
 > part of speech noun
 
-> plural noun: parts of speech a category to which a word is assigned in accordance with its syntactic functions. In English the main parts of speech are noun, pronoun, adjective, determiner, verb, adverb, preposition, conjunction, and interjection.
+> parts of speech a category to which a word is assigned in accordance with its syntactic functions. In English the main parts of speech are noun, pronoun, adjective, determiner, verb, adverb, preposition, conjunction, and interjection.
 
 ## Parts of Speech in R
 
-#. Data tables
+#. Data frames
 #. Functions
 #. Arguments
 #. Variables
@@ -63,19 +72,19 @@ From the dictionarty
 #. Assignment
 #. Formulas (we won't use these until the end)
 
-## Data tables
+## Data frames
 
-* A data table comprises one or more variables. 
-* Naming convention: data tables are given names that start with a CAPITAL LETTER, e.g., `RegisteredVoters`.
-* A data table will always be the input at the start of a command chain.
-* If assignment is used to save the result, the object created is usually a data table.
+* A data frame comprises one or more variables. 
+* Naming convention: data frames are given names that start with a CAPITAL LETTER, e.g., `RegisteredVoters`.
+* A data frame will always be the input at the start of a command chain.
+* If assignment is used to save the result, the object created is usually a data frame.
 
 ## Functions
 
 * Functions are objects that transform an input into an output.
 * Functions are always followed by parentheses, that is, an opening  `(` and, eventually, a closing `)`.
 * Each link in a command chain starts with a function.
-    - More specifically, the function is a *data verb* that takes a data table as input and produces another data table as output.
+    - More specifically, the function is a *data verb* that takes a data frame as input and produces another data frame as output.
     - There are other kinds of functions, e.g. summary (or reduction) functions and transformation functions.
 
 ## Arguments
@@ -89,11 +98,11 @@ The things that go *inside* a function's parentheses are called *arguments*.
 summarise(total = sum(count))
 ```
 
-You can also consider the data table passed along by `%>%` as an argument to the following function.
+You can also consider the data frame passed along by `%>%` as an argument to the following function.
 
 ## Variables
 
-Variables are the components of data tables.
+Variables are the components of data frames.
 
 * When they are used, they *always* appear in function arguments, that is, between the function's parentheses.
 * A good convention is for variables to have names that start with a lower-case letter.  The convention is *not* universally followed.
@@ -116,7 +125,7 @@ Consider this command chain:
 ```{r eval=FALSE}
 Princes <- 
   BabyNames %>%
-  filter(grepl("Prince",name)) %>%
+  filter(grepl("Prince", name)) %>%
   group_by(year) %>%
   summarise(total = sum(count))
 ```

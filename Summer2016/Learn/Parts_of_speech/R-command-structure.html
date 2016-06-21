@@ -54,7 +54,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 Danny Kaplan
   </p>
-  <p class="date">Data Computing</p>
+  <p class="date">CVC June 21, 2016</p>
 </div>
 <div id="command-chains" class="slide section level2">
 <h1>Command chains</h1>
@@ -62,12 +62,18 @@ Danny Kaplan
 <ul>
 <li>Each link in the chain will be a data verb and its arguments.
 <ul>
-<li>The very first link is usually a data table.</li>
+<li>The very first link is usually a data frame.</li>
 </ul></li>
 <li><p>Links are connected by the chaining symbol <code>%&gt;%</code></p></li>
 <li>Often, but not always, you will save the output of the chain in a named object.
 <ul>
-<li>This is done with the <em>assignment operator</em>, <code>&lt;-</code></li>
+<li><p>This is done with the <em>assignment operator</em>, <code>&lt;-</code></p>
+<pre><code>Name_of_result &lt;-     
+  Starting_data_frame  %&gt;%    
+  first verb (arguments for details) %&gt;%   
+  next verb (and its arguments) %&gt;%    
+   ... and so on, up through ...   
+  last verb (and its arguments)  </code></pre></li>
 </ul></li>
 </ul>
 </div>
@@ -75,7 +81,7 @@ Danny Kaplan
 <h1>An example command chain</h1>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Princes &lt;-<span class="st"> </span>
 <span class="st">  </span>BabyNames %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;Prince&quot;</span>,name)) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;Prince&quot;</span>, name)) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(year) %&gt;%
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total =</span> <span class="kw">sum</span>(count))</code></pre></div>
 <ul>
@@ -96,20 +102,20 @@ Danny Kaplan
 </ol>
 <p>The focus today is on syntax.</p>
 </div>
-<div id="parts-of-speech" class="slide section level2">
-<h1>Parts of Speech</h1>
+<div id="part-of-speech" class="slide section level2">
+<h1>Part of Speech</h1>
 <p>From the dictionarty</p>
 <blockquote>
 <p>part of speech noun</p>
 </blockquote>
 <blockquote>
-<p>plural noun: parts of speech a category to which a word is assigned in accordance with its syntactic functions. In English the main parts of speech are noun, pronoun, adjective, determiner, verb, adverb, preposition, conjunction, and interjection.</p>
+<p>parts of speech a category to which a word is assigned in accordance with its syntactic functions. In English the main parts of speech are noun, pronoun, adjective, determiner, verb, adverb, preposition, conjunction, and interjection.</p>
 </blockquote>
 </div>
 <div id="parts-of-speech-in-r" class="slide section level2">
 <h1>Parts of Speech in R</h1>
 <ol>
-<li>Data tables</li>
+<li>Data frames</li>
 <li>Functions</li>
 <li>Arguments</li>
 <li>Variables</li>
@@ -118,13 +124,13 @@ Danny Kaplan
 <li>Formulas (we won’t use these until the end)</li>
 </ol>
 </div>
-<div id="data-tables" class="slide section level2">
-<h1>Data tables</h1>
+<div id="data-frames" class="slide section level2">
+<h1>Data frames</h1>
 <ul>
-<li>A data table comprises one or more variables.</li>
-<li>Naming convention: data tables are given names that start with a CAPITAL LETTER, e.g., <code>RegisteredVoters</code>.</li>
-<li>A data table will always be the input at the start of a command chain.</li>
-<li>If assignment is used to save the result, the object created is usually a data table.</li>
+<li>A data frame comprises one or more variables.</li>
+<li>Naming convention: data frames are given names that start with a CAPITAL LETTER, e.g., <code>RegisteredVoters</code>.</li>
+<li>A data frame will always be the input at the start of a command chain.</li>
+<li>If assignment is used to save the result, the object created is usually a data frame.</li>
 </ul>
 </div>
 <div id="functions" class="slide section level2">
@@ -134,7 +140,7 @@ Danny Kaplan
 <li>Functions are always followed by parentheses, that is, an opening <code>(</code> and, eventually, a closing <code>)</code>.</li>
 <li>Each link in a command chain starts with a function.
 <ul>
-<li>More specifically, the function is a <em>data verb</em> that takes a data table as input and produces another data table as output.</li>
+<li>More specifically, the function is a <em>data verb</em> that takes a data frame as input and produces another data frame as output.</li>
 <li>There are other kinds of functions, e.g. summary (or reduction) functions and transformation functions.</li>
 </ul></li>
 </ul>
@@ -148,11 +154,11 @@ Danny Kaplan
 <li><p>Many functions take <em>named arguments</em> which look like a name followed by an <code>=</code> sign, e.g.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">summarise</span>(<span class="dt">total =</span> <span class="kw">sum</span>(count))</code></pre></div></li>
 </ul>
-<p>You can also consider the data table passed along by <code>%&gt;%</code> as an argument to the following function.</p>
+<p>You can also consider the data frame passed along by <code>%&gt;%</code> as an argument to the following function.</p>
 </div>
 <div id="variables" class="slide section level2">
 <h1>Variables</h1>
-<p>Variables are the components of data tables.</p>
+<p>Variables are the components of data frames.</p>
 <ul>
 <li>When they are used, they <em>always</em> appear in function arguments, that is, between the function’s parentheses.</li>
 <li>A good convention is for variables to have names that start with a lower-case letter. The convention is <em>not</em> universally followed.</li>
@@ -164,7 +170,7 @@ Danny Kaplan
 <p>Constants are single values, most commonly a number or a character string.</p>
 <ul>
 <li>Character strings will always be in quotation marks,<br />
- <code>&quot;like this.&quot;</code><br />
+<code>&quot;like this.&quot;</code><br />
 </li>
 <li>Numerals are the written form of numbers, for instance.<br />
 <code>-42</code> <code>1984</code> <code>3.14159</code></li>
@@ -175,7 +181,7 @@ Danny Kaplan
 <p>Consider this command chain:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Princes &lt;-<span class="st"> </span>
 <span class="st">  </span>BabyNames %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;Prince&quot;</span>,name)) %&gt;%
+<span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;Prince&quot;</span>, name)) %&gt;%
 <span class="st">  </span><span class="kw">group_by</span>(year) %&gt;%
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total =</span> <span class="kw">sum</span>(count))</code></pre></div>
 <p>Just from the syntax, you should be able to tell which of the five different kinds of object each of these things is: <code>Princes</code>, <code>BabyNames</code>, <code>filter</code>, <code>grepl</code>, <code>&quot;Prince&quot;</code>, <code>name</code>, <code>group_by</code>, <code>year</code>, <code>summarise</code>, <code>total</code>, <code>sum</code>, <code>count</code>.</p>
