@@ -157,7 +157,7 @@ Arrival day for many coming from out of town.
     c. Building precursors [paper](http://www.amherst.edu/~nhorton/precursors)
 -->
     
- 2. Quick Shiny intro [Example](https://r.amherst.edu/apps/nhorton/sat/) 
+ 2. Quick Shiny interlude [Example 1 ](https://r.amherst.edu/apps/nhorton/sat/) [Nick]
  
  3. Ingesting your own data and starting on your project
  
