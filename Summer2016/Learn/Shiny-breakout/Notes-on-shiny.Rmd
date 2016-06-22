@@ -1,0 +1,46 @@
+---
+title: "Notes from the Shiny breakout session"
+author: "Daniel Kaplan"
+date: "June 22, 2016"
+output: html_document
+runtime: shiny
+---
+
+Please understand that these notes are informal and written on the fly, as the breakout session proceeds. 
+
+## Getting started
+
+* Shiny is a system for creating "applications," more or less analogous to "apps" on smartphones or tablets. 
+    - Those applications have all the resources of R for, e.g., graphics, data wrangling, etc. so they can do very sophisticated things.
+    - Shiny provides the "glue" for connecting the R calculations to buttons, sliders, and other modes of a graphical user interface. Shiny arranges that your R calculations can be performed interactively, in response to user inputs.^[You can also have inputs from other sources, like automatically reading new data as it arrives.] And Shiny is provides the "pipe" between the results of your calculation and the display of those results as graphics, tables, etc.
+
+* Nick showed on Wednesday morning some of the uses for Shiny
+   * Many nice examples [here at the Shiny Gallery](http://shiny.rstudio.com/gallery/), including both the simple and the complex.
+* Strategy for writing your own Shiny applications:
+    1. Start with an extremely simple example, for instance [this one](http://shiny.rstudio.com/gallery/telephones-by-region.html).
+    2. The examples come complete with the R files that implement the app, so copy these to your own computer.
+    3. Verify that the application can be displayed --- this involves pressing a button. (But you need to know which button!)
+    4. Make a very small, trivial change (like the title) and verify that the application still works.
+    5. Repeat (4) until the application does just what you want.
+* There are many tutorials on writing Shiny apps for instance [this one provided by RStudio](http://shiny.rstudio.com/tutorial/) but there are lots and lots of others that you can find via Google and on Youtube.
+
+## Project I: Copying and running an existing app
+
+... that you ~~borrowed~~ *shared* from someone else.
+
+## Project II: Using Shiny within Rmd
+
+* Input widgets.
+    - Sliders: `r sliderInput("age_threshold", "Threshold for Age", min = 0, max = 100, value = 18, step = 1)`
+
+* Output widgets.
+* Connecting input to output.
+    - `render___()` and `observe()`
+
+## Other general information
+
+1. Publishing your application for people with R.
+1. Publishing your application for people without R.
+1. Running shiny applications in your workspace.
+
+

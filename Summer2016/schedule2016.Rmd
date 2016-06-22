@@ -196,7 +196,7 @@ don't be afraid to suggest others. If there is a name listed by a topic, talk to
 that person to find out more.
 
 1. Github [Randy]
-3. Shiny [Danny, Nick, or Jo]
+3. Shiny [Danny, Nick, or Jo] --- [Notes from Danny's Shiny tutorial](Learn/Shiny-breakout/Notes-on-shiny.Rmd)
 4. Leaflets, etc. [Danny]
 5. Maps [Danny]
 5. Machine learning [Danny]
