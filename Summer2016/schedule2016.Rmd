@@ -129,7 +129,7 @@ Arrival day for many coming from out of town.
  with the grammar of graphics [Randy]
 
     a. [slides](Learn/ggplot2/ggplot2Intro.pdf) 
-    b. [Dope Sheets](Learn/ggplot2/DopeSheets.pdf) 
+    b. [Dope Sheets](Learn/ggplot2/ggplot2DopeSheets.pdf) 
 
  4. R parts of speech [Danny].   [slides](Learn/Parts_of_speech/R-command-structure.html)
  
@@ -163,6 +163,8 @@ Arrival day for many coming from out of town.
 [Shiny resources](http://shiny.rstudio.com) [Nick]
  
  3. Ingesting your own data and next steps for your project
+ 
+ 4. Quick demo of github.
  
  4. Optional Tutorials TBA
  
