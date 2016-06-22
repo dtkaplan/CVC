@@ -1,0 +1,198 @@
+---
+title: Tidy Data
+author: D Kaplan
+date: "CVC June 20, 2016"
+output: 
+  ioslides_presentation:
+    widescreen: true
+---
+
+```{r include=FALSE}
+require(DataComputing)
+require(dplyr)
+require(printr)
+```
+
+
+# Data has all sorts of forms
+
+## Signals
+
+![](Images/JunctionalEscapeRhythm.jpg)
+
+
+<!-- source: http://ecg.utah.edu/img_index -->
+
+## Photographs
+
+![](Images/595211.jpg)
+
+<!-- Source: http://aerotechnologies.org/aeroarc-remote-sensing.html -->
+
+## Video
+
+[Follow this link!](https://www.youtube.com/watch?v=MDMRcyJKzdU&feature=youtu.be)
+
+## Text, e.g. What am I doing? on OKCupid
+
+> currently working as an international agent for a freight forwarding company. import, export, domestic you know the works
+
+> online classes and trying to better myself in my free time. perhaps a hours worth of a good book or a video game on a lazy sunday."
+
+> dedicating everyday to being an unbelievable badass.
+
+> i make nerdy software for musicians, artists, and experimenters to indulge in their own weirdness, but i like to spend time away from the computer when working on my artwork (which is typically more concerned with group dynamics and communication, than with visual form, objects, or technology). i also record and deejay dance, noise, pop, and experimental music (most of which electronic or at least studio based). besides these relatively ego driven activities, i've been enjoying things like meditation and tai chi to try and gently flirt with ego death."
+
+> reading things written by old dead people
+
+> work work work work + play
+
+> building awesome stuff. figuring out what's important. having
+adventures. looking for treasure. digging up buried treasure
+
+## Sequences
+
+![](Images/AMY1gene.png)
+
+<!-- <a href="https://commons.wikimedia.org/wiki/File:AMY1gene.png#/media/File:AMY1gene.png">AMY1gene</a>" by Original uploader was <a href="//en.wikipedia.org/wiki/User:TransControl" class="extiw" title="en:User:TransControl">TransControl</a> at <a class="external text" href="http://en.wikipedia.org">en.wikipedia</a> - Transferred from <a class="external text" href="http://en.wikipedia.org">en.wikipedia</a>; transfer was stated to be made by <a href="//en.wikipedia.org/wiki/User:Brandon5485" class="extiw" title="en:User:Brandon5485">en:User:Brandon5485</a>.. Licensed under Public Domain via <a href="https://commons.wikimedia.org/wiki/">Wikimedia Commons</a>. -->
+
+
+
+
+
+## Data Tables
+
+We're going to use just one very simple format: the *data table*.
+
+```{r echo=FALSE}
+set.seed(101)
+Tmp <- BabyNames %>% sample_n(size = 5) %>% arrange(year)
+row.names(Tmp) <- NULL
+Tmp
+```
+
+
+
+## Conversion from images, videos, etc. to data table
+
+### OK Cupid
+
+Sentiment extraction
+
+### Tipi rings in Montana
+
+Assessment on family size based on tipi ring diameter
+
+Population size by adding up the rings
+
+### Animal tracking
+
+# Cases and Variables
+
+## Anatomy of a data table
+
+<div class="columns-2">
+
+![](Images/02_ColumnRow.png)
+
+<!-- Source: <http://www.gcflearnfree.org/access2010/2.2> -->
+
+* A row is always a **case**
+* A column is always a **variable**
+
+</div>
+
+## What's a variable?
+
+<div class="columns-2">
+
+![](Images/02_ColumnRow.png)
+
+A quantity or category that may vary from case to case.
+
+Two main types:
+
+1. Quantitative: a number
+2. Categorical: one of a set of discrete possibilities
+
+
+## In Tidy Data
+
+* No units
+* No footnotes
+
+Instead, this information should go into a codebook.
+
+Values and Cases need to be commensurate
+
+* Same kind of thing for each case, e.g. don't mix miles and km.
+* Within a variable, only the same kind of value for each case.
+
+</div>
+
+## Cases
+
+The **object** from which the variables were measured.
+
+Examples: 
+
+* A person, a country, an earthquake, a bike rental
+* A person on a date
+* A country in a year
+* An earthquake and its aftershocks
+
+## Basic Knowledge
+
+1. What is each variable about.
+2. What is the kind of object that defines a case
+
+## Tidy Data
+
+Every value for each variable is the same kind of thing as all the other values for that variable.
+
+Every case is the same kind of thing as all the other cases.
+
+
+## Exercise: 
+
+
+Go to this spreadsheet ...[Personnel in the US armed forces](https://docs.google.com/spreadsheets/d/1Ow6Cm4z-Z1Yybk3i352msulYCEDOUaOghmo9ALajyHo/edit#gid=1811988794)
+
+### Questions: 
+
+1. What is the case here?
+2. How are the data not tidy?
+3. What might these data look like in tidy form?
+4. Suppose that the case was "an individual in the armed forces."  
+    What variables would you use to capture the information in this table?
+
+## Creating a chain of evidence
+
+It's important to be able to state definitely where your data came from.
+
+Part of this is not to edit your data.  Once you have a table, don't change anything in it.
+
+Instead, do your data-transformations in R so that you have a complete statement of how the data you collected are related to your analysis.
+
+## Summary
+
+* Data Table: Rectangular format: cases (rows) and variables (columns)
+* Separate analysis from data storage.
+* Use a codebook to describe your cases and variables in detail
+* Keep your data **tidy**
+
+
+## Exercise 1
+
+The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct. 
+
+1. What is the case here?
+2. How are the data not tidy?
+3. What might these data look like in tidy form?
+4. The data table `DataComputing::Minneapolis2013` lists the choices on individual ballots.  What is the case?
+5. The cases in `DataComputing::Minneapolis2013` can be aggregated to produce *some* of the variables in the spreadsheet.  
+    a. Which variables in the spreadsheet *cannot* be recreated from an aggregation of the ballot data? (Background on the voting law: to vote, a person must be registered in advance or do so at the polling place.  Votes can be made at the polling place or, for a voter who is away, by mail as an absentee.  Some ballots are not legible or otherwise violate voting rules; these are called "spoiled." )
+    b. Imagine a data table like `DataComputing::Minneapolis2013` that could be aggregated to produce the variables in the spreadsheet.  What would the cases be in that table?
+    
+    
+<!-- ANSWER to 5. The variables relating to registration and absentee voting have information not in the ballot data table. The disaggregated table would have "registered voters" as cases

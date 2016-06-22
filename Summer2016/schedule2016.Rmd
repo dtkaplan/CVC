@@ -106,8 +106,8 @@ Arrival day for many coming from out of town.
     a. [Introduction slides](Learn/TidyData/tidy_data.html), but the basics are
     
     * Rectangular format: cases (rows) and variables (columns)
-    * Separate analysis from data storage.
-    * use a codebook to describe your cases and variables in detail
+    * Separate your analysis from data storage.
+    * Use a codebook to describe your cases and variables in detail.
        
     b. **Activity**: The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct.  Identify the elements of this spreadsheet that are not in standard rectangular data format.
    
