@@ -267,7 +267,7 @@ Flights %>%
 ```
 
 ```{r}
-# inner_join: return all rows from x where there are matching values in x, and all columns from x and y. 
+# inner_join: return all rows from x where there are matching values in y, and all columns from x and y. 
 Flights %>% inner_join(Airports, by=c("dest" = "faa")) %>% dim()
 
 # left_join: return all rows from x, and all columns from x and y.
