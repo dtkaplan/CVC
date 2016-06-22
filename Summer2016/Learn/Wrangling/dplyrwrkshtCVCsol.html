@@ -147,7 +147,7 @@ Babynames = babynames</code></pre>
 ## 
 ##   total
 ##   (int)
-## 1 43600</code></pre>
+## 1 12601</code></pre>
 </div>
 <div id="how-many-babies-are-there-in-each-year" class="section level3">
 <h3>2. How many babies are there in each year?</h3>
@@ -161,20 +161,20 @@ Babynames = babynames</code></pre>
 ## 
 ##     year total
 ##    (dbl) (int)
-## 1   2001   509
-## 2   2002 23113
-## 3   2003  2400
-## 4   2004  4716
-## 5   2005  2076
-## 6   2006  5869
-## 7   2007   723
-## 8   2008   499
-## 9   2009   211
-## 10  2010  1286
-## 11  2011  1092
-## 12  2012   225
-## 13  2013   134
-## 14  2014   747</code></pre>
+## 1   2001   826
+## 2   2002   175
+## 3   2003   640
+## 4   2004   346
+## 5   2005   770
+## 6   2006   182
+## 7   2007  1049
+## 8   2008   495
+## 9   2009   533
+## 10  2010  1509
+## 11  2011  4014
+## 12  2012   769
+## 13  2013  1004
+## 14  2014   289</code></pre>
 </div>
 <div id="how-many-distinct-names-in-each-year" class="section level3">
 <h3>3. How many distinct names in each year?</h3>
@@ -188,20 +188,20 @@ Babynames = babynames</code></pre>
 ## 
 ##     year name_count
 ##    (dbl)      (int)
-## 1   2001         14
-## 2   2002         18
-## 3   2003         17
-## 4   2004         15
-## 5   2005         16
-## 6   2006         15
-## 7   2007         14
-## 8   2008         19
-## 9   2009         11
-## 10  2010         16
-## 11  2011         16
-## 12  2012         14
-## 13  2013          5
-## 14  2014         10</code></pre>
+## 1   2001         17
+## 2   2002          9
+## 3   2003         13
+## 4   2004         12
+## 5   2005         19
+## 6   2006         16
+## 7   2007         10
+## 8   2008         17
+## 9   2009         19
+## 10  2010          8
+## 11  2011         15
+## 12  2012         20
+## 13  2013         13
+## 14  2014         12</code></pre>
 </div>
 <div id="how-many-distinct-names-of-each-sex-in-each-year" class="section level3">
 <h3>4. How many distinct names of each sex in each year?</h3>
@@ -216,16 +216,16 @@ Babynames = babynames</code></pre>
 ## 
 ##     year   sex name_count
 ##    (dbl) (chr)      (int)
-## 1   2001     F         12
-## 2   2001     M          2
-## 3   2002     F         13
+## 1   2001     F          7
+## 2   2001     M         10
+## 3   2002     F          4
 ## 4   2002     M          5
-## 5   2003     F         10
-## 6   2003     M          7
+## 5   2003     F          7
+## 6   2003     M          6
 ## 7   2004     F          8
-## 8   2004     M          7
-## 9   2005     F         14
-## 10  2005     M          2
+## 8   2004     M          4
+## 9   2005     F         12
+## 10  2005     M          7
 ## ..   ...   ...        ...</code></pre>
 </div>
 </div>
@@ -358,7 +358,7 @@ NavyWR &lt;-
 <pre><code>## Source: local data frame [6 x 6]
 ## 
 ##   pay.grade   sex marital  kids numPeople count
-##       (chr) (chr)   (chr) (chr)     (chr) (dbl)
+##       &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt; &lt;dbl&gt;
 ## 1       E-1  male    sing    wo     7,820  7820
 ## 2       E-2  male    sing    wo    11,198 11198
 ## 3       E-3  male    sing    wo    28,163 28163
@@ -403,7 +403,7 @@ Planes &lt;- planes</code></pre>
 <pre><code>## Source: local data frame [6 x 5]
 ## 
 ##   carrier flight tailnum origin  dest
-##     (chr)  (int)   (chr)  (chr) (chr)
+##     &lt;chr&gt;  &lt;int&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;
 ## 1      UA   1545  N14228    EWR   IAH
 ## 2      UA   1714  N24211    LGA   IAH
 ## 3      AA   1141  N619AA    JFK   MIA
@@ -414,7 +414,7 @@ Planes &lt;- planes</code></pre>
 <pre><code>## Source: local data frame [6 x 4]
 ## 
 ##     faa                           name      lat       lon
-##   (chr)                          (chr)    (dbl)     (dbl)
+##   &lt;chr&gt;                          &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
 ## 1   04G              Lansdowne Airport 41.13047 -80.61958
 ## 2   06A  Moton Field Municipal Airport 32.46057 -85.68003
 ## 3   06C            Schaumburg Regional 41.98934 -88.10124
@@ -424,13 +424,13 @@ Planes &lt;- planes</code></pre>
 <pre class="r"><code>Airports %&gt;% select(faa, name, lat, lon) %&gt;% sample_n(5)</code></pre>
 <pre><code>## Source: local data frame [5 x 4]
 ## 
-##     faa                           name      lat        lon
-##   (chr)                          (chr)    (dbl)      (dbl)
-## 1   RIU                 Rancho Murieta 38.48678 -121.10278
-## 2   CDV          Merle K Mudhole Smith 60.49178 -145.47756
-## 3   POF Poplar Bluff Municipal Airport 36.77394  -90.32486
-## 4   OSC               Oscoda Wurtsmith 44.45156  -83.39405
-## 5   CMH             Port Columbus Intl 39.99797  -82.89189</code></pre>
+##     faa                                      name      lat       lon
+##   &lt;chr&gt;                                     &lt;chr&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+## 1   GGW Wokal Field Glasgow International Airport 48.21250 -106.6150
+## 2   KYU                           Koyukuk Airport 64.87583 -157.7306
+## 3   CYS             Cheyenne Rgnl Jerry Olson Fld 41.15572 -104.8118
+## 4   KPV                        Perryville Airport 55.90667 -159.1608
+## 5   MCK                   McCook Regional Airport 40.20639 -100.5922</code></pre>
 <pre class="r"><code>Flights %&gt;% 
   inner_join(Airports, by=c(&quot;dest&quot; = &quot;faa&quot;)) %&gt;%
   select(carrier, flight, tailnum, origin, dest, name, lat, lon) %&gt;%
@@ -438,15 +438,15 @@ Planes &lt;- planes</code></pre>
 <pre><code>## Source: local data frame [6 x 8]
 ## 
 ##   carrier flight tailnum origin  dest                            name
-##     (chr)  (int)   (chr)  (chr) (chr)                           (chr)
+##     &lt;chr&gt;  &lt;int&gt;   &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;                           &lt;chr&gt;
 ## 1      UA   1545  N14228    EWR   IAH    George Bush Intercontinental
 ## 2      UA   1714  N24211    LGA   IAH    George Bush Intercontinental
 ## 3      AA   1141  N619AA    JFK   MIA                      Miami Intl
 ## 4      DL    461  N668DN    LGA   ATL Hartsfield Jackson Atlanta Intl
 ## 5      UA   1696  N39463    EWR   ORD              Chicago Ohare Intl
 ## 6      B6    507  N516JB    EWR   FLL  Fort Lauderdale Hollywood Intl
-## Variables not shown: lat (dbl), lon (dbl)</code></pre>
-<pre class="r"><code># inner_join: return all rows from x where there are matching values in x, and all columns from x and y. 
+## Variables not shown: lat &lt;dbl&gt;, lon &lt;dbl&gt;.</code></pre>
+<pre class="r"><code># inner_join: return all rows from x where there are matching values in y, and all columns from x and y. 
 Flights %&gt;% inner_join(Airports, by=c(&quot;dest&quot; = &quot;faa&quot;)) %&gt;% dim()</code></pre>
 <pre><code>## [1] 329174     25</code></pre>
 <pre class="r"><code># left_join: return all rows from x, and all columns from x and y.
@@ -471,7 +471,7 @@ Flights %&gt;% full_join(Airports, by=c(&quot;dest&quot; = &quot;faa&quot;)) %&g
 rightnow &lt;- now()
 
 day(rightnow)</code></pre>
-<pre><code>## [1] 21</code></pre>
+<pre><code>## [1] 22</code></pre>
 <pre class="r"><code>week(rightnow)</code></pre>
 <pre><code>## [1] 25</code></pre>
 <pre class="r"><code>month(rightnow, label=FALSE)</code></pre>
@@ -482,17 +482,17 @@ day(rightnow)</code></pre>
 <pre class="r"><code>year(rightnow)</code></pre>
 <pre><code>## [1] 2016</code></pre>
 <pre class="r"><code>minute(rightnow)</code></pre>
-<pre><code>## [1] 7</code></pre>
+<pre><code>## [1] 19</code></pre>
 <pre class="r"><code>hour(rightnow)</code></pre>
-<pre><code>## [1] 10</code></pre>
+<pre><code>## [1] 7</code></pre>
 <pre class="r"><code>yday(rightnow)</code></pre>
-<pre><code>## [1] 173</code></pre>
+<pre><code>## [1] 174</code></pre>
 <pre class="r"><code>mday(rightnow)</code></pre>
-<pre><code>## [1] 21</code></pre>
+<pre><code>## [1] 22</code></pre>
 <pre class="r"><code>wday(rightnow, label=FALSE)</code></pre>
-<pre><code>## [1] 3</code></pre>
+<pre><code>## [1] 4</code></pre>
 <pre class="r"><code>wday(rightnow, label=TRUE)</code></pre>
-<pre><code>## [1] Tues
+<pre><code>## [1] Wed
 ## Levels: Sun &lt; Mon &lt; Tues &lt; Wed &lt; Thurs &lt; Fri &lt; Sat</code></pre>
 <p>But how do I create a date object?</p>
 <pre class="r"><code>jan31 &lt;- ymd(&quot;2013-01-31&quot;)
@@ -525,7 +525,7 @@ FlightsWK %&gt;%
 <pre><code>## Source: local data frame [6 x 9]
 ## 
 ##    year month   day     ymdday weekdy whichweek dep_time arr_time air_time
-##   (int) (int) (int)     (date) (fctr)     (dbl)    (int)    (int)    (dbl)
+##   &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;date&gt; &lt;fctr&gt;     &lt;dbl&gt;    &lt;int&gt;    &lt;int&gt;    &lt;dbl&gt;
 ## 1  2013     1     1 2013-01-01   Tues         1      517      830      227
 ## 2  2013     1     1 2013-01-01   Tues         1      533      850      227
 ## 3  2013     1     1 2013-01-01   Tues         1      542      923      160
@@ -545,7 +545,7 @@ head(tripsTot)</code></pre>
 <pre><code>## Source: local data frame [6 x 2]
 ## 
 ##   tailnum numFl
-##     (chr) (int)
+##     &lt;chr&gt; &lt;int&gt;
 ## 1  D942DN     4
 ## 2  N0EGMQ   371
 ## 3  N10156   153
@@ -559,7 +559,7 @@ head(tripsTot)</code></pre>
 <pre><code>## Source: local data frame [4,044 x 2]
 ## 
 ##    tailnum numFl
-##      (chr) (int)
+##      &lt;chr&gt; &lt;int&gt;
 ## 1       NA  2512
 ## 2   N725MQ   575
 ## 3   N722MQ   513
@@ -597,7 +597,7 @@ ggplot(plane.N725MQ, aes(x=week.n, y=numFlWk)) +
 <pre><code>## Source: local data frame [3,322 x 9]
 ## 
 ##    tailnum  year                     type manufacturer       model engines
-##      (chr) (int)                    (chr)        (chr)       (chr)   (int)
+##      &lt;chr&gt; &lt;int&gt;                    &lt;chr&gt;        &lt;chr&gt;       &lt;chr&gt;   &lt;int&gt;
 ## 1   N381AA  1956  Fixed wing multi engine      DOUGLAS      DC-7BF       4
 ## 2   N201AA  1959 Fixed wing single engine       CESSNA         150       1
 ## 3   N567AA  1959 Fixed wing single engine  DEHAVILLAND OTTER DHC-3       1
@@ -609,13 +609,13 @@ ggplot(plane.N725MQ, aes(x=week.n, y=numFlWk)) +
 ## 9   N383AA  1972  Fixed wing multi engine        BEECH        E-90       2
 ## 10  N364AA  1973  Fixed wing multi engine       CESSNA        310Q       2
 ## ..     ...   ...                      ...          ...         ...     ...
-## Variables not shown: seats (int), speed (int), engine (chr)</code></pre>
+## Variables not shown: seats &lt;int&gt;, speed &lt;int&gt;, engine &lt;chr&gt;.</code></pre>
 <pre><code>+ How many airplanes (that flew from New York City) are included in the planes table? How many have missing date of manufacture? </code></pre>
 <pre class="r"><code>planes %&gt;% summarize(n())  # 3322</code></pre>
 <pre><code>## Source: local data frame [1 x 1]
 ## 
 ##     n()
-##   (int)
+##   &lt;int&gt;
 ## 1  3322</code></pre>
 <pre class="r"><code>flights %&gt;% group_by(tailnum) %&gt;% 
   left_join(planes, by=&quot;tailnum&quot;) %&gt;% 
