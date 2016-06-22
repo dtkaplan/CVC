@@ -9,4 +9,5 @@ These notes are in the form of an Rmd (not yet HTML!) file, so download it and t
 ```{r eval = FALSE}
 download.file("http://cvc.mosaic-web.org/Summer2016/Learn/Shiny-breakout/Notes-on-shiny.Rmd", destfile = "Notes-on-shiny.Rmd")
 ```
-    Then open the newly downloaded file in the RStudio editor.
+
+Then open the newly downloaded file in the RStudio editor.
