@@ -6,7 +6,6 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Jo Hardin" />
-  <meta name="date" content="2016-06-21" />
   <title>dplyr presentation</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
@@ -55,7 +54,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
   <p class="author">
 Jo Hardin
   </p>
-  <p class="date">June 21, 2016</p>
+  <p class="date">June 21 and 22, 2016</p>
 </div>
 <div id="tidy-data" class="slide section level2">
 <h1>Tidy Data</h1>
@@ -160,13 +159,13 @@ Babynames &lt;-<span class="st"> </span>babynames
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Babynames %&gt;%<span class="st"> </span><span class="kw">sample_n</span>(<span class="dt">size=</span><span class="dv">5</span>)</code></pre></div>
 <pre><code>## Source: local data frame [5 x 5]
 ## 
-##    year   sex      name     n         prop
-##   (dbl) (chr)     (chr) (int)        (dbl)
-## 1  1982     F    Isabel   488 2.690848e-04
-## 2  2012     F      Cait     6 3.104573e-06
-## 3  1993     M Damarious     5 2.421643e-06
-## 4  1950     F    Felisa     6 3.411700e-06
-## 5  1979     F   Anthony   154 8.938065e-05</code></pre>
+##    year   sex    name     n         prop
+##   (dbl) (chr)   (chr) (int)        (dbl)
+## 1  1992     M    Alix    33 1.572687e-05
+## 2  2005     M Leibish     7 3.293963e-06
+## 3  1963     F   Shane    14 7.042781e-06
+## 4  1995     F   Davis     7 3.644036e-06
+## 5  1987     M    Toby   294 1.508534e-04</code></pre>
 </div>
 <div id="nhanes-data" class="slide section level2">
 <h1>NHANES Data</h1>
@@ -341,7 +340,7 @@ NHANES %&gt;%<span class="st"> </span>
 ## 
 ##   total
 ##   (int)
-## 1 17573</code></pre>
+## 1 18880</code></pre>
 </div>
 <div id="how-many-babies-are-there-in-each-year" class="slide section level2">
 <h1>How many babies are there in each year?</h1>
@@ -358,20 +357,20 @@ NHANES %&gt;%<span class="st"> </span>
 ## 
 ##     year total
 ##    (dbl) (int)
-## 1   2001   143
-## 2   2002   400
-## 3   2003   976
-## 4   2004   824
-## 5   2005   782
-## 6   2006   279
-## 7   2007  1077
-## 8   2008   256
-## 9   2009   481
-## 10  2010 10489
-## 11  2011  1290
-## 12  2012   225
-## 13  2013   184
-## 14  2014   167</code></pre>
+## 1   2001   304
+## 2   2002   940
+## 3   2003   409
+## 4   2004    90
+## 5   2005   482
+## 6   2006   138
+## 7   2007    81
+## 8   2008   283
+## 9   2009 10606
+## 10  2010   810
+## 11  2011   606
+## 12  2012   149
+## 13  2013  3078
+## 14  2014   904</code></pre>
 </div>
 <div id="how-many-distinct-names-in-each-year" class="slide section level2">
 <h1>How many distinct names in each year?</h1>
@@ -388,20 +387,20 @@ NHANES %&gt;%<span class="st"> </span>
 ## 
 ##     year name_count
 ##    (dbl)      (int)
-## 1   2001         10
-## 2   2002         15
-## 3   2003         13
-## 4   2004         13
-## 5   2005         15
-## 6   2006         12
-## 7   2007         15
-## 8   2008         18
-## 9   2009         18
-## 10  2010         20
-## 11  2011         16
-## 12  2012          8
-## 13  2013         14
-## 14  2014         13</code></pre>
+## 1   2001         13
+## 2   2002         17
+## 3   2003         20
+## 4   2004          7
+## 5   2005         14
+## 6   2006         11
+## 7   2007         12
+## 8   2008         15
+## 9   2009         21
+## 10  2010         17
+## 11  2011         10
+## 12  2012         14
+## 13  2013         12
+## 14  2014         17</code></pre>
 </div>
 <div id="how-many-distinct-names-of-each-sex-in-each-year" class="slide section level2">
 <h1>How many distinct names of each sex in each year?</h1>
@@ -416,34 +415,34 @@ NHANES %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="kw">summarise</span>(<span class="dt">name_count=</span><span class="kw">n_distinct</span>(name))
 <span class="kw">data.frame</span>(temp)</code></pre></div>
 <pre><code>##    year sex name_count
-## 1  2001   F          9
-## 2  2001   M          1
-## 3  2002   F          7
-## 4  2002   M          8
-## 5  2003   F          8
-## 6  2003   M          5
-## 7  2004   F          8
-## 8  2004   M          5
-## 9  2005   F          8
-## 10 2005   M          7
-## 11 2006   F          8
-## 12 2006   M          4
-## 13 2007   F          9
+## 1  2001   F          8
+## 2  2001   M          5
+## 3  2002   F         10
+## 4  2002   M          7
+## 5  2003   F         12
+## 6  2003   M          8
+## 7  2004   F          4
+## 8  2004   M          3
+## 9  2005   F          2
+## 10 2005   M         12
+## 11 2006   F          6
+## 12 2006   M          5
+## 13 2007   F          6
 ## 14 2007   M          6
-## 15 2008   F          8
-## 16 2008   M         10
-## 17 2009   F          7
-## 18 2009   M         11
-## 19 2010   F         12
-## 20 2010   M          8
-## 21 2011   F         11
-## 22 2011   M          5
+## 15 2008   F          9
+## 16 2008   M          6
+## 17 2009   F         12
+## 18 2009   M          9
+## 19 2010   F         10
+## 20 2010   M          7
+## 21 2011   F          7
+## 22 2011   M          3
 ## 23 2012   F          5
-## 24 2012   M          3
-## 25 2013   F          9
-## 26 2013   M          5
+## 24 2012   M          9
+## 25 2013   F         10
+## 26 2013   M          2
 ## 27 2014   F          9
-## 28 2014   M          4</code></pre>
+## 28 2014   M          8</code></pre>
 </div>
 <div id="track-the-yearly-number-of-janes-and-marys-over-the-years." class="slide section level2">
 <h1>Track the yearly number of Janes and Marys over the years.</h1>
@@ -582,19 +581,18 @@ NHANES %&gt;%<span class="st"> </span>
 whoTidy %&gt;%<span class="st"> </span><span class="kw">sample_n</span>(<span class="dv">10</span>)</code></pre></div>
 <pre><code>## Source: local data frame [10 x 6]
 ## 
-##                                      country  iso2  iso3  year
-##                                        &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;
-## 1  The Former Yugoslav Republic of Macedonia    MK   MKD  1996
-## 2                                   Kiribati    KI   KIR  1991
-## 3                                      Samoa    WS   WSM  1993
-## 4                                    Lebanon    LB   LBN  1986
-## 5                                  Sri Lanka    LK   LKA  2008
-## 6                                    Jamaica    JM   JAM  2008
-## 7                                    Croatia    HR   HRV  1987
-## 8                                      Nauru    NR   NRU  1998
-## 9                          Equatorial Guinea    GQ   GNQ  1986
-## 10                                     Sudan    SD   SDN  1990
-## Variables not shown: code &lt;chr&gt;, value &lt;int&gt;.</code></pre>
+##                       country  iso2  iso3  year          code value
+##                         &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;         &lt;chr&gt; &lt;int&gt;
+## 1                 Afghanistan    AF   AFG  2010  new_ep_f2534    NA
+## 2                        Mali    ML   MLI  1996  new_sp_m2534   408
+## 3                      Angola    AO   AGO  2007  new_sn_f1524    NA
+## 4                       Nepal    NP   NPL  1996   new_ep_m014    NA
+## 5                     Senegal    SN   SEN  1990  new_sn_m3544    NA
+## 6                  Azerbaijan    AZ   AZE  1994  new_ep_f3544    NA
+## 7  Iran (Islamic Republic of)    IR   IRN  1983    new_ep_f65    NA
+## 8   Wallis and Futuna Islands    WF   WLF  2013  new_sn_f2534    NA
+## 9                     Morocco    MA   MAR  1995 new_rel_f1524    NA
+## 10                    Tunisia    TN   TUN  1997 new_rel_m5564    NA</code></pre>
 </div>
 <div id="separate" class="slide section level2">
 <h1>separate</h1>
@@ -602,19 +600,18 @@ whoTidy %&gt;%<span class="st"> </span><span class="kw">sample_n</span>(<span cl
 whoTidy %&gt;%<span class="st"> </span><span class="kw">sample_n</span>(<span class="dv">10</span>)</code></pre></div>
 <pre><code>## Source: local data frame [10 x 8]
 ## 
-##                             country  iso2  iso3  year   new   var sexage
-##                               &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;
-## 1                              Cuba    CU   CUB  2011   new   rel  m1524
-## 2                           Belarus    BY   BLR  2005   new   rel  f2534
-## 3                              Fiji    FJ   FJI  2004   new    sp   f014
-## 4                           Liberia    LR   LBR  1997   new   rel  m5564
-## 5                  China, Macao SAR    MO   MAC  2005   new    ep  m1524
-## 6                     New Caledonia    NC   NCL  1983   new    sp    f65
-## 7                           Austria    AT   AUT  1999   new    ep  f1524
-## 8                             Egypt    EG   EGY  2013   new   rel    f65
-## 9          West Bank and Gaza Strip    PS   PSE  1998   new   rel  f2534
-## 10 Democratic Republic of the Congo    CD   COD  1999   new    sp  m1524
-## Variables not shown: value &lt;int&gt;.</code></pre>
+##              country  iso2  iso3  year   new   var sexage value
+##                &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;int&gt;
+## 1     American Samoa    AS   ASM  1989   new    sn  m4554    NA
+## 2           Barbados    BB   BRB  2008   new    sp  m2534     1
+## 3             Norway    NO   NOR  2013   new    sn  m1524    NA
+## 4  Brunei Darussalam    BN   BRN  1996   new    ep  m3544    NA
+## 5            Myanmar    MM   MMR  2011   new   rel  m3544    NA
+## 6         Madagascar    MG   MDG  1993   new    sn  f2534    NA
+## 7           Paraguay    PY   PRY  1983   new   rel   m014    NA
+## 8             Latvia    LV   LVA  2012   new    sn  m3544    68
+## 9    Solomon Islands    SB   SLB  2000   new    ep  m5564    NA
+## 10           Tokelau    TK   TKL  1988   new   rel  f5564    NA</code></pre>
 </div>
 <div id="separate-1" class="slide section level2">
 <h1>separate</h1>
@@ -622,19 +619,18 @@ whoTidy %&gt;%<span class="st"> </span><span class="kw">sample_n</span>(<span cl
 whoTidy %&gt;%<span class="st"> </span><span class="kw">sample_n</span>(<span class="dv">10</span>)</code></pre></div>
 <pre><code>## Source: local data frame [10 x 9]
 ## 
-##                             country  iso2  iso3  year   new   var   sex
-##                               &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
-## 1                            Tuvalu    TV   TUV  2013   new    sn     f
-## 2                        Tajikistan    TJ   TJK  1985   new    sn     m
-## 3                           Liberia    LR   LBR  2002   new    ep     f
-## 4                    Cayman Islands    KY   CYM  2003   new    sp     f
-## 5  Saint Vincent and the Grenadines    VC   VCT  1995   new    ep     f
-## 6                          Zimbabwe    ZW   ZWE  1993   new    sn     m
-## 7                            Gambia    GM   GMB  1986   new    sn     f
-## 8                           Belgium    BE   BEL  2008   new    ep     f
-## 9                         Sri Lanka    LK   LKA  1981   new    ep     f
-## 10                           Panama    PA   PAN  1981   new    sp     m
-## Variables not shown: age &lt;chr&gt;, value &lt;int&gt;.</code></pre>
+##                  country  iso2  iso3  year   new   var   sex   age value
+##                    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt;
+## 1                 Guyana    GY   GUY  2011   new   rel     m  3544    NA
+## 2            Netherlands    NL   NLD  1992   new   rel     f  5564    NA
+## 3        Solomon Islands    SB   SLB  1993   new    ep     f  2534    NA
+## 4                 Rwanda    RW   RWA  1987   new    sn     m  3544    NA
+## 5  Saint Kitts and Nevis    KN   KNA  1980   new    sp     m   014    NA
+## 6               Anguilla    AI   AIA  1992   new   rel     m  3544    NA
+## 7                  Aruba    AW   ABW  2001   new    sp     f  2534    NA
+## 8                Romania    RO   ROU  2013   new    sn     f  2534    NA
+## 9                 Guinea    GN   GIN  1995   new    ep     f   014    NA
+## 10                Canada    CA   CAN  2004   new    sp     m  1524    25</code></pre>
 </div>
 <div id="spread" class="slide section level2">
 <h1>spread</h1>
@@ -642,19 +638,19 @@ whoTidy %&gt;%<span class="st"> </span><span class="kw">sample_n</span>(<span cl
 whoTidy %&gt;%<span class="st"> </span><span class="kw">sample_n</span>(<span class="dv">10</span>)</code></pre></div>
 <pre><code>## Source: local data frame [10 x 11]
 ## 
-##                 country  iso2  iso3  year   new   sex   age    ep   rel
-##                   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt;
-## 1                Greece    GR   GRC  1997   new     f    65    NA    NA
-## 2                 Niger    NE   NER  1998   new     m  4554    NA    NA
-## 3            Tajikistan    TJ   TJK  1982   new     m  3544    NA    NA
-## 4      French Polynesia    PF   PYF  1984   new     f  1524    NA    NA
-## 5         Guinea-Bissau    GW   GNB  1982   new     m  3544    NA    NA
-## 6                 Malta    MT   MLT  1983   new     f    65    NA    NA
-## 7     Brunei Darussalam    BN   BRN  1992   new     f    65    NA    NA
-## 8            Madagascar    MG   MDG  2012   new     m  2534    NA    NA
-## 9  China, Hong Kong SAR    HK   HKG  1996   new     m  4554    NA    NA
-## 10               Guinea    GN   GIN  1981   new     m    65    NA    NA
-## Variables not shown: sn &lt;int&gt;, sp &lt;int&gt;.</code></pre>
+##             country  iso2  iso3  year   new   sex   age    ep   rel    sn
+##               &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+## 1              Fiji    FJ   FJI  2003   new     f  2534    NA    NA    NA
+## 2  French Polynesia    PF   PYF  1980   new     m    65    NA    NA    NA
+## 3           Curaçao    CW   CUW  2012   new     f    65     0    NA     0
+## 4             Chile    CL   CHL  2007   new     f  3544    46    NA    17
+## 5  French Polynesia    PF   PYF  1983   new     f  2534    NA    NA    NA
+## 6            Guinea    GN   GIN  1989   new     f  2534    NA    NA    NA
+## 7            Greece    GR   GRC  1985   new     m    65    NA    NA    NA
+## 8            Guyana    GY   GUY  2002   new     f  3544    NA    NA    NA
+## 9       El Salvador    SV   SLV  2004   new     f   014    NA    NA    NA
+## 10          Uruguay    UY   URY  2011   new     m  2534    11    NA    31
+## Variables not shown: sp &lt;int&gt;.</code></pre>
 </div>
 <div id="join-flights" class="slide section level2">
 <h1>join (flights)</h1>
@@ -756,7 +752,7 @@ Flights %&gt;%<span class="st"> </span><span class="kw">full_join</span>(Airport
 
 rightnow &lt;-<span class="st"> </span><span class="kw">now</span>()
 rightnow</code></pre></div>
-<pre><code>## [1] &quot;2016-06-22 10:18:51 PDT&quot;</code></pre>
+<pre><code>## [1] &quot;2016-06-22 14:22:28 PDT&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">day</span>(rightnow)</code></pre></div>
 <pre><code>## [1] 22</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">week</span>(rightnow)</code></pre></div>
@@ -769,9 +765,9 @@ rightnow</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">year</span>(rightnow)</code></pre></div>
 <pre><code>## [1] 2016</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">minute</span>(rightnow)</code></pre></div>
-<pre><code>## [1] 18</code></pre>
+<pre><code>## [1] 22</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">hour</span>(rightnow)</code></pre></div>
-<pre><code>## [1] 10</code></pre>
+<pre><code>## [1] 14</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">yday</span>(rightnow)</code></pre></div>
 <pre><code>## [1] 174</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mday</span>(rightnow)</code></pre></div>
