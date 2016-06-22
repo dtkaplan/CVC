@@ -142,7 +142,7 @@ Arrival day for many coming from out of town.
      b. [Worksheet](Learn/Wrangling/dplyrwrkshtCVC.html) for presentation; 
        [markdown file](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVC.Rmd) also available (and on the Calvin server)
 
-     <!-- c. [Sample solution Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVCsol.Rmd) [Sample solution html](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVCsol.html) -->
+     c. [Sample solution Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVCsol.Rmd) and [Sample solution html](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVCsol.html)
   
  
 ### Wednesday
