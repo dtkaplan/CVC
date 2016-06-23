@@ -1,0 +1,86 @@
+---
+title: "Modeling in R"
+author: "Nicholas Horton (nhorton@amherst.edu)"
+date: "June 23, 2016"
+output: pdf_document
+---
+
+This document describes ways to fit a variety of models using the `mosaic` package.  See https://github.com/ProjectMOSAIC/LittleBooks/blob/master/README.md for a link to the `Student Guide to R` that provides more details about linear regression modeling.
+
+```{r message=FALSE}
+options(digits=3)
+require(mosaic)
+require(NHANES)
+```
+
+
+```{r}
+favstats(~ female, data=HELPrct)
+tally(~ sex, data=HELPrct)
+tally(~ sex, format="percent", data=HELPrct)
+
+mean(pcs ~ sex, data=HELPrct)
+bwplot(pcs ~ sex, data=HELPrct)
+```
+
+Now let's fit a multiple regression model for PCS (physical component scores) that includes mcs, sex, and substance (3 levels).
+```{r}
+mlrmaineffect <- lm(pcs ~ mcs + sex + substance, data=HELPrct)
+coef(mlrmaineffect)
+msummary(mlrmaineffect)
+```
+
+Let's do some model diagnostics.
+
+```{r}
+mplot(mlrmaineffect, which=7, xlim=c(-5, 10), ylim=c(1.5, 6))
+histogram(~ resid(mlrmaineffect), fit='normal')
+```
+
+Let's plot some predicted values, say for a alcohol involved subject, as a function
+of being male vs. female and MCS score.
+
+```{r}
+mplot(mlrmaineffect)
+```
+
+```{r fig.keep="last"}
+mlrmefun <- makeFun(mlrmaineffect)
+xyplot(pcs ~ mcs, data=HELPrct)
+plotFun(mlrmefun(mcs, sex="female", substance="alcohol") ~ mcs, add=TRUE, col="black")
+plotFun(mlrmefun(mcs, sex="male", substance="alcohol") ~ mcs, add=TRUE, col="red")
+```
+
+But for something even more interesting
+
+```{r}
+diabmod1 <- glm(Diabetes ~ Age + BMI, family="binomial", data=NHANES)
+diabfun1 <- makeFun(diabmod1)
+plotFun(diabfun1(Age=Age, BMI=BMI) ~ Age + BMI, xlim=c(0, 80), ylim=c(15, 40))
+```
+
+```{r}
+diabmod2 <- glm(Diabetes ~ Age + BMI + Age*BMI, family="binomial", 
+  data=NHANES)
+diabfun2 <- makeFun(diabmod2)
+plotFun(diabfun2(Age=Age, BMI=BMI) ~ Age + BMI, xlim=c(0, 80), ylim=c(15, 40),
+        main="Difference in predicted probabilities of diabetes (Interaction Model)")
+```
+
+```{r}
+densityplot(~ resid(diabmod1) + resid(diabmod2))
+```
+
+
+Contour plots...
+
+```{r}
+plotFun((diabfun2(Age=Age, BMI=BMI) - diabfun1(Age=Age, BMI=BMI)) ~ Age + BMI, xlim=c(0, 80), ylim=c(15, 40), main="Difference in predicted probabilities\nof diabetes (Interaction - Main Effect)")
+```
+
+```{r}
+smallNHANES <- sample(NHANES, 500)
+```
+
+
+
