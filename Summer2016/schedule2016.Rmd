@@ -183,6 +183,8 @@ Arrival day for many coming from out of town.
       * [SQL in R Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/SQL/sql-example.Rmd)
     c. Making data available to others via the web
     d. Writing functions in R
+      * [Tom, Dick, and Harry](Learn/WritingFunctions/TomDickAndHarry.html)
+      * [How to Write Functions](Learn/WritingFunctions/HowToWriteFunctions.html)
 
  2. Working on projects
  

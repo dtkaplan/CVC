@@ -1,0 +1,97 @@
+---
+title: Every Tom, Dick, and Harry
+author: Writing Functions in R
+date: "CVC 2016"
+output: 
+  slidy_presentation:
+    widescreen: true
+---
+
+```{r, message = FALSE}
+require(mosaic)
+require(babynames)
+```
+
+## What ever happened to Jane (and Mary)?
+
+```{r}
+babynames %>% 
+  filter(name %in% c("Mary", "Jane"), sex == "F") %>%
+  ggplot() +
+  geom_line(aes(x = year, y = prop, color = name))
+```
+
+
+
+## What about Tom, Dick, and Harry?
+
+We would like to generalize our code to handle any set of names
+we want to compare.  In R we do this by writing **functions**.
+
+We begin with our two questions:
+
+ 1. What do we want R to do?
+   
+    * This determines the name of the function (and what it does/returns)
+    * `NameTrendPlot()` might be a good name for the function
+ 
+ 2. What does it need to know to do this?
+ 
+    * This determines the arguemnt list (list of inputs) to the function
+    * The function will need to know which names to track.  
+    * We should probably have an argument to restrict to just one sex.
+    
+## Creating a function in R
+
+The general form of a fucntion definition is
+
+```{r}
+functionName <- function( arg1 = default1, arg2 = default2, ... ) {
+  # do stuff here
+  # result of last line is returned.  
+  # Can also use explicit return().
+}
+```
+
+## What about Tom, Dick, and Harry?
+
+```{r}
+NameTrend <- function(names, gender) {
+  babynames %>% 
+  filter(name %in% names, sex == gender) %>%
+  ggplot() +
+  geom_line(aes(x = year, y = prop, color = name))
+}
+```
+
+## What about Tom, Dick, and Harry?
+
+```{r}
+NameTrend(c("Tom", "Dick", "Harry"), gender = "M")
+```
+
+## Adding more arguments
+
+We can arguments to control more features of the plot.
+
+```{r}
+NameTrend2 <- function(names, gender = c("M", "F"), linewidth = 1) {
+  babynames %>%
+    filter(name %in% names, sex %in% gender) %>%
+    ggplot() +
+    geom_line(aes(x = year, y = prop, color = name, linetype = sex),
+              size = linewidth)
+}
+```
+
+```{r}
+NameTrend2( c("Tom", "Dick", "Harry"), gender = "M", linewidth = 1)
+
+
+```
+
+```{r}
+NameTrend2( c("Hillary", "Beverly"), linewidth = 1)
+```
+
+
