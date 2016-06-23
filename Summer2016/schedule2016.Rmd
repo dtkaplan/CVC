@@ -94,7 +94,8 @@ Arrival day for many coming from out of town.
  
     * Creating PDF/HTML/Word documents in RStudio
     * [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
-    * Example: Student evaluations see RMarkdown/student-evals.Rmd in CVCReadOnly/Markdown
+    * Example: [R Markdown example](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/RMarkdown/student-evals.Rmd); [R Markdown formatted](Learn/RMarkdown/student-evals.pdf) (Student evaluations example from Open Intro)
+
     * **Activity**: Write and publish a description of some 
     straightforward, data-oriented topic you'd like to present in class. 
         * Include at least 1 plot (even if unrelated) to make sure 
