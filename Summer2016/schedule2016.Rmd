@@ -179,11 +179,11 @@ Arrival day for many coming from out of town.
 
     a. Quick status reports
     b. Using `dplyr` with an SQL data base 
+      * [SQL in R pdf](Learn/SQL/sql-example.pdf)
+      * [SQL in R Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/SQL/sql-example.Rmd)
     c. Making data available to others via the web
     d. Writing functions in R
 
-[SQL in R pdf](Learn/SQL/sql-example.pdf)
-[SQL in R Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/SQL/sql-example.Rmd)
  2. Working on projects
  
  3. Optional Tutorials
