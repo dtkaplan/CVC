@@ -1,0 +1,49 @@
+---
+title: "Sharing files with Students"
+author: "Daniel Kaplan"
+date: "June 23, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# The needs
+
+* How to get files to students for them to work on in R?
+  * Data files
+  * Starting points for exercises (e.g. in Rmd)
+* How to have students hand in activity reports, etc.?
+
+# The obstacles
+
+* Some students will work on the server, others on a desktop.
+* Students on the server will forget that they are not on their desktop. It's easy to get confused.
+* Not all students have good file management skills.
+* You (the instructor) will want to be able to revise files, update data, and provide new data files. Typically you will be doing this in the 30 seconds before class begins, or right after a student points out in class that something is not working.
+
+# The basics
+
+1. Have a web server!
+    - Your institutional account?
+    - Dropbox
+    - Gihub
+2. Go back to (1) if you don't have a web server.
+3. Place the files you want to distribute in a fixed, accessible spot on the server.
+4. Provide students with the URL.
+    - Have links on your course syllabus or your daily notes or in the assignment.
+    - Maybe friendlier: Put the R statements to download Rmd files or read the data into an R session.
+
+# Students Handing in files
+
+* If the student is on the RStudio server, they *must* first download the file to their desktop *before* they can upload it to your course support system (e.g. Moodle) or network drive.
+* In the assignment, provide a link to the Moodle page (or similar) where the file is to be handed in. That reduces the risk that the student will hand in the file in the wrong place.
+* If you use the notebook feature of R, have the student hand in the HTML version of the file. This will include the Rmd as well, so you will have access to that if you need it, but will benefit from the ease of reading HTML and the assurance that the student was able to compile their work to HTML.
+
+# Niceties
+
+* Have your students set up an RStudio project for your course and the first day of the course. It must have a standard name, so that you will know where it is. (Check this!) Then, make sure students are in that project when working on your course. Downloaded files will go to the right place.
+* URL for your server is too long? Set up an alias via [tiny.cc](http://tiny.cc). E.g. [tiny.cc/mosaic/congress.csv](http://tiny.cc/mosaic/congress.csv)
+* Set up a `gh-pages` branch in a GitHub repository and place your files there.  That way you can do this entirely within R.
+* Very large files? ("Large" is relevant to network speed.) Give students a command to download the file.
