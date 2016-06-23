@@ -172,14 +172,22 @@ Arrival day for many coming from out of town.
 
 ### Thursday
 
- 1. Opening interlude 
+ 1. Opening interlude
+
+    a. Quick status reports
+    b. Using `dplyr` with an SQL data base 
+    c. Making data available to others via the web
+    d. Writing functions in R
 
  2. Working on projects
  
- 3. Optional Tutorials TBA
+ 3. Optional Tutorials
+ 
+    a. Github [Randy] @ 11 am
+    b. Maps and Leaflets [Danny] @ 1pm
+    c. Linear Modeling [Nick] @ 2:30 pm
  
  4. Dinner at [Buca di Beppo](http://www.bucadibeppo.com/restaurants/ca/claremont/) at 6:00pm
-
 
 ### Friday
 
