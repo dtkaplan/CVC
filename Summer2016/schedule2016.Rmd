@@ -175,9 +175,9 @@ Arrival day for many coming from out of town.
 
 ### Thursday
 
- 1. Opening interlude
+ 1. Opening (quick) interludes
 
-    a. Quick status reports
+    a. Brief status reports
     b. Using `dplyr` with an SQL data base 
       * [SQL in R pdf](Learn/SQL/sql-example.pdf)
       * [SQL in R Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/SQL/sql-example.Rmd)
