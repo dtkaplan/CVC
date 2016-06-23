@@ -192,7 +192,7 @@ Arrival day for many coming from out of town.
  
     a. Github [Randy] @ 11 am
     b. Maps and Leaflets [Danny] @ 1pm
-    c. Linear Modeling [Nick] @ 2:30 pm
+    c. Linear Modeling [Nick] @ 2:30 pm [Modeling.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Modeling/Modeling.Rmd); [Modeling.pdf](Learn/Modeling/Modeling.pdf)
  
  4. Dinner at [Buca di Beppo](http://www.bucadibeppo.com/restaurants/ca/claremont/) at 6:00pm
 
