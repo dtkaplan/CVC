@@ -107,5 +107,6 @@ head(onesubj)
 onesubj <- mutate(onesubj, 
   Ear=ifelse(Left_Ear==1, "Left", "Right"))
 xyplot(Absorbance ~ Freq | SessionNum, group=Ear, auto.key=TRUE,
-       scales=list(x=list(log=TRUE)), cex=0.2, data=onesubj)
+       scales=list(x=list(log=TRUE)), 
+       cex=0.2, data=onesubj)
 ```
