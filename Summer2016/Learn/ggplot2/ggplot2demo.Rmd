@@ -1,0 +1,211 @@
+---
+title: "Building up plots in ggplot2"
+author: ""
+date: ""
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+```{r, setup, include=FALSE}
+require(mosaic)   # Load additional packages here 
+
+# Some customization.  You can alter or delete as desired (if you know what you are doing).
+trellis.par.set(theme=theme.mosaic()) # change default color scheme for lattice
+knitr::opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+```
+
+## The ggplot2 outline
+
+Most of your plots in `ggplot2` will start from the following outline
+
+```{r, eval = FALSE}
+MyData %>%
+  ggplot() +
+  geom_()
+```
+
+## Let's make a boxplot and fancy it up a bit.
+
+### Getting started
+
+We need to 
+ 
+  1. Pick a data set
+  2. Decide on our geom
+  3. Decide what to do with the required (and possibly optional aesthetics).
+  
+So our minimal boxplot is something like this.
+
+
+```{r, message = FALSE}
+HELPrct %>%
+  ggplot() +
+  geom_boxplot(aes(x = homeless, y = drugrisk))
+```
+
+### Let's go sideways
+
+We'd rather have these go horizontally.  We do that by flipping the coordinates.  (You can't change the roles of `x` and `y` 
+in the boxplot geom.)  While we are at it, let's get rid of that message about missing data.
+
+```{r, message = FALSE}
+HELPrct %>%
+  ggplot() +
+  geom_boxplot(aes(x = homeless, y = drugrisk), na.rm = TRUE) +
+  coord_flip()
+```
+
+### Let's change the geom 
+
+This data is pretty highly skewd, so it is hard to get much information from the lower end of the boxplot and there are a lot of dots on the upper end.  Let's change to a violin plot.
+
+
+```{r, message = FALSE}
+HELPrct %>%
+  ggplot() +
+  geom_violin(aes(x = homeless, y = drugrisk), na.rm = TRUE) +
+  coord_flip()
+```
+
+### Let's add some more variables to the plot
+
+We might like to look at color and sex as well.  Let's use color for one and faceting for the other.
+
+```{r, message = FALSE}
+HELPrct %>%
+  ggplot(aes(x=homeless, y = drugrisk, colour = sex)) +
+  geom_violin(na.rm = TRUE) +
+  coord_flip() +
+  facet_grid( .  ~ substance ) 
+```
+
+### And let's add another layer with points
+
+```{r, message = FALSE}
+HELPrct %>%
+  ggplot(aes(x=homeless, y = drugrisk, colour = sex)) +
+  geom_violin(na.rm = TRUE) +
+  geom_point(na.rm = TRUE) + 
+  coord_flip() +
+  facet_grid( .  ~ substance ) 
+```
+Hmm.  Those points are really where we want them to be.
+Jittering adds some random noise.  Dodging moves entire groups left and right or up and down.
+
+```{r, message = FALSE}
+HELPrct %>%
+  ggplot(aes(x=homeless, y = drugrisk, colour = sex)) +
+  geom_violin(na.rm = TRUE) +
+  geom_point(position = position_jitterdodge(jitter.width = 0.2, jitter.height = 0.0, dodge.width = 0.9), 
+              na.rm = TRUE) + 
+  coord_flip() +
+  facet_grid( .  ~ substance ) 
+```
+
+That's a lot of pieces, but we built it up a step and a time, and each step isn't that bad.  
+
+## Changing Scales
+
+If we want to customize the particular choices of colors, sizes, shapes, etc. we do that by adjusting the **scales** for those aesthetics.
+
+```{r}
+HELPrct %>% 
+  ggplot(aes(x = age, y = e2b, colour = sex, shape = homeless, size = homeless)) + 
+  # Identify the outlier by ID.  Put this first so the dot is on top of the label.
+  geom_text(data = HELPrct %>% filter(e2b > 20), aes(label = id), size = 10, color = "yellow", hjust = 0.5, vjust = 0.5) + 
+  geom_point(na.rm = TRUE, aes(alpha = substance)) +
+  scale_color_manual(values = c("red", "navy")) + # I want red and navy for the colors
+  scale_alpha_manual( values = c(.9, 0.1, 0.1)) + # alcohol dark, other two light
+  theme_minimal()
+```
+
+## A challenge: segmenting a densityplot
+
+```{r}
+require(NHANES)
+NHANES %>%
+  ggplot(aes(x = Pulse)) +
+  geom_area(stat = "density", colour = "navy", fill = "thistle", na.rm = TRUE) +
+  geom_vline(xintercept = 85) + 
+  theme_minimal()
+```
+
+It would be nice if the line segment stopped at the density curve.  This is hard to do programatically because the height value 
+isn't in our data.  The curve data are computed in the stat -- and there may not be a value even there for exactly 85.
+
+We can do this manually for a given plot, but that won't adjsut well if the data (or even plot configuration) change.
+
+
+```{r}
+require(NHANES)
+NHANES %>%
+  ggplot(aes(x = Pulse)) +
+  geom_area(stat = "density", colour = "navy", fill = "thistle", na.rm = TRUE) +
+  geom_segment(aes(y = 0, yend = .019, x = 85, xend = 85), alpha = 0.01) +
+  theme_minimal()
+```
+
+
+Here's another, perhaps not completely successful, way to separate the left and right sides of the plot.
+
+```{r}
+require(NHANES)
+NHANES %>%
+  ggplot(aes(x = Pulse)) +
+  geom_rect(aes(ymin = 0, ymax = .04, xmin = 85, xmax = 140), alpha = 0.01, fill = "pink") +
+  geom_area(stat = "density", colour = "navy", fill = "thistle", na.rm = TRUE, alpha = 0.5) +
+  theme_minimal()
+```
+
+### What Rachelle really wanted
+
+We can actually get what Rachelle really wanted if we do things a different way.
+Our problem is that we don't have access to the data used to make the density curve
+because it is created in the stat and hidden away deep withing the bowls of ggplot.
+
+But if we make that data ourselves external to the plotting, we can render it however we like.
+The `density()` function creates a list that stores x-y coordinates for the curve in its first
+two elements (and some additional information we don't really need in other slots.)
+`density()` requires us to access the pulse data in a slightly different way, however.
+
+```{r}
+densityDF <- 
+  data.frame(density(NHANES$Pulse, na.rm = TRUE)[1:2]) 
+head(densityDF)  # so you can see what the result looks like
+```
+
+With this new data frame in hand, we can create the plot we want easily
+```{r}
+densityDF %>%
+  ggplot() +
+  geom_area(aes(x = x, y = y, fill = x > 85), alpha = 0.4, colour = "navy") +
+  scale_fill_manual(values = c("thistle", "navy"))
+```
+
+One could argue that the legend is unnecessary in this example, so let's turn off the guide for fill.
+
+```{r}
+densityDF %>%
+  ggplot() +
+  geom_area(aes(x = x, y = y, fill = x > 85), alpha = 0.4, colour = "navy") +
+  scale_fill_manual(values = c("thistle", "navy"), guide = FALSE)
+```
+Here's another way to do that.
+```{r}
+densityDF %>%
+  ggplot() +
+  geom_area(aes(x = x, y = y, fill = x > 85), alpha = 0.4, colour = "navy") +
+  scale_fill_manual(values = c("thistle", "navy")) +
+  guides(fill = "none")
+```
+

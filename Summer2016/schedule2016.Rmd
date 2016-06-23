@@ -166,24 +166,41 @@ Arrival day for many coming from out of town.
  
  4. Quick demo of github.
  
- 4. Optional Tutorials TBA
+ 4. Optional Tutorials 
+ 
+    a. Shiny [Danny]
+    b. [More ggplot2](Learn/ggplot2/ggplot2demo.html) [Randy]
  
  5. 4 pm:  Seminar with Hilary Parker (from [Stitch Fix](http://multithreaded.stitchfix.com/blog/) and [Not So Standard Deviations](https://soundcloud.com/nssd-podcast) )
 
 ### Thursday
 
- 1. Working on projects
- 
- 2. Optional Tutorials TBA
- 
- 3. Dinner at [Buca di Beppo](http://www.bucadibeppo.com/restaurants/ca/claremont/) at 6:00pm
+ 1. Opening (quick) interludes
 
+    a. Brief status reports
+    b. Using `dplyr` with an SQL data base 
+      * [SQL in R pdf](Learn/SQL/sql-example.pdf)
+      * [SQL in R Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/SQL/sql-example.Rmd)
+    c. Making data available to others via the web
+    d. Writing functions in R
+      * [Tom, Dick, and Harry](Learn/WritingFunctions/TomDickAndHarry.html)
+      * [How to Write Functions](Learn/WritingFunctions/HowToWriteFunctions.html)
+
+ 2. Working on projects
+ 
+ 3. Optional Tutorials
+ 
+    a. Github [Randy] @ 11 am
+    b. Maps and Leaflets [Danny] @ 1pm
+    c. Linear Modeling [Nick] @ 2:30 pm
+ 
+ 4. Dinner at [Buca di Beppo](http://www.bucadibeppo.com/restaurants/ca/claremont/) at 6:00pm
 
 ### Friday
 
  1. Please fill out the  [Project Report Form]()
  
- 2. Live Project Reports
+ 2. Live Project Reports (in parallel)
 
  3. Closing thoughts and goodbyes (finish at 3:00pm)
 
