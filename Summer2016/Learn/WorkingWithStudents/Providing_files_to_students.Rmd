@@ -47,3 +47,4 @@ knitr::opts_chunk$set(echo = TRUE)
 * URL for your server is too long? Set up an alias via [tiny.cc](http://tiny.cc). E.g. [tiny.cc/mosaic/congress.csv](http://tiny.cc/mosaic/congress.csv)
 * Set up a `gh-pages` branch in a GitHub repository and place your files there.  That way you can do this entirely within R.
 * Very large files? ("Large" is relevant to network speed.) Give students a command to download the file.
+
