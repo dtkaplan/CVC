@@ -182,7 +182,7 @@ Arrival day for many coming from out of town.
     b. Using `dplyr` with an SQL data base 
       * [SQL in R pdf](Learn/SQL/sql-example.pdf)
       * [SQL in R Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/SQL/sql-example.Rmd)
-    c. Making data available to others via the web
+    c. Making data available to others (esp. students) via the web. [Notes](Learn/WorkingWithStudents/Providing_files_to_students.html)
     d. Writing functions in R
       * Tom, Dick, and Harry [[html](Learn/WritingFunctions/TomDickAndHarry.html), 
       [Rmd](Learn/WritingFunctions/TomDickAndHarry.Rmd)]
@@ -195,7 +195,7 @@ Arrival day for many coming from out of town.
  
     a. Github [Randy] @ 11 am
       * [an great interactive tutorial on how git works](http://learngitbranching.js.org/) (commits, branches, merges, etc.)
-    b. Maps and Leaflets [Danny] @ 1pm
+    b. Maps with Leaflet [Danny] @ 1pm Examples of [widgets](http://www.htmlwidgets.org/showcase_leaflet.html) and  details on [leaflet](http://rstudio.github.io/leaflet/)
     c. Linear Modeling [Nick] @ 2:30 pm
       * [Modeling.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Modeling/Modeling.Rmd)
       * [Modeling.pdf](Learn/Modeling/Modeling.pdf)
