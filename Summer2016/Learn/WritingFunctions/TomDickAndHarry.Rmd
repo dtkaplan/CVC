@@ -67,7 +67,7 @@ NameTrend <- function(names, gender) {
 ## What about Tom, Dick, and Harry?
 
 ```{r}
-NameTrend(c("Tom", "Dick", "Harry"), gender = "M")
+NameTrend(c("Tom", "Dick", "Joe"), gender = "M")
 ```
 
 ## Adding more arguments
@@ -85,7 +85,7 @@ NameTrend2 <- function(names, gender = c("M", "F"), linewidth = 1) {
 ```
 
 ```{r}
-NameTrend2( c("Tom", "Dick", "Harry"), gender = "M", linewidth = 1)
+NameTrend2( c("Tom", "Dick", "Harry"), gender = "M", linewidth = 3)
 
 
 ```
