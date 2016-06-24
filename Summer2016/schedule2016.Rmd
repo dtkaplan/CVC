@@ -194,14 +194,17 @@ Arrival day for many coming from out of town.
  3. Optional Tutorials
  
     a. Github [Randy] @ 11 am
+      * [an great interactive tutorial on how git works](http://learngitbranching.js.org/) (commits, branches, merges, etc.)
     b. Maps and Leaflets [Danny] @ 1pm
-    c. Linear Modeling [Nick] @ 2:30 pm [Modeling.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Modeling/Modeling.Rmd); [Modeling.pdf](Learn/Modeling/Modeling.pdf)
+    c. Linear Modeling [Nick] @ 2:30 pm
+      * [Modeling.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Modeling/Modeling.Rmd)
+      * [Modeling.pdf](Learn/Modeling/Modeling.pdf)
  
  4. Dinner at [Buca di Beppo](http://www.bucadibeppo.com/restaurants/ca/claremont/) at 6:00pm
 
 ### Friday
 
- 1. Please fill out the  [Project Report Form]()
+ 1. Please fill out the  [Project Report Form](http://goo.gl/forms/14rB29jmVrxw1Ftl2)
  
  2. Live Project Reports (in parallel)
 
