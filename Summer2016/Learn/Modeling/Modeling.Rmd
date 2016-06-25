@@ -64,6 +64,9 @@ plotFun(diabfun1(Age=Age, BMI=BMI) ~ Age + BMI, xlim=c(0, 80), ylim=c(15, 40))
 ```{r}
 diabmod2 <- glm(Diabetes ~ Age + BMI + Age*BMI, family="binomial", 
   data=NHANES)
+msummary(diabmod2)
+exp(coef(diabmod2))
+exp(confint(diabmod2))
 diabfun2 <- makeFun(diabmod2)
 plotFun(diabfun2(Age=Age, BMI=BMI) ~ Age + BMI, xlim=c(0, 80), ylim=c(15, 40),
         main="Difference in predicted probabilities of diabetes (Interaction Model)")

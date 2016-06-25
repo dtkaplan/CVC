@@ -65,6 +65,7 @@ Arrival day for many coming from out of town.
  1. Welcome (9am)
     a. Welcome to CVC/Pomona [Jo]
     b. [Goals and outline for the week](Intro/IntroOverview.html) [Randy]
+    c. [Thinking with data](http://amstat.tandfonline.com/doi/full/10.1080/00031305.2015.1094283)
 
  2. Introductions [Randy]
     a. **Activity**: Split up into groups of three or four and introduce yourselves. 
