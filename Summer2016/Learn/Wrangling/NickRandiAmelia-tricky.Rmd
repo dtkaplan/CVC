@@ -1,0 +1,76 @@
+---
+title: "Some dplyr tricks"
+author: "R Pruim"
+date: "June 25, 2016"
+output: 
+  html_document: 
+    fig_height: 2.5
+    fig_width: 6
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message = FALSE, warning = FALSE}
+require(mosaic)
+require(lazyeval)
+theme_set(theme_minimal())
+```
+
+Nick asked how to plot 1-sample t confidence intervals for subsets defined be each level 
+of a factor.  Here are two ways to do it.  Both methods 
+
+  * use `confint()` to extract just the interval from the output of `t.test()`
+  * use `lapply()` to create a list of these results -- 1 per level of the factor
+  * use `bind_rows()` to combine this list into a single data frame.
+  * use `mutate()` to add on a variable indicating which test is from which level
+
+The difference between the two methods is in the filtering down to the subset of
+values matching just one level.
+
+### Method 1: use interp() to mix inside- and outside- the data values
+
+```{r}
+D1 <- 
+  bind_rows(
+    lapply( 
+      levels(HELPrct$substance),
+      function(l) { 
+        confint(t.test( ~ age, data = HELPrct %>% filter_(interp( ~ substance == g, g = l))))
+      }
+    )
+  ) %>% 
+  mutate ( level = levels(HELPrct$substance) )
+```
+
+### Method 2: Use a scratch variable
+
+```{r}
+D2 <- 
+  bind_rows(
+    lapply( 
+      levels(HELPrct$substance),
+      function(l) { 
+        confint(
+          t.test( ~ age, 
+                  data = HELPrct %>% mutate(target = l) %>%
+                    filter(substance == target)
+          ))
+      }
+    )
+  ) %>% 
+  mutate ( level = levels(HELPrct$substance) )
+
+identical(D1, D2)
+```
+
+
+### Plotting is the same either way
+
+```{r}
+ggplot(data = D2) +
+  geom_pointrange( 
+    aes(x = level, y = `mean of x`, ymin = lower, ymax = upper) ) +
+  coord_flip()
+```
