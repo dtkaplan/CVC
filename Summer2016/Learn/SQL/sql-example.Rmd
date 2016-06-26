@@ -33,15 +33,41 @@ opts_chunk$set(
   tidy=FALSE,     # display code as typed
   size="small"    # slightly smaller font for code
 )
-
-```{r, include=FALSE}
-# Load additional packages here.  Uncomment the line below to use Project MOSAIC data sets.
-# require(mosaicData)   
 ```
 
+## Introduction
+
+This document is intended to describe how to access data from a MySQL database using R.  It utilizes a database of wideband acoustic immitance variables from humans with normal hearing (see https://projectreporter.nih.gov/project_info_description.cfm?aid=8769352&icde=30039221&ddparam=&ddvalue=&ddsub=&cr=10&csb=default&cs=ASC for more details).
+
+A relevant paper on the topic of data management and databases in R can be found at http://chance.amstat.org/2015/04/setting-the-stage.
+
+
+## Accessing data from a database using SQL commands
+
+First I will demonstrate how to access data using SQL (structured query language) commands and the `dbGetQuery()` function.  First a connection to the database is set up.
+
+```{r}
+library(mosaic)
+library(RMySQL)
+con <- dbConnect(MySQL(), host = "scidb.smith.edu",
+                user = "waiuser", password = "smith_waiDB", 
+                dbname = "wai")
+```
+
+Next a series of SQL queries can be sent to the database.  These return R dataframes.
+
+```{r}
+dbGetQuery(con, "SHOW TABLES")
+dbGetQuery(con, "EXPLAIN PI_Info")
+ds <- dbGetQuery(con, "SELECT * from Measurements LIMIT 10")
+ds
+```
+
+## Accessing a database using dplyr commands
+
+Alternatively, a connection can be made to the server by creating a series of dplyr table objects.  
 ```{r}
 library(mosaic)      
-library(RMySQL)
 db <- src_mysql(dbname = "wai", host = "scidb.smith.edu", user = "waiuser", 
           password="smith_waiDB")
 Measurements <- tbl(db, "Measurements")
@@ -51,12 +77,14 @@ Subject <- tbl(db, "Subject")
 
 #### Let's explore the `PI_Info` table.
 ```{r}
-PI_Info %>% collect() %>% data.frame()
+PI_Info  %>% summarise(total = n())
+PI_Info %>% collect() %>% data.frame()   # collect() is a bad idea when dealing with large tables!
 ```
 
 #### Let's explore the `Subjects` table.
 ```{r}
-Subject %>% collect()
+Subject  %>% summarise(total = n())
+Subject %>% collect()  # be careful with collect() with large tables!
 ```
 
 #### Let's explore the `Measurements` table.
@@ -71,12 +99,14 @@ onesubj <-
   filter(Identifier=="Voss_2014", Sub_Number==1) %>%
   collect %>%
   mutate(SessionNum = as.factor(Session))
-
 head(onesubj)
 ```
 
-#### and plot the results
+#### Finally we can plot the results
 ```{r fig.height=6}
-xyplot(Absorbance ~ Freq | SessionNum, group=Left_Ear, auto.key=TRUE,
-       scales=list(x=list(log=TRUE)), cex=0.2, data=onesubj)
+onesubj <- mutate(onesubj, 
+  Ear=ifelse(Left_Ear==1, "Left", "Right"))
+xyplot(Absorbance ~ Freq | SessionNum, group=Ear, auto.key=TRUE,
+       scales=list(x=list(log=TRUE)), 
+       cex=0.2, data=onesubj)
 ```

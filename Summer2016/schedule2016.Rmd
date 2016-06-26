@@ -65,6 +65,7 @@ Arrival day for many coming from out of town.
  1. Welcome (9am)
     a. Welcome to CVC/Pomona [Jo]
     b. [Goals and outline for the week](Intro/IntroOverview.html) [Randy]
+    c. [Thinking with data](http://amstat.tandfonline.com/doi/full/10.1080/00031305.2015.1094283)
 
  2. Introductions [Randy]
     a. **Activity**: Split up into groups of three or four and introduce yourselves. 
@@ -94,7 +95,8 @@ Arrival day for many coming from out of town.
  
     * Creating PDF/HTML/Word documents in RStudio
     * [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
-    * Example: Student evaluations see RMarkdown/student-evals.Rmd in CVCReadOnly/Markdown
+    * Example: [R Markdown example](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/RMarkdown/student-evals.Rmd); [R Markdown formatted](Learn/RMarkdown/student-evals.pdf) (Student evaluations example from Open Intro)
+
     * **Activity**: Write and publish a description of some 
     straightforward, data-oriented topic you'd like to present in class. 
         * Include at least 1 plot (even if unrelated) to make sure 
@@ -166,34 +168,44 @@ Arrival day for many coming from out of town.
  
  4. Quick demo of github.
  
- 4. Optional Tutorials TBA
+ 4. Optional Tutorials 
+ 
+    a. Shiny [Danny]
+    b. [More ggplot2](Learn/ggplot2/ggplot2demo.html) [Randy]
  
  5. 4 pm:  Seminar with Hilary Parker (from [Stitch Fix](http://multithreaded.stitchfix.com/blog/) and [Not So Standard Deviations](https://soundcloud.com/nssd-podcast) )
 
 ### Thursday
 
- 1. Opening interlude
+ 1. Opening (quick) interludes
 
-    a. Quick status reports
+    a. Brief status reports
     b. Using `dplyr` with an SQL data base 
-    c. Making data available to others via the web
+      * [SQL in R pdf](Learn/SQL/sql-example.pdf)
+      * [SQL in R Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/SQL/sql-example.Rmd)
+    c. Making data available to others (esp. students) via the web. [Notes](Learn/WorkingWithStudents/Providing_files_to_students.html)
     d. Writing functions in R
+      * Tom, Dick, and Harry [[html](Learn/WritingFunctions/TomDickAndHarry.html), 
+      [Rmd](Learn/WritingFunctions/TomDickAndHarry.Rmd)]
+      * How to Write Functions [[html](Learn/WritingFunctions/HowToWriteFunctions.html),
+      [Rmd](Learn/WritingFunctions/HowToWriteFunctions.Rmd)]
 
-[SQL in R pdf](Learn/SQL/sql-example.pdf)
-[SQL in R Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/SQL/sql-example.Rmd)
  2. Working on projects
  
  3. Optional Tutorials
  
     a. Github [Randy] @ 11 am
-    b. Maps and Leaflets [Danny] @ 1pm
+      * [an great interactive tutorial on how git works](http://learngitbranching.js.org/) (commits, branches, merges, etc.)
+    b. Maps with Leaflet [Danny] @ 1pm Examples of [widgets](http://www.htmlwidgets.org/showcase_leaflet.html) and  details on [leaflet](http://rstudio.github.io/leaflet/)
     c. Linear Modeling [Nick] @ 2:30 pm
+      * [Modeling.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Modeling/Modeling.Rmd)
+      * [Modeling.pdf](Learn/Modeling/Modeling.pdf)
  
  4. Dinner at [Buca di Beppo](http://www.bucadibeppo.com/restaurants/ca/claremont/) at 6:00pm
 
 ### Friday
 
- 1. Please fill out the  [Project Report Form]()
+ 1. Please fill out the  [Project Report Form](http://goo.gl/forms/14rB29jmVrxw1Ftl2)
  
  2. Live Project Reports (in parallel)
 
