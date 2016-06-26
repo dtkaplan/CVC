@@ -42,8 +42,27 @@ D1 <-
     )
   ) %>% 
   mutate ( level = levels(HELPrct$substance) )
+D1
 ```
 
+In case you are curious about what `interp()` is doing:
+
+```{r}
+l <- "alcohol"
+interp( ~ substance == g, g = l)
+```
+
+
+Note: This is not quite the same thing as using 
+`substitute()`:
+
+```{r}
+substitute( ~ substance == g, list(g = l))
+# interp() creates a legit formula, with the correct environment
+interp( ~ substance == g, g = l) %>% str()
+# substitute is not really creating a full on formula
+substitute( ~ substance == g, list(g = l)) %>% str()
+```
 ### Method 2: Use a scratch variable
 
 ```{r}

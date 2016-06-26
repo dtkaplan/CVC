@@ -145,7 +145,26 @@ theme_set(theme_minimal())</code></pre>
       }
     )
   ) %&gt;% 
-  mutate ( level = levels(HELPrct$substance) )</code></pre>
+  mutate ( level = levels(HELPrct$substance) )
+D1</code></pre>
+<pre><code>##   mean of x    lower    upper   level
+## 1  38.19774 37.06260 39.33288 alcohol
+## 2  34.49342 33.42083 35.56601 cocaine
+## 3  33.44355 32.02395 34.86314  heroin</code></pre>
+<p>In case you are curious about what <code>interp()</code> is doing:</p>
+<pre class="r"><code>l &lt;- &quot;alcohol&quot;
+interp( ~ substance == g, g = l)</code></pre>
+<pre><code>## ~substance == &quot;alcohol&quot;</code></pre>
+<p>Note: This is not quite the same thing as using <code>substitute()</code>:</p>
+<pre class="r"><code>substitute( ~ substance == g, list(g = l))</code></pre>
+<pre><code>## ~substance == &quot;alcohol&quot;</code></pre>
+<pre class="r"><code># interp() creates a legit formula, with the correct environment
+interp( ~ substance == g, g = l) %&gt;% str()</code></pre>
+<pre><code>## Class 'formula'  language ~substance == &quot;alcohol&quot;
+##   ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt;</code></pre>
+<pre class="r"><code># substitute is not really creating a full on formula
+substitute( ~ substance == g, list(g = l)) %&gt;% str()</code></pre>
+<pre><code>##  language ~substance == &quot;alcohol&quot;</code></pre>
 </div>
 <div id="method-2-use-a-scratch-variable" class="section level3">
 <h3>Method 2: Use a scratch variable</h3>
