@@ -211,6 +211,19 @@ Arrival day for many coming from out of town.
 
  3. Closing thoughts and goodbyes (finish at 3:00pm)
 
+### Things we did this week
+
+ * [PlantPhys2016](https://github.com/smbush/PlantPhys2016)
+ <!-- 
+ * [http://whitlockschluter.zoology.ubc.ca/r-code](http://whitlockschluter.zoology.ubc.ca/r-code)
+ -->
+ * [a first shiny app](https://github.com/aroc110/myFirstShinyApp)
+ * [solar panel deployment](http://www.mass.gov/eea/docs/doer/rps-aps/solar-carve-out-units.xlsx)
+ * [solar panel deployment (2)](http://www.mass.gov/eea/docs/doer/rps-aps/solar-carve-out-ii-qualified-units.xlsx)
+I will put the .rmd on github next week at: 
+ * [coming soon](https://github.com/daphnid)
+ * [factor management](https://github.com/dsscollection/factor-mgmt)
+ 
 <!--
  3. Finding R packages and documentation [Nick]
 -->
