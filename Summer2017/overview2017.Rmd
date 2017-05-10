@@ -1,5 +1,5 @@
 ---
-title: "CVC 2016 Overview"
+title: "CVC 2017 Overview"
 output: 
   html_document:
     css: ../stylesheets/cvc.css
@@ -20,7 +20,7 @@ output:
 <section>
       
 <header>
-<h1>CVC 2016</h1>
+<h1>CVC 2017</h1>
 <p>Computation and Visualization Consortium</p>
 </header>
 
@@ -28,7 +28,7 @@ output:
 
 ### Working Schedule
 
-A working schedule will be maintained [here](schedule2016.html) during
+A working schedule will be maintained [here](schedule2017.html) during
 the workshop.  This will include links to presentations and resources
 from the workshop.
 
@@ -37,9 +37,12 @@ from the workshop.
 
 We have created a [Feedback and Questions google doc](https://docs.google.com/document/d/1AtoWauyDoBsHJd7yywkJNgiNaAXPiBjNhqO9Yw72jys/edit?usp=sharing) with questions (and answers) about the workshop.
 
-### June 20-24, 2016 
+### June 12-16, 2017 
 
-The **first half** of the workshop starts at **9 am on June 20**. This portion of the workshop aims to introduce faculty members to the open source software package, RStudio. These days will serve as an introduction to using R for handling data and graphics and include
+The **first half** of the workshop starts at **9 am on June 12**. This portion
+of the workshop aims to introduce faculty members to the open source software
+package, RStudio. These days will serve as an introduction to using R for
+handling data and graphics and include
 
 *  An introduction to the RStudio environment
 *  A "Doing More with Less Cookbook" for R
@@ -67,7 +70,10 @@ In order to support project development, participants will learn specific skills
 *  Additional programming skills
 *  resampling and bootstrap methods
 
-All aspects of the workshop will be "hands on."  The workshop leaders include several nationally recognized educators in data, graphics, and statistics.  You provide the subject-matter expertise, we'll help you exploit the power of modern compuation. 
+All aspects of the workshop will be "hands on."  The workshop leaders include
+several nationally recognized educators in data, graphics, and statistics.  You
+provide the subject-matter expertise, we'll help you exploit the power of modern
+compuation.
 
 ## In your classes ...
 
@@ -82,7 +88,7 @@ hours to tune it up when you get home.
 
 *A data graphic made with the powerful tools used in the CVC workshop: R, ggplot2 and dplyr.* 
 
-#### CVC projects from Summer 2014 included
+### CVC projects from Summer 2014 included
 
 * An analysis comparing the lyrics of Beyoncé and Jay Z
 * Dendrogram analysis of gene expression in leukemia
@@ -90,7 +96,10 @@ hours to tune it up when you get home.
 * Phylogenetics of mite harvestmen biodiversity
 * Using maps in introductory statistics
 
-#### CVC projects from Summer 2015 included
+### CVC projects from Summer 2015 included
 
+<!-- REMEMBER TO ADD THE LIST OF PROJECTS -->
 
-<!-- REMEMBER TO ADD THE LIST OF PROJECTS FROM LAST YEAR -->
+### CVC projects from Summer 2016 included
+
+<!-- REMEMBER TO ADD THE LIST OF PROJECTS -->
