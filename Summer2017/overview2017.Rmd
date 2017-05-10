@@ -88,18 +88,40 @@ hours to tune it up when you get home.
 
 *A data graphic made with the powerful tools used in the CVC workshop: R, ggplot2 and dplyr.* 
 
-### CVC projects from Summer 2014 included
 
-* An analysis comparing the lyrics of Beyoncé and Jay Z
-* Dendrogram analysis of gene expression in leukemia
-* A semester's introductory cell bio and genetics lab  
-* Phylogenetics of mite harvestmen biodiversity
-* Using maps in introductory statistics
-
-### CVC projects from Summer 2015 included
-
-<!-- REMEMBER TO ADD THE LIST OF PROJECTS -->
 
 ### CVC projects from Summer 2016 included
 
-<!-- REMEMBER TO ADD THE LIST OF PROJECTS -->
+* An analysis of Donald Trump's tweets.
+* Streamlining the import of seismic waveform data into R and the combination of
+sound and spectral analysis to identify harmonic signals in seismic data.
+* US maps of service priorities (Medical, housing, advocacy, legal, etc.) after
+instances of intimate partner violence.
+* Large project in an upper-level Plant Physiology course/lab. 
+* Analysis for a plant genomics research project.
+* Creating better graphs and tests for the data parts of a textbook using U.S.
+Census data.
+* RMarkdown code for class exercises in Into Biostats (based on
+examples from Analysis of Biological Data by Whitlock and Shluter).
+* College enrollment analysis
+* New R Programming Course Development
+* Plot from a data frame using Shiny and Plotly
+* Developing a microarray data wrangling workflow in R Markdown
+* Analysis of correlation between bird diving depth and surface temperature.
+* Residential Solar PV Deployment in Massachusetts.
+* Class materials for a new data visualization course. 
+* Creating R package for the ISCAM materials.
+* Preparing R Markdown files for a Regression course.
+* Analysis of frog statistics as collected by FrogWatch for use in a 
+first course in Environmental Science. 
+* A Guide for Students to Make Plots in R Studio using ggplot2.
+* A Shiny app that asks the user to upload a file, select data columns and label column, and generate a 3d PCA plot accordingly.
+* Phylogenetics: retrieve sequence data from GenBank, generate tree, visualize tree.
+* Plot specimen localities (lat/long) and elevation using 
+`leaflet` and `ggmap`. 
+* Rmarkdown files for use in chemical analysis class to do some basic
+statistics, graphing, and linear regression. 
+* Analysis of institutional data about student cohorts entering college 
+between 2002-2013. 
+* Displaying the latest reported Zika virus numbers on US Map
+
