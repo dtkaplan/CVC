@@ -1,0 +1,259 @@
+---
+title: "Working Schedule"
+
+output: 
+  html_document:
+    template: null
+    css: ../stylesheets/cvc.css
+    
+---
+
+
+<script src="../javascripts/main.js"></script>
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<div class="wrapper">
+<nav>
+<ul></ul>
+</nav>
+<section>
+     
+           
+<header>
+<h1>CVC 2016 Working Schedule</h1>
+<p>Computation and Visualization Consortium</p>
+</header> 
+
+#### This is cvc.mosaic-web.org/Summer2016/schedule2016.html
+
+## Resources
+
+  * [CRAN](http://cran.r-project.org) (Comprehensive R Archive Network) has lots of R-related stuff
+  * The `mosaic` package (version 0.14 or greater) and its vignettes are [available via CRAN](http://cran.r-project.org/web/packages/mosaic/index.html) and also via [github](https://github.com/ProjectMOSAIC/mosaic)
+  * [The Calvin College RStudio server](http://rstudio.calvin.edu) has provided accounts for all workshop participants.
+    * [Change passwords here](https://freeipa1.cs.calvin.edu/)
+  * Slides and files for sessions will be posted in the schedule as we go along (see below).
+
+
+## Provide Feedback
+
+We'll use this Google Doc to record your questions and comments and to provide
+responses.  Feel free to edit it at anytime before, during, or (shortly) after the workshop.
+
+  * [Google Doc](https://docs.google.com/document/d/1AtoWauyDoBsHJd7yywkJNgiNaAXPiBjNhqO9Yw72jys/edit?usp=sharing)
+
+## Working Schedule
+
+This schedule will be updated throughout the workshop.  All items should be 
+considered tentative until they happen since we will adjust things to 
+meet the needs and wishes of the participants.
+
+### Sunday
+
+Arrival day for many coming from out of town. 
+
+**Opening reception**, 5 pm - 7 pm at Jo Hardin's house
+ 
+  * Check your email for details.
+
+### Monday
+
+ 1. Welcome (9am)
+    a. Welcome to CVC/Pomona [Jo]
+    b. [Goals and outline for the week](Intro/IntroOverview.html) [Randy]
+    c. [Thinking with data](http://amstat.tandfonline.com/doi/full/10.1080/00031305.2015.1094283)
+
+ 2. Introductions [Randy]
+    a. **Activity**: Split up into groups of three or four and introduce yourselves. 
+    b. [Google Doc](https://docs.google.com/document/d/137aTs2EEcBdE7hg1tH68wjsorqSNdcB8VnZQmUX-VCs/edit?usp=sharing) for second part. 
+
+ 3. A First Case Study using Medicare Data [Danny]
+
+    * [Slides](Intro/MedicareSpending.html)
+
+ 4. Introduction to R and R Studio [Randy]
+
+    * [Less Volume, More Creativity -- An R Quick Start](Learn/LessVolume/LessVolume.html) 
+    * Importing CSV and Excel files into RStudio
+        * [Notes](Learn/ImportingData/ImportingData.html)
+        * [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
+    
+    * **Activity**: Create a plot using data that you have imported into R.
+
+ 7. Project Example -- Dynamic Data [Jo]    
+ 
+     a. [slides](Learn/ProjectExamples/DynDataCVC.html) for presentation; 
+        [markdown file](Learn/ProjectExamples/DynDataCVC.Rmd) also available  
+     b. [manuscript](http://arxiv.org/abs/1603.04912) on arXiv  
+     c. [complete example markdown files](http://research.pomona.edu/johardin/papers-and-publications/) also available
+
+ 5. [RMarkdown](http://prezi.com/vq6l5yqpnqma/) [Nick]
+ 
+    * Creating PDF/HTML/Word documents in RStudio
+    * [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
+    * Example: [R Markdown example](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/RMarkdown/student-evals.Rmd); [R Markdown formatted](Learn/RMarkdown/student-evals.pdf) (Student evaluations example from Open Intro)
+
+    * **Activity**: Write and publish a description of some 
+    straightforward, data-oriented topic you'd like to present in class. 
+        * Include at least 1 plot (even if unrelated) to make sure 
+        you know how to do that.  
+        * Use the mosaic `plain` html template as a starting point
+        
+ 6. How to organize your data [Danny]
+    
+    a. [Introduction slides](Learn/TidyData/tidy_data.html), but the basics are
+    
+    * Rectangular format: cases (rows) and variables (columns)
+    * Separate your analysis from data storage.
+    * Use a codebook to describe your cases and variables in detail.
+       
+    b. **Activity**: The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct.  Identify the elements of this spreadsheet that are not in standard rectangular data format.
+   
+<!-- 
+    c. **Activity**: Enter data [in this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&usp=sharing)
+    indicating types of data you are interested in.
+-->
+
+
+### Tuesday
+ 
+ 1. Project check-in: sharing ideas and one-on-ones
+ 
+ 2. The graphics-data interface 
+    a. graphing concepts: [slides](Learn/VizConcepts/VizConcepts.html) [Danny]
+    b. **Activity:** data <-> graphs [Danny]
+    PDF with [the graphs](Learn/VizConcepts/eye-training.pdf)
+ 3. Introduction to `ggplot2` --  turning the concepts into pictures 
+ with the grammar of graphics [Randy]
+
+    a. [slides](Learn/ggplot2/ggplot2Intro.pdf) 
+    b. [Dope Sheets](Learn/ggplot2/ggplot2DopeSheets.pdf) 
+
+ 4. R parts of speech [Danny].   [slides](Learn/Parts_of_speech/R-command-structure.html)
+ 
+ 5. Working with data -- 5 verbs of `dplyr` [Jo]    
+    Getting your data into the right shape for graphing or analysis
+ 
+     a. [slides](Learn/Wrangling/dplyrCVC.html) for presentation; 
+        <!-- [markdown file](Learn/Wrangling/dplyrCVC.Rmd) also available -->
+ 
+     b. [Worksheet](Learn/Wrangling/dplyrwrkshtCVC.html) for presentation; 
+       [markdown file](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVC.Rmd) also available (and on the Calvin server)
+
+     c. [Sample solution Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVCsol.Rmd) and [Sample solution html](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Wrangling/dplyrwrkshtCVCsol.html)
+  
+ 
+### Wednesday
+ 
+ 1. More data wrangling with `dplyr` and `tidyr` 
+ 
+ <!--
+    a. merging data from multiple sources [Danny]
+        * [Slides](Learn/Join/joins.html) 
+        * [bird-species spreadsheet](https://docs.google.com/spreadsheets/d/1GDKeulVSRXL7Q_5Q0a7Offc_IPX2T4sZ80VN5VLASew/edit#gid=0), 
+        * zebrafish treatment [CSV file](Learn/Wrangling/FishTx.csv) 
+    b. `gather()`, `spread()`, `separate()` [Randy]
+        * [Notes](Learn/TidyData/TidyGapMinder.html)
+    c. Building precursors [paper](http://www.amherst.edu/~nhorton/precursors)
+-->
+    
+ 2. Quick Shiny interlude [Example 1 ](https://r.amherst.edu/apps/nhorton/sat);
+[Shiny resources](http://shiny.rstudio.com) [Nick]
+ 
+ 3. Ingesting your own data and next steps for your project
+ 
+ 4. Quick demo of github.
+ 
+ 4. Optional Tutorials 
+ 
+    a. Shiny [Danny]
+    b. [More ggplot2](Learn/ggplot2/ggplot2demo.html) [Randy]
+ 
+ 5. 4 pm:  Seminar with Hilary Parker (from [Stitch Fix](http://multithreaded.stitchfix.com/blog/) and [Not So Standard Deviations](https://soundcloud.com/nssd-podcast) )
+
+### Thursday
+
+ 1. Opening (quick) interludes
+
+    a. Brief status reports
+    b. Using `dplyr` with an SQL data base 
+      * [SQL in R pdf](Learn/SQL/sql-example.pdf)
+      * [SQL in R Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/SQL/sql-example.Rmd)
+    c. Making data available to others (esp. students) via the web. [Notes](Learn/WorkingWithStudents/Providing_files_to_students.html)
+    d. Writing functions in R
+      * Tom, Dick, and Harry [[html](Learn/WritingFunctions/TomDickAndHarry.html), 
+      [Rmd](Learn/WritingFunctions/TomDickAndHarry.Rmd)]
+      * How to Write Functions [[html](Learn/WritingFunctions/HowToWriteFunctions.html),
+      [Rmd](Learn/WritingFunctions/HowToWriteFunctions.Rmd)]
+
+ 2. Working on projects
+ 
+ 3. Optional Tutorials
+ 
+    a. Github [Randy] @ 11 am
+      * [an great interactive tutorial on how git works](http://learngitbranching.js.org/) (commits, branches, merges, etc.)
+    b. Maps with Leaflet [Danny] @ 1pm Examples of [widgets](http://www.htmlwidgets.org/showcase_leaflet.html) and  details on [leaflet](http://rstudio.github.io/leaflet/)
+    c. Linear Modeling [Nick] @ 2:30 pm
+      * [Modeling.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2016/Learn/Modeling/Modeling.Rmd)
+      * [Modeling.pdf](Learn/Modeling/Modeling.pdf)
+ 
+ 4. Dinner at [Buca di Beppo](http://www.bucadibeppo.com/restaurants/ca/claremont/) at 6:00pm
+
+### Friday
+
+ 1. Please fill out the  [Project Report Form](http://goo.gl/forms/14rB29jmVrxw1Ftl2)
+ 
+ 2. Live Project Reports (in parallel)
+
+ 3. Closing thoughts and goodbyes (finish at 3:00pm)
+
+### Things we did this week
+
+ * [PlantPhys2016](https://github.com/smbush/PlantPhys2016)
+ <!-- 
+ * [http://whitlockschluter.zoology.ubc.ca/r-code](http://whitlockschluter.zoology.ubc.ca/r-code)
+ -->
+ * [a first shiny app](https://github.com/aroc110/myFirstShinyApp)
+ * [solar panel deployment](http://www.mass.gov/eea/docs/doer/rps-aps/solar-carve-out-units.xlsx)
+ * [solar panel deployment (2)](http://www.mass.gov/eea/docs/doer/rps-aps/solar-carve-out-ii-qualified-units.xlsx)
+I will put the .rmd on github next week at: 
+ * [coming soon](https://github.com/daphnid)
+ * [factor management](https://github.com/dsscollection/factor-mgmt)
+ 
+<!--
+ 3. Finding R packages and documentation [Nick]
+-->
+  
+### Additional Topics TBD
+
+In the second half of the workshop, we will offer optional tutorials on topics of 
+interest to several workshop participants.   Here are some potential topics, but 
+don't be afraid to suggest others. If there is a name listed by a topic, talk to
+that person to find out more.
+
+1. Github [Randy]
+3. Shiny [Danny, Nick, or Jo] --- [Notes](Learn/Shiny-breakout/readme.html)
+4. Leaflets, etc. [Danny]
+5. Maps [Danny]
+5. Machine learning [Danny]
+6. Text mining [Nick]
+7. Modeling in R [Nick]
+8. Writing Functions [Randy]
+9. More `ggplot2` [Randy]
+10. `ggvis` [Nick or Randy]
+11. Data Scraping from the Web
+1. Getting data from a database
+12. Image Analysis
+13. Resampling [Nick]
+10. Basic Statistical Methods
+15. Linear models with "Less Volume, More Creativity" [Nick or Jo]
+16. Other topics as the arise 
+ 
+### Thanks
+
+* Kudos to Kathy Sheldon for her assistance with logistics 
+* HHMI support

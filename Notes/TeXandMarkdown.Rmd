@@ -1,0 +1,28 @@
+---
+title: "Untitled"
+author: "R Pruim"
+date: "June 28, 2016"
+output: 
+  html_document:
+    fig_height: 2.5
+    fig_width: 4
+    figure_caption: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.caption = TRUE)
+require(mosaic)
+```
+
+## R Markdown and LaTeX
+
+In dollar signs: $\TeX$
+
+Not in dollar signs: \TeX
+
+## Figures
+
+```{r fig1, fig.cap = "A caption"}
+histogram(~ rnorm(100))
+```
+

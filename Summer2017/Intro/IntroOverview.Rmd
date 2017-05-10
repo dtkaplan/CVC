@@ -1,0 +1,155 @@
+---
+title: "Overview & Introductions"
+author: "CVC 2016"
+date: "June 20-24, 2016"
+output: 
+  ioslides_presentation:
+    widescreen: true
+---
+
+# Welcome
+
+## Welcome to CVC 2016
+
+Two important questions before we begin
+
+
+## Welcome to CVC 2016
+
+Two important questions before we begin
+
+<div align="center">
+<iframe width="560" height="315"
+src="http://www.youtube.com/embed/uKpX-5jQjQ0"
+frameborder="0" allowfullscreen>
+</iframe></div>
+  
+[video link](http://www.youtube.com/watch?v=uKpX-5jQjQ0)
+
+## Who are you?
+
+* We'll be doing some introductions shortly.
+
+## Why are you here?
+
+* You might have some clear ideas/goals -- we want to hear them
+
+* You might not know -- you are welcome, too
+
+* Your reasons might change as the week goes along
+
+## Outline of the workshop
+
+1. Shop
+2. Work
+
+More details at [http://dtkaplan.github.io/CVC/schedule2016.html](../schedule2016.html)
+
+ * **Please bookmark this page.**  We will post links to materials on this page so you can access them.
+
+## Outline of the workshop -- Part 1
+
+**Shop**
+
+In the first 2.5 days, we will present you with some tools for 
+learning from data and give you an opportunity to give them a test drive
+
+  * introduction to R and RStudio
+  * data visualization
+  * data manipulation (tidying, cleaning, summarizing, etc.)
+  * reproducible workflow with RMarkdown
+    
+You get to "try things on" and "see how they fit"
+
+## Outline of the workshop -- Part 2
+
+**Work**
+
+In the second 2.5 days, you will have a chance to prepare 
+something (some things) of your own choosing to use
+
+  * in a class
+  * in a lab
+  * in your research
+  * ???
+    
+We will work with you to find and learn what you need
+
+  * collaboration is encouraged
+
+## It's not quite that tidy
+
+You will be working already in Part 1 
+
+  * **Goal**: By Wednesday lunch, everyone will have
+    * tried out a number of "exercises" in R/RStudio/RMarkdown
+    
+    * learned something new and have more new things they
+    want to learn in Part 2.
+        
+    * identified a project to work on in Part 2.
+
+## It's not quite that tidy
+
+There will also be some shopping in Part 2
+
+  * we will be collecting up ideas based on your 
+    interests, needs, wishes
+    
+  * some of these may be "optional" -- those who are interested
+    may join in, others may choose to keep working
+
+
+## How do we define success? {.build}
+    
+ 1. You leave here having learned something of value to you.
+
+ 2. You leave here equipped to continue learning after the workshop is over.
+
+ 3. You get to know some interesting people (and what they are interested in).
+
+ 4. You have an enjoyable week.
+
+## A note about the "schedule"
+
+Our schedule does not include any times.
+
+  * Start at **9 am** end around **4:30 pm** with breaks/lunch as needed.
+
+We can take the time we need before moving on
+
+  * Be sure to ask questions and provide us [feedback](https://docs.google.com/document/d/1AtoWauyDoBsHJd7yywkJNgiNaAXPiBjNhqO9Yw72jys/edit?usp=sharing) so we can adjust appropriately.
+
+## A note about R
+
+R is one tool for working with data, but many of the things
+we will talk about are more general than R and apply equally 
+to other ways of working with data.
+
+R's particular advantages:
+
+  * state of the art (high quality, wide scope)
+    * widely used in academia and industry
+  * excellent data visualization 
+  * reproducible workflow tools
+  * free!
+
+# Introductions
+
+## Introductions
+
+ 1. Get into a group of 3 or 4 people.
+ 2. Introduce yourselves.
+    * be sure to mention something about what sort of project you might be interested in
+ 3. Remember or take some notes (you will need them shortly).
+
+## Google Doc
+
+Use this [google doc](https://docs.google.com/document/d/137aTs2EEcBdE7hg1tH68wjsorqSNdcB8VnZQmUX-VCs/edit?usp=sharing) to create a short "bio" for one of the others in your group.  
+
+  * Bulleted list or paragraph -- which every you prefer.
+  * Include a photo if possible.
+
+## Google Doc
+
+<img src = "../../images/FredFlintstoneBio.png" width = 90%>

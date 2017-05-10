@@ -1,0 +1,484 @@
+---
+title: "dplyr practice worksheet - solutions"
+author: "Jo Hardin"
+date: "June 21, 2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=TRUE, message=FALSE, warning=FALSE}
+require(babynames)
+require(mosaic)
+Babynames = babynames
+```
+
+Each year, the US Social Security Administration publishes a list of the most popular names given to babies.  In 2014, [the list](http://www.ssa.gov/oact/babynames/#ht=2) shows Emma and Olivia leading for girls, Noah and Liam for boys.
+
+The `babynames` data table in the `babynames` package comes from the Social Security Administration's listing of the names givens to babies in each year, and the number of babies of each sex given that name. (Only names with 5 or more babies are published by the SSA.)
+
+
+## Warm-ups
+
+A few simple questions about the data.
+
+When starting, it can be helpful to work with a small subset of the data.  When you have your data wrangling statements in working order, shift to the entire data table.
+
+```{r}
+SmallSubset <-
+  Babynames %>%
+  filter(year > 2000) %>%
+  sample_n(size = 200)
+```
+
+
+Note: Chunks in this template are headed with `{r eval=FALSE}`.  Change this to `{r}` when you are ready to compile
+
+### 1. How many babies are represented?
+
+```{r eval=FALSE}
+SmallSubset %>%
+  summarise(total = ????(n)) # a reduction verb
+```
+
+
+```{r}
+SmallSubset %>%
+  summarise(total=sum(n))
+```
+
+### 2. How many babies are there in each year?
+
+```{r eval=FALSE}
+SmallSubset %>% 
+  group_by(????) %>% 
+  summarise(total = ????(n))
+```
+
+```{r}
+SmallSubset %>% 
+  group_by(year) %>% 
+  summarise(total = sum(n))
+```
+
+
+### 3. How many distinct names in each year?
+
+```{r eval=FALSE}
+SmallSubset %>%
+  group_by(????) %>%
+  summarise(name_count = n_distinct(????))
+```
+
+```{r}
+SmallSubset %>%
+  group_by(year) %>%
+  summarise(name_count = n_distinct(name))
+```
+
+
+### 4. How many distinct names of each sex in each year?
+
+```{r eval=FALSE}
+SmallSubset %>%
+  group_by(????, ????) %>%
+  summarise(????)
+```
+
+```{r}
+SmallSubset %>%
+  group_by(year, sex) %>%
+  summarise(name_count=n_distinct(name))
+```
+
+
+## Popularity of Jane and Mary
+
+### 5. Track the yearly number of Janes and Marys over the years.
+
+```{r eval=FALSE}
+Result <-
+  Babynames %>%
+  ????(name %in% c("Jane", "Mary")) %>% # just the Janes and Marys
+  group_by(????, ????) %>% # for each year for each name
+  summarise(count = ????)
+```
+
+```{r}
+Result <-
+  Babynames %>%
+  filter(name %in% c("Jane", "Mary")) %>% # just the Janes and Marys
+  group_by(name, year) %>% # for each year for each name
+  summarise(count = sum(n))
+```
+
+### 6. Plot out the result
+
+Put `year` on the x-axis and the count of each name on the y-axis.  Note that `ggplot()` commands use `+` rather than `%>%`.
+
+```{r}
+ggplot(data=Result, aes(x = year, y = count)) +
+  geom_point()
+```
+
+* *Map* the name (Mary or Jane) to the aesthetic of color.  Remember that mapping to aesthetics is always done inside the `aes()` function.
+* Instead of using dots as the glyph, use a line that connects consecutive values: `geom_line()`.
+* Change the y-axis label to "Yearly Births": `+ ylab("Yearly Births")`
+* *Set* the line thickness to `size=2`. Remember that "setting" refers to adjusting the value of an aesthetic to a constant.  Thus, it's *outside* the `aes()` function.
+
+```{r}
+ggplot(data=Result, aes(x = year, y = count)) +
+  geom_line(aes(color=name), size=2) + 
+  ylab("Yearly Births")
+```
+
+
+### 7. Look at the *proportion* of births rather than the count
+
+```{r eval=FALSE}
+Result2 <-
+  Babynames %>%
+  group_by(year) %>%
+  mutate(total = ????(n)) %>%
+  filter(????) %>%
+  mutate(proportion = n / total)
+```
+
+```{r}
+Result2 <-
+  Babynames %>%
+  group_by(year) %>%
+  mutate(total = sum(n)) %>%
+  filter(name %in% c("Mary", "Jane")) %>%
+  mutate(proportion = n / total)
+```
+
+
+* Why is `sex` a variable in `Result2`? Eliminate it, keeping just the girls.
+    Note: It would likely be better to add up the boys and girls, but this is surprisingly hard.  It becomes much easier once you have another data verb to work with: `inner_join()`.  
+* What happens if the `filter()` step is put *before* the `mutate()` step?
+
+```{r}
+Result2 <-
+  Babynames %>%
+  filter(sex == "F") %>%
+  group_by(year) %>%
+  mutate(total = sum(n)) %>%
+  filter(name %in% c("Mary", "Jane")) %>%
+  mutate(proportion = n / total)
+```
+
+
+* Add a vertical line to mark a year in which something happened that might relate to the increase or decrease the popularity of the name.  Example: The movie [*Whatever Happened to Baby Jane*](http://en.wikipedia.org/wiki/What_Ever_Happened_to_Baby_Jane%3F_%281962_film%29) came out in 1962.  The glyph is a vertical line: `geom_vline()`.
+
+```{r}
+ggplot(data=Result2, aes(x=year, y=proportion)) +
+  geom_line(aes(color=name), size=2) +
+  ylab("Yearly Births") +
+  geom_vline(xintercept=1962)
+```
+
+  
+## 8. Pick out name(s) of interest to you 
+
+Plot out their popularity over time.
+
+
+
+# On to more data verbs (gather, join, lubridate)
+
+## gather
+
+```{r warning=FALSE, message=FALSE}
+require(googlesheets)
+require(tidyr)
+```
+
+gather the military paygrade data:   https://docs.google.com/spreadsheets/d/1Ow6Cm4z-Z1Yybk3i352msulYCEDOUaOghmo9ALajyHo/edit#gid=1811988794
+
+```{r}
+navy.url = "https://docs.google.com/spreadsheets/d/1Ow6Cm4z-Z1Yybk3i352msulYCEDOUaOghmo9ALajyHo/edit#gid=1877566408"
+navy.temp = gs_url(navy.url, visibility="public")
+Navy = gs_read(navy.temp)
+glimpse(Navy)
+names(Navy) = c("X","pay.grade", "male.sing.wo", "female.sing.wo", "tot.sing.wo", 
+                "male.sing.w", "female.sing.w", "tot.sing.w", "male.joint.NA", 
+                "female.joint.NA", "tot.joint.NA", "male.civ.NA", "female.civ.NA", 
+                "tot.civ.NA", "male.tot.NA", "female.tot.NA", "tot.tot.NA")
+Navy = Navy[-c(1:8), -1]
+
+# get rid of total columns & rows:
+
+NavyWR <- 
+  Navy %>% 
+  select(-contains("tot")) %>%
+  filter(substr(pay.grade, 1, 5) != "TOTAL" & substr(pay.grade, 1, 5) != "GRAND" ) %>%
+  gather(status,numPeople,-pay.grade) %>%
+  separate(status, into=c("sex", "marital", "kids", sep=".")) %>%
+  select(c(1:4,6)) %>% mutate(count=extract_numeric(numPeople))
+
+NavyWR %>% head()
+```
+  
+\noindent
+Does a graph tell us if we did it right?  what if we had done it wrong...?
+
+```{r}
+NavyWR %>% ggplot(aes(x=pay.grade, y=count, color=sex)) + 
+  geom_point()  + 
+  facet_grid(kids~marital)
+```
+  
+## join
+
+The suite of *join* functions in dplyr allows for combining two different data tables by matching one or more variables.  A great cheatsheet on joining: http://stat545.com/bit001_dplyr-cheatsheet.html
+
+
+Using nycflights13: Airline on-time data for all flights departing NYC in 2013. Also includes useful 'metadata' on airlines, airports, weather, and planes.
+
+```{r warning=FALSE, message=FALSE}
+require(nycflights13)
+Flights <- flights
+Airports <- airports
+Airlines <- airlines
+Weather <- weather
+Planes <- planes
+```
+
+```{r}
+names(Flights)
+names(Airports)
+names(Airlines)
+names(Weather)
+names(Planes)
+```
+
+```{r}
+Flights %>% select(carrier, flight, tailnum, origin, dest) %>% head()
+Airports %>% select(faa, name, lat, lon) %>% head()
+Airports %>% select(faa, name, lat, lon) %>% sample_n(5)
+
+Flights %>% 
+  inner_join(Airports, by=c("dest" = "faa")) %>%
+  select(carrier, flight, tailnum, origin, dest, name, lat, lon) %>%
+  head()
+```
+
+```{r}
+# inner_join: return all rows from x where there are matching values in y, and all columns from x and y. 
+Flights %>% inner_join(Airports, by=c("dest" = "faa")) %>% dim()
+
+# left_join: return all rows from x, and all columns from x and y.
+Flights %>% left_join(Airports, by=c("dest" = "faa")) %>% dim()
+
+# right_join: return all rows from y, and all columns from x and y. 
+Flights %>% right_join(Airports, by=c("dest" = "faa")) %>% dim()
+
+# anti_join: return all rows from x where there are not matching values in y, keeping just columns from x.
+Flights %>% anti_join(Airports, by=c("dest" = "faa")) %>% dim()
+
+# full_join: return all rows and all columns from both x and y.
+Flights %>% full_join(Airports, by=c("dest" = "faa")) %>% dim()
+```
+
+
+
+## lubridate
+
+\textcolor{red}{Hint: paste(year,"-", month,"-",day)}
+
+
+Fun with dates!
+```{r warning=FALSE, message=FALSE}
+require(lubridate)
+
+rightnow <- now()
+
+day(rightnow)
+week(rightnow)
+month(rightnow, label=FALSE)
+month(rightnow, label=TRUE)
+year(rightnow)
+
+minute(rightnow)
+hour(rightnow)
+
+yday(rightnow)
+mday(rightnow)
+wday(rightnow, label=FALSE)
+wday(rightnow, label=TRUE)
+```
+
+But how do I create a date object?
+```{r}
+jan31 <- ymd("2013-01-31")
+jan31 + months(0:11)
+
+floor_date(jan31, "month") # round down to the nearest month
+floor_date(jan31, "month") + months(0:11) + days(31)
+jan31 + months(0:11) + days(31)
+
+jan31 %m+% months(0:11)
+```
+
+```{r}
+FlightsWK <- 
+  Flights %>% 
+  mutate(ymdday = ymd(paste(year,"-", month,"-",day))) %>%
+  mutate(weekdy = wday(ymdday, label=TRUE), whichweek = week(ymdday))
+FlightsWK %>% 
+  select(year, month, day, ymdday, weekdy, whichweek, dep_time, 
+                     arr_time, air_time) %>%  
+  head()
+```
+
+
+### 9. More example problems to work out
+
+(Many of these problems were taken from **Modern Data Science with R** by Baumer, Kaplan, and Horton, in preparation.)
+
+- What plane (specified by the *tailnum* variable) traveled the most times from New York City airports in 2013?  Plot the number of trips per week over the year (for that plane).
+
+```{r}
+tripsTot <- flights %>% 
+  group_by(tailnum) %>% 
+  summarize(numFl = n())
+head(tripsTot)
+
+flights %>% 
+  group_by(tailnum) %>% 
+  summarize(numFl = n()) %>% 
+  arrange(desc(numFl))
+
+#first find the week number for each flight
+flights = flights %>% 
+  mutate(day.ymd = paste(year,"-", month,"-",day)) %>% 
+  mutate(week.n = week(ymd(day.ymd)))
+plane.N725MQ <- 
+  flights %>% 
+  filter(tailnum=="N725MQ") %>% 
+  group_by(week.n) %>% 
+  summarize(numFlWk = n())
+
+ggplot(plane.N725MQ, aes(x=week.n, y=numFlWk)) + 
+  geom_line() + 
+  xlab("Week Number") + 
+  ylab("Number of Flights") + 
+  ggtitle("Flight N725MQ")
+```
+
+
+- Use the *nycflights13* package and the *flights* and *planes* tables to answer the following questions: 
+    + What is the oldest plane (specified by the tailnum variable) that flew from New York City airports in 2013? 
+```{r}
+planes %>% arrange(year)
+```
+    
+    + How many airplanes (that flew from New York City) are included in the planes table? How many have missing date of manufacture? 
+```{r}
+planes %>% summarize(n())  # 3322
+flights %>% group_by(tailnum) %>% 
+  left_join(planes, by="tailnum") %>% 
+  filter(is.na(manufacturer)) %>%
+  summarize(n())  %>% dim() # 722
+# note: none of the planes in the planes table have missing data, but 722 of the planes in the flights
+# dataset are missing the manufacturer information from the planes dataset
+```
+    
+    + Display and interpret the distribution of the date of manufacture.
+```{r}
+ggplot(planes, aes(x=year)) + 
+  geom_line(stat="density")
+```
+    + Consider the following manufacturers:  AIRBUS, AIRBUS INDUSTRIE, BOEING, BOMBARDIER INC, EMBRAER, MCDONNELL DOUGLAS, MCDONNELL DOUGLAS AIRCRAFT CO, MCDONNELL DOUGLAS CORPORATION (the most common manufacturers).  Characterize and interpret the distribution of manufacturer. Has the distribution of manufacturer changed over time as reflected by the airplanes flying from NYC in 2013?  [Provide a plot and a table.  You probably want to combine the AIRBUS planes and the MCDONNELL DOUGLAS planes.]
+```{r}
+planes2 <- planes %>% 
+  filter(manufacturer %in% c("AIRBUS", "AIRBUS INDUSTRIE", "BOEING", 
+                             "BOMBARDIER INC", "EMBRAER", "MCDONNELL DOUGLAS", 
+                             "MCDONNELL DOUGLAS AIRCRAFT CO", 
+                             "MCDONNELL DOUGLAS CORPORATION")) %>%
+  mutate(manufact2 = ifelse(substr(manufacturer,1,5)=="MCDON", "MCDONNELL DOUGLAS", 
+                            ifelse(substr(manufacturer,1,5) == "AIRBU", "AIRBUS", 
+                                   manufacturer)))  %>%
+  mutate(year2 = factor(cut(year, breaks=seq(from=1960, to=2015, by=5))))
+
+table(planes2$manufact2, planes2$year2)
+
+ggplot(planes2, aes(x=year, color=manufact2)) + 
+  geom_line(stat="density")
+
+```
+    
+    
+    + Using the same manufacturers as above, provide a graphical representation to display the arrival delays broken down by manufacturer (hint:  this probably isn't a line or point geom).  [note:  it probably isn't the manufacturer causing arrival delays...]
+    
+    ```{r}
+flightsman <- inner_join(flights, planes2, by="tailnum")
+# log scale isn't the worst idea, but unfortunately, 
+# there are a lot of negative values (hard to log)
+
+ggplot(flightsman, aes(x=manufacturer, y=arr_delay)) + geom_boxplot() 
+
+```
+    
+
+- Use the *nycflights13* package and the *weather* table to answer the following questions:
+    + What is the distribution of temperature in July, 2013? [Provide a plot.]
+    
+```{r}
+data(weather)
+weather2 <- weather %>% filter(month==7)
+ggplot(weather2, aes(x=day, y=temp)) + 
+  geom_smooth()
+ggplot(weather2, aes(x=temp)) + 
+  geom_density()
+```
+
+    + Identify any important outliers in terms of the wind speed variable. 
+```{r}
+favstats(wind_speed, data=weather)
+ggplot(weather, aes(x=wind_speed)) + 
+  geom_dotplot(dotsize=.1)
+ggplot(weather, aes(x=wind_speed)) + 
+  geom_dotplot(dotsize=.1) +
+                 scale_x_log10()
+sum(weather$wind_speed > 500, na.rm=TRUE)
+```
+    
+    + What is the relationship between *dewp* and *humid*? [Provide a plot and comment.]
+    
+```{r}
+ggplot(weather, aes(x=dewp, y=humid, color=temp)) + 
+  geom_point()
+```
+    + What is the relationship between *precip* and *visib*? [Provide a plot and comment.]
+```{r}
+ggplot(weather, aes(x=precip, y=visib)) + 
+  geom_point()
+```
+
+
+- Use the *nycflights13* package and the weather table to answer the following questions:
+    + On how many days was there precipitation in the New York area in 2013? 
+```{r}
+weather %>% 
+  group_by(month,day) %>% 
+  filter(precip > 0) %>% 
+  summarise(n()) %>% 
+  nrow()
+```
+
+    + Give a graphical representation of the relationships between precipitation and arrival delay.  Comment (be careful about causation!)
+```{r}
+flightsweath <- inner_join(flights, weather, by=c("month", "day", "hour"))
+```
+
+    + Were there differences in the mean visibility (*visib*) based on the day of the week and/or month of the year? [Perform at least one test of significance addressing the question and provide a figure.]
+```{r}
+ggplot(flightsweath, aes(x=precip, y=arr_delay, color=month)) +
+  geom_point()
+```
+
+
