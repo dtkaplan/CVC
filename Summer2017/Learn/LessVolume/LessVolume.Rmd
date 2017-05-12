@@ -1,7 +1,7 @@
 ---
 title: Less Volume, More Creativity
 author: R Pruim
-date: "CVC 2016"
+date: "CVC 2017"
 output: 
   ioslides_presentation:
     highlight: espresso
@@ -152,27 +152,26 @@ RStudio provides several ways to get help
 
 ## Less Volume, More Creativity
 
-```{r packages,  echo = FALSE, warning = FALSE, message = FALSE}
+```{r setup,  echo = FALSE, warning = FALSE, message = FALSE}
 require(magrittr)
 require(lubridate)
 require(dplyr)
 require(mosaic)
+require(ggformula)
 trellis.par.set(theme = col.mosaic())
+theme_set(theme_bw())
 require(knitr)
-opts_chunk$set(size = 'small', tidy = FALSE)
-options(width = 90)
-```
-
-
-```{r setup, echo = FALSE}
-require(knitr)
-options(digits = 3)
-opts_chunk$set( 
+opts_chunk$set(
+  cache = TRUE,
+  size = 'small', 
   fig.width = 8, 
   fig.height = 3,
   out.width = 800,
-  out.height = 300
-  )
+  out.height = 300,
+  tidy = FALSE)
+
+options(width = 90)
+options(digits = 3)
 ```
 
 
@@ -389,13 +388,13 @@ goal( formula , data = mydata )
 ## How do we make this plot?
 
 ```{r fig.width = 8, fig.height = 3, out.height = 400, fig.align = "center", echo = FALSE}
-xyplot(births ~ dayofyear, data = Births78) 
+gf_point(births ~ dayofyear, data = Births78) 
 ```
 
 ## How do we make this plot?
 
 ```{r fig.width = 8, fig.height = 3.0, out.height = 400, fig.align = "center", echo = FALSE, out.width = "60%", out.height = "35%"}
-xyplot( births ~ dayofyear, data = Births78) 
+gf_point( births ~ dayofyear, data = Births78) 
 ```
 
 ### What is the Goal?
@@ -410,12 +409,12 @@ xyplot( births ~ dayofyear, data = Births78)
 ## How do we make this plot?
 
 ```{r fig.width = 8, fig.height = 3.0, out.height = 400, fig.align = "center", echo = FALSE, out.width = "60%", out.height = "35%"}
-xyplot( births ~ dayofyear, data = Births78) 
+gf_point( births ~ dayofyear, data = Births78) 
 ```
 
 ### What is the Goal?
 
-* a scatter plot 
+* a plot with points
 
 ### What does R need to know?
 
@@ -425,12 +424,12 @@ xyplot( births ~ dayofyear, data = Births78)
 ## How do we tell R to make this plot?
 
 ```{r fig.width = 8, fig.height = 3.0, out.height = 400, fig.align = "center", echo = FALSE, out.width = "60%", out.height = "35%"}
-xyplot( births ~ dayofyear, data = Births78) 
+gf_point( births ~ dayofyear, data = Births78) 
 ```
 
 ### What is the Goal?
 
-* a scatter plot (`xyplot()`)
+* a plot with points (`gf_point()`)
 
 ### What does R need to know?
 
@@ -449,14 +448,14 @@ xyplot( births ~ dayofyear, data = Births78)
 &nbsp;
 
 ```{r fig.width = 8, fig.height = 2.5, fig.align = "center", echo = TRUE}
-xyplot( births ~ dayofyear, data = Births78) 
+gf_point( births ~ dayofyear, data = Births78) 
 ```
 
 ## Your turn: How do you make this plot?
 
 
 ```{r echo = FALSE, fig.height = 2.5}
-bwplot( age ~ substance, data = HELPrct, xlab = "substance")
+gf_boxplot( age ~ substance, data = HELPrct)
 ```
 
 ### Two Questions?
@@ -465,49 +464,34 @@ bwplot( age ~ substance, data = HELPrct, xlab = "substance")
 
 
 ```{r echo = FALSE, fig.height = 2.5}
-bwplot( age ~ substance, data = HELPrct, xlab = "substance" )
+gf_boxplot(age ~ substance, data = HELPrct) 
 ```
 
-1. Command: <code>bwplot()</code>
+1. Command: <code>gf_boxplot()</code>
 
 2. The data: <code>HELPrct</code>
  * Variables: <code>age</code>, <code>substance</code>
  * use `?HELPrct` for info about data
-
-
 
 ## Your turn: How do you make this plot?
 
-
 ```{r echo = TRUE, fig.height = 2.5}
-bwplot( age ~ substance, data = HELPrct)
+gf_boxplot(age ~ substance, data = HELPrct)
 ```
-
-## Your turn: How about this one?
-
-
-```{r echo = FALSE, fig.height = 2.5}
-bwplot( substance ~ age, data = HELPrct)
-```
-
-1. Command: <code>bwplot()</code>
-
-2. The data: <code>HELPrct</code>
- * Variables: <code>age</code>, <code>substance</code>
- * use `?HELPrct` for info about data
-
-## Your turn: How about this one?
-
-
-```{r echo = TRUE, fig.height = 2.5}
-bwplot( substance ~ age, data = HELPrct )
-```
-
 
 ## Graphical Summaries: One Variable
 
 ```{r fig.width = 8, fig.height = 3, out.height = 400, fig.align = "center"}
-histogram( ~ age, data = HELPrct) 
+gf_histogram( ~ age, data = HELPrct) 
+```
+
+Note: When there is **one variable** it is on 
+the **right side** of the formula.
+
+## Graphical Summaries: One Variable
+
+```{r fig.width = 8, fig.height = 3, out.height = 400, fig.align = "center"}
+gf_histogram( ~ age, data = HELPrct, binwidth = 5) 
 ```
 
 Note: When there is **one variable** it is on 
@@ -518,21 +502,20 @@ the **right side** of the formula.
 
 ### One Variable
 ```{r eval = FALSE, tidy = FALSE}
-  histogram( ~ age, data = HELPrct ) 
-densityplot( ~ age, data = HELPrct ) 
-freqpolygon( ~ age, data = HELPrct ) 
-    ashplot( ~ age, data = HELPrct ) 
-     qqmath( ~ age, data = HELPrct ) 
-     bwplot( ~ age, data = HELPrct ) 
-   bargraph( ~ sex, data = HELPrct )
+gf_histogram( ~ age, data = HELPrct ) 
+  gf_density( ~ age, data = HELPrct ) 
+     gf_dens( ~ age, data = HELPrct ) 
+ gf_freqpoly( ~ age, data = HELPrct ) 
+       gf_qq( ~ age, data = HELPrct ) 
+  gf_boxplot( ~ age, data = HELPrct ) 
+      gf_bar( ~ sex, data = HELPrct )
 ```
 
 ### Two Variables
 
 ```{r eval = FALSE, tidy = FALSE}
-xyplot(  i1 ~ age,       data = HELPrct ) 
-bwplot( age ~ substance, data = HELPrct ) 
-bwplot( substance ~ age, data = HELPrct ) 
+  gf_point(  i1 ~ age,       data = HELPrct ) 
+gf_boxplot( age ~ substance, data = HELPrct ) 
 ```
 
  *  **i1** average number of drinks (standard units) consumed per day in the past 30 days (measured at baseline)
@@ -546,7 +529,7 @@ bwplot( substance ~ age, data = HELPrct )
 <h3><strong><span class="boxed">plotname</span> ( ~ <span class="boxed">&nbsp;x&nbsp;</span> , data = <span class="boxed">mydata</span> , ...)</strong> 
 </h3></center>
 
- * `histogram()`,  `qqmath()`,  `densityplot()`, `freqpolygon()`, `bargraph()` 
+ * `gf_histogram()`,  `gf_qq()`,  `gf_dens()`, `gf_freqpoly()`, `gf_bar()` 
 
 &nbsp;
 
@@ -557,8 +540,7 @@ bwplot( substance ~ age, data = HELPrct )
 </h3></center>
 
 
- * `xyplot()`, `bwplot()`
-
+ * `gf_point()`, `gf_line()`, `gf_boxplot()` 
 
 
 ## Your turn
@@ -580,31 +562,66 @@ names(Births)      # like Births78, but more years
 ```
 
 ```{r eval = FALSE}
+require(NHANES)
 names(NHANES)      # body shape, etc.
 ?NHANES
 ```
 
 
-## groups and panels
+## Facets
 
 
- * Add `groups = `<span class="invboxed">group</span> to overlay.
  * Use `y ~ x | z` to create multipanel plots.
 
-```{r fig.width = 8, fig.height = 3, out.height = 400, fig.align = "center", tidy = FALSE}
-ashplot( ~ age | sex, groups = substance,
-         data = HELPrct, width = 5, auto.key = TRUE)   
+```{r fig.width = 8, fig.height = 2.2, out.height = 300, fig.align = "center", tidy = FALSE}
+gf_freqpoly( ~ age | sex, data = HELPrct, binwidth = 5)
+```
+
+## Facets
+
+ * Use `y ~ x | z` to create multipanel plots.
+
+```{r fig.width = 8, fig.height = 2.2, out.height = 300, fig.align = "center", tidy = FALSE}
+gf_line( births ~ date | wday, data = Births78)
+```
+
+## Facets in 2d
+
+ * Use `y ~ x | z1 ~ z2` to create a grid of multipanel plots.
+
+```{r fig.width = 8, fig.height = 2.2, out.height = 300, fig.align = "center", tidy = FALSE}
+gf_freqpoly( ~ age | sex ~ substance, data = HELPrct, binwidth = 5)
+```
+
+## Other attributes
+
+So far we have focused on position, but we can also change things like
+color, size, and shape by augmenting our formula.
+
+ * Use terms of the form `attribute:variable` to determine an attribute
+ based on values in a variable
+
+```{r fig.width = 8, fig.height = 3, fig.align = "center", tidy = FALSE}
+gf_line( births ~ date + color:wday, data = Births78)  
+```
+
+
+
+## Mix and Match
+
+We can combine attributes and facets.
+
+```{r fig.width = 8, fig.height = 1.8, out.height = 300, fig.align = "center", tidy = FALSE}
+gf_freqpoly( ~ age + color:substance | sex, data = HELPrct, binwidth = 5)
 ```
 
 
 ## Bells & Whistles
 
-
  * titles
  * axis labels
- * colors
- * sizes
- * transparency
+ * fonts and colors for labels
+ * custom scales (user chosen colors, sizes, etc.)
  * etc, etc.
  
 My approach: 
@@ -612,53 +629,30 @@ My approach:
  * Let the students ask or 
  * Let the data analysis drive 
 
-## Bells and Whistles
+## Bells & Whistles
 
+This is ugly, but hints at some of the things that can be modified
+with bells and whistles.
 
-```{r fig.width = 8, fig.height = 3, out.height = 400, fig.align = "center", tidy = FALSE}
-xyplot( births ~ date, data = Births78,  
-  groups = wday, type = 'l',
-  auto.key = list(columns = 4, lines = T, points = F),
-  par.settings = list(
-    superpose.line = list( lty = 1 ) ))
-```
-```{r eval = FALSE, include = FALSE}
-xyplot( births ~ date, data = Births78,  
-        groups = wday, 
-        auto.key = list(columns = 4),
-        superpose.symbol = list(
-            pch = 16, cex = 1.2, alpha = .8)))
-```
+```{r, echo = FALSE}
+gf_line(births ~ date + color:wday, data = Births78, size = 1.2) %>%
+  gf_point(births ~ date + color:wday, data = Births78, size = 2) %>%
+  gf_refine(
+    scale_color_manual(
+      values = c("orange", "pink", "brown", "navy", "green", "red", "gray50")),
+    guides(color = guide_legend("day of week")),
+    theme(text = element_text(color = "green", size = 15, face = "italic"))
+    ) %>%
+  gf_labs(title = "Births in the US (1978)", 
+          x = "date in 1978", 
+          y = "Numbr of live births")
+```  
 
-
-## Bells and Whistles
-
-
-```{r fig.width = 8, fig.height = 3, out.height = 400, fig.align = "center", tidy = FALSE}
-xyplot( births ~ date, data = Births,  
-  groups = wday, type = 'spline', npoints = 1001,
-  auto.key = list(columns = 4, lines = T, points = F),
-  par.settings = list(
-    superpose.line = list( lty = 1 ) ))
-```
-```{r eval = FALSE, include = FALSE}
-xyplot( births ~ date, data = Births,  
-  groups = wday, type = 'spline', npoints = 1001,
-  auto.key = list(columns = 4, lines = T, points = F),
-  par.settings = list(
-    superpose.line = list( lty = 1 ) ))
-```
-
-## In case you need a reminder
-
-The `mplot()` function will help you create plots interactively and then
-show you the code used to make them when you hit "Show Expression".
-
-```{r eval = FALSE}
-mplot(HELPrct)
-```
-
-<img src = "images/mplot-screenshot.png" width = 70% align = "center">
+**Note:**
+The `ggplot2` system, on which `gformula` is built, is based on a 
+notation of layers.  It is easy to add multiple layers onto a single plot.
+In this example, we have layered points and lines (using both `gf_point()`
+and `gf_line()`).  More on this later...
 
 ## Numerical Summaries: One Variable
 
@@ -667,9 +661,9 @@ Big idea: Replace plot name with summary name
 
  * Nothing else changes
  
-```{r fig.show = 'hold', fig.width = 16}
-histogram( ~ age, data = HELPrct )
-     mean( ~ age, data = HELPrct )
+```{r fig.show = 'hold', out.height = 200}
+gf_histogram( ~ age, data = HELPrct, binwidth = 5 )
+        mean( ~ age, data = HELPrct )
 ```
 
 ## Other Summaries
@@ -718,8 +712,8 @@ tally( ~ sex + substance, data = HELPrct )
 ## Numerical Summaries
 
 ```{r echo = FALSE}
-HELPrct <- transform(HELPrct, sex = factor(sex, labels = c('F','M')),
-                     substance = factor(substance, labels = c('A', 'C', 'H')))
+HELPrct <- mutate(HELPrct, sex = factor(sex, labels = c('F','M')),
+                  substance = factor(substance, labels = c('A', 'C', 'H')))
 ```
 ```{r size = 'small'}
 mean( age ~ substance | sex, data = HELPrct )
@@ -739,8 +733,8 @@ data(HELPrct)
  * single and multiple variable numerical summaries
  * linear models
 ```{r eval = FALSE}
-  mean( age ~ sex, data = HELPrct )
-bwplot( age ~ sex, data = HELPrct ) 
+      mean( age ~ sex, data = HELPrct )
+gf_boxplot( age ~ sex, data = HELPrct ) 
     lm( age ~ sex, data = HELPrct )
 ```
 
@@ -802,7 +796,8 @@ Modeling is really the starting point for the `mosaic`
 design.
 
  * linear models (`lm()` and `glm()`) defined the template
- * lattice graphics use the template (so we chose lattice)
+ * `lattice` and `ggformula` graphics use the template (so we chose one of these
+ for plotting)
  * we added functionality so numerical summaries 
  can be done with the same template
  * additional things added to make modeling easier for beginners.
@@ -827,12 +822,12 @@ trellis.par.set(
 ```
                                                        
 ```{r, fig.keep = 'last', message = FALSE}
-xyplot( width ~ length, data = KidsFeet, 
-        groups = sex, auto.key = TRUE )
-plotFun( Width(length, sex = "B") ~ length, 
-         col = 1, add = TRUE)
-plotFun( Width(length, sex = "G") ~ length, 
-         col = 2, add = TRUE)
+gf_point( width ~ length + color::sex, data = KidsFeet) 
+
+# plotFun( Width(length, sex = "B") ~ length, 
+#          col = 1, add = TRUE)
+# plotFun( Width(length, sex = "G") ~ length, 
+#          col = 2, add = TRUE)
 ```
 
 ```{r, include = FALSE}
@@ -907,7 +902,7 @@ do(2) * rflip(10)
 ```{r fig.width = 8, fig.height = 3, out.width = 800, out.height = 300}
 Ladies <- do(5000) * rflip(10)
 head(Ladies, 1)
-histogram( ~ heads, data = Ladies, width = 1 )
+gf_histogram( ~ heads, data = Ladies, binwidth = 1 )
 ```
 
 ## How often does guessing score 9 or 10?
@@ -957,7 +952,8 @@ Null <- do(5000) *
 
 ```{r fig.width = 8, fig.height = 3, out.width = 800, out.height = 300}
 prop( ~ (abs(diffmean) > 0.7841), data = Null )
-histogram( ~ diffmean, data = Null, v = -.7841) 
+gf_histogram( ~ diffmean, data = Null, bins = 50) %>%
+  gf_vline(xintercept = -.7841) 
 ```
 
 ## Example:  Bootstrap for difference in means
@@ -967,8 +963,8 @@ histogram( ~ diffmean, data = Null, v = -.7841)
 Bootstrap <- do(5000) * 
   diffmean(age ~ sex, data= resample(HELPrct))
 
-histogram( ~ diffmean, data = Bootstrap, 
-                      v = -.7841, glwd = 4 )
+gf_histogram( ~ diffmean, data = Bootstrap, bins = 50) %>%
+  gf_vline(xintercept = -.7841, color = "red")
 ```
 
 ## Example:  CI for difference in mean ages
@@ -1008,14 +1004,15 @@ do(3) *
 ```{r fig.width = 8, fig.height = 3, out.width = 800, out.height = 300}
 Null <- do(5000) * 
   lm( width ~ length + shuffle(sex), data = KidsFeet)
-histogram( ~ sexG, data = Null, 
-           v = -0.2325, glwd = 4)
+gf_histogram( ~ sexG, data = Null) %>%
+  gf_vline(xintercept = -0.2325, color = "red")
 ```
 
 ## Randomization and linear models {.smaller}
 
 ```{r fig.width = 8, fig.height = 2, out.width = 800, out.height = 300}
-histogram( ~ sexG, data = Null, v = -0.2325, glwd = 4)
+gf_histogram( ~ sexG, data = Null) %>%
+  gf_vline(xintercept = -0.2325, color = "red")
 prop(~ (sexG <= -0.2325), data = Null)
 ```
 
