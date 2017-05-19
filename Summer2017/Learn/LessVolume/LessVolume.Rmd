@@ -595,14 +595,14 @@ gf_freqpoly( ~ age | sex ~ substance, data = HELPrct, binwidth = 5)
 
 ## Other attributes
 
-So far we have focused on position, but we can also change things like
-color, size, and shape by augmenting our formula.
+So far we have focused on position, but we can also change attributes like
+color, size, and shape.
 
- * Use terms of the form `attribute:variable` to determine an attribute
- based on values in a variable
+ * Use arguments of the form `attribute = ~ variable` or terms of the form `attribute:variable` to determine an attribute based on values in a variable
 
-```{r fig.width = 8, fig.height = 3, fig.align = "center", tidy = FALSE}
-gf_line( births ~ date + color:wday, data = Births78)  
+```{r fig.width = 8, fig.height = 3, fig.align = "center", tidy = FALSE, fig.keep = "last"}
+gf_line( births ~ date + color:wday,     data = Births78)  
+gf_line( births ~ date,  color = ~ wday, data = Births78)  
 ```
 
 
@@ -612,7 +612,7 @@ gf_line( births ~ date + color:wday, data = Births78)
 We can combine attributes and facets.
 
 ```{r fig.width = 8, fig.height = 1.8, out.height = 300, fig.align = "center", tidy = FALSE}
-gf_freqpoly( ~ age + color:substance | sex, data = HELPrct, binwidth = 5)
+gf_freqpoly( ~ age | sex, data = HELPrct, color = ~ substance, binwidth = 5)
 ```
 
 
@@ -635,8 +635,8 @@ This is ugly, but hints at some of the things that can be modified
 with bells and whistles.
 
 ```{r, echo = FALSE}
-gf_line(births ~ date + color:wday, data = Births78, size = 1.2) %>%
-  gf_point(births ~ date + color:wday, data = Births78, size = 2) %>%
+gf_line(births ~ date,  color = ~ wday, data = Births78, size = 1.2) %>%
+  gf_point(births ~ date,  color = ~ wday, data = Births78, size = 2) %>%
   gf_refine(
     scale_color_manual(
       values = c("orange", "pink", "brown", "navy", "green", "red", "gray50")),
@@ -805,8 +805,7 @@ design.
 ## Models as Functions
 
 ```{r}
-model <- lm(width ~ length * sex, 
-            data = KidsFeet)
+model <- lm(width ~ length * sex, data = KidsFeet)
 Width <- makeFun(model)
 Width( length = 25, sex = "B")
 Width( length = 25, sex = "G")
@@ -822,12 +821,9 @@ trellis.par.set(
 ```
                                                        
 ```{r, fig.keep = 'last', message = FALSE}
-gf_point( width ~ length + color::sex, data = KidsFeet) 
-
-# plotFun( Width(length, sex = "B") ~ length, 
-#          col = 1, add = TRUE)
-# plotFun( Width(length, sex = "G") ~ length, 
-#          col = 2, add = TRUE)
+gf_point( width ~ length + color::sex, data = KidsFeet) %>%
+  gf_fun(Width(length, sex = "B") ~ length, color = "navy") %>%
+  gf_fun(Width(length, sex = "G") ~ length, color = "red") 
 ```
 
 ```{r, include = FALSE}
