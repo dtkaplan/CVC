@@ -596,13 +596,15 @@ gf_freqpoly( ~ age | sex ~ substance, data = HELPrct, binwidth = 5)
 ## Other attributes
 
 So far we have focused on position, but we can also change attributes like
-color, size, and shape.
+color, size, and shape. Two ways to **map** attributes to variables/exressions:
 
- * Use arguments of the form `attribute = ~ variable` or terms of the form `attribute:variable` to determine an attribute based on values in a variable
+ * `, attribute = ~ expr` 
+ 
+ * `+ attribute:variable` (or `attribute::(expression)`) as part of formula
 
-```{r fig.width = 8, fig.height = 3, fig.align = "center", tidy = FALSE, fig.keep = "last"}
-gf_line( births ~ date + color:wday,     data = Births78)  
+```{r fig.width = 8, fig.height = 2.2, fig.align = "center", tidy = FALSE, fig.keep = "last"}
 gf_line( births ~ date,  color = ~ wday, data = Births78)  
+gf_line( births ~ date + color:wday,     data = Births78)  
 ```
 
 
@@ -661,9 +663,13 @@ Big idea: Replace plot name with summary name
 
  * Nothing else changes
  
-```{r fig.show = 'hold', out.height = 200}
-gf_histogram( ~ age, data = HELPrct, binwidth = 5 )
+```{r fig.keep = 'none', fig.show = 'hold', out.height = 200, message = FALSE, warning = FALSE}
+gf_histogram( ~ age, data = HELPrct)
         mean( ~ age, data = HELPrct )
+```
+
+```{r echo = FALSE, fig.show = 'hold', out.height = 200, message = FALSE, warning = FALSE}
+gf_histogram( ~ age, data = HELPrct, binwidth = 5)
 ```
 
 ## Other Summaries
@@ -735,7 +741,7 @@ data(HELPrct)
 ```{r eval = FALSE}
       mean( age ~ sex, data = HELPrct )
 gf_boxplot( age ~ sex, data = HELPrct ) 
-    lm( age ~ sex, data = HELPrct )
+        lm( age ~ sex, data = HELPrct )
 ```
 
 ```{r echo = FALSE}
@@ -823,7 +829,8 @@ trellis.par.set(
 ```{r, fig.keep = 'last', message = FALSE}
 gf_point( width ~ length + color::sex, data = KidsFeet) %>%
   gf_fun(Width(length, sex = "B") ~ length, color = "navy") %>%
-  gf_fun(Width(length, sex = "G") ~ length, color = "red") 
+  gf_fun(Width(length, sex = "G") ~ length, color = "red") %>%
+  gf_refine(scale_color_manual(values = c("navy", "red")))
 ```
 
 ```{r, include = FALSE}
