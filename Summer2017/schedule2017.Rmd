@@ -62,7 +62,7 @@ Arrival day for many coming from out of town.
 ### Monday
 
  1. Welcome (9am)
-    a. Welcome to CVC/Macalester [Kelly]
+    a. Welcome to CVC/Macalester [Danny]
     b. [Goals and outline for the week](Intro/IntroOverview.html) [Randy]
     c. [Thinking with data](http://amstat.tandfonline.com/doi/full/10.1080/00031305.2015.1094283)
 
@@ -86,7 +86,7 @@ Arrival day for many coming from out of town.
     
     * **Activity**: Create a plot using data that you have imported into R.
 
- 7. Project Example 
+ <!-- 7. Project Example  -->
  
     <!-- * This was a demo by Jo in 2016 -->
 
@@ -120,9 +120,10 @@ Arrival day for many coming from out of town.
 
 ### Tuesday
  
- 1. Project check-in: sharing ideas and one-on-ones
+ 1. Project check-in: sharing ideas and one-on-ones [Nick] 
+    a. update the Google Doc
  
- 2. More graphics in R with `ggformula` and `ggplot2`
+ 2. More graphics in R with `ggformula` and `ggplot2` [Randy and Danny]
  
     a. The graphics-data interface 
         * graphing concepts: [slides](Learn/VizConcepts/VizConcepts.html) [Danny]
@@ -138,7 +139,7 @@ Arrival day for many coming from out of town.
 
  4. R parts of speech and "Chainging Syntax" [Danny].   [slides](Learn/Parts_of_speech/R-command-structure.html)
  
- 5. Working with data -- 5 verbs of `dplyr` []    
+ 5. Working with data -- 5 verbs of `dplyr` [Miles]    
     Getting your data into the right shape for graphing or analysis
  
      a. [slides](Learn/Wrangling/dplyrCVC.html) for presentation; 
@@ -171,9 +172,11 @@ Arrival day for many coming from out of town.
     a. Shiny [Example 1 ](https://r.amherst.edu/apps/nhorton/sat);
 [Shiny resources](http://shiny.rstudio.com) [Nick]
  
-    b. GitHub
+    b. GitHub [Randy]
     
-    c. ??
+    c. learnr [Danny]
+    
+    d. Leaflets [Nick]
  
  4. Welcome to 2nd-half participants
  
@@ -193,6 +196,7 @@ Arrival day for many coming from out of town.
       [Rmd](Learn/WritingFunctions/TomDickAndHarry.Rmd)]
       * How to Write Functions [[html](Learn/WritingFunctions/HowToWriteFunctions.html),
       [Rmd](Learn/WritingFunctions/HowToWriteFunctions.Rmd)]
+    e. Googlesheets [Randy or Danny]
 
  2. Working on projects
  
@@ -222,24 +226,24 @@ don't be afraid to suggest others. If there is a name listed by a topic, talk to
 that person to find out more.
 
 1. Github [Randy]
-2. learnr []
-3. Shiny [] --- [Notes](Learn/Shiny-breakout/readme.html)
-4. Leaflets, etc. [Danny]
-5. Maps [Danny]
+2. learnr [Danny]
+3. Shiny [Miles] --- [Notes](Learn/Shiny-breakout/readme.html)
+4. Leaflets, Maps [Leaflets]
 5. Machine learning [Danny]
 6. Text mining [Nick]
 7. Modeling in R [Nick]
 8. Writing Functions [Randy]
 9. More `ggplot2` [Randy]
-10. `ggvis` [Nick or Randy]
-11. Data Scraping from the Web
-1. Getting data from a database
-12. Image Analysis
-13. Resampling [Nick]
-10. Basic Statistical Methods
-15. Linear models with "Less Volume, More Creativity" [Nick]
-16. Creating R packages
-16. Other topics as the arise 
+10. `ggvis` [Nick]
+11. ggplotly [Randy or Danny]
+12. Animated GIFs [Miles]
+13. Data Scraping from the Web [Miles or Danny]
+14. Getting data from a database [Nick]
+16. Resampling [Nick]
+17. Basic Statistical Methods
+18. Linear models with "Less Volume, More Creativity" [Nick]
+19. Creating R packages [Randy]
+20. Other topics as the arise 
  
 ### Thanks
 
