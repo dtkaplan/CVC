@@ -86,17 +86,17 @@ Arrival day for many coming from out of town.
     
     * **Activity**: Create a plot using data that you have imported into R.
 
- <!-- 7. Project Example  -->
+<!-- 7. Project Example  -->
  
-    <!-- * This was a demo by Jo in 2016 -->
+<!-- * This was a demo by Jo in 2016 -->
 
  5. [RMarkdown](http://prezi.com/vq6l5yqpnqma/) [Nick]
  
-    * Creating PDF/HTML/Word documents in RStudio
-    * [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
-    * Example: [R Markdown example](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/RMarkdown/student-evals.Rmd); [R Markdown formatted](Learn/RMarkdown/student-evals.pdf) (Student evaluations example from Open Intro)
+    a. Creating PDF/HTML/Word documents in RStudio
+    b. [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
+    c. Example: [R Markdown example](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/RMarkdown/student-evals.Rmd); [R Markdown formatted](Learn/RMarkdown/student-evals.pdf) (Student evaluations example from Open Intro)
 
-    * **Activity**: Write and publish a description of some 
+    d. **Activity**: Write and publish a description of some 
     straightforward, data-oriented topic you'd like to present in class. 
         * Include at least 1 plot (even if unrelated) to make sure 
         you know how to do that.  
@@ -104,11 +104,11 @@ Arrival day for many coming from out of town.
         
  6. How to organize your data [Danny]
     
-    a. [Introduction slides](Learn/TidyData/tidy_data.html), but the basics are
+    a. [**Introduction slides**](Learn/TidyData/tidy_data.html), but the basics are
     
-    * Rectangular format: cases (rows) and variables (columns)
-    * Separate your analysis from data storage.
-    * Use a codebook to describe your cases and variables in detail.
+      * Rectangular format: cases (rows) and variables (columns)
+      * Separate your analysis from data storage.
+      * Use a codebook to describe your cases and variables in detail.
        
     b. **Activity**: The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct.  Identify the elements of this spreadsheet that are not in standard rectangular data format.
    
@@ -117,38 +117,50 @@ Arrival day for many coming from out of town.
     indicating types of data you are interested in.
 -->
 
+ 7. Homework: Think about your project [Nick]
 
 ### Tuesday
  
- 1. Project check-in: sharing ideas and one-on-ones [Nick] 
+1. Project check-in
+    b. sharing ideas and one-on-ones [Nick] 
     a. update the Google Doc
  
- 2. More graphics in R with `ggformula` and `ggplot2` [Randy and Danny]
+2. More graphics in R with `ggformula` [Randy and Danny]
  
     a. The graphics-data interface 
         * graphing concepts: [slides](Learn/VizConcepts/VizConcepts.html) [Danny]
         * **Activity:** data <-> graphs [Danny]
-        * PDF with [the graphs](Learn/VizConcepts/eye-training.pdf)
-    
+        * Eye Training: 
+        [[web]](https://dtkaplan.github.io/comp110/Presentations/333-eye-training-for-graphics.html)
+        [[pdf]](Learn/VizConcepts/eye-training.pdf)
+      
     b. Expanding the `ggformula` toolkit [Randy]
+    
+        * more types of marks
+        * multiple layers
+        * scales and guides
+        * labeling, themes, etc.
+        * data requirements
     
     c. Brief Intro to `ggplot2` [Randy]
 
-      * [slides](Learn/ggplot2/ggplot2Intro.pdf) 
-      * [Dope Sheets](Learn/ggplot2/ggplot2DopeSheets.pdf) 
+        * [slides](Learn/ggplot2/ggplot2Intro.pdf) 
+        * [Dope Sheets](Learn/ggplot2/ggplot2DopeSheets.pdf) 
 
- 4. R parts of speech and "Chainging Syntax" [Danny].   [slides](Learn/Parts_of_speech/R-command-structure.html)
+ 4. R parts of speech and "Chaining Syntax" [Danny]
+    a. [slides](Learn/Parts_of_speech/R-command-structure.html)
+    b. [exercise](https://dtkaplan.shinyapps.io/part-of-speech-quiz/)
  
  5. Working with data -- 5 verbs of `dplyr` [Miles]    
-    Getting your data into the right shape for graphing or analysis
+    a. Goal: Get your data into the right shape for graphing or analysis
  
-     a. [slides](Learn/Wrangling/dplyrCVC.html) for presentation; 
+    b. [slides](Learn/Wrangling/dplyrCVC.html) for presentation; 
         <!-- [markdown file](Learn/Wrangling/dplyrCVC.Rmd) also available -->
  
-     b. [Worksheet](Learn/Wrangling/dplyrwrkshtCVC.html) for presentation; 
+    c. [Worksheet](Learn/Wrangling/dplyrwrkshtCVC.html) for presentation; 
        [markdown file](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyrwrkshtCVC.Rmd) also available (and on the Calvin server)
 
-     c. [Sample solution Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyrwrkshtCVCsol.Rmd) and [Sample solution html](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyrwrkshtCVCsol.html)
+    d. [Sample solution Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyrwrkshtCVCsol.Rmd) and [Sample solution html](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyrwrkshtCVCsol.html)
   
  
 ### Wednesday
