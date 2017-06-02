@@ -44,14 +44,17 @@ Referring to the sample, you can see that in year 2000 there were 24,118 males w
     ```
 
 * Is `MigrationFlows` in "long" or "narrow" format with respect to the years?
+* Is `MigrationFlows` in "long" or "narrow" format with respect to the destination countries?
 * How many cases are there?
    ```{r include=ShowAnswers}
    nrow(MigrationFlows)
    ```
 
+
+
 * How many countries are there?
    ```{r include=ShowAnswers}
-   summarize(MigrationFlows,ncountries=length(origincode))
+   summarize(MigrationFlows,ncountries=length(unique(origincode)))
    ```
 
 * Construct a table that combines the females and males for each country pair for year 2000?

@@ -70,8 +70,8 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <pre class="r"><code>require(DCFdevel)
 require(mosaic)
 data(WorldCities) # Creates WorldCities
-pop &lt;- CIAdata(2119) # population data
-codes &lt;- fetchData(&quot;countrycodes.csv&quot;)</code></pre>
+TotalPop &lt;- CIAdata(2119) # population data
+CountryCodes &lt;- fetchData(&quot;countrycodes.csv&quot;)</code></pre>
 <pre><code>## Retrieving from http://www.mosaic-web.org/go/datasets/countrycodes.csv</code></pre>
 <p>Each of these frames has information about the identity of a country, but perhaps in different forms. By grouping, summarizing, joining, and arithmetic, you should be able to construct the answer to the problem.</p>
 <p>ISO2 and ISO3 are different, but related, official standards for identifying countries.</p>
@@ -90,6 +90,59 @@ codes &lt;- fetchData(&quot;countrycodes.csv&quot;)</code></pre>
 <li>Look at the names and contents of the variables in the different data frames.</li>
 <li>Draw a flow diagram of what processes will be required.<br /> Only then, translate your process into computer instructions.</li>
 </ul>
+</div>
+<div id="a-solution" class="section level2">
+<h2>A Solution</h2>
+<p>Here are the input files (with just the relevant variables):</p>
+<div id="totalpop" class="section level4">
+<h4>TotalPop</h4>
+<p>Each case is a country</p>
+<pre><code>##     country      pop
+##      Rwanda 12337138
+##  Kazakhstan 17948816
+##     Moldova  3583288</code></pre>
+</div>
+<div id="worldcities" class="section level4">
+<h4>WorldCities</h4>
+<p>Each case is a city:</p>
+<pre><code>##  Country Population
+##       BR      38569
+##       IN      18739
+##       IQ     434450</code></pre>
+<p>The country is identified by a 2-letter ISO code, such as #### CountryCodes</p>
+<p>Each case is a country:</p>
+<pre><code>##  iso3 iso2
+##   SVK   SK
+##   GUY   GY
+##   MTQ   MQ</code></pre>
+<p>General plan:</p>
+<ul>
+<li></li>
+<li><p>Create a data table, <code>UrbanPopByCountry</code> which has the urban population for each country</p></li>
+<li><p>Combine <code>UrbanPopByCountry</code> with the <code>TotalPopByCountry</code> country-wide population for each county. This will look like</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Country</th>
+<th align="left">UrbanPop</th>
+<th align="left">Total Pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">BEL</td>
+<td align="left">7221658</td>
+<td align="left">10449361</td>
+</tr>
+<tr class="even">
+<td align="left">…</td>
+<td align="left">…</td>
+<td align="left">….</td>
+</tr>
+</tbody>
+</table></li>
+</ul>
+</div>
 </div>
 
 

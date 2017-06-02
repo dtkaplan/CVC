@@ -35,20 +35,20 @@ In the 1980s, the [National Cancer Institute](http://www.cancer.gov/) developed 
 
 Here you will examine gene expression in these cell lines using data described in [Staunton *et al.*](http://www.pnas.org/content/98/19/10787.full). More than 41,000 probes were used for each of the 60 cell lines.
 
-For convenience, the data are provided by the `DCIdevel` package.
+For convenience, the data are provided by the `DCF` package.
 ```{r}
 # load required packages
-require(DCFdevel)
+require(DCF)
 require(mosaic)
-# this will load two data frames: nci60expression and nci60celline
-data(nci60)       
+# this will load two data frames: NCI60 and NCI60Cells
+data(NCI60)       
 ```
 
-The `nci60` data tables are lightly re-organized from the [form provided by Staunton *et al.*](http://www.broadinstitute.org/mpr/NCI60/NCI60.html).
+The `NCI60` data tables are lightly re-organized from the [form provided by Staunton *et al.*](http://www.broadinstitute.org/mpr/NCI60/NCI60.html).
 
-Two separate data frames are provided: `nci60expression` and `nci60cellLine`.  The expression data is quite big --- 41,078 probes by 60 cell lines --- so there's little point in looking at it directly:
+Two separate data frames are provided: `NCI60` and `NCI60cellLine`.  The expression data is quite big --- 41,078 probes by 60 cell lines --- so there's little point in looking at it directly:
 ```{r}
-dim(nci60expression)
+dim(NCI60)
 ```
 
 Each of the 2,454,680 numbers in the expression data is on a log scale.
@@ -57,8 +57,8 @@ Each of the 2,454,680 numbers in the expression data is on a log scale.
 To help visualize how the process of data processing, here is a small subset of 15 cases and 6 cell lines from the data.  These are presented in the same format as the original.  The name of the cell line starts with two or three letters indicating the tissue type: `BR` is breast, `CNS` is brain (central nervous system), `CO` is colon.
 ```{r include=TRUE}
 set.seed(300)
-row.names(nci60expression) <- make.names(nci60expression$Probe, unique=TRUE)
-Small <- nci60expression %>%
+row.names(NCI60) <- make.names(NCI60$Probe, unique=TRUE)
+Small <- NCI60 %>%
   select(c(1,2,4,7,8,14,15)) %>%       # only these columns
   sample(size=15, orig.ids=FALSE)    # 15 random rows
 ```
@@ -85,7 +85,7 @@ But this method wouldn't scale nicely to all 41,000 probes.  You'll have to do s
 * Create the *narrow* format data, using `Expression` as the name of that variable in the result and `CellLine` as the variable name for that information.
     `melt()` let's you specify the `value.name` and the `variable.name` as character strings.  You'll have to figure out which is which.  
 ```{r}
-Narrow <- melt(Small, value.name='Expression', variable.name='CellLine')
+Narrow <- reshape2::melt(Small, value.name='Expression', variable.name='CellLine')
 ```
 
 * If the expression does not vary much for each cell line across probes, that cell line might be faulty.  One way to measure the variation is with the [standard deviation](http://en.wikipedia.org/wiki/Standard_deviation) (`sd()`) Make a chart to compare the variation in expression across probes in each of the cell lines.
@@ -182,7 +182,32 @@ make dendrograms of
 * the cell lines using probe expression
 * the probes using cell lines
 
-Pick out one of the top varying probes.
 
-* Merge the `tissue` variable based on `cellLine`.  Construct a "dynamite plot" showing how the probe expression varies for the different tissues.
 
+    ```{r}
+    Highest <- 
+      NarrowByProbe %>%
+      filter(rank(desc(spread)) <= 50)
+    Keepers <- Small %>% inner_join(Highest) %>% select(-spread)
+    ```
+
+The dendrogram/heat-map will look like this:
+```{r}
+KeepersTmp <- Keepers %>% select(-Probe) 
+KeepersDend <- KeepersTmp %>% dist() %>% hclust()
+mplot(KeepersDend, data=KeepersTmp, k=3, heatmap=0.5, labels=FALSE)
+```
+
+You might prefer to create a dendrogram of the cell types rather than the probes.  This is a matter of taking the transpose of the data.  Here's how:
+```{r echo=ShowAnswers, include=TRUE}
+KeepersTranspose <- Keepers %>% select(-Probe) %>% t(.)
+colnames(KeepersTranspose) <- Keepers$Probe
+KeepersTransposed <- as.data.frame(KeepersTranspose)
+```
+
+And the corresponding dendrogram:
+
+```{r}
+Dend <- hclust(dist(KeepersTransposed))
+mplot(Dend, data=KeepersTransposed, k=10, heatmap=0.7, enumerate='transparent',labels=TRUE)
+```
