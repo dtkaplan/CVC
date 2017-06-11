@@ -1,7 +1,7 @@
 ---
 title: "Overview & Introductions"
-author: "CVC 2016"
-date: "June 20-24, 2016"
+author: "CVC 2017"
+date: "June 12-16, 2017"
 output: 
   ioslides_presentation:
     widescreen: true
@@ -9,12 +9,12 @@ output:
 
 # Welcome
 
-## Welcome to CVC 2016
+## Welcome to CVC 2017
 
 Two important questions before we begin
 
 
-## Welcome to CVC 2016
+## Welcome to CVC 2017
 
 Two important questions before we begin
 
@@ -43,7 +43,7 @@ frameborder="0" allowfullscreen>
 1. Shop
 2. Work
 
-More details at [http://dtkaplan.github.io/CVC/schedule2016.html](../schedule2016.html)
+More details at [http://dtkaplan.github.io/CVC/schedule2017.html](../schedule2017.html)
 
  * **Please bookmark this page.**  We will post links to materials on this page so you can access them.
 
