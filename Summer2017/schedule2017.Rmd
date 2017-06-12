@@ -257,7 +257,8 @@ that person to find out more.
 17. Basic Statistical Methods
 18. Linear models with "Less Volume, More Creativity" [Nick]
 19. Creating R packages [Randy]
-20. Other topics as the arise 
+20. R with LaTeX (similar to RMarkdown)
+21. Other topics as the arise 
  
 ### Thanks
 
