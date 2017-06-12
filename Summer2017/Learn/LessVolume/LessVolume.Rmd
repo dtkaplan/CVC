@@ -43,110 +43,6 @@ is great.
    
    * You will learn about RMarkdown later today
 
-# Getting Oriented to RStudio
-
-## Access to RStudio Sever
-
-  * [rstudio.calvin.edu](http://rstudio.calvin.edu:8787)
-    * You were sent an email with userid (e.g., rstudio199) and password.
-    * [Change passwords here](https://freeipa1.cs.calvin.edu/)
-
-<center>
-<img src="images/rstudio-calvin.png" width=40%>
-</center>
-
-## Menu
-
-  * Files, Edit, Code, View, etc.
-  * Tools > Options for customization
-
-## Panes and Tabs
-
-  * 4 **panes** (but some may be minimized).
-  * Each pane can have multiple **tabs**.
-  * Options let you decide which tabs go in which panes.
-
-
-<img src="images/RStudio-4panes.png" width=70% align = "center">
- 
-## The Console -- ephemeral, interactive commands 
-
-  
-<!--
-  * **Up/Down** arrows allow access to previous commands
-  * **Tab** completion helps shorten typing an remind you of commands
-    an arguments
-  * **CaPitaLiZatioN** matters
-  * **ESCAPE** key to get out of messes -- returns to empty command prompt
-
-## A few little details
--->
-
-### R is case sensitive
-
- * many students are *not* case sensitive
-
-### Arrows and Tab
-
- * up/down arrows scroll through history
- * TAB completion can simplify typing
-
-### If all else fails, try ESC
-
- * If you see a + prompt, it means R is waiting for more input
- * If this is unintentional, you probably have a typo
- * ESC will get you pack to the command prompt
-
-## Caclulation and Assignment { .smaller }
-
-  * Basic calculation is similar to a calculator
-  * Results can be stored in named variables with `<-` (or `->`)
-  * Good place to get started with R (but we will learn other 
-  options shortly)
-  
-
-```{r}
-product <- 5 * 3 * 27
-product
-```
-```{r}
-sqrt(100)
-log10(product)
-```
-
-## Environment Tab
-
-  * Shows the objects in the working environment
-  * Broom icon clears the working environment
-  
-![RStudio Environment Tab](images/RStudio-environment.png)
-
-## History Tab
-
-  * Searchable list of previous commands
-  * Commands can be copied to console or to files
-
-![RStudio History Tab](images/RStudio-history.png)
-
-## Packages Tab
-
-  * List all installed packages
-  * Install new packages
-  * Load/unload packages by clicking check boxes
-  * Click on name of package to find documentation, vignettes, and other info
-  
-![RStudio Packages Tab](images/RStudio-packages.png)
-
-## Help!
-
-RStudio provides several ways to get help
-
- * Help tab documents functions and data sets in packages
- * `?` followed by name of function or data set
- * Package vignettes
- * TAB completion provides useful hints
- 
-![RStudio History Tab](images/RStudio-help.png)
 
 # Less Volume, More Creativity
 
@@ -311,8 +207,15 @@ Perfection is achieved, not when there is nothing more to add, but when there is
 </tr>
 </table>
 
+## Introductory Tutorial
 
+We're going to see an example of using a Less Volume, More Creativity Approach in a 
+[Tutorial on US Births](http://dtkaplan.shinyapps.io/USBirths)
 
+You can come back later and 
+
+ * look at slides that go through essentially the same information
+ * jump ahead to [what comes after the US Births example](#getting-oriented-to-rstudio)
 
 ## The Most Important Template
 
@@ -756,6 +659,111 @@ Answer each question with both a numerical summary and a graphical summary.
  1. Are boys feet larger than girls feet? (`KidsFeet`)
  
  2. Do boys and girls differently shaped feet? (`KidsFeet`)
+ 
+# Getting Oriented to RStudio {#RStudioIntro}
+
+## Access to RStudio Sever
+
+  * [rstudio.calvin.edu](http://rstudio.calvin.edu:8787)
+    * You were sent an email with userid (e.g., rstudio199) and password.
+    * [Change passwords here](https://freeipa1.cs.calvin.edu/)
+
+<center>
+<img src="images/rstudio-calvin.png" width=40%>
+</center>
+
+## Menu
+
+  * Files, Edit, Code, View, etc.
+  * Tools > Options for customization
+
+## Panes and Tabs
+
+  * 4 **panes** (but some may be minimized).
+  * Each pane can have multiple **tabs**.
+  * Options let you decide which tabs go in which panes.
+
+
+<img src="images/RStudio-4panes.png" width=70% align = "center">
+ 
+## The Console -- ephemeral, interactive commands 
+
+  
+<!--
+  * **Up/Down** arrows allow access to previous commands
+  * **Tab** completion helps shorten typing an remind you of commands
+    an arguments
+  * **CaPitaLiZatioN** matters
+  * **ESCAPE** key to get out of messes -- returns to empty command prompt
+
+## A few little details
+-->
+
+### R is case sensitive
+
+ * many students are *not* case sensitive
+
+### Arrows and Tab
+
+ * up/down arrows scroll through history
+ * TAB completion can simplify typing
+
+### If all else fails, try ESC
+
+ * If you see a + prompt, it means R is waiting for more input
+ * If this is unintentional, you probably have a typo
+ * ESC will get you pack to the command prompt
+
+## Caclulation and Assignment { .smaller }
+
+  * Basic calculation is similar to a calculator
+  * Results can be stored in named variables with `<-` (or `->`)
+  * Good place to get started with R (but we will learn other 
+  options shortly)
+  
+
+```{r}
+product <- 5 * 3 * 27
+product
+```
+```{r}
+sqrt(100)
+log10(product)
+```
+
+## Environment Tab
+
+  * Shows the objects in the working environment
+  * Broom icon clears the working environment
+  
+![RStudio Environment Tab](images/RStudio-environment.png)
+
+## History Tab
+
+  * Searchable list of previous commands
+  * Commands can be copied to console or to files
+
+![RStudio History Tab](images/RStudio-history.png)
+
+## Packages Tab
+
+  * List all installed packages
+  * Install new packages
+  * Load/unload packages by clicking check boxes
+  * Click on name of package to find documentation, vignettes, and other info
+  
+![RStudio Packages Tab](images/RStudio-packages.png)
+
+## Help!
+
+RStudio provides several ways to get help
+
+ * Help tab documents functions and data sets in packages
+ * `?` followed by name of function or data set
+ * Package vignettes
+ * TAB completion provides useful hints
+ 
+![RStudio History Tab](images/RStudio-help.png)
 
 # Some Other Things in mosaic
 
