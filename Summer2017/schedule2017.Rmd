@@ -88,8 +88,9 @@ Arrival day for many coming from out of town.
     * [Less Volume, More Creativity -- An R Quick Start](Learn/LessVolume/LessVolume.html) 
     
     * [US Births Tutorial](https://dtkaplan.shinyapps.io/USBirths/)
+        - More details on `ggformula`: [a longer tutorial](http://dtkaplan.shinyapps.io/Plotting_with_formulas) & [refining graphics](http://dtkaplan.shinyapps.io/Refining_ggformula)
     
-    * Orientation to RStudio
+    * Orientation to RStudio: Panes & tabs
     
     * Importing CSV and Excel files into RStudio
         * [Notes](Learn/ImportingData/ImportingData.html)
