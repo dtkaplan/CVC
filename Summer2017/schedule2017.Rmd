@@ -76,9 +76,9 @@ Arrival day for many coming from out of town.
 
  4. Introduction to R and R Studio [Randy]
 
-    * Orientation to RStudio
-    
     * [Less Volume, More Creativity -- An R Quick Start](Learn/LessVolume/LessVolume.html) 
+    
+    * Orientation to RStudio
     
     * Importing CSV and Excel files into RStudio
         * [Notes](Learn/ImportingData/ImportingData.html)
