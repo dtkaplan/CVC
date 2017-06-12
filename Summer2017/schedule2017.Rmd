@@ -157,17 +157,10 @@ Arrival day for many coming from out of town.
     a. [slides](Learn/Parts_of_speech/R-command-structure.html)
     b. [exercise](https://dtkaplan.shinyapps.io/part-of-speech-quiz/)
  
- 5. Working with data -- 5 verbs of `dplyr` [Miles]    
+ 5. Working with data -- 5 verbs of `dplyr` [Nick]    
     a. Goal: Get your data into the right shape for graphing or analysis
  
-    b. [slides](Learn/Wrangling/dplyrCVC.html) for presentation; 
-        <!-- [markdown file](Learn/Wrangling/dplyrCVC.Rmd) also available -->
- 
-    c. [Worksheet](Learn/Wrangling/dplyrwrkshtCVC.html) for presentation; 
-       [markdown file](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyrwrkshtCVC.Rmd) also available (and on the Calvin server)
-
-    d. [Sample solution Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyrwrkshtCVCsol.Rmd) and [Sample solution html](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyrwrkshtCVCsol.html)
-  
+    b. [slides](Learn/Wrangling/dplyr-intro.html) for presentation; 
  
 ### Wednesday
  
