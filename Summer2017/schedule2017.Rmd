@@ -99,13 +99,14 @@ Arrival day for many coming from out of town.
  
     a. Creating PDF/HTML/Word documents in RStudio
     b. [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
-    c. Example: [R Markdown example](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/RMarkdown/student-evals.Rmd); [R Markdown formatted](Learn/RMarkdown/student-evals.pdf) (Student evaluations example from Open Intro)
+    c. [RMarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+    d. Example: [R Markdown example](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/RMarkdown/student-evals.Rmd); [R Markdown formatted](Learn/RMarkdown/student-evals.pdf) (Student evaluations example from Open Intro)
 
-    d. **Activity**: Write and publish a description of some 
+    e. **Activity**: Write and publish a description of some 
     straightforward, data-oriented topic you'd like to present in class. 
         * Include at least 1 plot (even if unrelated) to make sure 
         you know how to do that.  
-        * Use the mosaic `plain` html template as a starting point
+        * Use the mosaic `fancy` html template as a starting point
         
  6. How to organize your data [Danny]
     
