@@ -1,0 +1,813 @@
+An Introduction to dplyr
+========================================================
+author: Miles Ott (with additions by Nicholas Horton)
+date: CVC 2017
+autosize: true
+
+
+========================================================
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, tidy=FALSE, size="small",
+                      fig.width=8, fig.height=6)
+```
+
+
+## In order to analyze your data you need to organize your data correctly
+
+- Keeping your data **clean** and **tidy** is an important step of every data project
+
+- Goal: learn how to take the data set you **have** and tidy it up to be the data set you **want** for your analyses
+
+========================================================
+
+## Tidy Data 
+
+- rows (cases/observational units) and 
+- columns (variables).  
+
+- The key is that *every* row is a case and *every* column is a variable.  
+
+- No exceptions.
+
+
+========================================================
+
+## Chaining 
+
+The pipe syntax (%>%) takes a data frame (or data table) and sends it to the argument of a function.  
+
+
+- x %>% f(y) is the same as f(x, y)
+
+- y %>% f(x, ., z) is the same as f(x,y,z)
+
+========================================================
+
+## Building Tidy Data 
+
+- object_name <- function_name(arguments) 
+- object_name <- data_table %>% function_name(arguments) 
+- object_name <-   
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;data_table %>%  
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; function_name(arguments) %>%  
+  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; function_name(arguments)
+
+- in chaining, the value (on left) %>% is **first argument** to the function (on right)
+
+========================================================
+
+## 5 Main Data Verbs
+
+Data verbs take data tables as input and give data tables as output
+
+1. summarise(): computes summary statistics
+
+### Rows 
+2. filter():  subsets unwanted *cases* 
+3. arrange(): reorders the *cases* 
+
+### Collumns
+4. select(): subsets *variables* (and rename() )
+5. mutate(): transforms the *variable* (and transmute() like mutate, returns only new variables)
+
+
+========================================================
+
+## Other Data Verbs
+- distinct(): returns the unique values in a table
+- sample_n(): take random row(s)
+- head():  grab the first few rows
+- tail(): grab the last few rows
+- group_by(): SUCCESSIVE functions are applied to groups
+- ungroup():  reverse the grouping action
+- summarise():  
+    + min(), max(), mean(), sum(), sd(), median(), and IQR()
+    + n(): number of observations in the current group
+    + n_distinct(): number of unique values
+    + first_value(), last_value(), and nth_value(x, n): (like x[1], x[length(x)], and x[n] )
+
+Loading in the data
+========================================================
+
+## We need to run this code to bring in the data we will use:
+
+- First create a new `mosaic` plain template R Markdown file (File/New File/R Markdown/Template)
+- Second, create a code chunk to load the `ggplot2movies` and `babynames` packages (the template already loads `mosaic`)
+
+```{r message=FALSE, warning=FALSE, echo=TRUE}
+require(mosaic)
+require(statisticalModeling)
+require(ggplot2movies) #gets us movies dataset
+require(babynames) #gets us baby names data set
+
+```
+
+Movies data
+========================================================
+
+## Example: movies data 
+
+```{r}
+movies %>% nrow()
+movies %>% names()
+```
+
+========================================================
+
+## Example: movies data
+## 4. select() only certain variables
+
+```{r}
+movies %>% select(., title,  budget, length)
+
+
+```
+
+========================================================
+
+## Example: movies data
+## 4. select() only certain variables
+
+```{r}
+slim_movies<-movies %>% select(title, budget, length)
+
+slim_movies %>% names()
+
+```
+
+- Reminder: select() is for *columns*
+- Note: this is equivalent code:
+```{r eval=FALSE}
+slim_movies<-movies %>% select(., title, budget, length)
+```
+
+========================================================
+
+## Example: movies data 
+
+```{r}
+slim_movies %>% head()
+
+```
+
+
+========================================================
+
+## Example: movies data 
+
+```{r}
+slim_movies %>% tail()
+
+```
+
+
+========================================================
+
+## Example: movies data 
+
+
+## Choosing random movies: using sample_n()
+```{r}
+slim_movies %>% sample_n(size=6)
+
+```
+
+
+========================================================
+
+## Example: movies data 
+
+## Choosing random movies: using sample_frac()
+```{r}
+
+slim_movies %>% sample_frac(.00007)
+```
+
+========================================================
+
+
+## 5. filter(): only use movies (cases) that have budget information and have shorter titles
+
+Back to slim_movies data
+
+```{r }
+slim_movies<-slim_movies %>% filter(!is.na(budget), nchar(title)<24)
+```
+
+
+
+========================================================
+
+## 5. mutate(): transforms the variable 
+
+
+mutate or transmute to create a new variable?
+
+```{r }
+slim_movies %>% mutate(dpm = budget/length) %>% head(6)
+```
+
+
+
+========================================================
+
+## 5. mutate(): transforms the variable 
+
+
+mutate or transmute to create a new variable?
+
+```{r }
+slim_movies %>% transmute(dpm = budget/length) %>% head(6)
+```
+
+
+========================================================
+
+## 1. summarise(): computes summary statistics
+
+```{r}
+# number of movies (cases) in movie data
+movies %>% summarise(n())
+```
+
+========================================================
+
+## 1. summarise(): computes summary statistics
+
+```{r}
+# total number of minutes of all the movies
+movies %>% summarise(sum(length, na.rm=TRUE))
+```
+
+========================================================
+
+## 1. summarise(): computes summary statistics
+
+```{r}
+# mean of minutes of all the movies
+movies %>% summarise(mean(length, na.rm=TRUE))
+```
+
+
+========================================================
+
+## 1. summarise(): computes summary statistics
+
+```{r}
+# mean dollars per minute for movies with budget data 
+movies %>% 
+  mutate(dpm = budget/length) %>% 
+  summarise(mean(dpm, na.rm=TRUE))
+```
+
+========================================================
+
+## 1. summarize() with group_by()
+
+```{r}
+# mean length of movies in hours for all the movies, broken down by mpaa
+movies %>% 
+  mutate(hours = length/60) %>% 
+  group_by(mpaa) %>% 
+  summarise(mean(hours, na.rm=TRUE))
+```
+
+========================================================
+
+## 3. arrange(): reorders the cases
+
+```{r}
+# average length in hours, by mpaa rating, sorted by average length
+movies %>% 
+  mutate(hours = length/60) %>% 
+  group_by(mpaa) %>% 
+  summarise(avelength = mean(hours, na.rm=TRUE)) %>% 
+  arrange(avelength)
+```
+
+Movies: your turn
+========================================================
+
+## Your Turn 
+
+When starting, it can be helpful to work with a small subset of the data.  When you have your data wrangling statements in working order, shift to the entire data table.
+
+```{r}
+SmallSubset <-
+  movies %>%
+  filter(year > 2000) %>%
+  filter(mpaa !="")
+  
+
+```
+
+### Now it is your turn to start running the code
+
+========================================================
+
+## Try this
+
+## What is the average IMDB user rating?
+
+```{r eval=FALSE}
+SmallSubset %>%
+  summarise(avg = ????(rating)) 
+```
+
+========================================================
+
+## Solution
+
+## What is the average IMDB user rating?
+
+```{r}
+SmallSubset %>%
+  summarise(avg = mean(rating))
+```
+
+========================================================
+
+## Try this
+
+## What is the average IMDB user rating of movies for each mpaa category?
+
+```{r eval=FALSE}
+SmallSubset %>% 
+  group_by(????) %>% 
+  summarise(avg = ????(rating))
+```
+
+========================================================
+
+## Solution
+
+## What is the average rating of movies for each mpaa category?
+
+```{r}
+SmallSubset %>% 
+  group_by(mpaa) %>% 
+  summarise(avg = mean(rating))
+```
+
+========================================================
+
+## Try this
+
+## How many Action Movies in each year?
+
+```{r eval=FALSE}
+SmallSubset %>%
+  group_by(????) %>%
+  summarise(Actioncount = sum(????))
+```
+
+========================================================
+
+## Solution
+
+## How many Action Movies in each year?
+
+```{r}
+SmallSubset %>%
+  group_by(year) %>%
+  summarise(Actioncount = sum(Action))
+```
+
+========================================================
+
+## Try this
+
+## How many Comedies of each mpaa rating in each year?
+
+```{r eval=FALSE}
+SmallSubset %>%
+  group_by(????, ????) %>%
+  summarise(????)
+```
+
+========================================================
+
+## Solution
+
+## How many Comedies of each mpaa rating in each year?
+
+```{r}
+SmallSubset %>%
+  group_by(year, mpaa) %>%
+  summarise(ComedyCount=sum(Comedy))
+
+```
+
+========================================================
+
+## Try this
+
+## Track the average IMDB ratings for movies with mpaa "R" over the years.
+
+```{r eval=FALSE}
+Result <-
+  movies %>%
+  filter(mpaa=="R") %>% # just the rated R movies
+  group_by(????) %>% # for each year for each movie title
+  summarise(mean_user_rating = ????)
+```
+
+========================================================
+
+## Solution
+
+## Track the average IMDB ratings for movies with mpaa "R" over the years.
+
+```{r }
+Result_M <-
+  movies %>%
+  filter(mpaa=="R") %>% # just the rated R movies
+  group_by(year) %>% # for each year for each movie title
+  summarise(mean_user_rating = mean(rating))
+```
+
+========================================================
+
+## Try This Plot out the result
+
+Put `year` on the x-axis and the `mean_user_rating` for each R rated movie on the y-axis
+
+
+```{r eval=FALSE}
+gf_line(???? ~ ????, data = Result_M)
+
+```
+
+
+========================================================
+
+## Solution  Plot out the result
+
+Put `year` on the x-axis and the `mean_user_rating` for each R rated movie on the y-axis
+
+```{r, fig.center=TRUE}
+gf_line(year ~ mean_user_rating, data = Result_M)
+
+```
+
+========================================================
+
+## Before we explore the babynames data let's remind ourselves of the dplyr commands we have learned thus far:
+
+5 Main Data Verbs
+========================================================
+
+## 5 Main Data Verbs
+
+Data verbs take data tables as input and give data tables as output
+
+1. summarise(): computes summary statistics
+
+### Rows 
+2. filter():  subsets unwanted *cases* 
+3. arrange(): reorders the *cases* 
+
+### Collumns
+4. select(): subsets *variables* (and rename() )
+5. mutate(): transforms the *variable* (and transmute() like mutate, returns only new variables)
+
+
+========================================================
+
+## Other Data Verbs
+- distinct(): returns the unique values in a table
+- sample_n(): take random row(s)
+- head():  grab the first few rows
+- tail(): grab the last few rows
+- group_by(): SUCCESSIVE functions are applied to groups
+- ungroup():  reverse the grouping action
+- summarise():  
+    + min(), max(), mean(), sum(), sd(), median(), and IQR()
+    + n(): number of observations in the current group
+    + n_distinct(): number of unique values
+    + first_value(), last_value(), and nth_value(x, n): (like x[1], x[length(x)], and x[n] )
+
+Babynames
+========================================================
+
+
+## babynames Data
+
+
+```{r}
+babynames %>% names()
+```
+
+========================================================
+
+## Your Turn 
+
+Again let's work with a small subset of the data.
+
+```{r}
+smallbaby <-
+  babynames %>%
+  filter(year > 2000) %>%
+  sample_n(size = 200)
+
+names(smallbaby)
+```
+
+========================================================
+
+## Try this
+
+## How many babies are represented?
+
+```{r eval=FALSE}
+smallbaby %>%
+  summarise(total = ????(n)) # a reduction verb
+```
+
+
+========================================================
+
+
+## Solution
+
+## How many babies are represented?
+
+```{r}
+smallbaby %>%
+  summarise(total = sum(n))
+```
+
+========================================================
+
+## Try this
+
+## How many babies are there in each year?
+
+```{r eval=FALSE}
+smallbaby %>% 
+  group_by(????) %>% 
+  summarise(total = ????(n))
+```
+
+========================================================
+
+## Solution
+
+## How many babies are there in each year?
+
+```{r}
+smallbaby %>% 
+  group_by(year) %>% 
+  summarise(total = sum(n))
+```
+
+
+========================================================
+
+## Try this
+
+## How many distinct names in each year?
+
+```{r eval=FALSE}
+smallbaby %>%
+  group_by(????) %>%
+  summarise(name_count = n_distinct(????))
+```
+
+
+========================================================
+
+## Solution
+
+## How many distinct names in each year?
+
+```{r}
+smallbaby %>%
+  group_by(year) %>%
+  summarise(name_count = n_distinct(name))
+```
+
+========================================================
+
+## Try this
+
+## How many distinct names of each sex in each year?
+
+```{r eval=FALSE}
+smallbaby %>%
+  group_by(????, ????) %>%
+  summarise(????)
+```
+
+========================================================
+
+## Solution
+
+## How many distinct names of each sex in each year?
+
+```{r}
+temp <- smallbaby %>%
+  group_by(year, sex) %>%
+  summarise(name_count=n_distinct(name))
+data.frame(temp)
+```
+
+
+
+========================================================
+
+## Reminder filter():  subsets *cases* (rows)
+
+subset for babies named Nicholas
+
+```{r , fig.center=TRUE}
+
+nicknames <- babynames %>% filter(name=="Nicholas")
+
+gf_line(prop~year, data=nicknames)
+```
+
+
+
+========================================================
+
+
+## That looked weird...
+
+```{r, fig.center=TRUE}
+
+nicknames_male <- babynames %>% filter(name=="Nicholas", sex=="M")
+
+gf_line(prop~year, data=nicknames_male)
+```
+
+
+========================================================
+
+## Try this
+
+### More than one name
+
+### Track the yearly number of Janes and Marys over the years. Use the full dataset
+
+```{r eval=FALSE}
+Result <-
+  babynames %>%
+  ????(name %in% c("Jane", "Mary")) %>% # just the Janes and Marys
+  group_by(????, ????) %>% # for each year for each name
+  summarise(count = ????)
+```
+
+Jane and Mary
+========================================================
+
+## Solution
+
+### More than one name
+
+### Track the yearly number of Janes and Marys over the years. Use the full dataset
+```{r}
+Result <-
+  babynames %>%
+  filter(name %in% c("Jane", "Mary")) %>% # just the Janes and Marys
+  group_by(name, year) %>% # for each year for each name
+  summarise(count = sum(n))
+```
+
+========================================================
+
+## Plot out the result
+
+### Put `year` on the x-axis and the count of each name on the y-axis.
+
+```{r , fig.center=TRUE}
+gf_point(count~year, data=Result) 
+
+```
+
+========================================================
+
+## Try this
+
+* *Map* the name (Mary or Jane) to the aesthetic of color`+color:`.  
+* Instead of using dots as the glyph, use a line that connects consecutive values: `gf_line()`.
+* *Set* the line thickness to `size:1`.
+
+### Plot out the result
+
+```{r, eval=FALSE}
+gf_line(????~????+color:????+size:????, data=Result)
+```
+
+
+
+========================================================
+
+## Solution
+
+### Plot out the result
+
+```{r ,fig.center=TRUE}
+gf_line(count~year+color:name+size:1, data=Result)
+```
+
+
+========================================================
+
+## Try this
+
+### Look at the *proportion* of births rather than the count
+
+Filter first on female, then on Mary and Jane.  Meanwhile, calculate the proportion of names in the dataset which are Mary and Jane (as opposed to the proportion of all babies from the given year which is the *prop* variable).
+
+```{r eval=FALSE}
+Result2 <-
+  babynames %>%
+  filter(sex == "F") %>%
+  group_by(year) %>%
+  mutate(total = ????(n)) %>%
+  filter(????) %>%
+  mutate(proportion = n / total)
+```
+
+========================================================
+
+## Solution
+
+### Look at the *proportion* of births rather than the count
+
+```{r}
+Result2 <-
+  babynames %>%
+  filter(sex == "F") %>%
+  group_by(year) %>%
+  mutate(total = sum(n)) %>%
+  filter(name %in% c("Mary", "Jane")) %>%
+  mutate(proportion = n / total)
+```
+
+========================================================
+
+## Try this
+
+### Plot a line graph of the proportion of babies named Mary and Jane over the years with separate different colored lines for Mary and Jane
+
+```{r , eval=FALSE}
+gf_line(????, ????+color:????, data=Result2)
+
+```
+
+========================================================
+
+## Solution
+
+## Plot a line graph of the proportion of babies named Mary and Jane over the years with separate different colored lines for Mary and Jane
+
+```{r , fig.center=TRUE}
+gf_line(proportion~year+color:name, data=Result2)
+
+```
+
+
+======================================================== 
+  
+##  Pick out name(s) of interest to you 
+
+### Plot out their popularity over time.
+
+###  I want to find out if the name Pat was ever more common for males than females 
+
+```{r fig.width=5, fig.height=3, fig.center=TRUE}
+Pat <- babynames %>%
+  filter(name== "Pat") 
+```
+
+========================================================
+
+##  Pick out name(s) of interest to you 
+
+### Plot out their popularity over time.
+
+###  I want to find out if the name Pat was ever more common for males than females 
+
+```{r , fig.center=TRUE}
+
+gf_line(n~year+col:sex+size:1, data=Pat)
+
+```
+
+========================================================
+
+
+# You are on your way to wrangling and transforming your data with ease
+
+
+## Keep practicing, keep learning
+
+
+
+<div align="center">
+![ImpostR Syndrome](impostR.jpg)
+
