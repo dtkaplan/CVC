@@ -118,7 +118,7 @@ Our schedule does not include any times.
 
 We can take the time we need before moving on
 
-  * Be sure to ask questions and provide us [feedback](https://docs.google.com/document/d/1AtoWauyDoBsHJd7yywkJNgiNaAXPiBjNhqO9Yw72jys/edit?usp=sharing) so we can adjust appropriately.
+  * Be sure to ask questions and provide us [feedback](https://docs.google.com/document/d/1a8HOx_FzIQGI39ITW7ACXztcuQ7l8Hdf8KMVBpiaWGs/edit?usp=sharing) so we can adjust appropriately.
 
 ## A note about R
 
@@ -145,7 +145,7 @@ R's particular advantages:
 
 ## Google Doc
 
-Use this [google doc](https://docs.google.com/document/d/137aTs2EEcBdE7hg1tH68wjsorqSNdcB8VnZQmUX-VCs/edit?usp=sharing) to create a short "bio" for one of the others in your group.  
+Use this [google doc](https://docs.google.com/document/d/17JBw6KW-i5hJffL96kiRTxTjlJFW2qGBrl1g9Ixgb4I/edit?usp=sharing) to create a short "bio" for one of the others in your group.  
 
   * Bulleted list or paragraph -- which every you prefer.
   * Include a photo if possible.
