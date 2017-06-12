@@ -46,6 +46,12 @@ responses.  Feel free to edit it at anytime before, during, or (shortly) after t
 
   * [Google Doc](https://docs.google.com/document/d/1AtoWauyDoBsHJd7yywkJNgiNaAXPiBjNhqO9Yw72jys/edit?usp=sharing)
 
+## Project ideas and updates
+
+We'll use this Google Doc to share information about project ideas and updates.
+
+  * [Google Doc](https://docs.google.com/document/d/1ScLIjBWD12P28WbluL6L5Shzh0mLL2V1N9Zm0Z1ljj8/edit?usp=sharing)
+
 ## Working Schedule
 
 This schedule will be updated throughout the workshop.  All items should be 
@@ -91,10 +97,6 @@ Arrival day for many coming from out of town.
     
     * **Activity**: Create a plot using data that you have imported into R.
 
-<!-- 7. Project Example  -->
- 
-<!-- * This was a demo by Jo in 2016 -->
-
  5. [RMarkdown](http://prezi.com/vq6l5yqpnqma/) [Nick]
  
     a. Creating PDF/HTML/Word documents in RStudio
@@ -123,7 +125,7 @@ Arrival day for many coming from out of town.
     indicating types of data you are interested in.
 -->
 
- 7. Homework: Think about your project [Nick]
+ 7. Homework: Think about your project (and add into the following [Google Doc](https://docs.google.com/document/d/1ScLIjBWD12P28WbluL6L5Shzh0mLL2V1N9Zm0Z1ljj8/edit?usp=sharing)) [Nick]
 
 ### Tuesday
  
