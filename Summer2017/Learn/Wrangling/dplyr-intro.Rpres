@@ -98,7 +98,7 @@ Loading in the data
 
 ```{r message=FALSE, warning=FALSE, echo=TRUE}
 require(mosaic)
-require(statisticalModeling)
+require(ggformula)
 require(ggplot2movies) #gets us movies dataset
 require(babynames) #gets us baby names data set
 

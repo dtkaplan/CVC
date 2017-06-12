@@ -916,7 +916,7 @@ hljs.initHighlightingOnLoad();
 </ul>
 
 <pre><code class="r">require(mosaic)
-require(statisticalModeling)
+require(ggformula)
 require(ggplot2movies) #gets us movies dataset
 require(babynames) #gets us baby names data set
 </code></pre>
@@ -1058,14 +1058,14 @@ slim_movies %&gt;% names()
 </code></pre>
 
 <pre><code># A tibble: 6 x 3
-                             title budget length
-                             &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;
-1       Uuno Turhapuron aviokriisi     NA     91
-2       Flight of the Phoenix, The     NA    142
-3 Pour le meilleur et pour le pire     NA    117
-4         Terror of Tiny Town, The 100000     62
-5                            Them!     NA     94
-6                       Ice Palace     NA    143
+                  title budget length
+                  &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;
+1            Cobra nero     NA     85
+2         Feudin&#39; Fools     NA     63
+3 Kymmenen riivinrautaa     NA    180
+4     Wondrous Oblivion     NA    106
+5         Gettin&#39; Grown     NA     74
+6     Attack from Space     NA     76
 </code></pre>
 
 </div>
@@ -1082,12 +1082,12 @@ slim_movies %&gt;% names()
 </code></pre>
 
 <pre><code># A tibble: 4 x 3
-                             title   budget length
-                             &lt;chr&gt;    &lt;int&gt;  &lt;int&gt;
-1                          Manipai       NA     11
-2                   Tennis Racquet       NA      7
-3 Cul de Sac: A Suburban War Story       NA     55
-4                         Prophecy 12000000    102
+                      title  budget length
+                      &lt;chr&gt;   &lt;int&gt;  &lt;int&gt;
+1 Superman and the Mole Men      NA     67
+2           Deadly Currents      NA    115
+3            Beat the Devil 1000000    100
+4      Dos locos en el aire      NA     94
 </code></pre>
 
 </div>
@@ -1649,7 +1649,7 @@ names(smallbaby)
 <pre><code># A tibble: 1 x 1
   total
   &lt;int&gt;
-1 25705
+1 26509
 </code></pre>
 
 </div>
@@ -1685,21 +1685,21 @@ names(smallbaby)
 <pre><code># A tibble: 15 x 2
     year total
    &lt;dbl&gt; &lt;int&gt;
- 1  2001   199
- 2  2002   390
- 3  2003   192
- 4  2004   236
- 5  2005   738
- 6  2006  1726
- 7  2007   177
- 8  2008   726
- 9  2009  4038
-10  2010   731
-11  2011   349
-12  2012 13600
-13  2013   881
-14  2014   955
-15  2015   767
+ 1  2001  3262
+ 2  2002   460
+ 3  2003  1408
+ 4  2004   695
+ 5  2005  5694
+ 6  2006   736
+ 7  2007   269
+ 8  2008   184
+ 9  2009  1411
+10  2010   430
+11  2011  5781
+12  2012   241
+13  2013  1145
+14  2014   746
+15  2015  4047
 </code></pre>
 
 </div>
@@ -1735,21 +1735,21 @@ names(smallbaby)
 <pre><code># A tibble: 15 x 2
     year name_count
    &lt;dbl&gt;      &lt;int&gt;
- 1  2001          9
- 2  2002         11
- 3  2003         10
- 4  2004         14
- 5  2005         14
- 6  2006         14
- 7  2007         11
- 8  2008         17
- 9  2009         17
-10  2010         11
-11  2011         15
-12  2012         19
+ 1  2001         11
+ 2  2002         13
+ 3  2003         16
+ 4  2004         16
+ 5  2005          8
+ 6  2006         15
+ 7  2007         16
+ 8  2008         13
+ 9  2009          9
+10  2010         14
+11  2011          9
+12  2012         10
 13  2013         14
-14  2014         11
-15  2015         13
+14  2014         19
+15  2015         17
 </code></pre>
 
 </div>
@@ -1784,36 +1784,36 @@ data.frame(temp)
 </code></pre>
 
 <pre><code>   year sex name_count
-1  2001   F          5
-2  2001   M          4
-3  2002   F          7
-4  2002   M          4
-5  2003   F          7
-6  2003   M          3
-7  2004   F          7
+1  2001   F          8
+2  2001   M          3
+3  2002   F         10
+4  2002   M          3
+5  2003   F          9
+6  2003   M          7
+7  2004   F          9
 8  2004   M          7
-9  2005   F          8
-10 2005   M          6
+9  2005   F          4
+10 2005   M          4
 11 2006   F          6
-12 2006   M          8
-13 2007   F          6
-14 2007   M          5
-15 2008   F          7
-16 2008   M         10
-17 2009   F         11
-18 2009   M          6
-19 2010   F          4
+12 2006   M          9
+13 2007   F          8
+14 2007   M          8
+15 2008   F          8
+16 2008   M          5
+17 2009   F          7
+18 2009   M          2
+19 2010   F          7
 20 2010   M          7
-21 2011   F         11
-22 2011   M          4
-23 2012   F         13
-24 2012   M          6
+21 2011   F          3
+22 2011   M          6
+23 2012   F          7
+24 2012   M          3
 25 2013   F          9
 26 2013   M          5
-27 2014   F          5
-28 2014   M          6
-29 2015   F          8
-30 2015   M          5
+27 2014   F          7
+28 2014   M         12
+29 2015   F          9
+30 2015   M          8
 </code></pre>
 
 </div>
