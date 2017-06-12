@@ -81,6 +81,8 @@ Arrival day for many coming from out of town.
 
     * [Less Volume, More Creativity -- An R Quick Start](Learn/LessVolume/LessVolume.html) 
     
+    * [US Births Tutorial](https://dtkaplan.shinyapps.io/USBirths/)
+    
     * Orientation to RStudio
     
     * Importing CSV and Excel files into RStudio
