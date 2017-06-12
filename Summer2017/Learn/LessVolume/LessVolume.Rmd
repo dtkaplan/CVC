@@ -215,7 +215,7 @@ We're going to see an example of using a Less Volume, More Creativity Approach i
 You can come back later and 
 
  * look at slides that go through essentially the same information
- * jump ahead to [what comes after the US Births example](#getting-oriented-to-rstudio)
+ * jump ahead to [what comes after the US Births example](#48)
 
 ## The Most Important Template
 
@@ -660,7 +660,7 @@ Answer each question with both a numerical summary and a graphical summary.
  
  2. Do boys and girls differently shaped feet? (`KidsFeet`)
  
-# Getting Oriented to RStudio {#RStudioIntro}
+# Getting Oriented to RStudio
 
 ## Access to RStudio Sever
 
