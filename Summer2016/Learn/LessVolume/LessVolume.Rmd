@@ -1,7 +1,7 @@
 ---
 title: Less Volume, More Creativity
-author: R Pruim
-date: "CVC 2016"
+author: R Pruim and N Horton
+date: "January 19, 2017"
 output: 
   ioslides_presentation:
     highlight: espresso
@@ -47,9 +47,8 @@ is great.
 
 ## Access to RStudio Sever
 
-  * [rstudio.calvin.edu](http://rstudio.calvin.edu:8787)
-    * You were sent an email with userid (e.g., rstudio199) and password.
-    * [Change passwords here](https://freeipa1.cs.calvin.edu/)
+  * [r.amherst.edu](http://r.amherst.edu:8787)
+    * Life is much simpler in terms of setup with a server...
 
 <center>
 <img src="images/rstudio-calvin.png" width=40%>
@@ -97,7 +96,7 @@ is great.
  * If this is unintentional, you probably have a typo
  * ESC will get you pack to the command prompt
 
-## Caclulation and Assignment { .smaller }
+## Calculation and Assignment { .smaller }
 
   * Basic calculation is similar to a calculator
   * Results can be stored in named variables with `<-` (or `->`)

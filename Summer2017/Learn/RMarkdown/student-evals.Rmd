@@ -1,7 +1,7 @@
 ---
 title: "Markdown example: multiple linear regression"
 author: "Open Intro (modified by Nick Horton and Caroline Kusiak)"
-date: "June 20, 2016"
+date: "June 12, 2017"
 output:
   pdf_document: default
   html_document:
@@ -47,6 +47,7 @@ references:
 
 ```{r opts, include=FALSE}
 require(mosaic)
+require(ggformula)
 trellis.par.set(theme=theme.mosaic()) # change default color scheme for lattice
 ```
 
@@ -81,7 +82,7 @@ professors.
 
 ```{r load-data, message=FALSE}
 library(mosaic)
-evals <- read.csv("http://www.amherst.edu/~nhorton/workshop/evals.csv",
+evals <- read.csv("https://nhorton.people.amherst.edu/workshop/evals.csv",
   stringsAsFactors=FALSE)
 ```
 
@@ -126,7 +127,7 @@ are evaluated more favorably. Let's create a scatterplot to see if this appears
 to be the case:
 
 ```{r scatter-score-bty_avg, fig.height=2.7}
-xyplot(score ~ bty_avg, data = evals)
+gf_point(score ~ bty_avg, data=evals)
 ```
 
 
@@ -138,8 +139,8 @@ Is anything awry?
     $y$ or the $x$-coordinate. (Use `?jitter` to learn more.) What was
     misleading about the initial scatterplot?  (Note that this code block won't run until you change eval=FALSE to eval=TRUE.)
 
-```{r eval=FALSE, fig.height=2.7}
-xyplot(jitter(score) ~ jitter(bty_avg), data=evals)
+```{r eval=TRUE, fig.height=2.7}
+gf_point(jitter(score) ~ jitter(bty_avg), data=evals)
 ```
 
 4.  Let's see if the apparent trend in the plot is something more than
