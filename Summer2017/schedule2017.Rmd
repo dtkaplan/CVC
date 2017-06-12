@@ -64,21 +64,24 @@ Arrival day for many coming from out of town.
  1. Welcome (9am)
     a. Welcome to CVC/Macalester [Danny]
     b. [Goals and outline for the week](Intro/IntroOverview.html) [Randy]
-    c. [Thinking with data](http://amstat.tandfonline.com/doi/full/10.1080/00031305.2015.1094283)
 
  2. Introductions [Randy]
     a. **Activity**: Split up into groups of three or four and introduce yourselves. 
     b. [Google Doc](https://docs.google.com/document/d/17JBw6KW-i5hJffL96kiRTxTjlJFW2qGBrl1g9Ixgb4I/edit#) for second part. 
 
- 3. A First Case Study using Medicare Data [Danny]
+ 3. A First Case Study using Medicare Data 
+ 
+    a. [Thinking with data](http://amstat.tandfonline.com/doi/full/10.1080/00031305.2015.1094283) [Nick]
+    
+    b. [Curriculum Guidelines for Data Science](http://www.annualreviews.org/doi/abs/10.1146/annurev-statistics-060116-053930) [Nick]
 
-    * [Slides](Intro/MedicareSpending.html)
+    b. [Slides](Intro/MedicareSpending.html) [Danny]
 
  4. Introduction to R and R Studio [Randy]
 
-    * Orientation to RStudio
-    
     * [Less Volume, More Creativity -- An R Quick Start](Learn/LessVolume/LessVolume.html) 
+    
+    * Orientation to RStudio
     
     * Importing CSV and Excel files into RStudio
         * [Notes](Learn/ImportingData/ImportingData.html)
