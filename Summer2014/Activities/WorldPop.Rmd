@@ -7,6 +7,7 @@ output: html_document
 
 ```{r include=FALSE}
 require(DCFdevel)
+require(dplyr)
 require(mosaic)
 ```
 
@@ -21,8 +22,8 @@ For the purposes of this exercise, you will use **three** data frames:
 require(DCFdevel)
 require(mosaic)
 data(WorldCities) # Creates WorldCities
-pop <- CIAdata(2119) # population data
-codes <- fetchData("countrycodes.csv")
+TotalPop <- CIAdata(2119) # population data
+CountryCodes <- fetchData("countrycodes.csv")
 ```
 
 Each of these frames has information about the identity of a country, but perhaps in different forms.  By grouping, summarizing, joining, and arithmetic, you should be able to construct the answer to the problem.
@@ -44,3 +45,55 @@ Before writing the computer commands to perform the operation:
 * Look at the names and contents of the variables in the different data frames.
 * Draw a flow diagram of what processes will be required.  
     Only then, translate your process into computer instructions.
+    
+    
+    
+## A Solution
+
+Here are the input files (with just the relevant variables):
+
+```{r include=FALSE}
+set.seed(100)
+```
+
+#### TotalPop
+
+Each case is a country
+```{r echo=FALSE}
+select(TotalPop, country, pop) %>% sample_n(3) %>% 
+  print(row.names=FALSE)
+```
+
+The country is identified by a conventional name, spelled out in full.  This can be converted to an ISO code using `toISO3()`.
+
+#### WorldCities
+
+Each case is a city:
+```{r echo=FALSE}
+select(WorldCities, Country, Population)  %>% sample_n(3) %>% 
+  print(row.names=FALSE)
+```
+
+The country is identified by a 2-letter ISO code, such as BR or IN
+
+#### CountryCodes
+
+Each case is a country:
+```{r echo=FALSE}
+select(CountryCodes, iso3, iso2)  %>% sample_n(3) %>% 
+  print(row.names=FALSE)
+```
+
+General plan:
+
+* 
+
+
+* Create a data table, `UrbanPopByCountry` which has the urban population for each country
+
+* Combine `UrbanPopByCountry` with the `TotalPopByCountry` country-wide population for each county.  This will look like 
+    
+    Country | UrbanPop | Total Pop
+    --------|----------|-----------
+      BEL   |  7221658 | 10449361
+      ...   |  ...     | ....

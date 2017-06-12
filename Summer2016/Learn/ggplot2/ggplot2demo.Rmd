@@ -99,7 +99,7 @@ HELPrct %>%
   coord_flip() +
   facet_grid( .  ~ substance ) 
 ```
-Hmm.  Those points are really where we want them to be.
+Hmm.  Those points are not really where we want them to be.
 Jittering adds some random noise.  Dodging moves entire groups left and right or up and down.
 
 ```{r, message = FALSE}
@@ -200,6 +200,7 @@ densityDF %>%
   geom_area(aes(x = x, y = y, fill = x > 85), alpha = 0.4, colour = "navy") +
   scale_fill_manual(values = c("thistle", "navy"), guide = FALSE)
 ```
+
 Here's another way to do that.
 ```{r}
 densityDF %>%
