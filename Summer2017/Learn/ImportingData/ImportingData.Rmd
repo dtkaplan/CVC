@@ -15,6 +15,7 @@ knitr::opts_chunk$set(
 require(tidyr)
 require(readxl)
 require(mosaic)
+require(ggformula)
 trellis.par.set(theme = col.mosaic())
 options(width = 90, digits = 3)
 ```
@@ -164,7 +165,7 @@ inspect(Anscombe3)
   
 ```{r}
 names(Anscombe2)[1] <- "state"  # rename first variable
-xyplot( education ~ income, data = Anscombe2)
+gf_point( education ~ income, data = Anscombe2)
 ```
 
   * `read.csv()` converts character data into factor data (by default);
@@ -228,16 +229,9 @@ them over time.
 Gender2 %>% 
   filter(`Country Code` %in% c("USA", "NLD", "SWE", "KOR", "JPN"),
          `Indicator Code` %in% c("SP.ADO.TFRT")) %>%
-  xyplot(value ~ year, data = ., groups = `Country Code`, type = "l",
-         auto.key=list(lines=TRUE, points=FALSE, columns=5), 
-         ylab = Gender2$`Indicator Name`[1])
-
-Gender2 %>% 
-  filter(`Country Code` %in% c("USA", "NLD", "SWE", "KOR", "JPN"),
-         `Indicator Code` %in% c("SP.ADO.TFRT")) %>%
-  ggplot() +
-  geom_line(aes(y=value, x=year, colour=`Country Code`)) +
-  labs(y = Gender2$`Indicator Name`[1])
+  gf_point(value ~ year, groups = `Country Code`, type = "l",
+           auto.key=list(lines=TRUE, points=FALSE, columns=5), 
+           ylab = Gender2$`Indicator Name`[1])
 ```
   
   **Exercise:** Import an Excel spreadsheet into R an create a plot.
