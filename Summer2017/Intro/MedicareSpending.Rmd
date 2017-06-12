@@ -19,6 +19,7 @@ library(tidyr)
 library(ggmap)
 #load us map data
 all_states <- map_data("state")
+rotate <- theme(axis.text.x=element_text(angle=90,hjust=1))
 #plot all states with ggplot
 ```
 
@@ -30,7 +31,9 @@ In May 2013, the [Centers for Medicare and Medicaid Services](http://www.cms.gov
 
 This attracted press attention.  For example, a headline in the New York Times read ["Hospital Billing Varies Wildly, Government Data Shows"](http://www.nytimes.com/2013/05/08/business/hospital-billing-varies-wildly-us-data-shows.html).  
 
-![](NYT-map.png)
+```{r echo = FALSE, out.width = "80%", fig.align = "center"}
+knitr::include_graphics("NYT-map.png")
+```
 
 A [map with the article](http://www.nytimes.com/interactive/2013/05/08/business/how-much-hospitals-charge.html?_r=0) shows the geographic disparities in hospital charges.  
 
@@ -227,7 +230,7 @@ MedicareCharges %>%
   geom_density(fill="grey", color="grey") + 
   geom_rug() +
   ggtitle("Variation in payment by DRG") +
-  xlab("Payment ($US)")
+  xlab("Payment ($US)") + rotate
 ```
 
 
@@ -322,7 +325,7 @@ ggplot( ExtremeStates, aes(x = drg, y = amount)) +
   scale_y_log10(
     breaks = 1000*c(1,5,10,20,50,100,500)) + 
   xlab("DRG") + ylab("USD per procedure") + 
-  facet_wrap( ~ stateProvider, nrow=3 )
+  facet_wrap( ~ stateProvider, nrow=3 ) + rotate
 ```
 
 ## DRG 872 (for example)
