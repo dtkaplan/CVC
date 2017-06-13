@@ -89,7 +89,7 @@ Data verbs take data tables as input and give data tables as output
 2. `filter()`:  subsets unwanted *cases* 
 3. `arrange()`: reorders the *cases* 
 
-### Collumns
+### Columns
 
 4. `select()`: subsets *variables* (and `rename()` )
 5. `mutate()`: transforms the *variable* (and `transmute()` like mutate, returns only new variables)
@@ -134,7 +134,7 @@ names(smallbaby)
 
 #### Exercise
 
-Determine how many babies are represented in the data.  Once you have things workingf
+Determine how many babies are represented in the data.  Once you have things working
 for the small data set, switch to the full `babynames` data.
 
 ```{r small-how-many, exercise = TRUE}
@@ -318,7 +318,7 @@ gf_line(n ~ year, data = OneName, col = ~ sex, size = 1, data = OneName)
  1. Determine whether the name Pat was ever more common for males than for females.
  2. Take a look at the popularity of the name Hilary (for boys and girls) over time
  3. Pick some other names of interest and do the same.
- 4. Try multple names at the same time (use `%in%`)
+ 4. Try multiple names at the same time (use `%in%`)
 
 ```{r , pat, exercise = TRUE}
 OneName <- babynames %>%
@@ -333,6 +333,6 @@ gf_line(n ~ year, data = Pat, col = ~sex, size = 1, data = Pat)
 ### Keep practicing, keep learning
 
 <div align="center">
-![ImpostR Syndrome](impostR.jpg)
+![ImpostR Syndrome](impostR.JPG)
 </div>
 

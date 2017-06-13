@@ -138,9 +138,9 @@ Slim_Movies <-
 ```
 
 
-## Smalelr data sets
+## Smaller data sets
 
-Often it is useful to work with a smaller subst of the data until we get our 
+Often it is useful to work with a smaller subset of the data until we get our 
 analysis methods figured out, and then to move to the full data.  This makes mistakes
 happen more quickly ;-)
 
@@ -176,7 +176,7 @@ Slim_Movies <-
 
 #### Exercise
 
-Use `mutate()` or `transmute()` to create a new varaible.  How do the two differ?
+Use `mutate()` or `transmute()` to create a new variable.  How do the two differ?
 
 
 ```{r, mutate, exercise = TRUE}
@@ -188,7 +188,7 @@ Slim_Movies %>%
 
 ## One-row summaries with summarise()
 
-Note: `summarize()` works for non New Zelanders, but it conflicts with a funciton with
+Note: `summarize()` works for non New Zealanders, but it conflicts with a function with
 that same name in another package.
 
 ```{r, summarise, exercise = TRUE}
@@ -303,7 +303,7 @@ gf_line(mean_user_rating ~ year, data = RMovies)
 ### Keep practicing, keep learning
 
 <div align="center">
-![ImpostR Syndrome](impostR.jpg)
+![ImpostR Syndrome](impostR.JPG)
 </div>
 
 
