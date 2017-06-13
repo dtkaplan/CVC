@@ -303,7 +303,7 @@ gf_line(mean_user_rating ~ year, data = RMovies)
 ### Keep practicing, keep learning
 
 <div align="center">
-![ImpostR Syndrome](impostR.JPG)
+![ImpostR Syndrome](images/impostR.JPG)
 </div>
 
 

@@ -333,6 +333,6 @@ gf_line(n ~ year, data = Pat, col = ~sex, size = 1, data = Pat)
 ### Keep practicing, keep learning
 
 <div align="center">
-![ImpostR Syndrome](impostR.JPG)
+![ImpostR Syndrome](images/impostR.JPG)
 </div>
 
