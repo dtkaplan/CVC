@@ -31,6 +31,8 @@ knitr::opts_chunk$set(echo = TRUE, tidy=FALSE, size="small",
 
 - No exceptions.
 
+- Wickham *Tidy Data* paper http://vita.had.co.nz/papers/tidy-data.html
+
 
 ========================================================
 
@@ -64,13 +66,10 @@ Data verbs take data tables as input and give data tables as output
 
 1. summarise(): computes summary statistics
 
-### Rows 
-2. filter():  subsets unwanted *cases* 
-3. arrange(): reorders the *cases* 
-
-### Collumns
-4. select(): subsets *variables* (and rename() )
-5. mutate(): transforms the *variable* (and transmute() like mutate, returns only new variables)
+2. filter():  subsets unwanted *cases* (rows)
+3. arrange(): reorders the *cases* (rows)
+4. select(): subsets *variables* (plus `rename()` ) (columns)
+5. mutate(): transforms the *variable* (and transmute() like mutate, returns only new variables) (columns)
 
 
 ========================================================
@@ -465,12 +464,8 @@ gf_line(year ~ mean_user_rating, data = RMovies)
 Data verbs take data tables as input and give data tables as output
 
 1. summarise(): computes summary statistics
-
-### Rows 
 2. filter():  subsets unwanted *cases* 
 3. arrange(): reorders the *cases* 
-
-### Collumns
 4. select(): subsets *variables* (and rename() )
 5. mutate(): transforms the *variable* (and transmute() like mutate, returns only new variables)
 
@@ -490,16 +485,32 @@ Data verbs take data tables as input and give data tables as output
     + n_distinct(): number of unique values
     + first_value(), last_value(), and nth_value(x, n): (like x[1], x[length(x)], and x[n] )
 
-Babynames
+Babynames dataset
 ========================================================
-
-
-## babynames Data
 
 
 ```{r}
 babynames %>% names()
+babynames %>% head()
 ```
+
+Babynames dataset
+========================================================
+
+
+```{r}
+babynames %>% glimpse()
+```
+
+Babynames dataset
+========================================================
+
+
+```{r}
+babynames %>% inspect()
+```
+
+Note: `prop` differs from what you think it might be.
 
 ========================================================
 
@@ -508,10 +519,11 @@ babynames %>% names()
 Again let's work with a small subset of the data.
 
 ```{r}
+set.seed(1999)
 smallbaby <-
   babynames %>%
   filter(year > 2000) %>%
-  sample_n(size = 200)
+  sample_n(size = 500)
 
 names(smallbaby)
 ```
@@ -587,14 +599,14 @@ smallbaby %>%
 ```{r}
 smallbaby %>%
   group_by(year) %>%
-  summarise(name_count = n_distinct(name))
+  summarise(name_count = n_distinct(name), num = n())  # equivalent to n() here
 ```
 
 ========================================================
 
 ## Try this
 
-## How many distinct names of each sex in each year?
+## How many distinct names of each sex?
 
 ```{r eval=FALSE}
 smallbaby %>%
@@ -606,12 +618,12 @@ smallbaby %>%
 
 ## Solution
 
-## How many distinct names of each sex in each year?
+## How many distinct names of each sex?
 
 ```{r}
 temp <- smallbaby %>%
-  group_by(year, sex) %>%
-  summarise(name_count = n_distinct(name))
+  group_by(sex) %>%
+  summarise(name_count = n_distinct(name), num = n())
 data.frame(temp)
 ```
 
