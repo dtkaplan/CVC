@@ -334,4 +334,5 @@ gf_line(n ~ year, data = Pat, col = ~sex, size = 1, data = Pat)
 
 <div align="center">
 ![ImpostR Syndrome](impostR.jpg)
+</div>
 
