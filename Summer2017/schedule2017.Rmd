@@ -140,8 +140,7 @@ Arrival day for many coming from out of town.
         * graphing concepts: [slides](Learn/VizConcepts/VizConcepts.html) [Danny]
         * **Activity:** data <-> graphs [Danny]
         * Eye Training: 
-        [[web]](https://dtkaplan.github.io/comp110/Presentations/333-eye-training-for-graphics.html)
-        [[pdf]](Learn/VizConcepts/eye-training.pdf)
+        [[case studies]](https://dtkaplan.github.io/comp110/Presentations/333-eye-training-for-graphics.html)
       
     b. Expanding the `ggformula` toolkit [Randy]
     
