@@ -1,7 +1,7 @@
 ---
 title: "Glyphs, Frames, and Scales"
 author: "Data Computing"
-date: "June 21, 2016"
+date: "June 13, 2017"
 output: slidy_presentation
 ---
 
