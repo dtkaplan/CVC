@@ -120,7 +120,7 @@ movies %>% names()
 ## 4. select() only certain variables
 
 ```{r}
-movies %>% select(., title,  budget, length)
+movies %>% select(title, budget, length)
 
 
 ```
@@ -131,7 +131,7 @@ movies %>% select(., title,  budget, length)
 ## 4. select() only certain variables
 
 ```{r}
-slim_movies<-movies %>% select(title, budget, length)
+slim_movies <- movies %>% select(title, budget, length)
 
 slim_movies %>% names()
 
@@ -139,8 +139,9 @@ slim_movies %>% names()
 
 - Reminder: select() is for *columns*
 - Note: this is equivalent code:
+
 ```{r eval=FALSE}
-slim_movies<-movies %>% select(., title, budget, length)
+slim_movies <- movies %>% select(., title, budget, length)
 ```
 
 ========================================================
@@ -170,7 +171,7 @@ slim_movies %>% tail()
 
 ## Choosing random movies: using sample_n()
 ```{r}
-slim_movies %>% sample_n(size=6)
+slim_movies %>% sample_n(size = 6)
 
 ```
 
@@ -192,8 +193,8 @@ slim_movies %>% sample_frac(.00007)
 
 Back to slim_movies data
 
-```{r }
-slim_movies<-slim_movies %>% filter(!is.na(budget), nchar(title)<24)
+```{r}
+slim_movies <- slim_movies %>% filter(!is.na(budget), nchar(title) < 24)
 ```
 
 
@@ -238,7 +239,7 @@ movies %>% summarise(n())
 
 ```{r}
 # total number of minutes of all the movies
-movies %>% summarise(sum(length, na.rm=TRUE))
+movies %>% summarise(sum(length, na.rm = TRUE))
 ```
 
 ========================================================
@@ -247,7 +248,7 @@ movies %>% summarise(sum(length, na.rm=TRUE))
 
 ```{r}
 # mean of minutes of all the movies
-movies %>% summarise(mean(length, na.rm=TRUE))
+movies %>% summarise(mean(length, na.rm = TRUE))
 ```
 
 
@@ -258,8 +259,8 @@ movies %>% summarise(mean(length, na.rm=TRUE))
 ```{r}
 # mean dollars per minute for movies with budget data 
 movies %>% 
-  mutate(dpm = budget/length) %>% 
-  summarise(mean(dpm, na.rm=TRUE))
+  mutate(dpm = budget / length) %>% 
+  summarise(mean(dpm, na.rm = TRUE))
 ```
 
 ========================================================
@@ -269,9 +270,9 @@ movies %>%
 ```{r}
 # mean length of movies in hours for all the movies, broken down by mpaa
 movies %>% 
-  mutate(hours = length/60) %>% 
+  mutate(hours = length / 60) %>% 
   group_by(mpaa) %>% 
-  summarise(mean(hours, na.rm=TRUE))
+  summarise(mean(hours, na.rm = TRUE))
 ```
 
 ========================================================
@@ -281,9 +282,9 @@ movies %>%
 ```{r}
 # average length in hours, by mpaa rating, sorted by average length
 movies %>% 
-  mutate(hours = length/60) %>% 
+  mutate(hours = length / 60) %>% 
   group_by(mpaa) %>% 
-  summarise(avelength = mean(hours, na.rm=TRUE)) %>% 
+  summarise(avelength = mean(hours, na.rm = TRUE)) %>% 
   arrange(avelength)
 ```
 
@@ -298,7 +299,7 @@ When starting, it can be helpful to work with a small subset of the data.  When 
 SmallSubset <-
   movies %>%
   filter(year > 2000) %>%
-  filter(mpaa !="")
+  filter(mpaa != "")
   
 
 ```
@@ -396,7 +397,7 @@ SmallSubset %>%
 ```{r}
 SmallSubset %>%
   group_by(year, mpaa) %>%
-  summarise(ComedyCount=sum(Comedy))
+  summarise(ComedyCount = sum(Comedy))
 
 ```
 
@@ -407,9 +408,9 @@ SmallSubset %>%
 ## Track the average IMDB ratings for movies with mpaa "R" over the years.
 
 ```{r eval=FALSE}
-Result <-
+RMovies <-
   movies %>%
-  filter(mpaa=="R") %>% # just the rated R movies
+  filter(mpaa == "R") %>%      # just the rated R movies
   group_by(????) %>% # for each year for each movie title
   summarise(mean_user_rating = ????)
 ```
@@ -421,9 +422,9 @@ Result <-
 ## Track the average IMDB ratings for movies with mpaa "R" over the years.
 
 ```{r }
-Result_M <-
+RMovies <-
   movies %>%
-  filter(mpaa=="R") %>% # just the rated R movies
+  filter(mpaa == "R") %>% # just the rated R movies
   group_by(year) %>% # for each year for each movie title
   summarise(mean_user_rating = mean(rating))
 ```
@@ -436,7 +437,7 @@ Put `year` on the x-axis and the `mean_user_rating` for each R rated movie on th
 
 
 ```{r eval=FALSE}
-gf_line(???? ~ ????, data = Result_M)
+gf_line(???? ~ ????, data = RMovies)
 
 ```
 
@@ -448,7 +449,7 @@ gf_line(???? ~ ????, data = Result_M)
 Put `year` on the x-axis and the `mean_user_rating` for each R rated movie on the y-axis
 
 ```{r, fig.center=TRUE}
-gf_line(year ~ mean_user_rating, data = Result_M)
+gf_line(year ~ mean_user_rating, data = RMovies)
 
 ```
 
@@ -610,7 +611,7 @@ smallbaby %>%
 ```{r}
 temp <- smallbaby %>%
   group_by(year, sex) %>%
-  summarise(name_count=n_distinct(name))
+  summarise(name_count = n_distinct(name))
 data.frame(temp)
 ```
 
@@ -624,9 +625,9 @@ subset for babies named Nicholas
 
 ```{r , fig.center=TRUE}
 
-nicknames <- babynames %>% filter(name=="Nicholas")
+nicknames <- babynames %>% filter(name == "Nicholas")
 
-gf_line(prop~year, data=nicknames)
+gf_line(prop ~ year, data = nicknames)
 ```
 
 
@@ -638,9 +639,9 @@ gf_line(prop~year, data=nicknames)
 
 ```{r, fig.center=TRUE}
 
-nicknames_male <- babynames %>% filter(name=="Nicholas", sex=="M")
+nicknames_male <- babynames %>% filter(name == "Nicholas", sex == "M")
 
-gf_line(prop~year, data=nicknames_male)
+gf_line(prop ~ year, data = nicknames_male)
 ```
 
 
@@ -653,7 +654,7 @@ gf_line(prop~year, data=nicknames_male)
 ### Track the yearly number of Janes and Marys over the years. Use the full dataset
 
 ```{r eval=FALSE}
-Result <-
+MaryJane <-
   babynames %>%
   ????(name %in% c("Jane", "Mary")) %>% # just the Janes and Marys
   group_by(????, ????) %>% # for each year for each name
@@ -669,7 +670,7 @@ Jane and Mary
 
 ### Track the yearly number of Janes and Marys over the years. Use the full dataset
 ```{r}
-Result <-
+MaryJane <-
   babynames %>%
   filter(name %in% c("Jane", "Mary")) %>% # just the Janes and Marys
   group_by(name, year) %>% # for each year for each name
@@ -683,7 +684,7 @@ Result <-
 ### Put `year` on the x-axis and the count of each name on the y-axis.
 
 ```{r , fig.center=TRUE}
-gf_point(count~year, data=Result) 
+gf_point(count ~ year, data = MaryJane) 
 
 ```
 
@@ -698,7 +699,7 @@ gf_point(count~year, data=Result)
 ### Plot out the result
 
 ```{r, eval=FALSE}
-gf_line(????~????+color:????+size:????, data=Result)
+gf_line(???? ~ ????, color = ????, size = ????, data = MaryJane)
 ```
 
 
@@ -710,7 +711,7 @@ gf_line(????~????+color:????+size:????, data=Result)
 ### Plot out the result
 
 ```{r ,fig.center=TRUE}
-gf_line(count~year+color:name+size:1, data=Result)
+gf_line(count ~ year, color = ~ name, size = 1, data = MaryJane)
 ```
 
 
@@ -755,7 +756,7 @@ Result2 <-
 ### Plot a line graph of the proportion of babies named Mary and Jane over the years with separate different colored lines for Mary and Jane
 
 ```{r , eval=FALSE}
-gf_line(????, ????+color:????, data=Result2)
+gf_line(???? ~ ????, color = ????, data = Result2)
 
 ```
 
@@ -766,7 +767,7 @@ gf_line(????, ????+color:????, data=Result2)
 ## Plot a line graph of the proportion of babies named Mary and Jane over the years with separate different colored lines for Mary and Jane
 
 ```{r , fig.center=TRUE}
-gf_line(proportion~year+color:name, data=Result2)
+gf_line(proportion ~ year, color = ~ name, data = Result2)
 
 ```
 
@@ -781,7 +782,7 @@ gf_line(proportion~year+color:name, data=Result2)
 
 ```{r fig.width=5, fig.height=3, fig.center=TRUE}
 Pat <- babynames %>%
-  filter(name== "Pat") 
+  filter(name == "Pat") 
 ```
 
 ========================================================
@@ -794,7 +795,7 @@ Pat <- babynames %>%
 
 ```{r , fig.center=TRUE}
 
-gf_line(n~year+col:sex+size:1, data=Pat)
+gf_line(n ~ year, col = ~ sex, size = 1, data = Pat)
 
 ```
 
