@@ -277,10 +277,9 @@ Baby <-
 gf_line(shortfall ~ year, data = Baby, color = ~sex)
 ```
 
+## Practice
 
-## Mary and Jane
-
-#### Exercise
+#### Exercise: Mary and Jane
 
  1. Create a data set that includes only girls named Mary or Jane.
  2. Use your data to create a plot showing the proportions of these two names over time.
@@ -298,12 +297,12 @@ gf_line( ??? )
 gf_line(proportion ~ year, color = ~name, data = MaryAndJane)
 ```
 
-## Your Name Here
 
-### Exercise
+### Exercise: Your Name Here
 
  1. Pick out a name of interest to you (perhaps your own name).
- 2. Plot out their popularity over time.
+ 2. Plot out its popularity over time.
+ 3. Bonus: do multple names at once.
 
 ```{r , pick-a-name, exercise = TRUE}
 OneName <- babynames %>%
@@ -313,7 +312,25 @@ gf_line(n ~ year, data = OneName, col = ~ sex, size = 1, data = OneName)
 ```
 
 
-### Exercises
+### Exercise: Popularity Contest
+
+Make a plot that shows the popularity of the most popular boy and girl name each year.
+
+  * Use `rank()` to rank the names (after grouping appropriately)
+  * You will want to do your ranking so that the most popular names get rank 1, the
+  next most popular, rank 2, etc.
+  
+```{r , popularity, exercise = TRUE}
+MostPopular <- 
+  babynames %>%
+  ## wrangle here
+  
+gf_line(prop ~ year, data = MostPopular, col = ~sex, data = MostPopular)
+```
+
+### Additional Exercise Ideas
+
+Want more practice?  Try some of these.
 
  1. Determine whether the name Pat was ever more common for males than for females.
  2. Take a look at the popularity of the name Hilary (for boys and girls) over time
@@ -328,9 +345,12 @@ gf_line(n ~ year, data = Pat, col = ~sex, size = 1, data = Pat)
 ```
 
 
-## You are on your way to wrangling and transforming your data with ease
 
-### Keep practicing, keep learning
+## You are on your way 
+
+### to wrangling and transforming your data with ease
+
+#### Keep practicing, keep learning
 
 <div align="center">
 ![ImpostR Syndrome](impostR.jpg)
