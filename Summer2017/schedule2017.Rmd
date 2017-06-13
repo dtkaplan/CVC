@@ -150,7 +150,9 @@ Arrival day for many coming from out of town.
         * scales and guides
         * labeling, themes, etc.
         * data requirements
-    
+        * [Plotting with Formulas](http://dtkaplan.shinyapps.io/Plotting_with_formulas)
+        * [Refining your plots](https://dtkaplan.shinyapps.io/Refining_ggformula/)
+        
     c. Brief Intro to `ggplot2` [Randy]
 
         * [slides](Learn/ggplot2/ggplot2Intro.pdf) 
