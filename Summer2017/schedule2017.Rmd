@@ -164,9 +164,10 @@ Arrival day for many coming from out of town.
  5. Working with data -- 5 verbs of `dplyr` [Nick]    
     a. Goal: Get your data into the right shape for graphing or analysis
  
-    b. [slides](Learn/Wrangling/dplyr-intro.html) for presentation; 
+    b. [slides](Learn/Wrangling/dplyr-intro.html) for presentation; [dplyr-babynames.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyr-babynames.Rmd) tutorial
 
-    c. Useful online resource: downloadable chapter on data wrangling from http://mdsr-book.github.io/
+    c. Building precursors to data wrangling: https://arxiv.org/abs/1401.3269
+    d. Useful online resource: downloadable chapter on data wrangling from http://mdsr-book.github.io/
  
 ### Wednesday
  
