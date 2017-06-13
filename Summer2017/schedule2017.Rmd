@@ -168,7 +168,7 @@ Arrival day for many coming from out of town.
     
     c. tutorials  
         * [dplyr-movies-tutorial.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyr-babynames.Rmd) tutorial
-        * [dplyr-babynames.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyr-babynames.Rmd) tutorial
+        * [dplyr-babynames.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyr-movies-tutorials.Rmd) tutorial
     
     d. Building precursors to data wrangling: https://arxiv.org/abs/1401.3269
     
