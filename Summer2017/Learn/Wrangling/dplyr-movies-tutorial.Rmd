@@ -227,7 +227,8 @@ Movies %>%
 # average length in hours, by mpaa rating, sorted by average length
 Movies %>% 
   group_by(mpaa) %>% 
-  summarise(avg_length = mean(hours, na.rm = TRUE) / 60) %>% 
+  mutate(hours = length/60) %>% 
+  summarise(avg_length = mean(hours, na.rm = TRUE)) %>% 
   arrange(avg_length)
 ```
 
