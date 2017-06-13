@@ -1049,14 +1049,14 @@ slim_movies %&gt;% names()
 </code></pre>
 
 <pre><code># A tibble: 6 x 3
-                          title   budget length
-                          &lt;chr&gt;    &lt;int&gt;  &lt;int&gt;
-1                Helter Skelter       NA     84
-2                    Sebastiane       NA     90
-3 Mary Pickford: A Life on Film       NA     98
-4       Bandits of Corsica, The       NA     81
-5                  Yosei Gorasu       NA     83
-6                     Liar Liar 45000000     86
+                    title budget length
+                    &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;
+1        Biggie and Tupac     NA    108
+2       Prigione di donne     NA     90
+3       Last Clear Chance     NA     26
+4          Geheimnis, Das     NA     80
+5                Rattlers     NA     82
+6 Ni na nebu ni na zemlji     NA    100
 </code></pre>
 
 </div>
@@ -1073,12 +1073,12 @@ slim_movies %&gt;% names()
 </code></pre>
 
 <pre><code># A tibble: 4 x 3
-            title budget length
-            &lt;chr&gt;  &lt;int&gt;  &lt;int&gt;
-1 Shazdeh Ehtejab     NA     93
-2        Yo Alien 100000     95
-3   Auguszta etet     NA      4
-4 Delitto d&#39;amore     NA    108
+                       title   budget length
+                       &lt;chr&gt;    &lt;int&gt;  &lt;int&gt;
+1              Hugs and Mugs       NA     16
+2           Playing by Heart 14000000    121
+3 How to Murder a Rich Uncle       NA     79
+4         Rockabilly Vampire       NA     90
 </code></pre>
 
 </div>
@@ -1653,7 +1653,7 @@ quantitative variables:
 smallbaby &lt;-
   babynames %&gt;%
   filter(year &gt; 2000) %&gt;%
-  sample_n(size = 500)
+  sample_n(size = 300)
 
 names(smallbaby)
 </code></pre>
@@ -1692,7 +1692,7 @@ names(smallbaby)
 <pre><code># A tibble: 1 x 1
   total
   &lt;int&gt;
-1 35438
+1 19580
 </code></pre>
 
 </div>
@@ -1728,21 +1728,21 @@ names(smallbaby)
 <pre><code># A tibble: 15 x 2
     year total
    &lt;dbl&gt; &lt;int&gt;
- 1  2001  3130
- 2  2002  1685
- 3  2003   313
- 4  2004   717
- 5  2005  1187
- 6  2006  3066
- 7  2007  2860
- 8  2008  1975
- 9  2009  2185
-10  2010   974
-11  2011  7910
-12  2012  2622
-13  2013  1514
-14  2014  3607
-15  2015  1693
+ 1  2001   671
+ 2  2002  1401
+ 3  2003   237
+ 4  2004   431
+ 5  2005   669
+ 6  2006   314
+ 7  2007  1422
+ 8  2008  1352
+ 9  2009  1901
+10  2010   541
+11  2011  6733
+12  2012  1627
+13  2013   438
+14  2014  1150
+15  2015   693
 </code></pre>
 
 </div>
@@ -1778,21 +1778,21 @@ names(smallbaby)
 <pre><code># A tibble: 15 x 3
     year name_count   num
    &lt;dbl&gt;      &lt;int&gt; &lt;int&gt;
- 1  2001         23    23
- 2  2002         27    27
- 3  2003         19    19
- 4  2004         29    29
- 5  2005         25    25
- 6  2006         31    31
- 7  2007         43    43
- 8  2008         39    39
- 9  2009         42    42
-10  2010         29    29
-11  2011         37    37
-12  2012         38    38
-13  2013         38    38
-14  2014         40    40
-15  2015         40    40
+ 1  2001         10    10
+ 2  2002         13    13
+ 3  2003         10    10
+ 4  2004         16    16
+ 5  2005         12    12
+ 6  2006         19    19
+ 7  2007         30    30
+ 8  2008         25    25
+ 9  2009         28    28
+10  2010         17    17
+11  2011         23    23
+12  2012         26    26
+13  2013         23    23
+14  2014         21    21
+15  2015         27    27
 </code></pre>
 
 </div>
@@ -1822,13 +1822,13 @@ names(smallbaby)
 
 <pre><code class="r">temp &lt;- smallbaby %&gt;%
   group_by(sex) %&gt;%
-  summarise(name_count = n_distinct(name), num = n())
+  summarise(name_count = n_distinct(name), num = n())  # not equivalent
 data.frame(temp)
 </code></pre>
 
 <pre><code>  sex name_count num
-1   F        318 321
-2   M        179 179
+1   F        189 190
+2   M        110 110
 </code></pre>
 
 </div>

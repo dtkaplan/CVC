@@ -523,7 +523,7 @@ set.seed(1999)
 smallbaby <-
   babynames %>%
   filter(year > 2000) %>%
-  sample_n(size = 500)
+  sample_n(size = 300)
 
 names(smallbaby)
 ```
@@ -623,7 +623,7 @@ smallbaby %>%
 ```{r}
 temp <- smallbaby %>%
   group_by(sex) %>%
-  summarise(name_count = n_distinct(name), num = n())
+  summarise(name_count = n_distinct(name), num = n())  # not equivalent
 data.frame(temp)
 ```
 
