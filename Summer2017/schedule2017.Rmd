@@ -165,6 +165,8 @@ Arrival day for many coming from out of town.
     a. Goal: Get your data into the right shape for graphing or analysis
  
     b. [slides](Learn/Wrangling/dplyr-intro.html) for presentation; 
+
+    c. Useful online resource: downloadable chapter on data wrangling from http://mdsr-book.github.io/
  
 ### Wednesday
  
