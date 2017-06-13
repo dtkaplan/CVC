@@ -704,9 +704,9 @@ gf_point(count ~ year, data = MaryJane)
 
 ## Try this
 
-* *Map* the name (Mary or Jane) to the aesthetic of color`+color:`.  
+* *Map* the name (Mary or Jane) to the color aesthetic 
 * Instead of using dots as the glyph, use a line that connects consecutive values: `gf_line()`.
-* *Set* the line thickness to `size:1`.
+* *Set* the line thickness to 2.
 
 ### Plot out the result
 
@@ -723,7 +723,7 @@ gf_line(???? ~ ????, color = ????, size = ????, data = MaryJane)
 ### Plot out the result
 
 ```{r ,fig.center=TRUE}
-gf_line(count ~ year, color = ~ name, size = 1, data = MaryJane)
+gf_line(count ~ year, color = ~ name, size = 2, data = MaryJane)
 ```
 
 
