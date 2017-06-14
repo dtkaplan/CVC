@@ -1,7 +1,7 @@
 ---
 title: "Access Wideband Audiology Immitance database using R and dplyr (Voss PI)"
 author: "Nicholas Horton (nhorton@amherst.edu)"
-date: "June 23, 2016"
+date: "June 15, 2017"
 output: 
   pdf_document:
     fig_height: 3
@@ -18,7 +18,9 @@ output:
 ```{r, include=FALSE}
 # Don't delete this chunk if you are using the mosaic package
 # This loads the mosaic and dplyr packages
-require(mosaic)
+library(mosaic)
+library(dbplyr)
+library(ggformula)
 ```
 
 ```{r, include=FALSE}
@@ -41,6 +43,7 @@ This document is intended to describe how to access data from a MySQL database u
 
 A relevant paper on the topic of data management and databases in R can be found at http://chance.amstat.org/2015/04/setting-the-stage.
 
+A Shiny app that displays datasets from this database can be found at https://r.amherst.edu/apps/nhorton/WAI/
 
 ## Accessing data from a database using SQL commands
 
@@ -96,7 +99,7 @@ Measurements %>% summarise(total = n())
 ```{r}
 onesubj <- 
   Measurements %>% 
-  filter(Identifier=="Voss_2014", Sub_Number==1) %>%
+  filter(Identifier=="Abur_2014", Sub_Number==1) %>%
   collect %>%
   mutate(SessionNum = as.factor(Session))
 head(onesubj)
@@ -106,7 +109,6 @@ head(onesubj)
 ```{r fig.height=6}
 onesubj <- mutate(onesubj, 
   Ear=ifelse(Left_Ear==1, "Left", "Right"))
-xyplot(Absorbance ~ Freq | SessionNum, group=Ear, auto.key=TRUE,
-       scales=list(x=list(log=TRUE)), 
+gf_point(Absorbance ~ Freq | SessionNum, color = ~ Ear,
        cex=0.2, data=onesubj)
 ```
