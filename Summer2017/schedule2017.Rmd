@@ -85,7 +85,7 @@ Arrival day for many coming from out of town.
 
  4. Introduction to R and R Studio [Randy]
 
-    * [Less Volume, More Creativity -- An R Quick Start](Learn/LessVolume/LessVolume.html) 
+    * [Less Volume, More Creativity -- An R Quick Start](Learn/LessVolume/LessVolume.html): see also https://journal.r-project.org/archive/2017/RJ-2017-024/RJ-2017-024.pdf
     
     * [US Births Tutorial](https://dtkaplan.shinyapps.io/USBirths/)
         - More details on `ggformula`: [a longer tutorial](http://dtkaplan.shinyapps.io/Plotting_with_formulas) & [refining graphics](http://dtkaplan.shinyapps.io/Refining_ggformula)
@@ -250,7 +250,7 @@ Arrival day for many coming from out of town.
 In the second half of the workshop, we will offer optional tutorials on topics of 
 interest to several workshop participants.   Here are some potential topics, but 
 don't be afraid to suggest others. If there is a name listed by a topic, talk to
-that person to find out more.
+that person to find out more.  (Note that Nick's last day is Thursday!)
 
 1. Github [Randy]
 2. learnr [Danny]
@@ -267,7 +267,7 @@ that person to find out more.
 13. Data Scraping from the Web [Miles or Danny]
 14. Getting data from a database [Nick]
 16. Resampling [Nick]
-17. Basic Statistical Methods
+17. Workflow for R Markdown in class and with students [Nick]
 18. Linear models with "Less Volume, More Creativity" [Nick]
 19. Creating R packages [Randy]
 20. R with LaTeX (similar to RMarkdown)
