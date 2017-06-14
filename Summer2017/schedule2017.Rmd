@@ -203,7 +203,7 @@ Arrival day for many coming from out of town.
 
     c. learnr (with hints and checked answers and bells and whistles, see https://rstudio.github.io/learnr and https://rstudio.github.io/learnr/exercises.html#hints-and-solutions) [Danny]
     
-    d. Leaflets ([leaflet.Rmd](XX), see also https://rstudio.github.io/leaflet) [Nick]
+    d. Leaflets ([leaflet.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Leaflets-breakout/Leaflet_notes.Rmd), see also https://rstudio.github.io/leaflet) [Nick]
  
  4. Welcome to 2nd-half participants
  
