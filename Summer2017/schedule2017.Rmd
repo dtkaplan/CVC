@@ -176,7 +176,11 @@ Arrival day for many coming from out of town.
  
 ### Wednesday
  
- 1. More data wrangling with `dplyr` and `tidyr` 
+ 1. More data wrangling with `dplyr` and `tidyr` [Randy] 
+  
+    a. `spread()`, `gather()`, joins, etc.
+    
+    b. A data tidying case study: [WHO TB data tutorial](Learn/Wrangling/tidydata-TB-tutorial.Rmd)
  
  <!--
     a. merging data from multiple sources [Danny]
