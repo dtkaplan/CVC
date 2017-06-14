@@ -17,8 +17,11 @@ require(ggformula)
 require(tidyr)
 require(readr)
 
+theme_set(theme_bw())
+
 data(who, package = "tidyr")
 data(population, package = "tidyr")
+
 ```
 
 
@@ -232,9 +235,10 @@ who %>%
   gather(key = "code", value = "new_cases", new_sp_m014:new_rel_f65) %>%
   separate(code, c("status", "diagnosis", "sexage"), sep = "_") %>%
   separate(sexage, c("sex", "age_group"), sep = 1) %>%
-  group_by(country, year) %>%
-  summarise(total_cases = sum(new_cases)) %>%
-  gg_line(total_cases ~ year, color = ~
+  group_by(country, iso3, year) %>%
+  summarise(total_cases = sum(new_cases, na.rm = TRUE)) %>%
+  filter(iso3 %in% c("USA", "IND", "CHN")) %>% 
+  gf_line(total_cases ~ year, color = ~country)
 ```
 
 ## Joins
