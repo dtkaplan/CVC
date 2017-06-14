@@ -24,6 +24,8 @@ data(population, package = "tidyr")
 
 ## Tidy Data 
 
+I'll delete this later.
+
 ### Structure of tidy data
 
 - rows (cases/observational units) and 
@@ -200,6 +202,8 @@ who %>%
 ```
 
 ```{r who-separate3-solution}
+# here is the solution for checking that we have equal numbers of males and females.
+# you can 
 who %>% 
   setNames(sub("newrel", "new_rel", names(.))) %>% 
   gather(key = "code", value = "new_cases", new_sp_m014:new_rel_f65) %>%
@@ -222,6 +226,17 @@ who %>%
   gather(key = "code", value = "new_cases", new_sp_m014:new_rel_f65) %>%
   separate(code, c("status", "diagnosis", "sexage"), sep = "_") %>%
   separate(sexage, c("sex", "age_group"), sep = 1) 
+```
+
+```{r, who-separate4-solution}
+who %>% 
+  setNames(sub("newrel", "new_rel", names(.))) %>% 
+  gather(key = "code", value = "new_cases", new_sp_m014:new_rel_f65) %>%
+  separate(code, c("status", "diagnosis", "sexage"), sep = "_") %>%
+  separate(sexage, c("sex", "age_group"), sep = 1) %>%
+  group_by(country, year) %>%
+  summarise(total_cases = sum(new_cases)) %>%
+  gg_line(total_cases ~ year, color = ~
 ```
 
 ## Joins
