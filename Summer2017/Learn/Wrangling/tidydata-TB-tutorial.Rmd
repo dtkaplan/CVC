@@ -24,8 +24,6 @@ data(population, package = "tidyr")
 
 ## Tidy Data 
 
-I'll delete this later.
-
 ### Structure of tidy data
 
 - rows (cases/observational units) and 
