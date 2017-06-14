@@ -42,7 +42,7 @@ That depends on the purpose.
     - one row per glyph that gets drawn
     - columns contain variables that get mapped to attributes
     
-  * The answer may be different at different points in an anlysis (or for different
+  * The answer may be different at different points in an analysis (or for different
   layers in the same plot)
 
 You should always know what the rows represent.
@@ -67,7 +67,7 @@ inspect(population)
 
 ### An Inconvenient Form: Data in variables
 
-For many purposes, the WHO data are in an incoventient format.
+For many purposes, the WHO data are in an inconvenient format.
 Each variable `new_sp_m014` through `newrel_f65`
 counts the number of new TB cases of a certain kind recorded in a given country, in a given year.
 The documentation says the variable names are constructed as follows: 
@@ -157,7 +157,7 @@ who %>%
   gather(key = "code", value = "new_cases", new_sp_m014:new_rel_f65)
 ```
 
-**Note:** The inverse operation to `gather()` is called `spread()`.  It takes a pair of colummns
+**Note:** The inverse operation to `gather()` is called `spread()`.  It takes a pair of columns
 and turns one column into variable names and the other into values.
 
 ## separate()
@@ -241,7 +241,7 @@ who %>%
 
 ### Comparing TB cases to population
 
-More interesting than the number of TB cases is the fraction of the popuation that is contracting TB.
+More interesting than the number of TB cases is the fraction of the population that is contracting TB.
 
   * `who` data does not include population.
   * the `population` data has population information, but nothing about TB
@@ -255,7 +255,7 @@ Both data sets have a `country` variable that we can use to match things up betw
  
 ### The join functions
 
-`dplyr` has a number of funtions with "join" in the name that are used to bring data from two sources
+`dplyr` has a number of functions with "join" in the name that are used to bring data from two sources
 together into one.  The basic syntax is 
 
 ```{r, eval = FALSE}
