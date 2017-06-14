@@ -207,7 +207,8 @@ Arrival day for many coming from out of town.
  
  4. Welcome to 2nd-half participants
  
- 5. Optional Tutorials, TBD
+ 5. Optional Tutorials     
+     - Learnr tutorials [the rmd document we developed](Projects/testing_tea/testing_tea/testing_tea.Rmd)
  
 ### Thursday
 
