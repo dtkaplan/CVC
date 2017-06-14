@@ -180,7 +180,7 @@ Arrival day for many coming from out of town.
   
     a. `spread()`, `gather()`, joins, etc.
     
-    b. A data tidying case study: [tidydata-TB-tutorial.Rmd](Learn/Wrangling/tidydata-TB-tutorial.Rmd)
+    b. A data tidying case study: [tidydata-TB-tutorial.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/tidydata-TB-tutorial.Rmd)
  
  <!--
     a. merging data from multiple sources [Danny]
