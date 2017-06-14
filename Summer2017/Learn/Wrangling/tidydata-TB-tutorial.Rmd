@@ -1,6 +1,6 @@
 ---
-title: "An Introduction to dplyr"
-author: "Miles Ott (with additions by Nicholas Horton)"
+title: "Tidying up a data set: A Case Study with TB data"
+author: "Randall Pruim"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -301,4 +301,35 @@ who %>%
   separate(sexage, c("sex", "age_group"), sep = 1) %>%
   left_join(population)
 ```
+
+## A few other things
+
+We didn't need them in this case study, but here are some additional functions that can be useful
+for tidying up your data.
+
+ * `readr::parse_number()`, `readr::parse_integer()`, `readr::parse_date()`, etc.: These functions read 
+ through the values in a variable and do there best to extract the type of information requested.
+ 
+
+```{r, parse-number, exercise = TRUE}
+readr::parse_number(c("123", "A53", ".53", "123-456", "$5.47", "95 degrees F"))
+```
+
+ * The `humanparser` package has tools for extracting people's names and figuring out first,
+ middle and last names.
+ 
+```{r, parse-names, exercise = TRUE}
+require(humanparser)
+full_names <- c("David Regan", "Izaque Iuzuru Nagata", "Rip Van Winkle",
+                "Christian Schmit de la Breli", "Peter Doyle", "Hans R. Bruetsch",
+                "Marcus Reichel", "Per-Axel Koch", "Louis Van der Walt",
+                "Mary Ellen Rudin", "Mario Adamek", "Ugur Tozsekerli", 
+                "Judit Ludvai")
+humanparser::parse_names(full_names)
+```
+ 
+ * `dplyr::bind_rows()`, `dplyr::bind_cols()`: These functions paste data frames together one below the other
+ or one next to the other -- provided the data frames are appropriately conformable.
+ 
+ * The `lubridate()` package has a number of tools for working with dates.
 
