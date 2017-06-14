@@ -230,6 +230,7 @@ who %>%
 ```
 
 ```{r, who-separate4-solution}
+# Note:  This will be more useful once we can scale by total population
 who %>% 
   setNames(sub("newrel", "new_rel", names(.))) %>% 
   gather(key = "code", value = "new_cases", new_sp_m014:new_rel_f65) %>%
@@ -237,7 +238,7 @@ who %>%
   separate(sexage, c("sex", "age_group"), sep = 1) %>%
   group_by(country, iso3, year) %>%
   summarise(total_cases = sum(new_cases, na.rm = TRUE)) %>%
-  filter(iso3 %in% c("USA", "IND", "CHN")) %>% 
+  filter(iso3 %in% c("USA", "IND", "CHN", "NGA", "DEU", "GHA")) %>% 
   gf_line(total_cases ~ year, color = ~country)
 ```
 
@@ -315,6 +316,22 @@ who %>%
   left_join(population)
 ```
 
+```{r, who-TB-rate-plot-solution, exercise = TRUE}
+who %>% 
+  setNames(sub("newrel", "new_rel", names(.))) %>% 
+  gather(key = "code", value = "new_cases", new_sp_m014:new_rel_f65) %>%
+  separate(code, c("status", "diagnosis", "sexage"), sep = "_") %>%
+  separate(sexage, c("sex", "age_group"), sep = 1) %>%
+  left_join(population) %>% 
+  group_by(country, year) %>%
+  summarise(
+    total_cases = sum(new_cases, na.rm = TRUE),
+    tb_rate = total_cases / max(population)
+  ) %>% 
+  filter(year == 2010) %>%
+  gf_dens(~ tb_rate)
+```
+
 #### Exercise
 
  1. Use the joined data below to locate the ten countries with the highest average TB rate over the 
@@ -378,5 +395,5 @@ humanparser::parse_names(full_names)
 
 #### Dates
 
-The `lubridate()` package has a number of tools for working with dates.
+The `lubridate` package has a number of tools for working with dates.
 
