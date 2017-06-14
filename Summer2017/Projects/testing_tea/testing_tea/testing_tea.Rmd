@@ -1,0 +1,99 @@
+---
+title: "Everything you've ever wanted to know about t"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyverse)
+library(ggformula)
+library(mosaic)
+set.seed(103)
+knitr::opts_chunk$set(echo = FALSE)
+make_data <- function(n, delta_means=10){
+  set.seed(103)
+  n_group_a <- n/2
+  n_group_b <- n - n_group_a
+  res <- data_frame(
+    vals = c(rnorm(n_group_a, mean = 100, sd = 10), 
+             rnorm(n_group_b, mean = 100 + delta_means, sd = 15)), 
+    group = c(rep("Sharks", n_group_a), rep("Jets", n_group_b))
+  )
+  set.seed(NULL)
+  
+  res
+}
+```
+
+## Assumptions about the t test
+
+* It is 1908 and we haven't learned any more modern method.
+* We're interested in the difference between two groups, and there's nothing else in the world that might influence the response variable than the grouping.
+
+### Making up data
+
+We'll have two groups, one will have a mean of 100 and the other of 110. We'll have $n$ cases altogether, evenly split.
+
+```{r echo = TRUE}
+n <- 20
+n_group_a <- n/2
+n_group_b <- n - n_group_a
+Made_up <- data_frame(
+  vals = c(rnorm(n_group_a, mean = 100, sd = 10), 
+            rnorm(n_group_b, mean = 110, sd = 15)), 
+  group = c(rep("Sharks", n_group_a), rep("Jets", n_group_b))
+  )
+```
+
+```{r}
+Made_up <- make_data(n = 20)
+Made_up %>%
+  gf_boxplot(vals ~ group) %>%
+  gf_point(vals ~ group, alpha = 0.25) %>%
+  gf_refine(coord_flip())
+```
+
+# The t test
+
+```{r}
+make_data(n=20) %>%
+  t.test(vals ~ group, data = .)
+```
+
+Some commentary
+
+### Exercise 
+
+Do what I say ...
+
+
+```{r firstpass, exercise = TRUE}
+make_data(n=20) %>%
+  t.test(___ ~ ___, data = .)
+```
+
+```{r firstpass-solution}
+make_data(n=20) %>%
+  t.test(vals ~ group, data = .)
+```
+
+
+
+<div id="firstpass-hint">What ever you want for your hint. And you can put as much here as you care to.
+
+* Bullet one
+* The **second** point
+* $\pi$
+</div>
+
+```{r Q1}
+question("Does p get smaller or larger as n increases?",
+         answer("large n tends to give large p", correct=FALSE,
+                message = "Did you read the book this morning?"),
+         answer("small n tends to give large p", correct = TRUE),
+         answer("It makes not a whit of difference", correct = FALSE,
+                message = "Don't bring your **nihilism** to my class! $e^{i \\pi} = -1$"),
+        allow_retry = TRUE,
+        random_answer_order = TRUE)
+```
