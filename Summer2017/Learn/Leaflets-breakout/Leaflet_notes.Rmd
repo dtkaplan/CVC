@@ -11,8 +11,16 @@ require(leaflet)
 require(sp)
 require(maps)
 ```
-
 # A simple map
+
+```{r}
+m <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lat=40.7566, lng=-73.9863, popup="Times Square")
+m  # Print the map
+```
+
+# Another simple map
 
 ```{r}
 mapStates <- map("state", fill = TRUE, plot = FALSE)
