@@ -182,6 +182,8 @@ who %>%
   separate(sexage, c("sex", "age_group"), sep = 1)
 ```
 
+**Note:** The inverse operation of `separate()` is `unite()`.  (`paste()` is often useful as well.)
+
 #### Exercise
 
 Now add on some additional code to check that things are working.
@@ -195,6 +197,16 @@ who %>%
   gather(key = "code", value = "new_cases", new_sp_m014:new_rel_f65) %>%
   separate(code, c("status", "diagnosis", "sexage"), sep = "_") %>%
   separate(sexage, c("sex", "age_group"), sep = 1) 
+```
+
+```{r who-separate3-solution}
+who %>% 
+  setNames(sub("newrel", "new_rel", names(.))) %>% 
+  gather(key = "code", value = "new_cases", new_sp_m014:new_rel_f65) %>%
+  separate(code, c("status", "diagnosis", "sexage"), sep = "_") %>%
+  separate(sexage, c("sex", "age_group"), sep = 1) %>%
+  group_by(sex) %>%
+  summarise(n = n())
 ```
 
 
@@ -307,16 +319,32 @@ who %>%
 We didn't need them in this case study, but here are some additional functions that can be useful
 for tidying up your data.
 
- * `readr::parse_number()`, `readr::parse_integer()`, `readr::parse_date()`, etc.: These functions read 
- through the values in a variable and do there best to extract the type of information requested.
- 
+#### Extracting values from text 
+
+`readr::parse_number()`, `readr::parse_integer()`, `readr::parse_date()`, etc.: These functions read 
+through the values in a variable and do there best to extract the type of information requested.
+The R ingestion functions will typically turn what you expect to be numeric values into text if there
+are any values that it cannot interpret as a number.  So this can be very handy when bringing in
+data created in other software.
+
+#### Exercise
+
+ 1. Enter some other types of text to see how `parse_number()` converts things.
+ 2. Try changing `parse_number()` to one of the other parsers.
 
 ```{r, parse-number, exercise = TRUE}
-readr::parse_number(c("123", "A53", ".53", "123-456", "$5.47", "95 degrees F"))
+require(readr)
+parse_number(c("123", "A53", ".53", "123-456", "$5.47", "95 degrees F", "-", "missing data"))
 ```
 
- * The `humanparser` package has tools for extracting people's names and figuring out first,
- middle and last names.
+<div id="parse-number-hint">
+See how many different date formats `parse_date()` can handle.  Dates can be tricky.
+</div>
+
+#### Human names
+
+The `humanparser` package has tools for extracting people's names and figuring out first,
+middle and last names.
  
 ```{r, parse-names, exercise = TRUE}
 require(humanparser)
@@ -330,6 +358,8 @@ humanparser::parse_names(full_names)
  
  * `dplyr::bind_rows()`, `dplyr::bind_cols()`: These functions paste data frames together one below the other
  or one next to the other -- provided the data frames are appropriately conformable.
- 
- * The `lubridate()` package has a number of tools for working with dates.
+
+#### Dates
+
+The `lubridate()` package has a number of tools for working with dates.
 
