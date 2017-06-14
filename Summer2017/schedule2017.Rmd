@@ -200,6 +200,8 @@ Arrival day for many coming from out of town.
 [Shiny resources](http://shiny.rstudio.com) [Nick]
  
     b. GitHub [Randy]
+
+    c. learnr (with hints and checked answers and bells and whistles) [Danny]
     
     d. Leaflets [Nick]
  
