@@ -1,62 +1,44 @@
 ---
 title: "Writing Functions"
-author: "R Pruim"
-date: "CVC 2016"
 output: 
-  html_document:
-    fig_height: 3
-    fig_width: 8
-  pdf_document:
-    fig_height: 3
-    fig_width: 5
-  word_document:
-    fig_height: 3
-    fig_width: 5
+  learnr::tutorial:
+    progressive: TRUE
+runtime: shiny_prerendered
 ---
 
-
-```{r, include = FALSE}
-# Don't delete this chunk if you are using the mosaic package
-# This loads the mosaic and dplyr packages
-require(mosaic)
-require(tidyr)
-```
-
-```{r, include = FALSE}
-# Some customization.  You can alter or delete as desired (if you know what you are doing).
-
-# This changes the default colors in lattice plots.
-trellis.par.set(theme = theme.mosaic())  
-
-# knitr settings to control how R chunks work.
-require(knitr)
-opts_chunk$set(
-  tidy=FALSE,     # display code as typed
-  size="small"    # slightly smaller font for code
-)
-```
-
-```{r, include=FALSE}
-# Load additional packages here.  Uncomment the line below to use Project MOSAIC data sets.
-# require(mosaicData)   
+```{r setup, include=FALSE}
+library(learnr)     # the tutorial package
+library(tibble)     # for dealing with tibble data
+library(ggformula)  # all those gf_functions live hear
+library(mosaicData) # mosaic data sets
+library(mosaic)     # Project MOSAIC tools 
+require(googlesheets)
+theme_set(theme_bw())   # get rid of the gray background in the plots
+# A few options for how R stuff is displayed
+knitr::opts_chunk$set(
+  echo = TRUE,                      # show R code in non-exercise chunks
+  fig.align = "center",             # center plots on the page
+  fig.width = 6, fig.height = 2.5   # default figure size
+  )
+HIVdata <- readr::read_csv("http://www.calvin.edu/~rpruim/data/HIVdata.csv")   
 ```
 
 
 ## Automating Plot Generation
 
-Yesterday we grabbed data on HIV prevalance from GapMinder,
-and after a bit of clean up, we created a plot.  I've saved the data
-as an [Rds file]("HIVdata.Rds"),
+I've saved a data set (originally from GapMinder) that has information on HIV prevelance by country over time. 
+I've saved the data as an [Rds file]("http://www.calvin.edu/~rpruim/data/HIVdata.Rds"),
 so we can skip the clean up for now and focus on the plot
 
-```{r}
-HIVdata <- readRDS("HIVdata.Rds") # available in CVC2016readonly
+```{r, read-hiv, exercise = TRUE}
+# read data from the web
+HIVdata <- readr::read_csv("http://www.calvin.edu/~rpruim/data/HIVdata.csv")   
 head(HIVdata, 3)
 ```
 
-Here's a plot we made with this data.
+Here's a plot we made can make with this data.
 
-```{r}
+```{r, plot1, exercise = TRUE}
 HIVdata %>%
   filter(country %in% c("Uganda", "Kenya", "Tanzania", "South Africa",
                         "Zimbabwe", "United States")) %>%
@@ -64,18 +46,55 @@ HIVdata %>%
   mutate(country = 
            reorder(country, HIV.perc, 
                    function(x) - max(x, na.rm = TRUE))) %>% 
-  ggplot(aes(x = year, y = HIV.perc, color = country)) +
-  geom_line(size = 2, alpha = 0.5) 
+  gf_line(HIV.perc ~ year, color = ~ country, size = 2, alpha = 0.5) 
 ```
 
-Actually, I've added one new feature to the plot.  I've reordered the levels 
+**Note:: I've added one new feature to the plot.  I've reordered the levels 
 of `country` so that the lines in the legend are in roughly the same order as the
-lines on the plot.
+lines on the plot.  This can make it easier to read the plot.  The `reorder()` function
+is a handy tool to have for adjusting the oder of things on plots.
 
-Now let's turn this into a simple (and not particularly useful)
-function.
 
-```{r}
+## A first function
+
+Now let's turn this into a simple (and not particularly useful) function.  The general outline 
+for defining a function is
+
+```{r, eval = FALSE}
+my_function_name <- function ( argument1, arguemnt2, ...) {
+
+  # stuff to do 
+  
+}
+```
+
+#### Exercise
+
+Edit the cod below by adding one line at the top and one line at the bottom
+
+  * top: `HIVplot <- function () {`
+  
+    * This says we are creating a function and naming it `HIVplot`.
+    * The arguments to the function go inside `(` and `)` -- this function doesn't have any yet, but we will be 
+    adding some shortly.
+    * The code defining the function will go between `{` and `}`.
+  * bottom: `}`
+    * This let's R know that we are done with our function definition.
+    * By default, the object created by the last expression in the function body is returned -- 
+    in this case, the plot.  This is the "result" of the function.
+
+```{r, first-function, exercise = TRUE}
+  HIVdata %>%
+    filter(country %in% c("Uganda", "Kenya", "Tanzania", "South Africa",
+                          "Zimbabwe", "United States")) %>%
+    filter(year > 1988) %>%
+    mutate(country = 
+             reorder(country, HIV.perc, 
+                     function(x) - max(x, na.rm = TRUE))) %>% 
+    gf_line(HIV.perc ~ year, color = ~country, size = 2, alpha = 0.5)
+```
+
+```{r, first-function-solution, exercise = TRUE}
 HIVplot <- function() {
   HIVdata %>%
     filter(country %in% c("Uganda", "Kenya", "Tanzania", "South Africa",
@@ -84,22 +103,18 @@ HIVplot <- function() {
     mutate(country = 
              reorder(country, HIV.perc, 
                      function(x) - max(x, na.rm = TRUE))) %>% 
-    ggplot(aes(x = year, y = HIV.perc, color = country)) +
-    geom_line(size = 2, alpha = 0.5) 
+    gf_line(HIV.perc ~ year, color = ~country, size = 2, alpha = 0.5)
 }
 ```
-Notice that the only difference is the first and last lines.  The first
-line indicates that we are going to create a function named 
-`HIVplot` and the portion between the curly braces is the definition.
-The object created by the last expression in the function body 
-is returned - in this case, the plot.
+
+
 
 As is, the funciton is not so useful, becuase it doesn't have any
 arguments, so it can only create the same plot repeatedly.  But even
 this can be useful for tasks that you want to repeat frequently in exactly
 the same way -- it can save a lot of typing:
 
-```{r}
+```{r, a-plot, exercise.setup = "first-function-solution", exercise = TRUE}
 HIVplot()
 ```
 
@@ -107,7 +122,7 @@ We can generalize this by adding some arguments that let us
 change features of the plot.  For example, we could add the abilty
 to adjust the width of the lines as follows:
 
-```{r}
+```{r, HIVplot2, exercise = TRUE}
 HIVplot2 <- function(linewidth = 2) {
   HIVdata %>%
     filter(country %in% c("Uganda", "Kenya", "Tanzania", "South Africa",
@@ -116,14 +131,11 @@ HIVplot2 <- function(linewidth = 2) {
     mutate(country = 
              reorder(country, HIV.perc, 
                      function(x) - max(x, na.rm = TRUE))) %>% 
-    ggplot(aes(x = year, y = HIV.perc, color = country)) +
-    geom_line(size = linewidth, alpha = 0.5) 
+    gf_line(HIV.perc ~ year, color = ~country, size = linewidth, alpha = 0.5)
 }
+HIVplot2(linewidth = 1)
 ```
 
-```{r}
-HIVplot2(linewidth = 5)
-```
 
 In a similar way, we can add several arguments to our function.  Let's
 add the following:
@@ -152,9 +164,15 @@ other arguments, which will typically have default values so that only
 those being overridden need to be specified.
 
  2. Because our indicator variable is described by a character string, we need 
-to use `aes_string()` rather than `aes()` to describe the aesthetics.
+ to do some work to create our formula. We'll also add a bit of fancy stuff.
+ 
+   * The default value will be the third variable in the data set (because GapMinder
+   data typically comes with the interesting variable there).
+   
+   * We will use `match.arg()` to do prefix matching on the names in the data
+   set, so we can be lazy and only type the first few characters.
 
- 3. Our new function can plot time series for any data wet that has columns named
+ 3. Our new function can plot time series for any data that has columns named
 `country` and `year` and an additional column containing the "indicator" to be 
 plotted.  So we should give the function a name that reflects this generality.
 We could call it `GapminderPlot()`, since it is designed to work with 
@@ -168,11 +186,11 @@ not very flexibly designed for arbitrary time series data.
  find that they almost do some other task you didn't think of when you originally
  wrote the function.
 
-```{r}
+```{r, GapMinderPlot, exercise = TRUE}
 GapMinderPlot <- 
   function( 
     data, 
-    indicator,
+    indicator = names(data)[3],
     countries = c( "South Africa", "Zimbabwe", "United States"),
     linewidth = 1.2,
     first_year = min(~year, data = data),
@@ -180,27 +198,21 @@ GapMinderPlot <-
     ) 
     {
 
-  # this finds indicator among the names of the variables even if it is abbreviated
-  # to a unique prefix.
-  indicator <- match.arg(indicator, names(data)) 
-  
+  indicator <- match.arg(indicator, names(data))
+  formula <- as.formula( paste( indicator, "~", "year") )
   data %>%
     filter(country %in% countries) %>%
     filter(year >= first_year) %>%
-    ggplot(aes_string(x = "year", y = indicator, color = "country")) +
-    geom_line(size = linewidth, alpha = opacity)
-}
-```
+    gf_line(formula, color = ~country, size = linewidth, alpha = opacity)
+  }
 
-Now we can make a plot using our function
-
-```{r}
-GapMinderPlot( HIVdata, "HIV", linewidth = 4)
-GapMinderPlot( HIVdata, "HIV",
+GapMinderPlot( HIVdata, linewidth = 4)
+GapMinderPlot( HIVdata, 
                countries = c("United States", "South Africa", "Kenya"),
                first_year = 1990,
                linewidth = 1) 
 ```
+
 
 We have lost one feature in this version.  We have lost the reordering of the
 countries.  This can be reintroduced, but it is tricky to do it with mutate since 
@@ -212,7 +224,7 @@ While we are at it, let's make the
 default value of `indicator` be the name of the third column of `data` (where it will
 be located if the data are processed from GapMinder the way we have done it).
 
-```{r}
+```{r, GapMinerPlot2, exercise = TRUE}
 GapMinderPlot <- 
   function( 
     data, 
@@ -227,21 +239,22 @@ GapMinderPlot <-
   # this finds indicator among the names of the variables even if it is abbreviated
   # to a unique prefix.
   indicator <- match.arg(indicator, names(data)) 
+  formula <- as.formula( paste( indicator, "~", "year") )
   
-  data <- data %>%
-    filter(country %in% countries) %>%
-    filter(year >= first_year)
+  data <- 
+    data %>%
+    filter(country %in% countries) 
   
-  data[["country"]] <- 
-    reorder(data[["country"]], data[[indicator]], function(x) - max(x, na.rm = TRUE))
- 
-  data %>% 
-    ggplot(aes_string(x = "year", y = indicator, color = "country")) +
-    geom_line(size = linewidth, alpha = opacity)
-}
-```
+  data[["country"]] <-
+     reorder(data[["country"]], data[[indicator]], function(x) - max(x, na.rm = TRUE))
+  
+  data %>%
+    filter(year >= first_year) %>%
+    gf_line(formula, color = ~country, size = linewidth, alpha = opacity)
+  }
 
-```{r}
+# adjust the entries here to try out some different plots
+
 GapMinderPlot( HIVdata,
                countries = c("United States", "South Africa", "Kenya"),
                first_year = 1990,
@@ -254,11 +267,9 @@ Now let's create a function that can read in data from a GapMinder
 spreadhseet and reformat the resutling data so that is is glyph
 ready for our plot.
 
-```{r}
-require(googlesheets)
-```
 
-```{r, loaddata}
+```{r, load-gapminder, exercise = TRUE}
+require(googlesheets)
 load_gapminder <- function( url, name = "value") {
   google_connection <- gs_url( url, visibility = "public" )
   
@@ -287,7 +298,7 @@ load_gapminder <- function( url, name = "value") {
 }
 ```
 
-```{r}
+```{r, a-chunk, exercise.setup = "load-gapminder", exercise = TRUE}
 hiv_url <- 
   "https://docs.google.com/spreadsheets/d/1kWH_xdJDM4SMfT_Kzpkk-1yuxWChfurZuWYjfmv51EA/pub?gid=0"
 HIVdata2 <- load_gapminder(hiv_url, name = "HIV.perc")
@@ -297,15 +308,83 @@ GapMinderPlot(HIVdata2, "HIV.perc")
 We can also load other GapMinder spreadsheets by supplying a different URL.
 Here is life expectency data.
 
-```{r}
+```{r, life-expectency, exercise.setup = "load-gapminder", exercise = TRUE}
 le_url <-
   "https://docs.google.com/spreadsheets/d/1H3nzTwbn8z4lJ5gJ_WfDgCeGEXK3PVGcNjQ_U5og8eo/pub?gid=0"
 LifeExpectency <- load_gapminder( le_url, name = "life.expectancy" ) 
 ```
 
+```{r two-plots-setup}
+
+require(googlesheets)
+load_gapminder <- function( url, name = "value") {
+  google_connection <- gs_url( url, visibility = "public" )
+  
+  # using the dimensions of the spread sheet, read the portion
+  # that contains data.  Specifying the range should not be necessary
+  # for newer google sheets.
+  result <-
+    gs_read(google_connection,
+            range = cell_limits(c(1,1),
+                                c(google_connection$ws$row_extent[1],
+                                  google_connection$ws$col_extent[1]))
+    ) 
+  
+  # name the first column country
+  names(result)[1] <- "country"
+ 
+  # convert from wide to long format 
+  result <- 
+    result %>% 
+    gather( year, value, -country ) %>% 
+    mutate( year = extract_numeric(year))
+  
+  # rename the indicator column
+  names(result)[3] <- name
+  result    # returned value since it is the last line evaluated
+}
+
+GapMinderPlot <- 
+  function( 
+    data, 
+    indicator = names(data)[3], 
+    countries = c( "South Africa", "Zimbabwe", "United States"),
+    linewidth = 1.2,
+    first_year = min(~year, data = data),
+    opacity = .8
+    ) 
+    {
+
+  # this finds indicator among the names of the variables even if it is abbreviated
+  # to a unique prefix.
+  indicator <- match.arg(indicator, names(data)) 
+  formula <- as.formula( paste( indicator, "~", "year") )
+  
+  data <- 
+    data %>%
+    filter(country %in% countries) 
+  
+  data[["country"]] <-
+     reorder(data[["country"]], data[[indicator]], function(x) - max(x, na.rm = TRUE))
+  
+  data %>%
+    filter(year >= first_year) %>%
+    gf_line(formula, color = ~country, size = linewidth, alpha = opacity)
+  }
+
+# adjust the entries here to try out some different plots
+
+le_url <-
+  "https://docs.google.com/spreadsheets/d/1H3nzTwbn8z4lJ5gJ_WfDgCeGEXK3PVGcNjQ_U5og8eo/pub?gid=0"
+LifeExpectency <- load_gapminder( le_url, name = "life.expectancy" ) 
+hiv_url <- 
+  "https://docs.google.com/spreadsheets/d/1kWH_xdJDM4SMfT_Kzpkk-1yuxWChfurZuWYjfmv51EA/pub?gid=0"
+HIVdata2 <- load_gapminder(hiv_url, name = "HIV.perc")
+```
+
 We can now use our plotting function with any of these data sets.
 
-```{r}
+```{r, two-plots, exercise = TRUE}
 GapMinderPlot( LifeExpectency )
 GapMinderPlot( HIVdata )
 ```
@@ -313,13 +392,13 @@ GapMinderPlot( HIVdata )
 Note that because our function returns a ggplot object, we can "add" to it just like 
 to any other ggplot object.
 
-```{r}
-GapMinderPlot( LifeExpectency, opacity=0.5, countries=c("United States", "Germany", "South Africa") ) +
-  labs(y = "Life Expectency", x = "Year", title = "Life Expectency Over Time") +
-  theme_bw() +
-  annotate("text", x= 1863, y=45, label = "Civil War") +
-  annotate("text", x= 1916, y=64, label = "WWW 1") +
-  annotate("text", x= 1942, y=76, label = "WWW 2")
+```{r, two-plot-refine, exercise.setup = "two-plots-setup", exercise = TRUE}
+GapMinderPlot( LifeExpectency, opacity=0.5, countries=c("United States", "Germany", "South Africa") ) %>%
+  gf_labs(y = "Life Expectency", x = "Year", title = "Life Expectency Over Time") %>%
+  gf_theme(theme_bw()) %>%
+  gf_refine(annotate("text", x= 1863, y=45, label = "Civil War")) %>%
+  gf_refine(annotate("text", x= 1916, y=64, label = "WWW 1")) %>%
+  gf_refine(annotate("text", x= 1942, y=76, label = "WWW 2")) 
 ```
 
 
@@ -375,4 +454,3 @@ my_function_name <- function () {
  frequently.
  
  3. Write a plotting function for a kind of plot you anticipate making frequently.
- 
