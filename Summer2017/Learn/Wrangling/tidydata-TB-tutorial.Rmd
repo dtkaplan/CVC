@@ -316,7 +316,7 @@ who %>%
   left_join(population)
 ```
 
-```{r, who-TB-rate-plot-solution, exercise = TRUE}
+```{r, who-TB-rate-plot-solution}
 who %>% 
   setNames(sub("newrel", "new_rel", names(.))) %>% 
   gather(key = "code", value = "new_cases", new_sp_m014:new_rel_f65) %>%
@@ -339,13 +339,34 @@ years for which they reported data.
 
  2. Plot the TB rates over time for these ten countries.
 
-```{r, who-top-TB-rate, exercise = TRUE}
+```{r, who-top-tb-rate, exercise = TRUE}
 who %>% 
   setNames(sub("newrel", "new_rel", names(.))) %>% 
   gather(key = "code", value = "new_cases", new_sp_m014:new_rel_f65) %>%
   separate(code, c("status", "diagnosis", "sexage"), sep = "_") %>%
   separate(sexage, c("sex", "age_group"), sep = 1) %>%
   left_join(population)
+```
+
+```{r, who-top-tb-rate-solution}
+who %>% 
+  setNames(sub("newrel", "new_rel", names(.))) %>% 
+  gather(key = "code", value = "new_cases", new_sp_m014:new_rel_f65) %>%
+  separate(code, c("status", "diagnosis", "sexage"), sep = "_") %>%
+  separate(sexage, c("sex", "age_group"), sep = 1) %>%
+  left_join(population) %>% 
+  group_by(country, iso3, year) %>%
+  summarise(
+    total_cases = sum(new_cases, na.rm = TRUE),
+    tb_rate = total_cases / max(population)
+  ) %>% 
+  group_by(country, iso3) %>%
+  mutate(mean_tb_rate = mean(tb_rate, na.rm = TRUE)) %>%
+  ungroup() %>%
+  arrange(-mean_tb_rate) %>%
+  head(10 * (2013 - 1979)) %>%
+  gf_line(tb_rate ~ year, color = ~ iso3) %>% 
+  gf_lims(x = c(1990, NA))
 ```
 
 ## A few other things
