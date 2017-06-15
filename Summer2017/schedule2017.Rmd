@@ -233,7 +233,7 @@ Arrival day for many coming from out of town.
  3. Optional Tutorials, TBD
  
    a. Using Github and Making Packages
-   
+      * [Hadley's advice on making packages with modern tools](http://r-pkgs.had.co.nz/)
       * [learn git branching](http://learngitbranching.js.org/)
       * data at [http://www.calvin.edu/~rpruim/data/HIVdata.csv](http://www.calvin.edu/~rpruim/data/HIVdata.csv)
 
