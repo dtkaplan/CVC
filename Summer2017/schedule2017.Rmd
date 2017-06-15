@@ -220,10 +220,9 @@ Arrival day for many coming from out of town.
       * [SQL in R Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/SQL/sql-example.Rmd)
     c. Making data available to others (esp. students) via the web. [Notes](Learn/WorkingWithStudents/Providing_files_to_students.html)
     d. Writing functions in R
-      * Tom, Dick, and Harry [[html](Learn/WritingFunctions/TomDickAndHarry.html), 
-      [Rmd](Learn/WritingFunctions/TomDickAndHarry.Rmd)]
-      * How to Write Functions [[html](Learn/WritingFunctions/HowToWriteFunctions.html),
-      [Rmd](Learn/WritingFunctions/HowToWriteFunctions.Rmd)]
+      * Tom, Dick, and Harry [[html](../Summer2016/Learn/WritingFunctions/TomDickAndHarry.html), 
+      [Rmd](../Summer2016/Learn/WritingFunctions/TomDickAndHarry.Rmd)]
+      * How to Write Functions [Tutorial](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/WritingFunctions/HowToWriteFunctions.Rmd)
     e. Googlesheets [Randy or Danny]
 
  2. Working on projects
