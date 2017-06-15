@@ -232,6 +232,10 @@ Arrival day for many coming from out of town.
  
  3. Optional Tutorials, TBD
  
+   a. Using Github and Making Packages
+   
+      * [learn git branching](http://learngitbranching.js.org/)
+ 
 
 ### Friday
 
