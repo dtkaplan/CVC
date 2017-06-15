@@ -235,7 +235,7 @@ Arrival day for many coming from out of town.
    a. Using Github and Making Packages
    
       * [learn git branching](http://learngitbranching.js.org/)
- 
+      * data at [http://www.calvin.edu/~rpruim/data/HIVdata.csv](http://www.calvin.edu/~rpruim/data/HIVdata.csv)
 
 ### Friday
 
