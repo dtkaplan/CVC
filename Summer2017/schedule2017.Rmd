@@ -218,7 +218,10 @@ Arrival day for many coming from out of town.
     b. Using `dplyr` with an SQL data base 
       * [SQL in R pdf](Learn/SQL/sql-example.pdf)
       * [SQL in R Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/SQL/sql-example.Rmd)
-    c. Making data available to others (esp. students) via the web. [Notes](Learn/WorkingWithStudents/Providing_files_to_students.html)
+    <!-- c. Making data available to others (esp. students) via the web. [Notes](Learn/WorkingWithStudents/Providing_files_to_students.html) -->
+    c. Simple text mining for fun and profit
+      * [html](Learn/Text/text.html)
+      * [Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Text/text.Rmd)
     d. Writing functions in R
       * Tom, Dick, and Harry [[html](Learn/WritingFunctions/TomDickAndHarry.html), 
       [Rmd](Learn/WritingFunctions/TomDickAndHarry.Rmd)]
