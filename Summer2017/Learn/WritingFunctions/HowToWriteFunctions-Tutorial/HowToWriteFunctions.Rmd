@@ -443,6 +443,7 @@ Adjust the arguments of this function call to change the plot.
 GapMinderPlot(
   LifeExpectency, 
   countries = c("Germany", "United States", "New Zealand", "China", "India", "Japan"))
+GapMinderPlot(LifeExpectency)
 ```
 
 ### The plot is returned, not printed
