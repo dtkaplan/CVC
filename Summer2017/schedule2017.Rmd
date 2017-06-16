@@ -248,20 +248,20 @@ Arrival day for many coming from out of town.
    
  3. Break out sessions
     a. Shiny
-    b. Web scrabing
+    b. Web scraping
     c. Machine Learning
       * [Notes](Learn/MachineLearning/MachineLearning.html)
     d. Modeling in R
       * [Transcript of Break out](Learn/Modeling/Modeling2.html)
       * [PDF from 2016](Learn/Modeling/Modeling.pdf)
-    
    
- 4. Live Project Reports (in parallel)
+ 4. Project Reports
 
- 5. Closing thoughts and goodbyes (time TBA)
+ 5. Closing thoughts and good-byes
  
 ### Things we did this week
 
+Here is a sampler of things people worked on during their "project time" this week.
  
  * USC Dornsife/LA Times Daybreak Election Poll
     * data available online
@@ -270,6 +270,7 @@ Arrival day for many coming from out of town.
     
  * Tutorials for lower division Science courses to show how stats can be used there
     * Chem, Bio, Env Science
+    
  * Wrangle data for a longitudinal study
  
  * Animation of seismic waves passing through the US (Earth scope data)
@@ -311,14 +312,7 @@ Arrival day for many coming from out of town.
     * data wrangling for data that will be used
     * shiny app with repository of example analyses
     
-  * working with data from CDC survey on behavior risk
-    
- 
- 
-
-<!--
- 3. Finding R packages and documentation [Nick]
--->
+  * Working with data from CDC survey on behavior risk
   
 ### Additional Topics TBD
 
