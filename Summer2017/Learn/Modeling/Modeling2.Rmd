@@ -1,0 +1,151 @@
+---
+title: "Modeling in R"
+author: ""
+date: ""
+output: 
+  html_document:
+    fig_height: 3
+    fig_width: 5
+  pdf_document:
+    fig_height: 3
+    fig_width: 5
+  word_document:
+    fig_height: 3
+    fig_width: 5
+---
+
+```{r, setup, include=FALSE}
+require(mosaic)   # Load additional packages here 
+require(ggformula)
+theme_set(theme_bw(base_size = 9))
+
+# Some customization.  You can alter or delete as desired (if you know what you are doing).
+trellis.par.set(theme=theme.mosaic()) # change default color scheme for lattice
+knitr::opts_chunk$set(
+  tidy=FALSE,     # display code as typed
+  size="small")   # slightly smaller font for code
+```
+
+
+## Modeling in R
+
+### (Simple) Linear Regression
+
+Let's predict length from width.
+
+#### Begin with a plot
+```{r}
+head(KidsFeet)
+gf_point(length ~ width, data = KidsFeet) %>%
+  gf_lm(length ~ width)
+```
+
+#### Fit a model and summarize
+
+Here is the summary several times over using different styes.  `msummary()` gives a more minimal summary.
+
+```{r}
+Kids.model <- lm(length ~ width, data = KidsFeet)
+msummary(Kids.model)
+Kids.model %>% msummary() 
+lm(length ~ width, data = KidsFeet) %>%
+  msummary()
+```
+
+#### ANOVA table if you like
+
+```{r}
+anova(Kids.model)
+```
+
+#### Function-based predictions
+
+```{r}
+# create a function
+predicted.length <- makeFun(Kids.model)
+# use it to make a prediction
+predicted.length(width = 8.5)
+# use it to make multiple predictions
+predicted.length(width = c(8, 8.5, 9))
+# or predict for all widths in the data set
+fitted(Kids.model)
+```
+
+#### But wait, there's more -- interval predictions
+
+```{r}
+predicted.length( width = 9, interval = "confidence")
+predicted.length( width = 9, interval = "prediction")
+gf_point(length ~ width, data = KidsFeet) %>%
+  gf_lm(length ~ width) %>%
+  gf_pointrange(24.73 + 24.4 + 25.06 ~ 9, color = "red")
+gf_pointrange()
+apropos("gf_")
+```
+#### Automated intervals for coefficients
+
+```{r}
+confint(Kids.model, level = 0.9 )
+```
+
+### Adding some predictors
+
+```{r}
+Kids.model2 <- lm( length ~ width + domhand, data = KidsFeet)
+msummary(Kids.model2)
+mplot(Kids.model2, which = 1:7, system = "gg")
+gf_lm(length ~ width, color = ~domhand, data = KidsFeet)
+plotModel(Kids.model2, system = "gg")
+```
+
+
+### Adding interaction
+
+```{r}
+Kids.model3 <- lm( length ~ width * domhand, data = KidsFeet)
+msummary(Kids.model3)
+plotModel(Kids.model3, system = "gg")
+```
+
+Take a look in the `effects` package for a general way to plot complicted models.
+
+### Higher order polynomial terms and transformations
+
+```{r}
+Kids.model4 <- lm( log(length) ~ poly(width,2) * domhand, data = KidsFeet)
+msummary(Kids.model4)
+```
+
+### Generalized linear models
+
+```{r}
+glm(sex ~ length * domhand, data = KidsFeet, family = binomial(link = logit)) %>%
+  msummary()
+glm(sex ~ length * domhand, data = KidsFeet, family = binomial(link = logit)) %>%
+  plotModel(system = "gg")
+```
+
+
+### What about ANOVA
+
+```{r}
+lm( length ~ sex * domhand, data = KidsFeet) %>%
+  anova()
+aov( length ~ sex * domhand, data = KidsFeet) 
+```
+
+```{r}
+xyplot(length ~ sex, groups = domhand, type = c("a", "p"), data = KidsFeet)
+gf_point(length ~ sex, color = ~domhand, data = KidsFeet) %>%
+  gf_line(length ~ sex, color = ~domhand, data = KidsFeet, stat = stat_summary())
+```
+
+### A nonlinear model
+
+```{r}
+nls( length ~ a + width^p, data = KidsFeet, start = list(a = 0, p = 1)) %>% 
+  summary()
+```
+
+
+
