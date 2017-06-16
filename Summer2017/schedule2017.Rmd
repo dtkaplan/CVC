@@ -250,6 +250,7 @@ Arrival day for many coming from out of town.
     a. Shiny
     b. Web scrabing
     c. Machine Learning
+      * [Notes](Learn/MachineLearning/MachineLearning.html)
     d. Modeling in R
       * [Transcript of Break out](Learn/Modeling/Modeling2.html)
       * [PDF from 2016](Learn/Modeling/Modeling.pdf)
