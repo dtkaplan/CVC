@@ -251,6 +251,8 @@ Arrival day for many coming from out of town.
     b. Web scrabing
     c. Machine Learning
     d. Modeling in R
+      * [Transcript of Break out](Learn/Modeling/Modeling2.html)
+      * [PDF from 2016](Learn/Modeling/Modeling.pdf)
     
    
  4. Live Project Reports (in parallel)
