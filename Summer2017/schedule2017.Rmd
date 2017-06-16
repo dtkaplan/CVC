@@ -263,6 +263,59 @@ Arrival day for many coming from out of town.
 ### Things we did this week
 
  
+ * USC Dornsife/LA Times Daybreak Election Poll
+    * data available online
+    * time series of overall trends Clinton vs Trump
+    * to do: add in covariates from the data
+    
+ * Tutorials for lower division Science courses to show how stats can be used there
+    * Chem, Bio, Env Science
+ * Wrangle data for a longitudinal study
+ 
+ * Animation of seismic waves passing through the US (Earth scope data)
+    * ggmap for mapping
+    * ffmpeg to stich stills into movie
+    
+  * Earthquake epicenter mapper with additional data overlays
+  
+  * Tutorial for intro stats class 
+    * learned to think about goals and flow of tutorial
+    * first week of class tutorial -- "run and adjust"
+    
+  * Migrating from SAS to R
+    * love graphics in R
+    * hoping to move more and more analyses to R
+    
+  * Bike share data in DC & Twin Cities
+    * visualzation of usage over time (and season)
+    
+  * [HMP Explorer](http://rstudio.calvin.edu:3939/connect/#/apps/4/access)
+     * Human Microbiome data
+     
+  * Two shiny apps
+    * Coin Flipping simulations
+    * Goodness of Fit Test 
+    
+  * Maps using R
+  
+  * Learn to make tutorials with 
+    * mathematical formulas
+    * visualization of t-test
+    * solution code
+    * sliders to adjust plots and other output
+    * exercises/quizzes
+    
+  * Visualiztion of Interlibrary Load data
+    
+  * Make better connections between Inro Biostats and Bio Course
+    * data wrangling for data that will be used
+    * shiny app with repository of example analyses
+    
+  * working with data from CDC survey on behavior risk
+    
+ 
+ 
+
 <!--
  3. Finding R packages and documentation [Nick]
 -->
