@@ -225,7 +225,7 @@ Arrival day for many coming from out of town.
     d. Writing functions in R
       * Tom, Dick, and Harry [[html](../Summer2016/Learn/WritingFunctions/TomDickAndHarry.html), 
       [Rmd](../Summer2016/Learn/WritingFunctions/TomDickAndHarry.Rmd)]
-      * How to Write Functions [Tutorial](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/WritingFunctions/HowToWriteFunctions.Rmd)
+      * How to Write Functions Tutorial [[Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/WritingFunctions/HowToWriteFuctions-Tutorial/HowToWriteFunctions.Rmd), [Live Tutorial](http://rstudio.calvin.edu:3939/writing-functions/)]
     e. Googlesheets [Randy or Danny]
 
  2. Working on projects

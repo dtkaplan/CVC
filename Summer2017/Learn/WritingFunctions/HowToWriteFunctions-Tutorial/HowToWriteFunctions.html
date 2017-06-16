@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<meta name="progressive" content="true" />
+<meta name="allow-skip" content="true" />
+
+<title>Writing Functions</title>
+
+
+<!-- highlightjs -->
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+
+
+<div class="pageContent band">
+<div class="bandContent page">
+
+<div class="topics">
+
+<div id="section-automating-plot-generation" class="section level2">
+<h2>Automating Plot Generation</h2>
+<div id="section-some-hiv-data" class="section level3">
+<h3>Some HIV data</h3>
+<p>I’ve saved a data set (originally from GapMinder) that has information on HIV prevelance by country over time. I’ve saved the data at <a href="%22http://www.calvin.edu/~rpruim/data/HIVdata.csv%22">http://www.calvin.edu/~rpruim/data/HIVdata.csv</a>, so we can skip the clean up for now and focus on the plot.</p>
+<div class="tutorial-exercise" data-label="read-hiv" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># read data from the web
+HIVdata &lt;- readr::read_csv(&quot;http://www.calvin.edu/~rpruim/data/HIVdata.csv&quot;)   
+head(HIVdata, 3)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+</div>
+<div id="section-an-hiv-plot" class="section level3">
+<h3>An HIV plot</h3>
+<p>Here’s a plot we made can make with this data.</p>
+<div class="tutorial-exercise" data-label="plot1" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>HIVdata %&gt;%
+  filter(country %in% c(&quot;Uganda&quot;, &quot;Kenya&quot;, &quot;Tanzania&quot;, &quot;South Africa&quot;,
+                        &quot;Zimbabwe&quot;, &quot;United States&quot;)) %&gt;%
+  filter(year &gt; 1988) %&gt;%
+  mutate(country = 
+           reorder(country, HIV.perc, 
+                   function(x) - max(x, na.rm = TRUE))) %&gt;% 
+  gf_line(HIV.perc ~ year, color = ~ country, size = 2, alpha = 0.5) </code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+<p><strong>Note:</strong> I’ve added one new feature to the plot. I’ve reordered the levels of <code>country</code> so that the lines in the legend are in roughly the same order as the lines on the plot. This can make it easier to read the plot. The <code>reorder()</code> function is a handy tool to have for adjusting the oder of things on plots.</p>
+</div>
+</div>
+<div id="section-a-first-function" class="section level2">
+<h2>A first function</h2>
+<p>Now let’s turn this into a simple (and not particularly useful) function. The general outline for defining a function is</p>
+<pre class="r"><code>my_function_name &lt;- function ( argument1, arguemnt2, ...) {
+
+  # stuff to do 
+  
+}</code></pre>
+<div id="section-exercise" class="section level4">
+<h4>Exercise</h4>
+<p>Edit the cod below by adding one line at the top and one line at the bottom</p>
+<ul>
+<li><p>top: <code>HIVplot &lt;- function () {</code></p>
+<ul>
+<li>This says we are creating a function and naming it <code>HIVplot</code>.</li>
+<li>The arguments to the function go inside <code>(</code> and <code>)</code> – this function doesn’t have any yet, but we will be adding some shortly.</li>
+<li>The code defining the function will go between <code>{</code> and <code>}</code>.</li>
+</ul></li>
+<li>bottom: <code>}</code>
+<ul>
+<li>This let’s R know that we are done with our function definition.</li>
+<li>By default, the object created by the last expression in the function body is returned – in this case, the plot. This is the “result” of the function.</li>
+</ul></li>
+</ul>
+<div class="tutorial-exercise" data-label="first-function" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>  HIVdata %&gt;%
+    filter(country %in% c(&quot;Uganda&quot;, &quot;Kenya&quot;, &quot;Tanzania&quot;, &quot;South Africa&quot;,
+                          &quot;Zimbabwe&quot;, &quot;United States&quot;)) %&gt;%
+    filter(year &gt; 1988) %&gt;%
+    mutate(country = 
+             reorder(country, HIV.perc, 
+                     function(x) - max(x, na.rm = TRUE))) %&gt;% 
+    gf_line(HIV.perc ~ year, color = ~country, size = 2, alpha = 0.5)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="first-function-solution" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>HIVplot &lt;- function() {
+  HIVdata %&gt;%
+    filter(country %in% c(&quot;Uganda&quot;, &quot;Kenya&quot;, &quot;Tanzania&quot;, &quot;South Africa&quot;,
+                          &quot;Zimbabwe&quot;, &quot;United States&quot;)) %&gt;%
+    filter(year &gt; 1988) %&gt;%
+    mutate(country = 
+             reorder(country, HIV.perc, 
+                     function(x) - max(x, na.rm = TRUE))) %&gt;% 
+    gf_line(HIV.perc ~ year, color = ~country, size = 2, alpha = 0.5)
+}</code></pre>
+</div>
+<p>As is, the funciton is not so useful, becuase it doesn’t have any arguments, so it can only create the same plot repeatedly. But even this can be useful for tasks that you want to repeat frequently in exactly the same way – it can save a lot of typing:</p>
+<div class="tutorial-exercise" data-label="a-plot" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># HIVplot() is loaded from the solution to the previous exercise
+HIVplot()</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"first-function-solution","exercise.checker":"NULL"}</script>
+</div>
+</div>
+</div>
+<div id="section-function-arguments" class="section level2">
+<h2>Function arguments</h2>
+<div id="section-our-first-argument" class="section level3">
+<h3>Our first argument</h3>
+<p>We can generalize this by adding some arguments that let us change features of the plot. For example, we could add the abilty to adjust the width of the lines as follows:</p>
+<div class="tutorial-exercise" data-label="HIVplot2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>HIVplot2 &lt;- function(linewidth = 2) {
+  HIVdata %&gt;%
+    filter(country %in% c(&quot;Uganda&quot;, &quot;Kenya&quot;, &quot;Tanzania&quot;, &quot;South Africa&quot;,
+                          &quot;Zimbabwe&quot;, &quot;United States&quot;)) %&gt;%
+    filter(year &gt; 1988) %&gt;%
+    mutate(country = 
+             reorder(country, HIV.perc, 
+                     function(x) - max(x, na.rm = TRUE))) %&gt;% 
+    gf_line(HIV.perc ~ year, color = ~country, size = linewidth, alpha = 0.5)
+}
+HIVplot2(linewidth = 1)</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+</div>
+<div id="section-additional-arguments" class="section level3">
+<h3>Additional arguments</h3>
+<p>In a similar way, we can add several arguments to our function. Let’s add the following:</p>
+<ul>
+<li><code>data</code>: the name of our data set (in case we have data with a different name later)</li>
+<li><code>indicator</code>: the name of the column that contains the data to be plotted against time. GapMinder calls these indicators, so we are borrowing their terminology. (As a fancy bonus, we’ll call <code>match.arg()</code> to allow for abbreviation of the name.)</li>
+<li><code>countries</code>: the countries we want to display</li>
+<li><code>linewidth</code>: the thickness of the lines that we draw</li>
+<li><code>first_year</code>: the first year we want to display</li>
+<li><code>opacity</code>: how opaque the lines are (between 0 and 1)</li>
+</ul>
+<p>Below we create a function with these arguments, and then in the body of the function, plug them in in the appropriate places.</p>
+<p>Here are few things to know about the new function definition.</p>
+<ol style="list-style-type: decimal">
+<li><p>Default values of the the arguments can be specified in the function declaration. That way, we don’t have to provide a value for every argument. Argument names can be specified by (unique prefix of) name or by position. It is a common practice in R to use the first arguement or two without names and then to use names for the other arguments, which will typically have default values so that only those being overridden need to be specified.</p></li>
+<li><p>Because our indicator variable is described by a character string, we need to do some work to create our formula. We’ll also add a bit of fancy stuff.</p></li>
+</ol>
+<ul>
+<li><p>The default value will be the third variable in the data set (because GapMinder data typically comes with the interesting variable there).</p></li>
+<li><p>We will use <code>match.arg()</code> to do prefix matching on the names in the data set, so we can be lazy and only type the first few characters.</p></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Our new function can plot time series for any data that has columns named <code>country</code> and <code>year</code> and an additional column containing the “indicator” to be plotted. So we should give the function a name that reflects this generality. We could call it <code>GapminderPlot()</code>, since it is designed to work with GapMinder data sets, or we could name it <code>TimeSeriesPlot()</code>, although it is not very flexibly designed for arbitrary time series data.</p></li>
+<li><p>We could make this even more general if we allowed column names to be specified for <code>country</code> and <code>year</code> as well as <code>indicator</code>. Deciding how general to make a function is an important part of the design. Often you will return to functions later to make them more general becuase you find that they almost do some other task you didn’t think of when you originally wrote the function.</p></li>
+</ol>
+<pre class="r"><code>GapMinderPlot &lt;- 
+  function( 
+    data, 
+    indicator = names(data)[3],
+    countries = c( &quot;South Africa&quot;, &quot;Zimbabwe&quot;, &quot;United States&quot;),
+    linewidth = 1.2,
+    first_year = min(~year, data = data, na.rm = TRUE),
+    opacity = .8
+    ) {
+  indicator &lt;- match.arg(indicator, names(data))
+  formula &lt;- as.formula( paste( indicator, &quot;~&quot;, &quot;year&quot;) )
+  data %&gt;%
+    filter(country %in% countries) %&gt;%
+    filter(year &gt;= first_year) %&gt;%
+    gf_line(formula, color = ~country, size = linewidth, alpha = opacity)
+  }</code></pre>
+<div class="tutorial-exercise-support" data-label="gapminderplot" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>GapMinderPlot &lt;- 
+  function( 
+    data, 
+    indicator = names(data)[3],
+    countries = c( &quot;South Africa&quot;, &quot;Zimbabwe&quot;, &quot;United States&quot;),
+    linewidth = 1.2,
+    first_year = min(~year, data = data, na.rm = TRUE),
+    opacity = .8
+    )  {
+  indicator &lt;- match.arg(indicator, names(data))
+  formula &lt;- as.formula( paste( indicator, &quot;~&quot;, &quot;year&quot;) )
+  data %&gt;%
+    filter(country %in% countries) %&gt;%
+    filter(year &gt;= first_year) %&gt;%
+    gf_line(formula, color = ~country, size = linewidth, alpha = opacity)
+  }</code></pre>
+</div>
+<div class="tutorial-exercise" data-label="gapminder-plot-evaluate" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>GapMinderPlot( HIVdata, linewidth = 4)
+GapMinderPlot( HIVdata, 
+               countries = c(&quot;United States&quot;, &quot;South Africa&quot;, &quot;Kenya&quot;),
+               first_year = 1990,
+               linewidth = 1) </code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"gapminderplot","exercise.checker":"NULL"}</script>
+</div>
+<p>We have lost one feature in this version. We have lost the reordering of the countries. This can be reintroduced, but it is tricky to do it with mutate since we don’t know the name of the variable to be reordered when we are writing the function. (It is determined by the user’s value of <code>indicator</code>, which is a character string.) Below is one way to do it.</p>
+<p>While we are at it, let’s make the default value of <code>indicator</code> be the name of the third column of <code>data</code> (where it will be located if the data are processed from GapMinder the way we have done it).</p>
+<div class="tutorial-exercise" data-label="GapMinderPlot2" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>GapMinderPlot &lt;- 
+  function( 
+    data, 
+    indicator = names(data)[3], 
+    countries = c( &quot;South Africa&quot;, &quot;Zimbabwe&quot;, &quot;United States&quot;),
+    linewidth = 1.2,
+    first_year = min(~year, data = data, na.rm = TRUE),
+    opacity = .8
+    ) 
+    {
+
+  # this finds indicator among the names of the variables even if it is abbreviated
+  # to a unique prefix.
+  indicator &lt;- match.arg(indicator, names(data)) 
+  formula &lt;- as.formula( paste( indicator, &quot;~&quot;, &quot;year&quot;) )
+  
+  data &lt;- 
+    data %&gt;%
+    filter(country %in% countries) 
+  
+  data[[&quot;country&quot;]] &lt;-
+     reorder(data[[&quot;country&quot;]], data[[indicator]], function(x) - max(x, na.rm = TRUE))
+  
+  data %&gt;%
+    filter(year &gt;= first_year) %&gt;%
+    gf_line(formula, color = ~country, size = linewidth, alpha = opacity)
+  }
+
+# adjust the entries here to try out some different plots
+
+GapMinderPlot( HIVdata,
+               countries = c(&quot;United States&quot;, &quot;South Africa&quot;, &quot;Kenya&quot;),
+               first_year = 1990,
+               linewidth = 1) </code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.checker":"NULL"}</script>
+</div>
+</div>
+</div>
+<div id="section-a-function-to-load-data" class="section level2">
+<h2>A function to load data</h2>
+<p>Now let’s create a function that can read in data from a GapMinder spreadhseet and reformat the resutling data so that is is glyph ready for our plot. The details here are less important than the overall structure:</p>
+<pre class="r"><code>load_gapminder &lt;- function(
+  url,             # URL for the GoogleSheet
+  name = &quot;value&quot;   # name for &quot;indicator&quot; variable
+  ) {
+  # code to use googlesheets to fetch the data
+  # code to tidy up the data for plotting
+}</code></pre>
+<p>Here’s the function with the details filled in. (For more about the googlesheets package, visit the <a href="https://github.com/jennybc/googlesheets">googlesheets GitHub page</a>.)</p>
+<pre class="r"><code>require(googlesheets)
+load_gapminder &lt;- function(url, name = &quot;value&quot;) {
+  google_connection &lt;- gs_url( url, visibility = &quot;public&quot; )
+  
+  # using the dimensions of the spread sheet, read the portion
+  # that contains data.  Specifying the range should not be necessary
+  # for newer google sheets.
+  result &lt;-
+    gs_read(google_connection,
+            range = cell_limits(c(1,1),
+                                c(google_connection$ws$row_extent[1],
+                                  google_connection$ws$col_extent[1]))
+    ) 
+  
+  # name the first column country
+  names(result)[1] &lt;- &quot;country&quot;
+ 
+  # convert from wide to long format 
+  result &lt;- 
+    result %&gt;% 
+    gather( year, value, -country ) %&gt;% 
+    mutate( year = extract_numeric(year))
+  
+  # rename the indicator column
+  names(result)[3] &lt;- name
+  result    # returned value since it is the last line evaluated
+}</code></pre>
+<div class="tutorial-exercise-support" data-label="load-plot" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>require(googlesheets)
+load_gapminder &lt;- function( url, name = &quot;value&quot;) {
+  google_connection &lt;- gs_url( url, visibility = &quot;public&quot; )
+  
+  # using the dimensions of the spread sheet, read the portion
+  # that contains data.  Specifying the range should not be necessary
+  # for newer google sheets.
+  result &lt;-
+    gs_read(google_connection,
+            range = cell_limits(c(1,1),
+                                c(google_connection$ws$row_extent[1],
+                                  google_connection$ws$col_extent[1]))
+    ) 
+  
+  # name the first column country
+  names(result)[1] &lt;- &quot;country&quot;
+ 
+  # convert from wide to long format 
+  result &lt;- 
+    result %&gt;% 
+    gather( year, value, -country ) %&gt;% 
+    mutate( year = extract_numeric(year))
+  
+  # rename the indicator column
+  names(result)[3] &lt;- name
+  result    # returned value since it is the last line evaluated
+}
+
+GapMinderPlot &lt;- 
+  function( 
+    data, 
+    indicator = names(data)[3], 
+    countries = c( &quot;South Africa&quot;, &quot;Zimbabwe&quot;, &quot;United States&quot;),
+    linewidth = 1.2,
+    first_year = min(~year, data = data, na.rm = TRUE),
+    opacity = .8
+    ) 
+    {
+
+  # this finds indicator among the names of the variables even if it is abbreviated
+  # to a unique prefix.
+  indicator &lt;- match.arg(indicator, names(data)) 
+  formula &lt;- as.formula( paste( indicator, &quot;~&quot;, &quot;year&quot;) )
+  
+  data &lt;- 
+    data %&gt;%
+    filter(country %in% countries) 
+  
+  data[[&quot;country&quot;]] &lt;-
+     reorder(data[[&quot;country&quot;]], data[[indicator]], function(x) - max(x, na.rm = TRUE))
+  
+  data %&gt;%
+    filter(year &gt;= first_year) %&gt;%
+    gf_line(formula, color = ~country, size = linewidth, alpha = opacity)
+  }</code></pre>
+</div>
+<p>With that function in hand, it is easy to read data once we determine the google URL for the sheet. Here’s how we load our HIV data directly from Google.</p>
+<pre class="r"><code>hiv_url &lt;- 
+  &quot;https://docs.google.com/spreadsheets/d/1kWH_xdJDM4SMfT_Kzpkk-1yuxWChfurZuWYjfmv51EA/pub?gid=0&quot;
+HIVdata2 &lt;- load_gapminder(hiv_url, name = &quot;HIV.perc&quot;)
+GapMinderPlot(HIVdata2)</code></pre>
+<p>We can load other GapMinder spreadsheets by supplying a different URL. Here is life expectency data.</p>
+<pre class="r"><code>le_url &lt;-
+  &quot;https://docs.google.com/spreadsheets/d/1H3nzTwbn8z4lJ5gJ_WfDgCeGEXK3PVGcNjQ_U5og8eo/pub?gid=0&quot;
+LifeExpectency &lt;- load_gapminder( le_url, name = &quot;life.expectancy&quot; ) </code></pre>
+<p>We can now use our plotting function with any of these data sets.</p>
+<div id="section-exercise-1" class="section level4">
+<h4>Exercise</h4>
+<p>Adjust the arguments of this function call to change the plot.</p>
+<ul>
+<li>change the starting date</li>
+<li>change the countries</li>
+<li>change the size of teh lines</li>
+<li>make any other changes that you like.</li>
+</ul>
+<div class="tutorial-exercise" data-label="two-plots" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>GapMinderPlot(
+  LifeExpectency, 
+  countries = c(&quot;Germany&quot;, &quot;United States&quot;, &quot;New Zealand&quot;, &quot;China&quot;, &quot;India&quot;, &quot;Japan&quot;))</code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"load-plot","exercise.checker":"NULL"}</script>
+</div>
+</div>
+<div id="section-the-plot-is-returned-not-printed" class="section level3">
+<h3>The plot is returned, not printed</h3>
+<p><code>GapMinderPlot()</code> does not print a plot, it <strong>returns</strong> the plot. By default, when RStudio receives a plot, it prints it out. But we don’t have to print it. We could instead store it in a variable, or modify it just like we can any other gg object. Here’s an example.</p>
+<div class="tutorial-exercise" data-label="two-plot-refine" data-caption="Code" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code>GapMinderPlot(
+  LifeExpectency, opacity=0.5, 
+  countries=c(&quot;United States&quot;, &quot;Germany&quot;, &quot;South Africa&quot;) ) %&gt;%
+  gf_labs(y = &quot;Life Expectency&quot;, x = &quot;Year&quot;, title = &quot;Life Expectency Over Time&quot;) %&gt;%
+  gf_theme(theme_bw()) %&gt;%
+  gf_refine(annotate(&quot;text&quot;, x= 1863, y=45, label = &quot;Civil War&quot;)) %&gt;%
+  gf_refine(annotate(&quot;text&quot;, x= 1916, y=64, label = &quot;WWW 1&quot;)) %&gt;%
+  gf_refine(annotate(&quot;text&quot;, x= 1942, y=76, label = &quot;WWW 2&quot;)) </code></pre>
+<script type="application/json" data-opts-chunk="1">{"fig.width":6,"fig.height":2.5,"fig.retina":2,"fig.align":"center","fig.keep":"high","fig.show":"asis","out.width":576,"warning":true,"error":false,"message":true,"exercise.df_print":"paged","exercise.setup":"load-plot","exercise.checker":"NULL"}</script>
+</div>
+</div>
+</div>
+<div id="section-the-big-picture" class="section level2">
+<h2>The Big Picture</h2>
+<ol style="list-style-type: decimal">
+<li><p>If you find yourself wanting to copy a chunk of code, make one little change, and then run it again, then you are likely in a situation where a function would be useful.</p></li>
+<li><p>You can begin your function by wrapping your code chunk in</p></li>
+</ol>
+<pre class="r"><code>my_function_name &lt;- function () {
+
+  # old code goes here
+  
+}</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Now choose one small thing that you would like to be able to vary. Provide a name for the argument and a default value (if there is a reasonable default) and replace the specific value in your code with the argument name from your function declaration.</p></li>
+<li><p>Keep an eye out for ways you could make your function more general than your immediate task. Not only does that make your function more widely useful, but often the function is easier to write, and clearer to read if it is a bit more general.</p></li>
+<li><p>But build up slowly. Don’t go crazy with 27 complicated options all at once. You can add in new arguments one at a time or in small groups of arguments that work together.</p></li>
+<li><p>If your function will be useful in multiple files or projects, you should consider putting it into a package. Simple packages created for your own use are not that hard to build. Once you have made your package, you can simply <code>require()</code> it in any file or project where you want to use your new function. It is also easy to share packages with others who might be interested in using your function.</p></li>
+<li>Comment your code. Don’t write comments for simple code that is clear by itself, but do write comments</li>
+</ol>
+<ul>
+<li>for complicated code where it might not be immediately clear what is happening</li>
+<li>explaining <strong>why</strong> you are doing things</li>
+<li>outlining the <strong>big picture</strong> (how you are thinking about the task at hand)</li>
+<li>alerting the reader to subtleties (or with students, unfamiliar functions or new features of the langauge.)</li>
+</ul>
+<ol start="8" style="list-style-type: decimal">
+<li>But don’t confuse comments with text that belongs in a proper document.</li>
+</ol>
+</div>
+<div id="section-exercises" class="section level2">
+<h2>Exercises</h2>
+<ol style="list-style-type: decimal">
+<li><p>Make <code>GapMinderPlot</code> more general by allowing the user to select columns rather than requiring that they be called <code>country</code> and <code>year</code>.</p></li>
+<li><p>Write a data loading function for a kind of data you expect to encounter frequently.</p></li>
+<li>Write a plotting function for a kind of plot you anticipate making frequently. 
+<script type="application/shiny-prerendered" data-context="server-start">
+library(learnr)     # the tutorial package
+library(tibble)     # for dealing with tibble data
+library(ggformula)  # all those gf_functions live hear
+library(mosaicData) # mosaic data sets
+library(mosaic)     # Project MOSAIC tools 
+require(googlesheets)
+require(dplyr)
+require(readr)
+require(tidyr)
+theme_set(theme_bw())   # get rid of the gray background in the plots
+# A few options for how R stuff is displayed
+knitr::opts_chunk$set(
+  echo = TRUE,                      # show R code in non-exercise chunks
+  fig.align = "center",             # center plots on the page
+  fig.width = 6, fig.height = 2.5   # default figure size
+  )
+# HIVdata <- readr::read_csv("http://www.calvin.edu/~rpruim/data/HIVdata.csv")
+HIVdata <- readr::read_csv("www/HIVdata.csv")
+LifeExpectency <- readr::read_csv("www/LifeExpectency.csv")
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::register_http_handlers(session, metadata = NULL)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-read-hiv-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-read-hiv-code-editor`)), session)
+output$`tutorial-exercise-read-hiv-output` <- renderUI({
+  `tutorial-exercise-read-hiv-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-plot1-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-plot1-code-editor`)), session)
+output$`tutorial-exercise-plot1-output` <- renderUI({
+  `tutorial-exercise-plot1-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-first-function-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-first-function-code-editor`)), session)
+output$`tutorial-exercise-first-function-output` <- renderUI({
+  `tutorial-exercise-first-function-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-a-plot-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-a-plot-code-editor`)), session)
+output$`tutorial-exercise-a-plot-output` <- renderUI({
+  `tutorial-exercise-a-plot-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-HIVplot2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-HIVplot2-code-editor`)), session)
+output$`tutorial-exercise-HIVplot2-output` <- renderUI({
+  `tutorial-exercise-HIVplot2-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-gapminder-plot-evaluate-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-gapminder-plot-evaluate-code-editor`)), session)
+output$`tutorial-exercise-gapminder-plot-evaluate-output` <- renderUI({
+  `tutorial-exercise-gapminder-plot-evaluate-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-GapMinderPlot2-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-GapMinderPlot2-code-editor`)), session)
+output$`tutorial-exercise-GapMinderPlot2-output` <- renderUI({
+  `tutorial-exercise-GapMinderPlot2-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-two-plots-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-two-plots-code-editor`)), session)
+output$`tutorial-exercise-two-plots-output` <- renderUI({
+  `tutorial-exercise-two-plots-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-two-plot-refine-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-two-plot-refine-code-editor`)), session)
+output$`tutorial-exercise-two-plot-refine-output` <- renderUI({
+  `tutorial-exercise-two-plot-refine-result`()
+})
+</script>
+ <!--html_preserve-->
+<script type="application/shiny-prerendered" data-context="dependencies">
+{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.3.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/bootstrap-3.3.5"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","shim/html5shiv.min.js","shim/respond.min.js"]},{"type":"character","attributes":{},"value":["css/cerulean.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["pagedtable"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/pagedtable-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/pagedtable.js"]},{"type":"character","attributes":{},"value":["css/pagedtable.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["highlightjs"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/highlightjs-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["highlight.js"]},{"type":"character","attributes":{},"value":["textmate.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.8.0.9004"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-autocompletion"]},{"type":"character","attributes":{},"value":["0.8.0.9004"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-diagnostics"]},{"type":"character","attributes":{},"value":["0.8.0.9004"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-format"]},{"type":"character","attributes":{},"value":["0.8.0.9004"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmarkdown/templates/tutorial/resources"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-format.js"]},{"type":"character","attributes":{},"value":["tutorial-format.css","rstudio-theme.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["1.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/jquery-1.11.3"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["4.5.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/font-awesome-4.5.0"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/font-awesome.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootbox"]},{"type":"character","attributes":{},"value":["4.4.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/bootbox"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["bootbox.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["localforage"]},{"type":"character","attributes":{},"value":["1.4.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/localforage"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["localforage.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.8.0.9004"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-autocompletion"]},{"type":"character","attributes":{},"value":["0.8.0.9004"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-autocompletion.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-diagnostics"]},{"type":"character","attributes":{},"value":["0.8.0.9004"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-diagnostics.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.2.6"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["1.5.15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]}]}]}
+</script>
+<!--/html_preserve--></li>
+</ol>
+</div>
+
+</div> <!-- topics -->
+
+<div class="topicsContainer">
+<div class="topicsPositioner">
+<div class="band">
+<div class="bandContent topicsListContainer">
+
+<!-- begin doc-metadata -->
+<div id="doc-metadata">
+<h2 class="title toc-ignore" style="display:none;">Writing Functions</h2>
+</div>
+<!-- end doc-metadata -->
+
+</div> <!-- bandContent.topicsListContainer -->
+</div> <!-- band -->
+</div> <!-- topicsPositioner -->
+</div> <!-- topicsContainer -->
+
+
+</div> <!-- bandContent page -->
+</div> <!-- pageContent band -->
+
+
+
+
+<script>
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+
+</html>
