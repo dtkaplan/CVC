@@ -1,0 +1,168 @@
+---
+title: "Notes on Machine Learning"
+author: "D Kalplan @ CVC 2017"
+date: "June 16, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+require(statisticalModeling)
+require(mosaic)
+require(ggformula)
+require(rpart)
+require(rpart.plot)
+```
+
+
+## General Approach
+
+  1. Use a function for the method you are interested in
+  
+    a. provide it a data set and a description of the models
+    
+    b. many R fuctions use a formula to describe the repsonse and 
+    predictor variables used in the model
+    
+```{r, eval = FALSE}
+model <- function_for_method (y ~ x1 + x2 + x3, data = SomeData)
+```
+  
+  2. Evaluate by predicting using the fuction that is produced by the model.
+  
+```{r, eval = FALSE}
+predict(model, data = NewData)
+```
+
+  3. Extract specific information from the model (which variables are important? how well does
+  prediction work? plot of model? etc. etc.)
+  
+```{r, eval = FALSE}
+extract_info_from_model(model)
+```
+
+
+### Toy Example showing how a partitioning step works.
+
+```{r}
+Toy <- data.frame(
+  y = c(13, 14, 10, 17, 19, 30),
+  x1 = c(3, 4, 5, 7, 9, 15),
+  x2 = c("A", "A", "B", "A", "A", "B")
+)
+```
+
+
+```{r}
+Toy %>% group_by( x1 < 6) %>% 
+  mutate(y.hat = mean(y),
+         resid = y - y.hat,
+         r2 = resid^2
+         ) %>%
+  ungroup() %>%
+  mutate(SSR = sum(r2))
+
+Toy %>% group_by(x2) %>% 
+  mutate(y.hat = mean(y),
+         resid = y - y.hat,
+         r2 = resid^2
+         ) %>%
+  ungroup() %>%
+  mutate(SSR = sum(r2))
+```
+
+
+## Recursive Partitioning (rpart)
+
+Also called CART (classification and rgression tree)
+
+### KidsFeet data
+```{r}
+head(KidsFeet)
+```
+
+### A model
+
+```{r}
+mod <- rpart(width ~ sex + length + biggerfoot + domhand, data = KidsFeet)
+mod
+prp(mod)
+```
+
+```{r}
+mod <- rpart(width ~ sex + length + biggerfoot + domhand + name, data = KidsFeet,
+             control = rpart.control(minsplit = 3, cp = 0.00001)
+)
+prp(mod)
+```
+
+
+### Cross-Validation
+
+Train the model on some data (training data) and check how well it works on
+different data (testing data) and assess the quality of the model based on how
+well it does in the test data.  This keeps the model from **overfitting** the
+data.
+
+## Random Forest
+
+Idea: Make many random trees.
+
+  1. Randomly pick a subset of the explanatory variables (often 1/3 or square root of the variables)
+  
+  2. Make a CART based on just those explanatory variables.
+  
+  3. Result is the average of the outputs of the trees in the forest.
+
+```{r}
+require(randomForest)
+mod2 <- randomForest(width ~ sex + length + biggerfoot + domhand, data = KidsFeet)
+gmodel(mod2, ~ length + sex + biggerfoot)
+effect_size(mod2, ~ length)
+importance(mod2)
+```
+
+
+### XGBoost
+
+XGBoost (Gradient Boosted Random Forests) is the current state-of-the-art generalization of this.
+`xgboost` package in R will do it.
+
+Nice introduction to the algorithm is here: [http://xgboost.readthedocs.io/en/latest/model.html](http://xgboost.readthedocs.io/en/latest/model.html)
+
+
+## Some comments
+
+### Other popular things
+
+  * Support Vector Machines
+  * Linear 
+  * Ridge Regression
+  * Lasso
+  * Elastic Net
+ 
+### These things exist in many platforms
+
+  * R typically provides an interface to the same underlying code (often in C/C++) that
+  you can use via otehr mechanisms (like Python) as well.
+  
+  * Let's you work in R syntax using algorithms created in other programming languages.
+  
+  * The origins of R go back to attempting to provide an interface to FORTRAN so that 
+  analysists wouldn't need to write a new FORTRAN program for each analysis.
+  
+### Smoothing over differences between methods
+
+Because different methods were coded by different people, the interfaces are not always compatible.
+A couple packages have tried to smooth over these differences in interface:
+
+  * `Zelig`
+  * `caret` 
+
+## Unsupervised Learning
+
+Attempting to find clusters/groups in data without any "correct answers" to compare with.
+
+### Singular Value Decomposition
+
+See Scottish Parliment example in *Data Computing* (Kaplan)
