@@ -248,6 +248,7 @@ Arrival day for many coming from out of town.
    
  3. Break out sessions
     a. Shiny
+       * [slides from a shiny workshop at Big Data Ignite 2016](http://rpruim.github.io/talks/bigdataignite2016/shiny/04-Shiny.pdf)
     b. Web scraping
     c. Machine Learning
       * [Notes](Learn/MachineLearning/MachineLearning.html)
