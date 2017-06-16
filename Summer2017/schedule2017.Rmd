@@ -241,10 +241,22 @@ Arrival day for many coming from out of town.
 
  1. Please fill out the  [Project Report Form](http://goo.gl/forms/14rB29jmVrxw1Ftl2)
  
- 2. Live Project Reports (in parallel)
+ 2. How to make a website (GitHub edition)
+   * [Notes](https://dtkaplan.github.io/MakingAWebSite/)
+   * You can post tutorials at [http://shinyapps.io](http://shinyapps.io) or at
+   [http://rstudio.calvin.edu:3939](http://rstudio.calvin.edu:3939)
+   
+ 3. Break out sessions
+    a. Shiny
+    b. Web scrabing
+    c. Machine Learning
+    d. Modeling in R
+    
+   
+ 4. Live Project Reports (in parallel)
 
- 3. Closing thoughts and goodbyes (finish at 3:00pm)
-
+ 5. Closing thoughts and goodbyes (time TBA)
+ 
 ### Things we did this week
 
  
