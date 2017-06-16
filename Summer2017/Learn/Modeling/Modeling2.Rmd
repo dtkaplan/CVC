@@ -136,8 +136,8 @@ aov( length ~ sex * domhand, data = KidsFeet)
 
 ```{r}
 xyplot(length ~ sex, groups = domhand, type = c("a", "p"), data = KidsFeet)
-gf_point(length ~ sex, color = ~domhand, data = KidsFeet) %>%
-  gf_line(length ~ sex, color = ~domhand, data = KidsFeet, stat = stat_summary())
+gf_point(length ~ sex, color = ~domhand, data = KidsFeet) 
+#  gf_line(length ~ sex, color = ~domhand, data = KidsFeet, stat = stat_summary())
 ```
 
 ### A nonlinear model
