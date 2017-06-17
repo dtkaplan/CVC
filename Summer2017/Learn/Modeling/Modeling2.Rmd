@@ -135,9 +135,12 @@ aov( length ~ sex * domhand, data = KidsFeet)
 ```
 
 ```{r}
+# lattice version of interaction plot
 xyplot(length ~ sex, groups = domhand, type = c("a", "p"), data = KidsFeet)
-gf_point(length ~ sex, color = ~domhand, data = KidsFeet) 
-#  gf_line(length ~ sex, color = ~domhand, data = KidsFeet, stat = stat_summary())
+# ggformula version
+gf_point(length ~ sex, color = ~domhand, data = KidsFeet) %>%
+  gf_line(length ~ sex, color = ~domhand, data = KidsFeet, 
+          stat = "summary", group = ~domhand, fun.y = mean)
 ```
 
 ### A nonlinear model
