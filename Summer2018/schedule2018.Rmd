@@ -35,8 +35,8 @@ This is cvc.mosaic-web.org/Summer2018/schedule2018.html
   * The `mosaic` package and its vignettes are [available via CRAN](http://cran.r-project.org/web/packages/mosaic/index.html) and also via [github](https://github.com/ProjectMOSAIC/mosaic)
   * The `ggformula` package and its vignettes are [available via CRAN](http://cran.r-project.org/web/packages/ggformula/index.html) and also via [github](https://github.com/ProjectMOSAIC/ggformula)
   * [R Studio Cheatsheets](https://www.rstudio.com/resources/cheatsheets/) are very useful.
-  * [The Calvin College RStudio server](http://rstudio.calvin.edu) has provided accounts for all workshop participants.
-    * [Change passwords here](https://freeipa1.cs.calvin.edu/)
+<!-- * [The Calvin College RStudio server](http://rstudio.calvin.edu) has provided accounts for all workshop participants. -->
+<!-- * [Change passwords here](https://freeipa1.cs.calvin.edu/) -->
   * Slides and files for sessions will be posted in the schedule as we go along (see below).
 
 
@@ -75,7 +75,24 @@ Arrival day for many coming from out of town.
      
     * [Google Doc](https://docs.google.com/document/d/1lDt3NsoFML1TaosPjaDjrlKFtFtxMYKMEtPvMmuXjG0/edit?usp=sharing)
 
- 3. Example Case Study: Medicare Data 
+ 3. Example Case Studies: 
+ 
+    * Medicare Data 
+    * 
+    
+ 4. Ingredients List
+ 
+    * Graphics (`ggformula`)
+    * Tidy Data and Data Wrangling (`dplyr`, `tidyr`, etc.)
+    * Data scraping (`rvest`)
+    * Importing your own data (`readr`, `googlesheets`, `readxl`)
+    * Tutorials -- run R code in a webpage (`learnr`)
+    * Reporting (`rmarkdown`, `bookdown`, `blogdown`, `knitr`, `flexdashboard`, etc.)
+    * Apps -- interactivity, but no code (`shiny`, shinydocs)
+    * Maps -- `leaflet`
+    * Websites -- rstudio.cloud + GitHub
+    * GitHub
+    
  
  4. Less Volume, More Creativity
  
@@ -83,6 +100,17 @@ Arrival day for many coming from out of town.
     
     * Introduction to `ggformula` for graphics [Randy]
 
+<table>
+<tr>
+<th width = "50%">
+Track A
+</th>
+<th width = "50%">
+Track B
+</th>
+</tr>
+<tr valign = "top">
+<td valign = "top">
  5. How to organize your data [Danny]
     
     a. [**Introduction slides**](Learn/TidyData/tidy_data.html), but the basics are
@@ -96,16 +124,11 @@ Arrival day for many coming from out of town.
     
  6. Orientation to RStudio: 
  
-    * Panes & tabs
-    
-    * Importing CSV and Excel files into RStudio
+ 7. Importing CSV and Excel files into RStudio
         * [Notes](Learn/ImportingData/ImportingData.html)
         * [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
     
-    * **Activity**: Create a plot using data that you have imported into R.
-
- 7. [RMarkdown](http://prezi.com/vq6l5yqpnqma/) 
- 
+ 8. [RMarkdown](http://prezi.com/vq6l5yqpnqma/) 
     a. [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
     
     b. [RMarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
@@ -118,6 +141,22 @@ Arrival day for many coming from out of town.
     c. **Activity**: Enter data [in this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&usp=sharing)
     indicating types of data you are interested in.
 -->
+</td>
+<td valign = "top">
+5. Working with data -- 5 verbs of `dplyr`
+ 
+    a. Goal: Get your data into the right shape for graphing or analysis
+ 
+    c. tutorials  
+    
+    d. Building precursors to data wrangling: https://arxiv.org/abs/1401.3269
+    
+    e. Useful online resource: downloadable chapter on data wrangling from http://mdsr-book.github.io/
+
+6. Customization with `ggformula`.
+</td>
+</tr>
+</table>
 
 ### Tuesday
  
@@ -149,7 +188,18 @@ Arrival day for many coming from out of town.
 <!--  4. R parts of speech and "Chaining Syntax" [Danny] -->
 <!--     a. [slides](Learn/Parts_of_speech/R-command-structure.html) -->
 <!--     b. [exercise](https://dtkaplan.shinyapps.io/part-of-speech-quiz/) -->
- 
+
+<table> 
+<tr>
+<th width = "50%">
+Track A
+</th>
+<th width = "50%">
+Track B
+</th>
+</tr>
+<tr valign = "top">
+<td valign = "top">
  2. Working with data -- 5 verbs of `dplyr`
  
     a. Goal: Get your data into the right shape for graphing or analysis
@@ -157,12 +207,17 @@ Arrival day for many coming from out of town.
     b. [slides](Learn/Wrangling/dplyr-intro.html) for presentation;
     
     c. tutorials  
-        * [dplyr-movies-tutorial.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyr-movies-tutorial.Rmd) tutorial
-        * [dplyr-babynames.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyr-babynames.Rmd) tutorial
     
     d. Building precursors to data wrangling: https://arxiv.org/abs/1401.3269
     
     e. Useful online resource: downloadable chapter on data wrangling from http://mdsr-book.github.io/
+    
+</td>
+<td>
+
+</td>
+</tr>
+</table>
  
 ### Wednesday
  
@@ -325,7 +380,7 @@ is a name listed by a topic, talk to that person to find out more.
 13. Resampling 
 14. Creating R packages [Randy]
 15. R with LaTeX (similar to RMarkdown)
-16. Other topics as the arise 
+16. Other topics as they arise 
  
 ### Thanks
 

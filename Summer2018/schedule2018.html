@@ -45,11 +45,7 @@ Grinnell College
 <li><a href="http://cran.r-project.org">CRAN</a> (Comprehensive R Archive Network) has lots of R-related stuff</li>
 <li>The <code>mosaic</code> package and its vignettes are <a href="http://cran.r-project.org/web/packages/mosaic/index.html">available via CRAN</a> and also via <a href="https://github.com/ProjectMOSAIC/mosaic">github</a></li>
 <li>The <code>ggformula</code> package and its vignettes are <a href="http://cran.r-project.org/web/packages/ggformula/index.html">available via CRAN</a> and also via <a href="https://github.com/ProjectMOSAIC/ggformula">github</a></li>
-<li><a href="https://www.rstudio.com/resources/cheatsheets/">R Studio Cheatsheets</a> are very useful.</li>
-<li><a href="http://rstudio.calvin.edu">The Calvin College RStudio server</a> has provided accounts for all workshop participants.
-<ul>
-<li><a href="https://freeipa1.cs.calvin.edu/">Change passwords here</a></li>
-</ul></li>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/">R Studio Cheatsheets</a> are very useful. <!-- * [The Calvin College RStudio server](http://rstudio.calvin.edu) has provided accounts for all workshop participants. --> <!-- * [Change passwords here](https://freeipa1.cs.calvin.edu/) --></li>
 <li>Slides and files for sessions will be posted in the schedule as we go along (see below).</li>
 </ul>
 </div>
@@ -87,12 +83,42 @@ Grinnell College
 <ul>
 <li><a href="https://docs.google.com/document/d/1lDt3NsoFML1TaosPjaDjrlKFtFtxMYKMEtPvMmuXjG0/edit?usp=sharing">Google Doc</a></li>
 </ul></li>
-<li><p>Example Case Study: Medicare Data</p></li>
+<li><p>Example Case Studies:</p>
+<ul>
+<li>Medicare Data</li>
+<li></li>
+</ul></li>
+<li><p>Ingredients List</p>
+<ul>
+<li>Graphics (<code>ggformula</code>)</li>
+<li>Tidy Data and Data Wrangling (<code>dplyr</code>, <code>tidyr</code>, etc.)</li>
+<li>Data scraping (<code>rvest</code>)</li>
+<li>Importing your own data (<code>readr</code>, <code>googlesheets</code>, <code>readxl</code>)</li>
+<li>Tutorials – run R code in a webpage (<code>learnr</code>)</li>
+<li>Reporting (<code>rmarkdown</code>, <code>bookdown</code>, <code>blogdown</code>, <code>knitr</code>, <code>flexdashboard</code>, etc.)</li>
+<li>Apps – interactivity, but no code (<code>shiny</code>, shinydocs)</li>
+<li>Maps – <code>leaflet</code></li>
+<li>Websites – rstudio.cloud + GitHub</li>
+<li>GitHub</li>
+</ul></li>
 <li><p>Less Volume, More Creativity</p>
 <ul>
 <li><p>A general approach to using R</p></li>
 <li><p>Introduction to <code>ggformula</code> for graphics [Randy]</p></li>
 </ul></li>
+</ol>
+<table>
+<tr>
+<th width="50%">
+Track A
+</th>
+<th width="50%">
+Track B
+</th>
+</tr>
+<tr valign="top">
+<td valign="top">
+<ol start="5" style="list-style-type: decimal">
 <li><p>How to organize your data [Danny]</p>
 <ol style="list-style-type: lower-alpha">
 <li><a href="Learn/TidyData/tidy_data.html"><strong>Introduction slides</strong></a>, but the basics are</li>
@@ -105,17 +131,9 @@ Grinnell College
 <ol start="2" style="list-style-type: lower-alpha">
 <li><code>tidyverse</code> provides a toolkit for getting data into this format. (More later.)</li>
 </ol></li>
-<li><p>Orientation to RStudio:</p>
-<ul>
-<li><p>Panes &amp; tabs</p></li>
-<li>Importing CSV and Excel files into RStudio
-<ul>
-<li><a href="Learn/ImportingData/ImportingData.html">Notes</a></li>
-<li><a href="Learn/ImportingData/Anscombe.csv">Anscombe.csv</a></li>
-</ul></li>
-<li><p><strong>Activity</strong>: Create a plot using data that you have imported into R.</p></li>
-</ul></li>
-<li><p><a href="http://prezi.com/vq6l5yqpnqma/">RMarkdown</a></p>
+<li><p>Orientation to RStudio:</p></li>
+<li><p>Importing CSV and Excel files into RStudio * <a href="Learn/ImportingData/ImportingData.html">Notes</a> * <a href="Learn/ImportingData/Anscombe.csv">Anscombe.csv</a></p></li>
+<li><a href="http://prezi.com/vq6l5yqpnqma/">RMarkdown</a>
 <ol style="list-style-type: lower-alpha">
 <li><p><a href="http://escholarship.org/uc/item/90b2f5xh">TISE paper by Baumer <em>et al</em></a></p></li>
 <li><p><a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">RMarkdown cheatsheet</a></p></li>
@@ -128,6 +146,21 @@ Grinnell College
     c. **Activity**: Enter data [in this spreadsheet](https://docs.google.com/spreadsheet/ccc?key=0Am13enSalO74dFRFZHNlaVE3NjZfUjBQOUNoMmRlUWc&usp=sharing)
     indicating types of data you are interested in.
 -->
+</td>
+<td valign="top">
+<ol start="5" style="list-style-type: decimal">
+<li><p>Working with data – 5 verbs of <code>dplyr</code></p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Goal: Get your data into the right shape for graphing or analysis</p></li>
+<li><p>tutorials</p></li>
+<li><p>Building precursors to data wrangling: <a href="https://arxiv.org/abs/1401.3269" class="uri">https://arxiv.org/abs/1401.3269</a></p></li>
+<li><p>Useful online resource: downloadable chapter on data wrangling from <a href="http://mdsr-book.github.io/" class="uri">http://mdsr-book.github.io/</a></p></li>
+</ol></li>
+<li>Customization with <code>ggformula</code>.</li>
+</ol>
+</td>
+</tr>
+</table>
 </div>
 <div id="tuesday" class="section level3">
 <h3>Tuesday</h3>
@@ -154,20 +187,32 @@ Grinnell College
 <!--  4. R parts of speech and "Chaining Syntax" [Danny] -->
 <!--     a. [slides](Learn/Parts_of_speech/R-command-structure.html) -->
 <!--     b. [exercise](https://dtkaplan.shinyapps.io/part-of-speech-quiz/) -->
+<table>
+<tr>
+<th width="50%">
+Track A
+</th>
+<th width="50%">
+Track B
+</th>
+</tr>
+<tr valign="top">
+<td valign="top">
 <ol start="2" style="list-style-type: decimal">
 <li><p>Working with data – 5 verbs of <code>dplyr</code></p>
 <ol style="list-style-type: lower-alpha">
 <li><p>Goal: Get your data into the right shape for graphing or analysis</p></li>
 <li><p><a href="Learn/Wrangling/dplyr-intro.html">slides</a> for presentation;</p></li>
-<li>tutorials
-<ul>
-<li><a href="https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyr-movies-tutorial.Rmd">dplyr-movies-tutorial.Rmd</a> tutorial</li>
-<li><a href="https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/dplyr-babynames.Rmd">dplyr-babynames.Rmd</a> tutorial</li>
-</ul></li>
+<li><p>tutorials</p></li>
 <li><p>Building precursors to data wrangling: <a href="https://arxiv.org/abs/1401.3269" class="uri">https://arxiv.org/abs/1401.3269</a></p></li>
 <li><p>Useful online resource: downloadable chapter on data wrangling from <a href="http://mdsr-book.github.io/" class="uri">http://mdsr-book.github.io/</a></p></li>
 </ol></li>
 </ol>
+</td>
+<td>
+</td>
+</tr>
+</table>
 </div>
 <div id="wednesday" class="section level3">
 <h3>Wednesday</h3>
@@ -307,7 +352,7 @@ Grinnell College
 <li>Resampling</li>
 <li>Creating R packages [Randy]</li>
 <li>R with LaTeX (similar to RMarkdown)</li>
-<li>Other topics as the arise</li>
+<li>Other topics as they arise</li>
 </ol>
 <div id="thanks" class="section level3">
 <h3>Thanks</h3>
