@@ -119,16 +119,16 @@ R's particular advantages:
 
 ## Introductions
 
- 1. Get into a group of 3 or 4 people (pick people you **don't already know**).
+ 1. Get into a group of 3 or 4 people. (Pick people you **don't already know**.)
  
  2. Introduce yourselves.
  
-    * be sure to mention something about what sort of project you might be interested in
+    * Be sure to mention something about what sort of project you might be interested in.
     
  3. As you introduce yourself, *someone else* in the group should add an entry to
- this [google doc](https://docs.google.com/document/d/17JBw6KW-i5hJffL96kiRTxTjlJFW2qGBrl1g9Ixgb4I/edit?usp=sharing) to create a short "bio" for you.
+ this [google doc](https://docs.google.com/document/d/1lDt3NsoFML1TaosPjaDjrlKFtFtxMYKMEtPvMmuXjG0/edit?usp=sharing) to create a short "bio" for you.
 
-    * Bulleted list or paragraph -- which every you prefer.
+    * Bulleted list or paragraph -- which ever you prefer.
     * Include a photo if possible.
     
 ## Google Doc
