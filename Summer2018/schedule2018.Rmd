@@ -77,7 +77,8 @@ Arrival day for many coming from out of town.
 
  3. Example Case Studies: 
  
-    * Medicare Data 
+    * [Medicare Data]()
+    * [What's Normal?]()
     * 
     
  4. Ingredients List
@@ -93,25 +94,28 @@ Arrival day for many coming from out of town.
     * Websites -- rstudio.cloud + GitHub
     * GitHub
     
- 
- 4. Less Volume, More Creativity
+ 5. Less Volume, More Creativity [Randy]
  
     * A general approach to using R
     
-    * Introduction to `ggformula` for graphics [Randy]
+    * Introduction to `ggformula` for graphics
+    
+  6. Using RStudio.cloud [Danny]
 
 <table>
 <tr>
 <th width = "50%">
-Track A
+Track A [Danny]
 </th>
 <th width = "50%">
-Track B
+Track B [Randy]
 </th>
 </tr>
 <tr valign = "top">
 <td valign = "top">
- 5. How to organize your data [Danny]
+ 7. More Orientation to RStudio 
+ 
+ 8. How to organize your data
     
     a. [**Introduction slides**](Learn/TidyData/tidy_data.html), but the basics are
     
@@ -122,13 +126,12 @@ Track B
     b. `tidyverse` provides a toolkit for getting data into
     this format.  (More later.)
     
- 6. Orientation to RStudio: 
+ 9. Importing CSV and Excel files into RStudio
  
- 7. Importing CSV and Excel files into RStudio
-        * [Notes](Learn/ImportingData/ImportingData.html)
-        * [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
+      * [Notes](Learn/ImportingData/ImportingData.html)
+      * [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
     
- 8. [RMarkdown](http://prezi.com/vq6l5yqpnqma/) 
+ 10. [RMarkdown](http://prezi.com/vq6l5yqpnqma/) 
     a. [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
     
     b. [RMarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
@@ -143,17 +146,23 @@ Track B
 -->
 </td>
 <td valign = "top">
-5. Working with data -- 5 verbs of `dplyr`
+7. [RMarkdown](http://prezi.com/vq6l5yqpnqma/) [?]
+
+    a. [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
+    
+    b. [RMarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+    
+8. Working with data -- 5 verbs of `dplyr`
  
     a. Goal: Get your data into the right shape for graphing or analysis
  
-    c. tutorials  
+    b. [Tutorial](http://rsconnect.calvin.edu/tidyverse-city-of-hope)
     
-    d. Building precursors to data wrangling: https://arxiv.org/abs/1401.3269
+    c. Building precursors to data wrangling: https://arxiv.org/abs/1401.3269
     
-    e. Useful online resource: downloadable chapter on data wrangling from http://mdsr-book.github.io/
-
-6. Customization with `ggformula`.
+    d. Useful online resource: downloadable chapter on data wrangling from http://mdsr-book.github.io/
+    
+9. Customization with `ggformula` [?]
 </td>
 </tr>
 </table>
@@ -192,10 +201,10 @@ Track B
 <table> 
 <tr>
 <th width = "50%">
-Track A
+Track A [Randy]
 </th>
 <th width = "50%">
-Track B
+Track B [Danny]
 </th>
 </tr>
 <tr valign = "top">
@@ -204,17 +213,15 @@ Track B
  
     a. Goal: Get your data into the right shape for graphing or analysis
  
-    b. [slides](Learn/Wrangling/dplyr-intro.html) for presentation;
+    b. [Tutorial](http://rsconnect.calvin.edu/tidyverse-city-of-hope)
     
-    c. tutorials  
+    c. Building precursors to data wrangling: https://arxiv.org/abs/1401.3269
     
-    d. Building precursors to data wrangling: https://arxiv.org/abs/1401.3269
-    
-    e. Useful online resource: downloadable chapter on data wrangling from http://mdsr-book.github.io/
+    d. Useful online resource: downloadable chapter on data wrangling from http://mdsr-book.github.io/
     
 </td>
 <td>
-
+Topics TBD
 </td>
 </tr>
 </table>
