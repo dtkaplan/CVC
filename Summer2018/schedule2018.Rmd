@@ -151,7 +151,7 @@ Track B [Randy]
  
     a. Goal: Get your data into the right shape for graphing or analysis
  
-    b. [Tutorial](http://rsconnect.calvin.edu/tidyverse-city-of-hope)
+    b. [Tutorial](http://rstudio.calvin.edu:3939/tidyverse/city-of-hope-2018/)
     
     c. Building precursors to data wrangling: https://arxiv.org/abs/1401.3269
     
