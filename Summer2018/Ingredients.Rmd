@@ -1,0 +1,246 @@
+---
+title: "Ingredients List"
+author: "2018 Computation and Visualization Workshop"
+date: "Grinnel College"
+output: 
+  ioslides_presentation:
+    widescreen: true
+    smaller: false
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  fig.width = 9,
+  fig.height = 5,
+  out.width = "70%",
+  fig.align = "center"
+  )
+require(mosaic)
+require(NHANES)
+require(RColorBrewer)
+theme_set(theme_bw())
+```
+
+
+## Ingredients for use in Data Science Recipes
+
+There are lots of data science recipes, but many of them are created 
+from a common set of ingredients.  We can spend more or less time on 
+becoming familiar with these ingredients depending on
+
+* The recipies you are interested in (emphasize most useful)
+* The ingredients you are already feel comfortable with (avoid the most familiar)
+
+
+## Graphics | Packages: `ggformula`, `mosaic`
+
+Plots like this are simple to make in R:
+
+```{r, fig.width = 10, out.width = "90%"}
+gf_linerange(low_temp + high_temp ~ date, color = ~ avg_temp, data = Weather) %>%
+  gf_refine(scale_colour_gradientn(colors = rev(rainbow(5)))) %>%
+  gf_facet_grid(city ~ year, scales = "free_x")
+```
+
+
+## Graphics | Packages: `ggformula`, `mosaic`
+
+
+```{r, fig.height = 6}
+    require(RColorBrewer)
+    require(ggformula)
+    load("/Users/rpruim/projects/github/talks/LessVolume/Data/likertdata.Rdata")
+    colors1 <- brewer.pal(5, "Spectral")
+    colorsB <- colors1[c(2,3,4,5,1)]
+    responses1 <- c("Not at all satisfied", "2", "3", "4", "Extremely satisfied")
+    responses2 <- responses1[c(1,5,2,4,3)]
+    gf_col(Freq ~ citystate, fill = ~ factor(Response, levels = responses2), data = trial2$neg) %>%
+      gf_col(data = trial2$pos, fill = ~ factor(Response, levels = responses2)) %>%
+      gf_facet_wrap( ~ year, nrow = 3) %>%
+      gf_refine(
+        scale_fill_manual(
+          breaks = responses1,
+          values = colorsB,
+          name = "Response"),
+        scale_y_continuous(
+          limits=c(-0.5, 1),
+          breaks=seq(from=-0.5, to=0.75, by=0.25),
+          labels=c("50%", "25%", "0", "25%", "50%", "75%")
+        ),
+        coord_flip()
+      ) %>%
+      gf_labs(
+        title = "Community satisfaction", x = "", y = "") %>%
+      gf_theme(
+        legend.text=element_text(size=10),
+        legend.title=element_text(size=12),
+        axis.text=element_text(size=6, angle = 30),
+        strip.text=element_text(size=11))
+```
+
+## Tidy Data and Data Wrangling | Packages: `dplyr`, `tidyr`, etc.
+
+Often we need to transform data into the proper format for analysis or graphics.
+
+Tidy data: 
+
+  * rows = observational units/cases/subjects
+  * columns = variables
+  * no exceptions, no "extras" (units, summaries, comments, meta-data, etc.)
+
+
+## Data scraping | Packages: `rvest`
+
+* Lots of data available online
+* May require some work to put a in the proper format (wrangling)
+
+
+## Importing your own data | Packages: `readr`, `googlesheets`, `readxl`, `haven`
+
+R is capable of reading data in a wide variety of formats
+
+* general-purpose formats: csv, tsv, fixed width
+
+* data from other software: Excel, Google spreadsheets, SAS, SPSS
+
+* databases: MySQL, MS SQLServer, etc.
+
+* specialized data fromats: shape files for maps, FASTA files for genetics, etc.
+
+If you have data you want to use in R, we can help you get it into R.
+
+
+## Reporting | Packages: `rmarkdown`, `bookdown`, `blogdown`, `knitr`, `flexdashboard`, etc.
+
+<table>
+<tr style = "vertical-align:top">
+<td width = "30%" valign = "top">
+RStudio provides a rich set of authoring tools to produce static and dynamic documents
+in a variety of formats (HTML, PDF, Word)
+
+  * [RStudio quick tour](https://rmarkdown.rstudio.com/authoring_quick_tour.html)
+  * [flexdashboard examples](https://rmarkdown.rstudio.com/flexdashboard/examples.html)
+</td>
+<td width = "70%" style="vertical-align:top">
+```{r, echo = FALSE, out.width = "95%"}
+knitr::include_graphics("https://d33wubrfki0l68.cloudfront.net/7f4541b4fee94579f02fc2d8bd3de0e09c010f4d/49281/images/quicktourexample.png")
+```
+</td>
+</tr>
+</table>
+
+
+## Reporting | Packages: `rmarkdown`, `bookdown`, `blogdown`, `knitr`, `flexdashboard`, etc.
+
+R code and output can be included as well.
+
+```{r, echo = FALSE, out.width = "60%"}
+knitr::include_graphics(
+  "https://d33wubrfki0l68.cloudfront.net/dcf4c184fe1dde2460eeb16e6ae7566e1c0756c9/3605e/images/markdownchunk.png")
+```
+
+
+## Tutorials -- run R code in a webpage | Packages: `learnr`
+
+* We will see several examples of this in the "Shop" part of the workshop.
+
+* These are **not difficult to make** -- use the same system as report creation (Rmd).
+
+## Websites | rstudio.cloud + GitHub
+
+Websites can also be created using RMarkdown.
+
+  * The website for this workshop was done in RMarkdown
+  * These slides were, too.
+
+GitHub can be used to host the website.
+
+## GitHub
+
+RStudio has excellent support for GitHub more generally.  Great for
+
+* maintaining your own work
+* student projects
+* creating R packages and making them available to others
+
+
+## Maps | Packages: `leaflet`
+
+* More info from RStudio: [webinar](https://www.rstudio.com/resources/videos/mapping-in-r-with-leaflet/),
+[tutorial](https://rstudio.github.io/leaflet/)
+
+```{r, fig.height = 3, fig.width = 5}
+library(leaflet)
+leaflet() %>% addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng = -92.7202, lat = 41.74844, label = "Welcome to Grinnell College")
+```
+
+## Maps | Packages: `ggformula`, `maps`, `sf`
+
+
+```{r echo = FALSE, message = FALSE, warning = FALSE, fig.height = 3, fig.width = 5}
+library(maps) 
+library(mosaic) 
+library(sf) 
+require(purrr) 
+  USshape <- 
+    sf::st_as_sf(maps::map('state', plot = FALSE, fill = TRUE)) %>%
+    dplyr::mutate(
+      name_length = nchar(ID),
+      centroid = purrr::map(geometry, st_centroid),
+      coords_x = purrr::map_dbl(centroid, 1),
+      coords_y = purrr::map_dbl(centroid, 2)
+    ) 
+    
+  gf_sf(fill = ~ name_length, color = "white", data = USshape, alpha = 0.8,
+        show.legend = FALSE) %>%
+    # gf_sf(data = sf::st_centroid(USshape), color = "white", alpha = 0.5, size = 3) %>%
+    # gf_text(coords_y ~ coords_x, label = ~ ID, color = "gray20", size = 2) %>%
+    gf_labs(x = "", y = "") %>%
+    gf_refine(mosaic::theme_map(), theme_bw()) %>%
+    gf_labs(fill = "name length") %>% 
+    gf_refine(
+      scale_fill_gradientn(colors = rainbow(8)),
+      guides(fill = FALSE))
+```
+
+## Apps -- interactivity, but no visible code | Packages: `shiny`, `shinydocs`
+
+* These generally take a bit more work to program, but this is doable.
+
+* Great for producing data explorations that don't require users to know any R.
+
+* A few examples
+
+    * [Nick Horton's SAT app](https://r.amherst.edu/apps/nhorton/sat)
+    * [Randy's Confidence Interval app](http://rsconnect.calvin.edu/CIs/)
+    * [StatPREP examples](https://statprep.github.io/Workshops_2018/LittleApps/little_apps.html)
+    * [RStudio Shiny Gallery](https://shiny.rstudio.com/gallery/)
+
+## "Advanced" R 
+
+Don't let "advanced" scare you off.
+They are things that many people don't get around to learning early on,
+but they are not terribly difficult.
+
+* Writing Functions
+
+* [Creating Packages](http://r-pkgs.had.co.nz/)
+
+* How the R language works (inspecting objects, avoiding inefficient "loops",
+using C++ inside R, etc.)
+
+* Hadley Wickham's [Advanced R (online) book](http://adv-r.had.co.nz/)
+
+## Modeling -- Don't forget Statistics! | Packages: many
+
+R can fit an incredibly wide range of statistical models.
+
+  * Linear regression (and generalizations)
+  * Machine Learning
+  * Simulation-based methods (Bootstrap, Randomization, Validation methods)
+  * Bayesian methods
+  * etc, etc, etc
+  
