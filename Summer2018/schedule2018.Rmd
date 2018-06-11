@@ -47,11 +47,11 @@ responses.  Feel free to edit it at anytime before, during, or (shortly) after t
 
   * [Google Doc](https://docs.google.com/document/d/1t3jlDOpXnv1YI-GiekWPiRXR5CsHlNn5B851W5fSgBY/edit?usp=sharing)
 
-## Project ideas and updates
+<!-- ## Project ideas and updates -->
 
-We'll use this Google Doc to share information about project ideas and updates.
+<!-- We'll use this Google Doc to share information about project ideas and updates. -->
 
-  * [Google Doc]()
+<!--   * [Google Doc]() -->
 
 ## Working Schedule
 
