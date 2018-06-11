@@ -81,24 +81,14 @@ Arrival day for many coming from out of town.
     * [What's Normal?]()
     * 
     
- 4. Ingredients List
+ 4. [Ingredients List](Ingredients.html)
  
-    * Graphics (`ggformula`)
-    * Tidy Data and Data Wrangling (`dplyr`, `tidyr`, etc.)
-    * Data scraping (`rvest`)
-    * Importing your own data (`readr`, `googlesheets`, `readxl`)
-    * Tutorials -- run R code in a webpage (`learnr`)
-    * Reporting (`rmarkdown`, `bookdown`, `blogdown`, `knitr`, `flexdashboard`, etc.)
-    * Apps -- interactivity, but no code (`shiny`, shinydocs)
-    * Maps -- `leaflet`
-    * Websites -- rstudio.cloud + GitHub
-    * GitHub
-    
  5. Less Volume, More Creativity [Randy]
  
-    * A general approach to using R
+    * [A general approach to using R](Learn/LessVolume/less-volume-grinnell-2018.html)
     
-    * Introduction to `ggformula` for graphics
+    * [Introduction to `ggformula` for graphics](http://rstudio.calvin.edu:3939/less-volume-plots/jmm2018/)
+    
     
   6. Using RStudio.cloud [Danny]
 
