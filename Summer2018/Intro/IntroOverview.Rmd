@@ -134,3 +134,7 @@ R's particular advantages:
 ## Google Doc
 
 <img src = "../../images/FredFlintstoneBio-2018.png" width = 90%>
+
+## Warmup
+
+[Data set for warmup](Warmup-test/Galton.csv)
