@@ -1,0 +1,16 @@
+# Grinnell College meets Bob Noyce
+
+Bob was student here at [Grinnell College](http://grinnell.edu) ...
+
+Then, he  
+
+1. Worked at Wendy's
+1. worked at Fairchild semiconductor
+2. Founded Intel
+5. Tried to find $\int_0^\infty \frac{1}{x}dx$
+
+![Some caption](https://upload.wikimedia.org/wikipedia/commons/8/82/Robert_Noyce_with_Motherboard_1959.png)
+
+## Bob and our workshop
+
+> *Wax on, wax off*.  -Mr. Miyogi
