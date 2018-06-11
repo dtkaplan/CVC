@@ -85,9 +85,9 @@ Arrival day for many coming from out of town.
  
  5. Less Volume, More Creativity [Randy]
  
-    * [A general approach to using R](Learn/LessVolume/less-volume-grinnell-2018.html)
+    * [A general approach to using R](Learn/LessVolume/less-volume-grinnell-2018.html) [slides]
     
-    * Introduction to `ggformula` for graphics
+    * Tutorials introducing `ggformula` for graphics
     
         * [eCOTS 2018 version](http://rstudio.calvin.edu:3939/ecots2018/)
         * [JMM 2018 version](http://rstudio.calvin.edu:3939/less-volume-plots/jmm2018/)
