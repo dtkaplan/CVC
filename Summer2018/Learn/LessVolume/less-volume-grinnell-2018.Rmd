@@ -1,5 +1,5 @@
 ---
-title: Less Volume, More Creativity
+title: Less Volume, More Creativity: <br> R for busy humans
 author: R Pruim
 date: "CVW 2018"
 output: 
@@ -41,8 +41,6 @@ is great.
    
    * But if you do, you can take advantage
    
-   * You will learn about RMarkdown later today
-
 
 # Less Volume, More Creativity
 
@@ -74,7 +72,7 @@ options(digits = 3)
 ## Mike McCarthy
 
 <table><tr align="top" padding=5><td width="20%" align="top">
-<img src="images/MikeMcCarthy.jpg" align="top" width="150"></td>
+<img src="../../../images/MikeMcCarthy.jpg" align="top" width="150"></td>
 <td align="top"> 
 Head coach, Green Bay Packers (NFL Football)
 
@@ -88,7 +86,7 @@ Head coach, Green Bay Packers (NFL Football)
 ## Mike McCarthy
 
 <table><tr align="top" cellpadding=5><td width="20%" align="top">
-<img src="images/MikeMcCarthy.jpg" align="top" width="150"></td>
+<img src="../../../images/MikeMcCarthy.jpg" align="top" width="150"></td>
 <td align="top"> 
 Head coach, Green Bay Packers (NFL Football)
 
@@ -106,7 +104,7 @@ Head coach, Green Bay Packers (NFL Football)
 ## Mike McCarthy
 
 <table><tr align="top" padding=5><td width="20%" align="top">
-<img src="images/MikeMcCarthy.jpg" align="top" width="150"></td>
+<img src="../../../images/MikeMcCarthy.jpg" align="top" width="150"></td>
 <td align="top"> 
 Head coach, Green Bay Packers (NFL Football)
 
@@ -126,7 +124,7 @@ Head coach, Green Bay Packers (NFL Football)
 ## Mike McCarthy
 
 <table><tr align="top" padding=5><td width="20%" align="top">
-<img src="images/MikeMcCarthy.jpg" align="top" width="150"></td>
+<img src="../../../images/MikeMcCarthy.jpg" align="top" width="150"></td>
 <td align="top"> 
 Head coach, Green Bay Packers (NFL Football)
 
@@ -171,7 +169,7 @@ Source: [http://www.jsonline.com/packerinsider/106968233.html](http://www.jsonli
 
 ## The Minimal R Exercise
 
-**List** every R command used throughout a course
+**List** every R command used throughout a course/project
 
 **Organize** by syntactic similarity and by purpose
 
@@ -190,10 +188,24 @@ Source: [http://www.jsonline.com/packerinsider/106968233.html](http://www.jsonli
 ## Less Volume, More Creativity 
  
 It is not enough to use R, 
-it must be used efficiently and elegantly.
+it must be used efficiently and elegantly because human brain power 
+is the most limited resource most of our projects have.
 
-The `mosaic` package attempts to be part of one solution.
 
+<center>
+<img width = "40%" align = "center" src="../../../images/brain-is-full.jpg">
+</center>
+
+## Less Volume, More Creativity 
+
+### Some propopsed solutions
+
+ * `mosaic` and `ggformula` -- making the most of formulas
+ 
+ * `tidyverse` -- grammar of data transformation
+ 
+ * R Markdown -- document creation for humans who use R
+ 
 
 <table>
 <tr>
@@ -203,9 +215,28 @@ Perfection is achieved, not when there is nothing more to add, but when there is
 --- Antoine de Saint-Exupery (writer, poet, pioneering aviator)
 </td>
 <td width="20%"> 
-<img src="images/SaintExupery.jpg">
+<img src="../../../images/SaintExupery.jpg">
 </tr>
 </table>
+
+
+## Choose Wisely
+
+R's biggest strength is also its biggest weakness:  A large, active user base that 
+provides packages for the community to use.
+
+ * quality varies from pacakge to package, so does style
+ * new things keep coming (so you need to revisit your choices)
+ 
+If you are new to R, you will learn faster and be happier if you can learn a 
+few flexible tools very well than if you run with the first thing you google that 
+gets today's job done.
+
+If you are teaching, your students will become more proficient more quickly (and with less
+stress) if you follow a Less Volume, More Creatiity approach.
+
+
+
 
 
 
