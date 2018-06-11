@@ -1,0 +1,38 @@
+---
+title: "CVW 2018 -- Grinnell College"
+
+output: 
+  html_document:
+    template: null
+    css: ../stylesheets/cvc.css
+    
+---
+
+
+<script src="../javascripts/main.js"></script>
+<!--[if lt IE 9]>
+<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<div class="wrapper">
+<nav>
+<ul></ul>
+</nav>
+<section>
+     
+           
+<header>
+<h1>CVW 2018 </h1>
+<p>Computation and Visualization Workshop</p>
+</header> 
+
+This is cvc.mosaic-web.org/Summer2018/
+
+## Schedule for Workshop
+
+The workshop schedule will be updated as we go along.
+You can find it here:
+
+* [Schedule for the Workshop](schedule2018.html)
