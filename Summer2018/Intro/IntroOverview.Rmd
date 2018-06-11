@@ -135,6 +135,17 @@ R's particular advantages:
 
 <img src = "../../images/FredFlintstoneBio-2018.png" width = 90%>
 
-## Warmup
+## A get-to-know you task (geek version)
 
-[Data set for warmup](Warmup-test/Galton.csv)
+We want to know what your go-to tools are. Knowing where you are helps us plan what routes are suitable to reach our destination.
+
+**The Task**
+
+Here is a CSV file: `http://cvc.mosaic-web.org/Summer2018/Intro/Warmup-test/Galton.csv`
+
+* Read the file.
+* Compute the difference in mean height between the sexes.
+
+
+<!--
+[Data set for warmup](Warmup-test/Galton.csv) -->
