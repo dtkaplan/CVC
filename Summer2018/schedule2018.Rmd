@@ -107,29 +107,18 @@ Track B [Randy]
 </tr>
 <tr valign = "top">
 <td valign = "top">
+ 
  7. More Orientation to RStudio 
  
- 8. How to organize your data
-    
-    a. [**Introduction slides**](Learn/TidyData/tidy_data.html), but the basics are
-    
-      * Rectangular format: cases (rows) and variables (columns)
-      * Separate your analysis from data storage.
-      * Use a codebook to describe your cases and variables in detail.
-      
-    b. `tidyverse` provides a toolkit for getting data into
-    this format.  (More later.)
-    
- 9. Importing CSV and Excel files into RStudio
- 
-      * [Notes](Learn/ImportingData/ImportingData.html)
-      * [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
-    
- 10. [RMarkdown](http://prezi.com/vq6l5yqpnqma/) 
+ 8. [RMarkdown](http://prezi.com/vq6l5yqpnqma/) 
     a. [TISE paper by Baumer *et al*](http://escholarship.org/uc/item/90b2f5xh)
     
     b. [RMarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
-
+    
+ 9. Parts of speach in R
+ 
+ 10. Grammar of graphics and `ggfromula`
+ 
 <!-- 
         b. **Activity**: The spreadsheet [here](http://vote.minneapolismn.gov/www/groups/public/@clerk/documents/webcontent/wcms1p-126724.xlsx) contains data on the Minneapolis 2013 election by ward and precinct.  Identify the elements of this spreadsheet that are not in standard rectangular data format. 
 -->
@@ -163,9 +152,11 @@ Track B [Randy]
 </table>
 
 ### Tuesday
+
+ 1. Discecting graphics
  
-1. Project check-in
- 
+ 2. Two-tracks -- pick one or work on your own.
+
 <!-- 2. More graphics in R with `ggformula` [Randy and Danny] -->
 
 <!--     a. The graphics-data interface  -->
@@ -204,22 +195,41 @@ Track B [Randy]
 </tr>
 <tr valign = "top">
 <td valign = "top">
- 2. Working with data -- 5 verbs of `dplyr`
- 
-    a. Goal: Get your data into the right shape for graphing or analysis
- 
-    b. [Tutorial](http://rsconnect.calvin.edu/tidyverse-city-of-hope)
+
+A. How to organize your data
     
-    c. Building precursors to data wrangling: https://arxiv.org/abs/1401.3269
+  a. [**Introduction slides**](Learn/TidyData/tidy_data.html), but the basics are
     
-    d. Useful online resource: downloadable chapter on data wrangling from http://mdsr-book.github.io/
+      * Rectangular format: cases (rows) and variables (columns)
+      * Separate your analysis from data storage.
+      * Use a codebook to describe your cases and variables in detail.
+      
+  b. `tidyverse` provides a toolkit for getting data into
+    this format.  (More later.)
+    
+B. Importing CSV and Excel files into RStudio
+ 
+  * [Notes](Learn/ImportingData/ImportingData.html)
+  * [Anscombe.csv](Learn/ImportingData/Anscombe.csv)
+
+C. Working with data -- 5 verbs of `dplyr`
+
+  a. Goal: Get your data into the right shape for graphing or analysis
+ 
+  b. [Tutorial](http://rsconnect.calvin.edu/tidyverse-city-of-hope)
+    
+  c. Building precursors to data wrangling: https://arxiv.org/abs/1401.3269
+    
+  d. Useful online resource: downloadable chapter on data wrangling from http://mdsr-book.github.io/
     
 </td>
 <td>
-Topics TBD
+A. 
 </td>
 </tr>
 </table>
+
+3. Work session -- work on project of your choosing.
  
 ### Wednesday
  
