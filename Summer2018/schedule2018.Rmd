@@ -226,13 +226,18 @@ C. Working with data -- 5 verbs of `dplyr`
 <td>
 A. Creating an R package
 
-B. More TBA
+  * [Writing R packages](http://r-pkgs.had.co.nz/) by Hadley Wickham
+  * [DemoCourse package on Github](https://github.com/rpruim/DemoCourse)
 
 </td>
 </tr>
 </table>
 
-3. Work session -- work on project of your choosing.
+3. More plotting with `ggformula`
+
+        * [Refining ggformula plots](http://rstudio.calvin.edu:3939/ggformula/refining/)
+
+4. Work session -- work on project of your choosing.
  
 ### Wednesday
  
