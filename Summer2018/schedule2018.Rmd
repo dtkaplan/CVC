@@ -224,7 +224,10 @@ C. Working with data -- 5 verbs of `dplyr`
     
 </td>
 <td>
-A. 
+A. Creating an R package
+
+B. More TBA
+
 </td>
 </tr>
 </table>
