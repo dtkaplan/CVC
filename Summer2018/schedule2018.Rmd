@@ -235,7 +235,7 @@ A. Creating an R package
 
 3. More plotting with `ggformula`
 
-        * [Refining ggformula plots](http://rstudio.calvin.edu:3939/ggformula/refining/)
+    * [Refining ggformula plots](http://rstudio.calvin.edu:3939/ggformula/refining/)
 
 4. Work session -- work on project of your choosing.
  
