@@ -146,6 +146,8 @@ Track B [Randy]
     
     b. [RMarkdown cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
     
+    c. Creating a simple `learnr` tutorial
+    
 8. Working with data -- 5 verbs of `dplyr`
  
     a. Goal: Get your data into the right shape for graphing or analysis
@@ -156,7 +158,6 @@ Track B [Randy]
     
     d. Useful online resource: downloadable chapter on data wrangling from http://mdsr-book.github.io/
     
-9. Customization with `ggformula` [?]
 </td>
 </tr>
 </table>
@@ -195,10 +196,10 @@ Track B [Randy]
 <table> 
 <tr>
 <th width = "50%">
-Track A [Randy]
+Track A [Danny]
 </th>
 <th width = "50%">
-Track B [Danny]
+Track B [Randy]
 </th>
 </tr>
 <tr valign = "top">
