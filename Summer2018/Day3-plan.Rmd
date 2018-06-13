@@ -1,0 +1,29 @@
+# Topics for Day 3
+
+1. Intro to day
+    - shiny app: smoother Little App
+    - mplot
+
+2. Breakouts
+    - Shiny: building an app
+    - Scraping data
+        - Set up a google doc. Have them propose sites to scrape data from.
+        - common formats: CSV, JSON, XML
+        - Restful API's to data
+        - ? 
+    - Cleaning data
+        - recoding: Ordway birds
+        - Date/times
+        - Gapbinder wide/narrow
+        - numerical/categorical
+    - Inferential statistics
+        - classical
+        - bootstrapping/randomization
+        - cross-validation
+    - Machine learning
+    
+    
+
+
+
+Lunchtime conversation: R as a language

@@ -1,0 +1,12 @@
+# Making some  graphics
+
+```{r include=FALSE}
+library(NHANES)
+library(ggformula)
+```
+
+Blood pressure and age
+
+```{r}
+gf_smooth(BPSysAve ~ Age, data = NHANES,  color = ~ Work)
+```

@@ -4,13 +4,29 @@ Bob was student here at [Grinnell College](http://grinnell.edu) ...
 
 Then, he  
 
-1. Worked at Wendy's
+1. Worked at Wendy's `www` site
 1. worked at Fairchild semiconductor
 2. Founded Intel
 5. Tried to find $\int_0^\infty \frac{1}{x}dx$
 
 ![Some caption](https://upload.wikimedia.org/wikipedia/commons/8/82/Robert_Noyce_with_Motherboard_1959.png)
 
+
+```{r echo=FALSE, message = FALSE }
+library(ggformula)
+library(mosaicData)
+library(mosaicCore)
+gf_jitter(height ~ sex, data = Galton)
+df_stats(height ~ sex, data = Galton, mean, ci.mean, cicccccii)
+```
 ## Bob and our workshop
 
 > *Wax on, wax off*.  -Mr. Miyogi
+
+
+
+```{r}
+
+6
+"'A quoted character string,' she said."
+```
