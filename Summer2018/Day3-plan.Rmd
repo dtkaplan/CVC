@@ -19,13 +19,15 @@
         - Gapbinder wide/narrow
         - numerical/categorical
     - 1:00 Scraping data DTK
-        - Set up a google doc. Have them propose sites to scrape data from.
+        - Participants propose sites to scrape data from. 
+            - [Add your URLs here.](https://docs.google.com/document/d/1AFWPdPjivqp3R4Gy0n5fM52EDnxsg4xxaibzPHbNn6U/edit)
         - common formats: CSV, JSON, XML
-        - Restful API's to data
+        - parsing HTML [example](https://dtkaplan.github.io/comp110/Projects/832-NuclearReactors.html)
+        - Restful API's to data, [ZIP code example](http://www.wolframalpha.com/input/?i=ZIP+code+55116)
         - ? 
     - 2:00 Course curricula Shonda leads, DTK, RJP as needed 
-        - Tutorials for Data Computing
-        - Web site for Data Computing
+        - [Web site for *Data Computing*](https://dtkaplan.github.io/comp110/)
+                - Tutorials for *Data Computing* Chapters [1](https://dtkaplan.shinyapps.io/Chapter-01-collection/) : [2](https://dtkaplan.shinyapps.io/chapter-02-collection5/) : [3](https://dtkaplan.shinyapps.io/Chapter-03-collection/) : [4](https://dtkaplan.shinyapps.io/Chapter-04-collection/) : [5](https://dtkaplan.shinyapps.io/Chapter-05-collection/) : [6](https://dtkaplan.shinyapps.io/Chapter-06-collection/) : [7](https://dtkaplan.shinyapps.io/Chapter-07-collection/) : [8](https://dtkaplan.shinyapps.io/Chapter-08-collection/) : [9](https://dtkaplan.shinyapps.io/Chapter-09-collection/)
     
     
 
