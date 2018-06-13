@@ -244,31 +244,55 @@ A. Creating an R package
  
 1. Odds and ends
 
+  * Don't forget to fill out your evaluation form before leaving.
+  * `mplot()`
+  * [Little Apps](https://statprep.github.io/Workshops_2018/LittleApps/little_apps.html)
+
 <table>
 <tr>
 <th width = "50%"> Upstairs </th>
 <th width = "50%"> Downstairs </th>
 </tr>
 <tr>
-<td>
+<td valign = "top">
 2. (9.30) Shiny apps
 
 3. (10.30) Inferential Statistics in R (classical, bootstrap, cross-validations, machine learning, etc.)
 </td>
-<td>
-2. More data wrangling and data viz, etc.
+<td valign = "top">
+2. Data Wrangling
 
-3. Work on personal projects
+    - [TB Case Study tutorial](http://rstudio.calvin.edu:3939/tidy-tb/) 
+
+3. Data Viz
+
+    - [refining your plots (old version)](https://dtkaplan.shinyapps.io/Refining_ggformula/)
+
+Or work on your own projects.
 </td>
 </tr>
 </table>
 
+4. (12:00) Lunch (discussion of R as a language at some table(s))
 
-4. (1:00) Web scraping
+<table>
+<tr>
+<th width = "50%"> Upstairs </th>
+<th width = "50%"> Downstairs </th>
+</tr>
+<tr>
+<td valign = "top">
+5. (1:00) Web scraping
 
-5. (2:00) Curriculum and pedagogy for data science
+6. (2:00) Curriculum and pedagogy for data science
+</td>
+<td valign = "top">
+Work on your own projects
+</td>
+</tr>
+</table>
 
-6. (2:45) Wrap-up and Farewell
+7. (2:45) Wrap-up and Farewell
 
  
 
