@@ -5,22 +5,27 @@
     - mplot
 
 2. Breakouts
-    - Shiny: building an app
-    - Scraping data
-        - Set up a google doc. Have them propose sites to scrape data from.
-        - common formats: CSV, JSON, XML
-        - Restful API's to data
-        - ? 
-    - Cleaning data
+    - 9:30 - Shiny: building an app DTK
+
+    - 10:30 Inferential statistics DTK
+        - classical
+        - bootstrapping/randomization
+        - cross-validation
+        - mosaicModel
+        - machine learning        
+    - 10:30 Cleaning data RJP
         - recoding: Ordway birds
         - Date/times
         - Gapbinder wide/narrow
         - numerical/categorical
-    - Inferential statistics
-        - classical
-        - bootstrapping/randomization
-        - cross-validation
-    - Machine learning
+    - 1:00 Scraping data DTK
+        - Set up a google doc. Have them propose sites to scrape data from.
+        - common formats: CSV, JSON, XML
+        - Restful API's to data
+        - ? 
+    - 2:00 Course curricula Shonda leads, DTK, RJP as needed 
+        - Tutorials for Data Computing
+        - Web site for Data Computing
     
     
 
