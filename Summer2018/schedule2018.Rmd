@@ -242,89 +242,35 @@ A. Creating an R package
  
 ### Wednesday
  
- <!-- 1. More data wrangling with `dplyr` and `tidyr` [Randy]  -->
+1. Odds and ends
 
- <!--    a. `spread()`, `gather()`, joins, etc. -->
+<table>
+<tr>
+<th width = "50%"> Upstairs </th>
+<th width = "50%"> Downstairs </th>
+</tr>
+<tr>
+<td>
+2. (9.30) Shiny apps
 
- <!--    b. A data tidying case study: [tidydata-TB-tutorial.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Wrangling/tidydata-TB-tutorial.Rmd) -->
+3. (10.30) Inferential Statistics in R (classical, bootstrap, cross-validations, machine learning, etc.)
+</td>
+<td>
+2. More data wrangling and data viz, etc.
 
- <!--
-    a. merging data from multiple sources [Danny]
-        * [Slides](Learn/Join/joins.html) 
-        * [bird-species spreadsheet](https://docs.google.com/spreadsheets/d/1GDKeulVSRXL7Q_5Q0a7Offc_IPX2T4sZ80VN5VLASew/edit#gid=0), 
-        * zebrafish treatment [CSV file](Learn/Wrangling/FishTx.csv) 
-    b. `gather()`, `spread()`, `separate()` [Randy]
-        * [Notes](Learn/TidyData/TidyGapMinder.html)
-    c. Building precursors [paper](http://www.amherst.edu/~nhorton/precursors)
--->
-    
-<!--  2. Ingesting your own data and next steps for your project -->
+3. Work on personal projects
+</td>
+</tr>
+</table>
 
-<!--  3. Teasers -->
 
-<!--     a. Shiny [Example 1 ](https://r.amherst.edu/apps/nhorton/sat); -->
-<!-- [Shiny resources](http://shiny.rstudio.com) [Nick] -->
+4. (1:00) Web scraping
 
-<!--     b. GitHub [Randy] -->
+5. (2:00) Curriculum and pedagogy for data science
 
-<!--     c. learnr (with hints and checked answers and bells and whistles, see https://rstudio.github.io/learnr and https://rstudio.github.io/learnr/exercises.html#hints-and-solutions) [Danny] -->
+6. (2:45) Wrap-up and Farewell
 
-<!--     d. Leaflets ([leaflet.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Leaflets-breakout/Leaflet_notes.Rmd), see also https://rstudio.github.io/leaflet) [Nick] -->
-
-<!--  4. Welcome to 2nd-half participants -->
-
-<!--  5. Optional Tutorials      -->
-<!--      - Learnr tutorials [the rmd document we developed](Projects/testing_tea/testing_tea/testing_tea.Rmd) -->
-
-<!-- ### Thursday -->
-
-<!--  1. Opening (quick) interludes -->
-
-<!--     a. Brief status reports -->
-<!--     b. Using `dplyr` with an SQL data base  -->
-<!--       * [SQL in R pdf](Learn/SQL/sql-example.pdf) -->
-<!--       * [SQL in R Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/SQL/sql-example.Rmd) -->
-<!--     <!-- c. Making data available to others (esp. students) via the web. [Notes](Learn/WorkingWithStudents/Providing_files_to_students.html) --> -->
-<!--     c. Simple text mining for fun and profit -->
-<!--       * [text.html](Learn/Text/text.html) -->
-<!--       * [text.Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/Text/text.Rmd) -->
-<!--     d. Writing functions in R -->
-<!--       * Tom, Dick, and Harry [[html](../Summer2016/Learn/WritingFunctions/TomDickAndHarry.html),  -->
-<!--       [Rmd](../Summer2016/Learn/WritingFunctions/TomDickAndHarry.Rmd)] -->
-<!--       * How to Write Functions Tutorial [[Rmd](https://rawgit.com/dtkaplan/CVC/gh-pages/Summer2017/Learn/WritingFunctions/HowToWriteFuctions-Tutorial/HowToWriteFunctions.Rmd), [Live Tutorial](http://rstudio.calvin.edu:3939/writing-functions/)] -->
-<!--     e. Googlesheets [Randy or Danny] -->
-
-<!--  2. Working on projects -->
-
-<!--  3. Optional Tutorials, TBD -->
-
-<!--    a. Using Github and Making Packages -->
-<!--       * [Hadley's advice on making packages with modern tools](http://r-pkgs.had.co.nz/) -->
-<!--       * [learn git branching](http://learngitbranching.js.org/) -->
-<!--       * data at [http://www.calvin.edu/~rpruim/data/HIVdata.csv](http://www.calvin.edu/~rpruim/data/HIVdata.csv) -->
-
-<!-- ### Friday -->
-
-<!--  1. Please fill out the  [Project Report Form](http://goo.gl/forms/14rB29jmVrxw1Ftl2) -->
-
-<!--  2. How to make a website (GitHub edition) -->
-<!--    * [Notes](https://dtkaplan.github.io/MakingAWebSite/) -->
-<!--    * You can post tutorials at [http://shinyapps.io](http://shinyapps.io) or at -->
-<!--    [http://rstudio.calvin.edu:3939](http://rstudio.calvin.edu:3939) -->
-
-<!--  3. Break out sessions -->
-<!--     a. Shiny -->
-<!--        * [slides from a shiny workshop at Big Data Ignite 2016](http://rpruim.github.io/talks/bigdataignite2016/shiny/04-Shiny.pdf) -->
-<!--     b. Web scraping -->
-<!--     c. Machine Learning -->
-<!--       * [Notes](Learn/MachineLearning/MachineLearning.html) -->
-<!--     d. Modeling in R -->
-<!--       * [Transcript of Break out](Learn/Modeling/Modeling2.html) -->
-<!--       * [PDF from 2016](Learn/Modeling/Modeling.pdf) -->
-
-<!--  4. Project Reports -->
-
-<!--  5. Closing thoughts and good-byes -->
+ 
 
 ## Example Projects from 2017 Workshop
 
