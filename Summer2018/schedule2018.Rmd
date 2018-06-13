@@ -89,6 +89,8 @@ Arrival day for many coming from out of town.
     * Tutorials introducing `ggformula` for graphics
     
         * [eCOTS 2018 version](http://rstudio.calvin.edu:3939/ecots2018/)
+        * [Student-centric version](http://rstudio.calvin.edu:3939/Stat145/BasicPlots/)
+        * [Another student-centric version](http://rstudio.calvin.edu:3939/connect/#/apps/45/access)
         * [JMM 2018 version](http://rstudio.calvin.edu:3939/less-volume-plots/jmm2018/)
         * [Package intro](http://rstudio.calvin.edu:3939/ggformula/introduction/)
         * [Refining ggformula plots](http://rstudio.calvin.edu:3939/ggformula/refining/)
