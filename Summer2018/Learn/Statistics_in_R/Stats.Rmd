@@ -1,0 +1,86 @@
+# Statistics in R
+
+```{r}
+library(NHANES)
+library(mosaicData)
+library(mosaic)
+library(mosaicCore)
+library(ggformula)
+```
+
+Use only functions that have something like a `data = ` argument.
+
+```{r}
+mod <- lm(length ~  sex + width, data = KidsFeet)
+mod2 <- glm(sex == "B" ~ width + domhand, data = KidsFeet, family=binomial)
+summary(mod2)
+anova(mod)
+fisher.test(with(data = KidsFeet, table(sex, domhand)))
+```
+
+## Kids Feet
+
+```{r}
+KidsFeet
+```
+
+## Mosaic
+
+### First generation
+
+
+```{r}
+max(width ~ domhand + biggerfoot, data = KidsFeet, na.rm = TRUE)
+```
+
+### Second generation
+
+```{r}
+foolish <- function(x) { sort(x)[2]}
+df_stats(width ~ domhand + biggerfoot, data = KidsFeet, sd, ci.sd, foolish)
+```
+
+### Bootstrapping
+
+```{r}
+#set.seed(101)
+Trials <- do(10) * df_stats(width ~ domhand, data = resample(KidsFeet, 1000), mean)
+Trials
+Trials <- do(1000) * lm(width ~ sex + length, data = resample(KidsFeet))
+#df_stats(~ mean_width, data = Trials, sd)
+gf_point(length ~ sexG, data= Trials)
+```
+
+
+## mosaicModel
+
+```{r}
+library(mosaicModel)
+mod <- lm(width ~ sex + domhand + biggerfoot + birthyear, data = KidsFeet)
+modB <- lm(width ~ 1, data = KidsFeet)
+mod2 <- glm(biggerfoot == "L" ~ ns(width,4) + length + sex, data = KidsFeet, family=binomial)
+
+
+mod_eval(mod2, sex = "G")
+
+mod_plot(mod2, interval = "confidence")
+mod_effect(mod2, ~ sex)
+t.test(mse ~ model, data = mod_cv(mod, modB))
+```
+
+## Machine Learning
+
+```{r}
+library(randomForest)
+modRF <- randomForest(Height ~ Age + Gender, data = NHANES %>% select(Age, Height, Gender) %>% na.omit())
+importance(modRF)
+mod_plot(modRF)
+```
+
+
+
+
+
+
+
+

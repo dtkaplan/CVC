@@ -1,0 +1,52 @@
+---
+title: "Grinnell Today"
+runtime: shiny
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(NHANES)
+library(ggformula)
+library(shiny)
+library(dplyr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+This is the app we created in an hour at the Grinnell College workshop on data science, June 13, 2018.
+
+```{r}
+selectInput("dataset", "Which data set?", c("NHANES", "Saratoga Houses"))
+sliderInput("samp_size", "Sample size n", min=10, max = 1000, value = 500)
+selectInput("YVariable", "What's the response?", names(NHANES))
+selectInput("XVariable", "What's the predictor?", names(NHANES))
+```
+
+```{r}
+get_data <- reactive({
+  cat("Slider input was", input$samp_size)
+  NHANES %>% sample_n(size = input$samp_size)
+  })
+makeFormula <- reactive({
+  cat("Hi, Mom.  I love you.\n", input$YVariable, input$XVariable)
+  as.formula(paste(input$YVariable,  "~",  input$XVariable))
+})
+```
+
+## Here's the plot
+
+```{r}
+plotOutput("our_plot")
+```
+
+
+```{r}
+output$our_plot <- renderPlot({
+  plotFun <- if (is.numeric(get_data()[[input$XVariable]])) gf_point
+  else gf_jitter
+  plotFun(makeFormula(), data = get_data()) %>%
+    gf_labs(x = paste("This is the", input$XVariable))
+})
+```
+
+
+

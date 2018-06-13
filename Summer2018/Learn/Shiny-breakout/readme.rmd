@@ -1,0 +1,13 @@
+# Notes on Shiny
+
+
+Please understand that these notes are informal and written on the fly, as the breakout session proceeds. 
+
+Actually, this file merely gives a link to the [notes from Danny's Shiny tutorial](Learn/Shiny-breakout/Notes-on-shiny.Rmd). 
+
+These notes are in the form of an Rmd (not yet HTML!) file, so download it and then run it. Alternatively, use this command from within R:
+```{r eval = FALSE}
+download.file("http://cvc.mosaic-web.org/Summer2016/Learn/Shiny-breakout/Notes-on-shiny.Rmd", destfile = "Notes-on-shiny.Rmd")
+```
+
+Then open the newly downloaded file in the RStudio editor.

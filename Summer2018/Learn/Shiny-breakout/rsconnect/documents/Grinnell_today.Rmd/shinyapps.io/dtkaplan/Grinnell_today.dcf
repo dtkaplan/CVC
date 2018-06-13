@@ -1,0 +1,12 @@
+name: Grinnell_today
+title: Grinnell_today
+username:
+account: dtkaplan
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 360414
+bundleId: 1427699
+url: https://dtkaplan.shinyapps.io/Grinnell_today/
+when: 1528903798.67498
+asMultiple: FALSE
+asStatic: FALSE

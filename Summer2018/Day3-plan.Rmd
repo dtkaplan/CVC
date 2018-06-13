@@ -6,6 +6,7 @@
 
 2. Breakouts
     - 9:30 - Shiny: building an app DTK
+        - Our app: [Grinnell today](Learn/Shiny-breakout/Grinnell_today.Rmd)
 
     - 10:30 Inferential statistics DTK
         - classical
